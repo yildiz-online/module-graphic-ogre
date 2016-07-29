@@ -69,6 +69,10 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
      */
     @Getter
     private Point3D direction;
+
+    /**
+     * Current scale factor.
+     */
     @Getter
     private Point3D scaleSize = new Point3D(1);
 
