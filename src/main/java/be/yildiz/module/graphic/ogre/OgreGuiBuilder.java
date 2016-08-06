@@ -63,7 +63,7 @@ public final class OgreGuiBuilder extends GuiBuilder {
      * @return The newly built container.
      */
     @Override
-    protected GuiContainer buildContainerElement(final String name,
+    public GuiContainer buildContainerElement(final String name,
                                                  final BaseCoordinate coordinates, final Material background) {
         return new OgreGuiContainer(name, background, coordinates,
                 this.screenSize.width, this.screenSize.height, false);
@@ -81,7 +81,7 @@ public final class OgreGuiBuilder extends GuiBuilder {
      * @return The newly built container.
      */
     @Override
-    protected GuiContainer buildContainerElement(final String name,
+    public GuiContainer buildContainerElement(final String name,
                                                  final BaseCoordinate coordinates, final Material background,
                                                  final GuiContainer parent, final boolean widget) {
         return new OgreGuiContainer(name, background, coordinates, parent,
