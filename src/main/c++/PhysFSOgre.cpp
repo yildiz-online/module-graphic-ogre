@@ -143,9 +143,7 @@ public:
 
     inline time_t getModifiedTime(const Ogre::String& file) {
         LOG_FUNCTION
-        PHYSFS_Stat statbuf;
-        PHYSFS_stat(file.c_str(), &statbuf);
-        return statbuf.modtime;
+        return PHYSFS_getLastModTime(file.c_str());
     }
 
     Ogre::DataStreamPtr open(const Ogre::String& filename, bool append) const;

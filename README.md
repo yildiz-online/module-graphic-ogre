@@ -43,20 +43,15 @@ Then invoke maven
 
 for windows:
 
-	mvn clean install -Denv=win64
+	mvn clean install -Pnative -Denv=win32
 	
 for linux:
 
-	mvn clean install -Denv=linux64
+	mvn clean install -Pnative -Denv=linux64
 
 This will compile the source code, then run the unit tests, and finally build a jar file and DLL/SO for the environment you chose.
 
 ## Usage
-
-To use the snapshot versions, please add the following repository
-https://oss.sonatype.org/content/repositories/snapshots/
-
-Released version are retrieved from maven central.
 
 In your maven project, add the dependency
 
@@ -66,8 +61,8 @@ for windows:
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-graphic-ogre</artifactId>
-    <version>1.0.0-0-SNAPSHOT</version>
-	<classifier>win64</classifier>
+    <version>1.0.0</version>
+	<classifier>win32</classifier>
 </dependency>
 ```
 
@@ -77,7 +72,7 @@ for linux:
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-graphic-ogre</artifactId>
-    <version>1.0.0-0-SNAPSHOT</version>
+    <version>1.0.0</version>
 	<classifier>linux64</classifier>
 </dependency>
 ```
