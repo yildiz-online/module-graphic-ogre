@@ -1,10 +1,8 @@
-mkdir src/main/scripts/linux64/build
-cd src/main/scripts/linux64/build
-
-
-cmake ../ -DCMAKE_CXX_FLAGS="-fPIC" -DCMAKE_BUILD_TYPE=Release -DCMAKE_COLOR_MAKEFILE=on -DLIBRARY_OUTPUT_PATH="../../../../../target/classes/linux64" -G "Unix Makefiles"
+cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_MODULE_PATH=/usr/share/OGRE/cmake/modules -DLIBRARY_OUTPUT_PATH="../../../../target/classes/linux64" -G "Unix Makefiles"
 
 make
 
-rm -R *
-
+rm -R CMakeFiles
+rm CMakeCache.txt
+rm cmake_install.cmake
+rm Makefile

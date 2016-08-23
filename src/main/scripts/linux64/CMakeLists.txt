@@ -3,17 +3,17 @@ project (yildiz_native_ogre)
 
 set(CMAKE_CXX_FLAGS "-O2 -fPIC")
 
-set(OGRE "${CMAKE_SOURCE_DIR}/../ogre/release/linux64")
-set(OGRE_INCLUDE "${OGRE}/include")
-set(PHYSFS "${CMAKE_SOURCE_DIR}/../physicsFS/release/linux64")
-    
-include_directories("/home/moussa/dev/tools/java-linux64/include")
-include_directories("/home/moussa/dev/tools/java-linux64/include/linux")
+find_package(Boost REQUIRED)
+find_package(OGRE REQUIRED)
+find_package(PhysFS REQUIRED)
+find_package(Java REQUIRED)
+find_package(JNI REQUIRED)
 
-include_directories("${OGRE_INCLUDE}/OGRE")
-include_directories("${OGRE_INCLUDE}/OGRE/Overlay")
-include_directories("${PHYSFS}/include")
-include_directories("${CMAKE_SOURCE_DIR}/../boost-1-60-0")
+include_directories(${Boost_INCLUDE_DIRS})
+include_directories(${OGRE_INCLUDE_DIRS})
+include_directories(${PhysFS_INCLUDE_DIRS})
+include_directories(${JNI_INCLUDE_DIRS})
+include_directories(${JNI_INCLUDE_DIRS}/linux)
 
 file(
         GLOB_RECURSE
@@ -24,8 +24,7 @@ file(
         ${CMAKE_SOURCE_DIR}/../../includes/*.h
 )
 
-    add_library(yildizogre SHARED ${source_files})
+add_library(yildizogre SHARED ${source_files})
 
-    target_link_libraries(yildizogre ${OGRE}/lib/libOgreMain.so)
-    target_link_libraries(yildizogre ${OGRE}/lib/libOgreOverlay.so)
-    target_link_libraries(yildizogre ${PHYSFS}/lib/libphysfs.so)
+target_link_libraries(yildizogre ${OGRE_LIBRARIES})
+target_link_libraries(yildizogre ${PHYSFS_LIBRARY})

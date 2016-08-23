@@ -1,6 +1,0 @@
-cd src/main/scripts/ogredeps/build
-
-cmake ../ -DCMAKE_CXX_FLAGS="-fPIC" -DCMAKE_BUILD_TYPE="Release" -DOGREDEPS_BUILD_OIS=FALSE -DOGREDEPS_BUILD_ZZIPLIB=FALSE -DOGREDEPS_BUILD_AMD_QBS=FALSE -DOGREDEPS_BUILD_NVIDIA_NVAPI=FALSE -DCMAKE_INSTALL_PREFIX="../../Dependencies/" -DLIBRARY_OUTPUT_PATH="" -G "Unix Makefiles"
-
-make install
-make clean
