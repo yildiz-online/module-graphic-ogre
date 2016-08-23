@@ -29,7 +29,7 @@
 #include "stdafx.h"
 #include "GuiContainer.hpp"
 #include "Font.hpp"
-#include <OgreTextAreaOverlayElement.h>
+#include <Overlay/OgreTextAreaOverlayElement.h>
 
 namespace YZ {
 

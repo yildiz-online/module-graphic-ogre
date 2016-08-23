@@ -28,9 +28,9 @@
 
 #include "stdafx.h"
 #include "Material.hpp"
-#include <OgreOverlayContainer.h>
-#include <OgreOverlayElement.h>
-#include <OgreOverlay.h>
+#include <Overlay/OgreOverlayContainer.h>
+#include <Overlay/OgreOverlayElement.h>
+#include <Overlay/OgreOverlay.h>
 
 namespace YZ {
 
