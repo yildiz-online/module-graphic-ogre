@@ -95,10 +95,9 @@ public final class OgreGraphicEngine implements GraphicEngine {
      *
      * @param windowEngine WindowEngine wrapping this graphic context.
      * @throws NullPointerException If windowEngine is null.
-     * @Ensures this.size == windowEngine.size
-     * @Ensures this.root != null
-     * @Ensures
      */
+    //@Ensures this.size == windowEngine.size
+    //@Ensures this.root != null
     public OgreGraphicEngine(final WindowEngine windowEngine) {
         super();
         this.size = windowEngine.getScreenSize();

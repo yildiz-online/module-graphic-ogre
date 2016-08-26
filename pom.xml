@@ -4,9 +4,8 @@
   <name>Yildiz Module Graphic Ogre</name>
   <description>Ogre implementation for the graphic module.</description>
 
-  <groupId>be.yildiz-games</groupId>
   <artifactId>module-graphic-ogre</artifactId>
-  <version>1.0.0SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <packaging>jar</packaging>
   <inceptionYear>2014</inceptionYear>
@@ -50,7 +49,6 @@
       <groupId>be.yildiz-games</groupId>
       <artifactId>module-window-swt</artifactId>
       <version>${version.module-swt}</version>
-      <classifier>${nativeEnv}</classifier>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -105,6 +103,14 @@
           </plugin>
         </plugins>
       </build>
+      <dependencies>
+        <dependency>
+          <groupId>be.yildiz-games</groupId>
+          <artifactId>module-window-swt</artifactId>
+          <version>${version.module-swt}</version>
+          <classifier>linux64</classifier>
+        </dependency>
+      </dependencies>
       <properties>
         <nativeEnv>linux64</nativeEnv>
       </properties>
@@ -127,6 +133,14 @@
           </plugin>
         </plugins>
       </build>
+      <dependencies>
+        <dependency>
+          <groupId>be.yildiz-games</groupId>
+          <artifactId>module-window-swt</artifactId>
+          <version>${version.module-swt}</version>
+          <classifier>win32</classifier>
+        </dependency>
+      </dependencies>
       <properties>
         <nativeEnv>win32</nativeEnv>
       </properties>

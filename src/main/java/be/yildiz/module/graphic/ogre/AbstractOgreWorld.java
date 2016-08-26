@@ -57,8 +57,6 @@ public abstract class AbstractOgreWorld implements ClientWorld {
      * Full constructor.
      *
      * @param graphic Manage the graphic part of this world.
-     * @param physic  Manage the physic part of this world.
-     * @param id      World unique index.
      */
     protected AbstractOgreWorld(final OgreSceneManager graphic) {
         super();

@@ -235,7 +235,6 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create an Ogre Node with a random name.
      *
-     * @param name Node's name, must be unique.
      * @return The created node.
      */
     public OgreNode createNode() {

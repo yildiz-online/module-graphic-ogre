@@ -41,8 +41,6 @@ public final class OgreMovableObject extends AbstractOgreObject {
      *
      * @param id       Object unique Id.
      * @param entity   Graphic part of the object.
-     * @param ogreNode Node used to move the object.
-     * @param body     Physic part of the object.
      */
     public OgreMovableObject(final EntityId id, final OgreEntity entity) {
         super(id, entity, false);
