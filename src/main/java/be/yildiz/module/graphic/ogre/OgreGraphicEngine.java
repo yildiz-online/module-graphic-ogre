@@ -80,7 +80,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
         super();
         this.size = screenSize;
         Logger.info("Initializing Ogre graphic engine...");
-        NativeResourceLoader.loadBaseLibrary("libwinpthread-1", "libgcc_s_seh-1", "libstdc++-6");
+        NativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
         NativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
         this.root = new Root();
         this.loadPlugins();
@@ -102,7 +102,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
         super();
         this.size = windowEngine.getScreenSize();
         Logger.info("Initializing Ogre graphic engine...");
-        NativeResourceLoader.loadBaseLibrary("libwinpthread-1", "libgcc_s_seh-1", "libstdc++-6");
+        NativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
         NativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
         this.root = new Root();
         this.loadPlugins();
