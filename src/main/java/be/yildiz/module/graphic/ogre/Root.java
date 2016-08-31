@@ -40,6 +40,9 @@ import java.security.InvalidParameterException;
  */
 final class Root {
 
+    /**
+     * Flag to check if initialized or not.
+     */
     private boolean initialized;
 
     /**
