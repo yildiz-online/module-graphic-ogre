@@ -5,7 +5,7 @@
   <description>Ogre implementation for the graphic module.</description>
 
   <artifactId>module-graphic-ogre</artifactId>
-  <version>1.1.0-SNAPSHOT</version>
+  <version>1.1.0</version>
 
   <packaging>jar</packaging>
   <inceptionYear>2014</inceptionYear>
@@ -23,7 +23,7 @@
   <properties>
     <version.bom-junit>1.0.1</version.bom-junit>
     <version.bom-swt>1.0.1</version.bom-swt>
-    <version.module-graphic>1.1.0-SNAPSHOT</version.module-graphic>
+    <version.module-graphic>1.1.0</version.module-graphic>
     <nativeEnv>none</nativeEnv>
   </properties>
 

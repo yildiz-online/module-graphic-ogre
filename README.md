@@ -61,7 +61,7 @@ for windows:
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-graphic-ogre</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 	<classifier>win32</classifier>
 </dependency>
 ```
@@ -72,7 +72,7 @@ for linux:
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-graphic-ogre</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 	<classifier>linux64</classifier>
 </dependency>
 ```
