@@ -83,12 +83,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <classifier>${nativeEnv}</classifier>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
@@ -101,6 +95,16 @@
           <value>linux64</value>
         </property>
       </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+              <classifier>linux64</classifier>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
       <properties>
         <nativeEnv>linux64</nativeEnv>
       </properties>
