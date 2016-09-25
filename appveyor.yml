@@ -17,8 +17,8 @@ install:
   - cmd: mvn --version
   - cmd: java -version
 build_script:
-  - mvn clean package -B -Dmaven.test.skip=true -Denv=win32
+  - mvn clean package -B -Dmaven.test.skip=true -Denv=win32 -s settings.xml
 test_script:
-  - mvn verify -B -Denv=win32
+  - mvn verify -B -Denv=win32 -s settings.xml
 cache:
   - C:\maven

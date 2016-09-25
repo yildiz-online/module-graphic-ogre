@@ -1,6 +1,4 @@
 language: java
 jdk:
   - oraclejdk8
-
-install:
-mvn install -Denv=linux64
+script: mvn clean install -s settings.xml -Denv=linux64
