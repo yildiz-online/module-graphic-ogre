@@ -59,8 +59,8 @@ final class OgreText extends AbstractTextElement {
      */
     OgreText(final BaseCoordinate coordinates, final Font font, final GuiContainer container) {
         super(coordinates, font);
-        this.pointer = NativePointer.create(this.constructor(((OgreGuiContainer) container).getPointer().address, coordinates.width, coordinates.height, coordinates.left, coordinates.top,
-                ((OgreFont) font).getPointer().address, font.size, this.getName()));
+        this.pointer = NativePointer.create(this.constructor(OgreGuiContainer.class.cast(container).getPointer().getPointerAddress(), coordinates.width, coordinates.height, coordinates.left, coordinates.top,
+                OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size, this.getName()));
         this.setColor(font.color);
         this.hide();
         this.show();
@@ -69,29 +69,29 @@ final class OgreText extends AbstractTextElement {
     @Override
     protected void setColor(final Color color) {
         if (!color.equals(this.color)) {
-            this.setColor(this.pointer.address, color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+            this.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
             this.color = color;
         }
     }
 
     @Override
     protected void setTextImpl(final String text) {
-        this.setText(this.pointer.address, text);
+        this.setText(this.pointer.getPointerAddress(), text);
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.address);
+        this.hide(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.address);
+        this.show(this.pointer.getPointerAddress());
     }
 
     @Override
     protected Element setPositionImpl(final int left, final int top) {
-        this.setPosition(this.pointer.address, left, top);
+        this.setPosition(this.pointer.getPointerAddress(), left, top);
         return this;
     }
 
@@ -101,12 +101,13 @@ final class OgreText extends AbstractTextElement {
 
     @Override
     protected void setFontImpl(final Font font) {
-        this.setFont(this.pointer.address, ((OgreFont) font).getPointer().address, font.size);
+        this.setFont(this.pointer.getPointerAddress(), OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
     }
 
     @Override
     protected void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
         this.removeFromRegisterer();
     }
 

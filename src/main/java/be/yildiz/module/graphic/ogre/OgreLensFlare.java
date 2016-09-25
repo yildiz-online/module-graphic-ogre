@@ -57,22 +57,23 @@ final class OgreLensFlare extends LensFlare implements Native {
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.address, position.x, position.y, position.z);
+        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     public void setStreakSize(final float w, final float h) {
-        this.setStreakSize(this.pointer.address, w, h);
+        this.setStreakSize(this.pointer.getPointerAddress(), w, h);
     }
 
     @Override
     public void setLightSize(final float w, final float h) {
-        this.setLightSize(this.pointer.address, w, h);
+        this.setLightSize(this.pointer.getPointerAddress(), w, h);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

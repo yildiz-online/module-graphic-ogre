@@ -54,52 +54,52 @@ final class OgreParticleEmitter extends ParticleEmitter {
 
     @Override
     protected void setAngleImpl(final float angle) {
-        this.setAngle(this.pointer.address, angle);
+        this.setAngle(this.pointer.getPointerAddress(), angle);
     }
 
     @Override
     protected void setRateImpl(final float rate) {
-        this.setRate(this.pointer.address, rate);
+        this.setRate(this.pointer.getPointerAddress(), rate);
     }
 
     @Override
     protected void setDurationImpl(final float duration) {
-        this.setDuration(this.pointer.address, duration);
+        this.setDuration(this.pointer.getPointerAddress(), duration);
     }
 
     @Override
     protected void setLifeTimeImpl(final float lifeTime) {
-        this.setLifeTime(this.pointer.address, lifeTime);
+        this.setLifeTime(this.pointer.getPointerAddress(), lifeTime);
     }
 
     @Override
     protected void setDirectionImpl(final Point3D direction) {
-        this.setDirection(this.pointer.address, direction.x, direction.y, direction.z);
+        this.setDirection(this.pointer.getPointerAddress(), direction.x, direction.y, direction.z);
     }
 
     @Override
     protected void setMinSpeedImpl(final float minSpeed) {
-        this.setMinSpeed(this.pointer.address, minSpeed);
+        this.setMinSpeed(this.pointer.getPointerAddress(), minSpeed);
     }
 
     @Override
     protected void setMaxSpeedImpl(final float maxSpeed) {
-        this.setMaxSpeed(this.pointer.address, maxSpeed);
+        this.setMaxSpeed(this.pointer.getPointerAddress(), maxSpeed);
     }
 
     @Override
     protected void setStartColorImpl(final Color start) {
-        this.setStartColor(this.pointer.address, start.normalizedRed, start.normalizedGreen, start.normalizedBlue, start.normalizedAlpha);
+        this.setStartColor(this.pointer.getPointerAddress(), start.normalizedRed, start.normalizedGreen, start.normalizedBlue, start.normalizedAlpha);
     }
 
     @Override
     protected void setEndColorImpl(final Color end) {
-        this.setEndColor(this.pointer.address, end.normalizedRed, end.normalizedGreen, end.normalizedBlue, end.normalizedAlpha);
+        this.setEndColor(this.pointer.getPointerAddress(), end.normalizedRed, end.normalizedGreen, end.normalizedBlue, end.normalizedAlpha);
     }
 
     @Override
     protected void setRepeatDelayImpl(final float repeatDelay) {
-        this.setRepeatDelay(this.pointer.address, repeatDelay);
+        this.setRepeatDelay(this.pointer.getPointerAddress(), repeatDelay);
     }
 
     /**

@@ -49,22 +49,23 @@ final class OgreBillboard extends Billboard implements Native {
 
     @Override
     protected void setSizeImpl(final float width, final float height) {
-        this.setSize(this.pointer.address, width, height);
+        this.setSize(this.pointer.getPointerAddress(), width, height);
     }
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.address, position.x, position.y, position.z);
+        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     public void setColor(final Color color) {
-        this.setColor(this.pointer.address, color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

@@ -92,8 +92,8 @@ final class Root {
      * @return The built SceneManager.
      */
     NativePointer createScene(final String name) {
-        final long pointerAdress = this.createSceneManager(name);
-        return NativePointer.create(pointerAdress);
+        final long pointerAddress = this.createSceneManager(name);
+        return NativePointer.create(pointerAddress);
     }
 
     /**
@@ -177,19 +177,19 @@ final class Root {
      * Build a render window in native code.
      *
      * @param width  RenderWindow resolution width.
-     * @param heigth RenderWindow resolution height.
+     * @param height RenderWindow resolution height.
      * @param handle Handle to the win32 window containing the render window, not
      *               used for other OS.
      */
-    private native void createRenderWindow(final int width, final int heigth, final long handle);
+    private native void createRenderWindow(final int width, final int height, final long handle);
 
     /**
      * Build a render window in native code using the current GL context.
      *
      * @param width  RenderWindow resolution width.
-     * @param heigth RenderWindow resolution height.
+     * @param height RenderWindow resolution height.
      */
-    private native void createRenderWindowGlContext(final int width, final int heigth);
+    private native void createRenderWindowGlContext(final int width, final int height);
 
     /**
      * Close the root object in native code.

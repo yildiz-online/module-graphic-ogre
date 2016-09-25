@@ -103,7 +103,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
         this.resolutionX = screenSizeX;
         this.resolutionY = screenSizeY;
         this.defaultCamera = this.createCamera("default");
-        this.rootNode = new OgreNode(NativePointer.create(this.getRootNode(this.pointer.address)), null);
+        this.rootNode = new OgreNode(NativePointer.create(this.getRootNode(this.pointer.getPointerAddress())), null);
     }
 
     /**
@@ -112,7 +112,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @param color World ambient light color.
      */
     public void setAmbientLight(final Color color) {
-        this.setAmbientLight(this.pointer.address, color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.setAmbientLight(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
     }
 
     /**
@@ -133,7 +133,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The created point light.
      */
     public OgrePointLight createPointLight(final String name, final Point3D position) {
-        final long lightPointer = this.createPointLight(this.pointer.address, name, position.x, position.y, position.z);
+        final long lightPointer = this.createPointLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z);
         return new OgrePointLight(NativePointer.create(lightPointer), name, position);
     }
 
@@ -146,7 +146,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The created spot light.
      */
     public OgreSpotLight createSpotLight(final String name, final Point3D position, final Point3D direction) {
-        final long lightPointer = this.createSpotLight(this.pointer.address, name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
+        final long lightPointer = this.createSpotLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
         return new OgreSpotLight(NativePointer.create(lightPointer), name, position, direction);
     }
 
@@ -159,7 +159,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The created directional light.
      */
     public OgreDirectionalLight createDirectionalLight(final String name, final Point3D position, final Point3D direction) {
-        final long lightPointer = this.createDirectionalLight(this.pointer.address, name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
+        final long lightPointer = this.createDirectionalLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
         return new OgreDirectionalLight(NativePointer.create(lightPointer), name, direction);
     }
 
@@ -179,7 +179,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return An Ogre implementation for ElectricArc.
      */
     public OgreElectricArc createElectricArc(final Point3D start, final Point3D end, final float width) {
-        final long arcPointer = this.createElectricArc(this.pointer.address, StringUtil.buildRandomString("earc"), start.x, start.y, start.z, end.x, end.y, end.z, width);
+        final long arcPointer = this.createElectricArc(this.pointer.getPointerAddress(), StringUtil.buildRandomString("earc"), start.x, start.y, start.z, end.x, end.y, end.z, width);
         return new OgreElectricArc(NativePointer.create(arcPointer), start, end);
     }
 
@@ -208,7 +208,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @param sky Sky box to use.
      */
     public void setSkybox(final Skybox sky) {
-        this.setSkybox(this.pointer.address, sky.getName());
+        this.setSkybox(this.pointer.getPointerAddress(), sky.getName());
     }
 
     /**
@@ -227,7 +227,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The created node.
      */
     public OgreNode createNode(final String name) {
-        final long address = this.createNode(this.pointer.address, name);
+        final long address = this.createNode(this.pointer.getPointerAddress(), name);
         final NativePointer nodePointer = NativePointer.create(address);
         return new OgreNode(nodePointer, this.rootNode);
     }
@@ -249,7 +249,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The created node.
      */
     public OgreNode createNode(final EntityId id, final String name) {
-        final long address = this.createNodeId(this.pointer.address, id.value, name);
+        final long address = this.createNodeId(this.pointer.getPointerAddress(), id.value, name);
         final NativePointer nodePointer = NativePointer.create(address);
         return new OgreNode(nodePointer, id, this.rootNode);
     }
@@ -276,8 +276,8 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      */
     public OgreLensFlare createLensFlare(final Material light, final Material streak, final Material halo, final Material burst, final Point3D pos) {
         // FIXME linked to camera, does not support switching cam
-        return new OgreLensFlare(NativePointer.create(this.createLensFlare(StringUtil.buildRandomString("lf_"), this.pointer.address, this.defaultCamera.getPointer().address,
-                ((OgreMaterial) light).getPointer().address, ((OgreMaterial) streak).getPointer().address, ((OgreMaterial) halo).getPointer().address, ((OgreMaterial) burst).getPointer().address,
+        return new OgreLensFlare(NativePointer.create(this.createLensFlare(StringUtil.buildRandomString("lf_"), this.pointer.getPointerAddress(), this.defaultCamera.getPointer().getPointerAddress(),
+                OgreMaterial.class.cast(light).getPointer().getPointerAddress(), OgreMaterial.class.cast(streak).getPointer().getPointerAddress(), OgreMaterial.class.cast(halo).getPointer().getPointerAddress(), OgreMaterial.class.cast(burst).getPointer().getPointerAddress(),
                 pos.x, pos.y, pos.z)), Point3D.xyz(pos.x, pos.y, pos.z));
     }
 
@@ -288,8 +288,8 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The newly built camera.
      */
     public OgreCamera createCamera(final String name) {
-        final long adress = this.createCamera(this.pointer.address, name);
-        final OgreCamera cam = new OgreCamera(NativePointer.create(adress), name, this.createNode("cam_" + name), this.resolutionX, this.resolutionY);
+        final long address = this.createCamera(this.pointer.getPointerAddress(), name);
+        final OgreCamera cam = new OgreCamera(NativePointer.create(address), name, this.createNode("cam_" + name), this.resolutionX, this.resolutionY);
 
         this.window.createViewport(cam);
         this.cameras.register(cam);
@@ -304,7 +304,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The built mesh entity.
      */
     public OgreEntity createEntity(final GraphicMesh mesh, final OgreNode node) {
-        OgreEntity entity = new OgreEntity(NativePointer.create(this.createMeshEntity(this.pointer.address, mesh.getFile(), node.getPointer().address)), node);
+        OgreEntity entity = new OgreEntity(NativePointer.create(this.createMeshEntity(this.pointer.getPointerAddress(), mesh.getFile(), node.getPointer().getPointerAddress())), node);
         entity.setMaterial(mesh.getMaterial());
         return entity;
     }
@@ -317,7 +317,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The built box entity.
      */
     public OgreEntity createEntity(final Box box, final OgreNode node) {
-        final OgreEntity e = new OgreEntity(NativePointer.create(this.createBoxEntity(this.pointer.address, node.getPointer().address)), node);
+        final OgreEntity e = new OgreEntity(NativePointer.create(this.createBoxEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress())), node);
         node.scale(box.width * OgreSceneManager.OGRE_SCALE, box.height * OgreSceneManager.OGRE_SCALE, box.depth * OgreSceneManager.OGRE_SCALE);
         return e;
     }
@@ -330,7 +330,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The built plane entity.
      */
     public OgreEntity createEntity(final Plane plane, final OgreNode node) {
-        final OgreEntity e = new OgreEntity(NativePointer.create(this.createPlaneEntity(this.pointer.address, node.getPointer().address)), node);
+        final OgreEntity e = new OgreEntity(NativePointer.create(this.createPlaneEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress())), node);
         node.scale(plane.width * OgreSceneManager.OGRE_SCALE, plane.depth * OGRE_SCALE, plane.depth * OGRE_SCALE);
         return e;
     }
@@ -343,7 +343,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return The built sphere entity.
      */
     public OgreEntity createEntity(final Sphere sphere, final OgreNode node) {
-        final OgreEntity e = new OgreEntity(NativePointer.create(this.createSphereEntity(this.pointer.address, node.getPointer().address, StringUtil.buildRandomString(node.getName()))), node);
+        final OgreEntity e = new OgreEntity(NativePointer.create(this.createSphereEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress(), StringUtil.buildRandomString(node.getName()))), node);
         node.scale(OgreSceneManager.OGRE_SCALE * sphere.radius);
         return e;
     }
@@ -367,7 +367,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      */
     public OgreParticleSystem createParticleSystem() {
         final OgreNode node = this.createNode(StringUtil.buildRandomString("node_particleSystem"));
-        final long address = this.createParticleSystem(this.pointer.address);
+        final long address = this.createParticleSystem(this.pointer.getPointerAddress());
         final NativePointer systemPointer = NativePointer.create(address);
         return new OgreParticleSystem(systemPointer, node);
     }
@@ -378,7 +378,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @param type Shadow type to set.
      */
     public void setShadowType(final ShadowType type) {
-        this.setShadowType(this.pointer.address, type.ordinal());
+        this.setShadowType(this.pointer.getPointerAddress(), type.ordinal());
     }
 
     /**
@@ -388,7 +388,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @return A new OgreBillboardSet attached to the root scene node.
      */
     public OgreBillboardSet createBillboardSet(final Material material) {
-        NativePointer setPointer = NativePointer.create(this.createBillboardSet(this.pointer.address, ((OgreMaterial) material).getPointer().address));
+        NativePointer setPointer = NativePointer.create(this.createBillboardSet(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress()));
         return new OgreBillboardSet(setPointer, this.rootNode);
     }
 
@@ -399,13 +399,13 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      */
     public OgreParticleSystem[] createExplosion() {
         final OgreNode node = this.createNode(StringUtil.buildRandomString("node_explosion"));
-        long address = this.createParticleSystem(this.pointer.address);
+        long address = this.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke1 = new OgreParticleSystem(NativePointer.create(address), node);
-        address = this.createParticleSystem(this.pointer.address);
+        address = this.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke2 = new OgreParticleSystem(NativePointer.create(address), node);
-        address = this.createParticleSystem(this.pointer.address);
+        address = this.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke3 = new OgreParticleSystem(NativePointer.create(address), node);
-        address = this.createParticleSystem(this.pointer.address);
+        address = this.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke4 = new OgreParticleSystem(NativePointer.create(address), node);
         return new OgreParticleSystem[]{smoke1, smoke2, smoke3, smoke4};
     }
@@ -422,7 +422,8 @@ public final class OgreSceneManager implements GraphicWorld, Native {
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

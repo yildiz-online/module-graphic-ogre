@@ -70,7 +70,7 @@ final class OgreGuiContainer extends GuiContainer implements Native {
         super(name, coordinate, material, Optional.empty(), widget);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
-        this.pointer = NativePointer.create(this.constructor(((OgreMaterial) material).getPointer().address, name, coordinate.width, coordinate.height));
+        this.pointer = NativePointer.create(this.constructor(OgreMaterial.class.cast(material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height));
         this.setPosition(coordinate.left, coordinate.top);
         if (!widget && parent.isPresent()) {
             this.setZ(parent.get().getZ().add(1));
@@ -91,8 +91,8 @@ final class OgreGuiContainer extends GuiContainer implements Native {
         super(name, coordinate, material, Optional.of(parent), widget);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
-        this.pointer = NativePointer.create(this.constructorParent(((OgreMaterial) material).getPointer().address, name, coordinate.width, coordinate.height,
-                ((OgreGuiContainer) parent).getPointer().address));
+        this.pointer = NativePointer.create(this.constructorParent(OgreMaterial.class.cast(material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height,
+                OgreGuiContainer.class.cast(parent).getPointer().getPointerAddress()));
         this.setPosition(coordinate.left, coordinate.top);
         this.show();
     }
@@ -101,17 +101,17 @@ final class OgreGuiContainer extends GuiContainer implements Native {
     public String getElementName(final int x, final int y) {
         final float left = (float) x / (float) this.screenWidth;
         final float top = (float) y / (float) this.screenHeight;
-        return this.getElement(this.pointer.address, left, top);
+        return this.getElement(this.pointer.getPointerAddress(), left, top);
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.address);
+        this.show(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.address);
+        this.hide(this.pointer.getPointerAddress());
     }
 
     @Override
@@ -121,38 +121,39 @@ final class OgreGuiContainer extends GuiContainer implements Native {
 
     @Override
     public void delete() {
+        this.pointer.delete();
         // FIXME implements
     }
 
     @Override
     protected void zoomImpl(final float factor) {
-        this.zoom(this.pointer.address, factor);
+        this.zoom(this.pointer.getPointerAddress(), factor);
     }
 
     @Override
     protected void setSizeImpl(final int width, final int height) {
-        this.setSize(this.pointer.address, width, height);
+        this.setSize(this.pointer.getPointerAddress(), width, height);
     }
 
     @Override
     protected Element setPositionImpl(final int left, final int top) {
-        this.setPosition(this.pointer.address, left, top);
+        this.setPosition(this.pointer.getPointerAddress(), left, top);
         return this;
     }
 
     @Override
     protected void addChildrenPositionImpl(final int left, final int top) {
-        this.addChildrenPosition(this.pointer.address, left, top);
+        this.addChildrenPosition(this.pointer.getPointerAddress(), left, top);
     }
 
     @Override
     protected void setMaterialImpl(final Material material) {
-        this.setMaterial(this.pointer.address, ((OgreMaterial) material).getPointer().address);
+        this.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
     }
 
     @Override
     protected void setZImpl(final Zorder z) {
-        this.setZ(this.pointer.address, (short) z.getValue());
+        this.setZ(this.pointer.getPointerAddress(), (short) z.getValue());
     }
 
     /**

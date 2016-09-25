@@ -52,59 +52,60 @@ final class OgreTextureUnit extends TextureUnit implements Native {
     OgreTextureUnit(final long address) {
         super();
         this.pointer = NativePointer.create(address);
-        this.setTextureFilter(this.pointer.address, TextureFilter.ANISOTROPIC.getValue());
+        this.setTextureFilter(this.pointer.getPointerAddress(), TextureFilter.ANISOTROPIC.getValue());
     }
 
     @Override
     public void scroll(final float x, final float y) {
-        this.scroll(this.pointer.address, x, y);
+        this.scroll(this.pointer.getPointerAddress(), x, y);
     }
 
     @Override
     public void setColorOperation(final ColorOperation op) {
-        this.setColorOperation(this.pointer.address, op.ordinal());
+        this.setColorOperation(this.pointer.getPointerAddress(), op.ordinal());
     }
 
     @Override
     public void setColorOperationEx(final LayerBlendOperationEx op, final LayerBlendSource src1, final LayerBlendSource src2) {
-        this.setColorOperationEx(this.pointer.address, op.ordinal(), src1.ordinal(), src2.ordinal());
+        this.setColorOperationEx(this.pointer.getPointerAddress(), op.ordinal(), src1.ordinal(), src2.ordinal());
     }
 
     @Override
     public void setAlphaOperation(final LayerBlendOperationEx source1, final LayerBlendSource texture, final LayerBlendSource texture2) {
-        this.setAlphaOperation(this.pointer.address, source1.ordinal(), texture.ordinal(), texture2.ordinal());
+        this.setAlphaOperation(this.pointer.getPointerAddress(), source1.ordinal(), texture.ordinal(), texture2.ordinal());
 
     }
 
     @Override
     public void setColorOperationEx(final LayerBlendOperationEx source1, final LayerBlendSource manual, final LayerBlendSource current, final Color color) {
-        this.setColorOperationExManual(this.pointer.address, source1.ordinal(), manual.ordinal(), current.ordinal(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
+        this.setColorOperationExManual(this.pointer.getPointerAddress(), source1.ordinal(), manual.ordinal(), current.ordinal(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
     }
 
     @Override
     public TextureUnit setTextureAnimated(final String basePath, final int numberOfFrames, final int duration) {
-        this.setTextureAnimated(this.pointer.address, basePath, numberOfFrames, duration);
+        this.setTextureAnimated(this.pointer.getPointerAddress(), basePath, numberOfFrames, duration);
         return this;
     }
 
     @Override
     protected void setTextureImpl(final String path) {
-        this.setTexture(this.pointer.address, path);
+        this.setTexture(this.pointer.getPointerAddress(), path);
     }
 
     @Override
     protected void setScaleImpl(final float xScale, final float yScale) {
-        this.setScale(this.pointer.address, xScale, yScale);
+        this.setScale(this.pointer.getPointerAddress(), xScale, yScale);
     }
 
     @Override
     public void setCoordinateSet(final int set) {
-        this.setCoordinateSet(this.pointer.address, set);
+        this.setCoordinateSet(this.pointer.getPointerAddress(), set);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

@@ -52,7 +52,7 @@ final class OgreParticleForceAffector extends ParticleForceAffector {
 
     @Override
     protected void setForceImpl(final float x, final float y, final float z) {
-        this.setForce(this.pointer.address, x, y, z);
+        this.setForce(this.pointer.getPointerAddress(), x, y, z);
     }
 
     /**

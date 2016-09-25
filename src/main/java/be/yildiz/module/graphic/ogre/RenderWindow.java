@@ -48,7 +48,7 @@ final class RenderWindow {
      * @return The new built ViewPort.
      */
     ViewPort createViewport(final OgreCamera camera) {
-        final long address = this.createViewport(camera.getPointer().address);
+        final long address = this.createViewport(camera.getPointer().getPointerAddress());
         return new ViewPort(NativePointer.create(address), camera);
     }
 

@@ -79,12 +79,12 @@ final class OgreMaterial extends Material implements Native {
 
     @Override
     protected void loadImpl() {
-        this.loadTexture(this.pointer.address);
+        this.loadTexture(this.pointer.getPointerAddress());
     }
 
     @Override
     protected Material copyImpl(final String name) {
-        final long copyPointer = this.copy(this.pointer.address, name);
+        final long copyPointer = this.copy(this.pointer.getPointerAddress(), name);
         final long[] copyTechniques = this.getTechniqueList(copyPointer);
         final List<MaterialTechnique> techniqueCopyList = Lists.newList(copyTechniques.length);
         for (int techniqueIndex = 0; techniqueIndex < copyTechniques.length; techniqueIndex++) {
@@ -115,19 +115,20 @@ final class OgreMaterial extends Material implements Native {
     @Override
     protected OgreMaterialTechnique createTechniqueImpl(final int index) {
         if (index == 0) {
-            return new OgreMaterialTechnique(this.getTechnique(this.pointer.address, 0), 0);
+            return new OgreMaterialTechnique(this.getTechnique(this.pointer.getPointerAddress(), 0), 0);
         }
-        return new OgreMaterialTechnique(this.createTechnique(this.pointer.address), index);
+        return new OgreMaterialTechnique(this.createTechnique(this.pointer.getPointerAddress()), index);
     }
 
     @Override
     protected void receiveShadowImpl(final boolean receive) {
-        this.receiveShadow(this.pointer.address, receive);
+        this.receiveShadow(this.pointer.getPointerAddress(), receive);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

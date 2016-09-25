@@ -57,27 +57,28 @@ final class OgrePointLight extends PointLight implements Native {
 
     @Override
     protected void deleteImpl() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.address, position.x, position.y, position.z);
+        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     public void setColor(final Color color) {
-        this.setColor(this.pointer.address, color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
+        this.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
     }
 
     @Override
     public void setAttenuation(final float range, final float constant, final float linear, final float quadratic) {
-        this.setAttenuation(this.pointer.address, range, constant, linear, quadratic);
+        this.setAttenuation(this.pointer.getPointerAddress(), range, constant, linear, quadratic);
     }
 
     @Override
     public void setDebug() {
-        this.setDebug(this.pointer.address);
+        this.setDebug(this.pointer.getPointerAddress());
     }
 
     @Override

@@ -57,18 +57,18 @@ final class OgreIcon extends AbstractIconElement implements Native {
      */
     OgreIcon(final String name, final BaseCoordinate coordinates, final Material material, final GuiContainer container) {
         super(name, coordinates, material);
-        this.pointer = NativePointer.create(this.constructor(((OgreGuiContainer) container).getPointer().address, name, ((OgreMaterial) material).getPointer().address, coordinates.width,
+        this.pointer = NativePointer.create(this.constructor(OgreGuiContainer.class.cast(container).getPointer().getPointerAddress(), name, ((OgreMaterial) material).getPointer().getPointerAddress(), coordinates.width,
                 coordinates.height, coordinates.left, coordinates.top));
     }
 
     @Override
     protected int getZ() {
-        return this.getZ(this.pointer.address);
+        return this.getZ(this.pointer.getPointerAddress());
     }
 
     @Override
     protected String getParentName() {
-        return this.getParentName(this.pointer.address);
+        return this.getParentName(this.pointer.getPointerAddress());
     }
 
     @Override
@@ -79,34 +79,35 @@ final class OgreIcon extends AbstractIconElement implements Native {
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
         this.removeFromRegisterer();
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.address);
+        this.hide(this.pointer.getPointerAddress());
     }
 
     @Override
     protected Element setPositionImpl(final int xPosition, final int yPosition) {
-        this.setPosition(this.pointer.address, xPosition, yPosition);
+        this.setPosition(this.pointer.getPointerAddress(), xPosition, yPosition);
         return this;
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.address);
+        this.show(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void setSizeImpl(final int width, final int height) {
-        this.setSize(this.pointer.address, width, height);
+        this.setSize(this.pointer.getPointerAddress(), width, height);
     }
 
     @Override
     protected void setMaterialImpl(final Material material) {
-        this.setTexture(this.pointer.address, ((OgreMaterial) material).getPointer().address);
+        this.setTexture(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
     }
 
     /**

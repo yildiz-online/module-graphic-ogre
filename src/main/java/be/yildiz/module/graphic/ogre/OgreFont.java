@@ -61,14 +61,15 @@ final class OgreFont extends Font implements Native {
      */
     @Override
     protected void loadImpl() {
-        float[] widthArray = this.computeCharSize(this.pointer.address);
+        float[] widthArray = this.computeCharSize(this.pointer.getPointerAddress());
         widthArray[32] = widthArray[32] * 0.5f;
         this.setCharWidth(widthArray);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
         // FIXME remove from registerer
     }
 

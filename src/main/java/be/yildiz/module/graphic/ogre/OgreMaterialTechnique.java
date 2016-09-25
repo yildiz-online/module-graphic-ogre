@@ -78,15 +78,15 @@ final class OgreMaterialTechnique extends MaterialTechnique {
     @Override
     protected MaterialPass createPassImpl(final int index) {
         if (index == 0) {
-            return new OgreMaterialPass(this.getPass(this.pointer.address, 0));
+            return new OgreMaterialPass(this.getPass(this.pointer.getPointerAddress(), 0));
         }
-        return new OgreMaterialPass(this.createPass(this.pointer.address));
+        return new OgreMaterialPass(this.createPass(this.pointer.getPointerAddress()));
 
     }
 
     @Override
     protected void setGlowImpl() {
-        this.setGlow(this.pointer.address);
+        this.setGlow(this.pointer.getPointerAddress());
 
     }
 

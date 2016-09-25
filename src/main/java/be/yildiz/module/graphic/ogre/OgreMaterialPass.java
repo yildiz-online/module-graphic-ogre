@@ -77,117 +77,117 @@ final class OgreMaterialPass extends MaterialPass {
 
     @Override
     protected OgreTextureUnit createUnitImpl(final int index) {
-        return new OgreTextureUnit(this.createUnit(this.pointer.address));
+        return new OgreTextureUnit(this.createUnit(this.pointer.getPointerAddress()));
 
     }
 
     @Override
     protected void setTransparentCapabilityImpl(final Transparency capability) {
         if (capability == Transparency.ALPHA) {
-            this.setAlphaTransparency(this.pointer.address);
-            this.setDepthWrite(this.pointer.address, false);
+            this.setAlphaTransparency(this.pointer.getPointerAddress());
+            this.setDepthWrite(this.pointer.getPointerAddress(), false);
         } else if (capability == Transparency.COLOR) {
-            this.setColorTransparency(this.pointer.address);
+            this.setColorTransparency(this.pointer.getPointerAddress());
         }
     }
 
     @Override
     protected void setDiffuseImpl(final Color color) {
-        this.setDiffuse(this.pointer.address, color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.setDiffuse(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
     }
 
     @Override
     protected void setAmbientImpl(final Color color) {
-        this.setAmbient(this.pointer.address, color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
+        this.setAmbient(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
     }
 
     @Override
     protected void enableColorImpl(final boolean enabled) {
         if (enabled) {
-            this.enableColor(this.pointer.address);
+            this.enableColor(this.pointer.getPointerAddress());
         } else {
-            this.disableColor(this.pointer.address);
+            this.disableColor(this.pointer.getPointerAddress());
         }
     }
 
     @Override
     protected void disableLightImpl() {
-        this.disableLight(this.pointer.address);
+        this.disableLight(this.pointer.getPointerAddress());
     }
 
     @Override
     public void setFragmentProgramParameter(final ShaderParamFloat4 shaderParam) {
         float[] v = shaderParam.getValues();
-        this.setFragmentProgramParameterFloat4(this.pointer.address, shaderParam.getName(), v[0], v[1], v[2], v[3]);
+        this.setFragmentProgramParameterFloat4(this.pointer.getPointerAddress(), shaderParam.getName(), v[0], v[1], v[2], v[3]);
     }
 
     @Override
     public void setFragmentProgramParameter(final ShaderParamColor shaderParam) {
         Color c = shaderParam.getColor();
-        this.setFragmentProgramParameterColor(this.pointer.address, shaderParam.getName(), c.normalizedRed, c.normalizedGreen, c.normalizedBlue, c.normalizedAlpha);
+        this.setFragmentProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.getName(), c.normalizedRed, c.normalizedGreen, c.normalizedBlue, c.normalizedAlpha);
     }
 
     @Override
     public void setFragmentProgramParameter(final ShaderParamFloat shaderParam) {
-        this.setFragmentProgramParameterFloat(this.pointer.address, shaderParam.getName(), shaderParam.getValue());
+        this.setFragmentProgramParameterFloat(this.pointer.getPointerAddress(), shaderParam.getName(), shaderParam.getValue());
     }
 
     @Override
     public void setFragmentProgramParameterAuto(final String name, final ShaderConstantType constant) {
-        this.setFragmentProgramParameterAuto(this.pointer.address, name, constant.getValue());
+        this.setFragmentProgramParameterAuto(this.pointer.getPointerAddress(), name, constant.getValue());
     }
 
     @Override
     public void setFragmentProgramParameterAuto(final String name, final ShaderConstantType constant, final int param) {
-        this.setFragmentProgramParameterAutoP(this.pointer.address, name, constant.getValue(), param);
+        this.setFragmentProgramParameterAutoP(this.pointer.getPointerAddress(), name, constant.getValue(), param);
     }
 
     @Override
     public void setVertexProgramParameterAuto(final String name, final ShaderConstantType auto, final int param) {
-        this.setVertexProgramParameterAutoP(this.pointer.address, name, auto.getValue(), param);
+        this.setVertexProgramParameterAutoP(this.pointer.getPointerAddress(), name, auto.getValue(), param);
     }
 
     @Override
     public void setVertexProgramParameterAuto(final String name, final ShaderConstantType auto) {
-        this.setVertexProgramParameterAuto(this.pointer.address, name, auto.getValue());
+        this.setVertexProgramParameterAuto(this.pointer.getPointerAddress(), name, auto.getValue());
     }
 
     @Override
     protected void setBlendModeImpl(final BlendMode mode) {
         if (mode != BlendMode.NONE) {
-            this.blend(this.pointer.address, mode.ordinal());
+            this.blend(this.pointer.getPointerAddress(), mode.ordinal());
         }
     }
 
     @Override
     public MaterialPass setSceneBlend(final SceneBlend blend1, final SceneBlend blend2) {
         if (blend1 != SceneBlend.NONE && blend2 != SceneBlend.NONE) {
-            this.complexBlend(this.pointer.address, blend1.ordinal(), blend2.ordinal());
+            this.complexBlend(this.pointer.getPointerAddress(), blend1.ordinal(), blend2.ordinal());
         }
         return this;
     }
 
     @Override
     public MaterialPass setEmissive(final Color color) {
-        this.setEmissive(this.pointer.address, color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
+        this.setEmissive(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
         return this;
     }
 
     @Override
     public MaterialPass setDepthWrite(final boolean b) {
-        this.setDepthWrite(this.pointer.address, b);
+        this.setDepthWrite(this.pointer.getPointerAddress(), b);
         return this;
     }
 
     @Override
     public MaterialPass setVertexProgram(final String name) {
-        this.setVertexProgram(this.pointer.address, name);
+        this.setVertexProgram(this.pointer.getPointerAddress(), name);
         return this;
     }
 
     @Override
     public MaterialPass setFragmentProgram(final String name) {
-        this.setFragmentProgram(this.pointer.address, name);
+        this.setFragmentProgram(this.pointer.getPointerAddress(), name);
         return this;
     }
 
@@ -328,7 +328,6 @@ final class OgreMaterialPass extends MaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
-     * @param values  Parameter value.
      */
     private native void setFragmentProgramParameterFloat4(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
 
@@ -337,7 +336,6 @@ final class OgreMaterialPass extends MaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
-     * @param values  Parameter value.
      */
     private native void setFragmentProgramParameterColor(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
 

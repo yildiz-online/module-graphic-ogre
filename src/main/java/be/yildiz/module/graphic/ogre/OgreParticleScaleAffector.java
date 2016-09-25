@@ -59,7 +59,7 @@ final class OgreParticleScaleAffector extends ParticleScaleAffector {
      */
     @Override
     protected void setScaleImpl(final int width, final int height) {
-        this.setScale(this.pointer.address, width / 100.0f, height / 100.0f);
+        this.setScale(this.pointer.getPointerAddress(), width / 100.0f, height / 100.0f);
     }
 
     /**

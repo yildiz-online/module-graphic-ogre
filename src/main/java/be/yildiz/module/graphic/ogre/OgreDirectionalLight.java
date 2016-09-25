@@ -58,18 +58,19 @@ final class OgreDirectionalLight extends DirectionalLight implements Native {
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.address, position.x, position.y, position.z);
+        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     protected void deleteImpl() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**
      * Set the light position in native code.
      *
-     * @param pointer Address of the native YZ::DirectionnalLight pointer.
+     * @param pointer Address of the native YZ::DirectionalLight pointer.
      * @param x       New X position.
      * @param y       New Y position.
      * @param z       New Z position.
@@ -79,7 +80,7 @@ final class OgreDirectionalLight extends DirectionalLight implements Native {
     /**
      * Delete the object in native code.
      *
-     * @param pointerAddress Address of the native YZ::DirectionnalLight pointer.
+     * @param pointerAddress Address of the native YZ::DirectionalLight pointer.
      */
     private native void delete(final long pointerAddress);
 

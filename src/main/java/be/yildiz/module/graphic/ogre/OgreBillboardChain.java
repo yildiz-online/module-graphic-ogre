@@ -57,23 +57,23 @@ final class OgreBillboardChain implements BillboardChain, Native {
      */
     OgreBillboardChain(final OgreNode node) {
         super();
-        this.pointer = NativePointer.create(this.constructor(node.getName(), node.getPointer().address));
+        this.pointer = NativePointer.create(this.constructor(node.getName(), node.getPointer().getPointerAddress()));
         this.node = node;
     }
 
     @Override
     public void addElement(final Point3D pos, final float elementWidth) {
-        this.addElement(this.pointer.address, pos.x, pos.y, pos.z, elementWidth);
+        this.addElement(this.pointer.getPointerAddress(), pos.x, pos.y, pos.z, elementWidth);
     }
 
     @Override
     public void setElementPosition(final int listPosition, final Point3D pos) {
-        this.setElementPosition(this.pointer.address, listPosition, pos.x, pos.y, pos.z);
+        this.setElementPosition(this.pointer.getPointerAddress(), listPosition, pos.x, pos.y, pos.z);
     }
 
     @Override
     public void setMaterial(final Material material) {
-        this.setMaterial(this.pointer.address, ((OgreMaterial) material).getPointer().address);
+        this.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
     }
 
     @Override
@@ -89,7 +89,8 @@ final class OgreBillboardChain implements BillboardChain, Native {
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     @Override

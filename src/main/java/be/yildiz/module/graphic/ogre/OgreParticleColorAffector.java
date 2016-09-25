@@ -52,7 +52,7 @@ final class OgreParticleColorAffector extends ParticleColorAffector {
 
     @Override
     protected void setAlphaVariationImpl(final int variation) {
-        this.setAlpha(this.pointer.address, variation / 100f);
+        this.setAlpha(this.pointer.getPointerAddress(), variation / 100f);
     }
 
     /**

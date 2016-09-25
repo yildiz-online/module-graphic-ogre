@@ -56,17 +56,18 @@ final class OgreSpotLight extends SpotLight {
 
     @Override
     protected void setDirectionImpl(final Point3D direction) {
-        this.setDirection(this.pointer.address, direction.x, direction.y, direction.z);
+        this.setDirection(this.pointer.getPointerAddress(), direction.x, direction.y, direction.z);
     }
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.address, position.x, position.y, position.z);
+        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     protected void deleteImpl() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

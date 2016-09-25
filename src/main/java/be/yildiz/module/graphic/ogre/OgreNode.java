@@ -60,7 +60,7 @@ public final class OgreNode extends Node implements Native {
     OgreNode(final NativePointer pointerAddress, final OgreNode parent) {
         super(parent);
         this.pointer = pointerAddress;
-        this.name = this.getName(this.pointer.address);
+        this.name = this.getName(this.pointer.getPointerAddress());
     }
 
     /**
@@ -71,14 +71,15 @@ public final class OgreNode extends Node implements Native {
     OgreNode(final NativePointer pointerAddress, final EntityId id, final OgreNode parent) {
         super(id, parent);
         this.pointer = pointerAddress;
-        this.name = this.getName(this.pointer.address);
+        this.name = this.getName(this.pointer.getPointerAddress());
     }
 
     /**
      * Delete the node and free its resources.
      */
     protected void deleteImpl() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**
@@ -86,63 +87,63 @@ public final class OgreNode extends Node implements Native {
      */
     @Override
     public Point3D getPosition() {
-        return Point3D.xyz(this.getPosition(this.pointer.address));
+        return Point3D.xyz(this.getPosition(this.pointer.getPointerAddress()));
     }
 
     @Override
     public void setPosition(final Point3D position) {
-        this.setPosition(this.pointer.address, position.x, position.y, position.z);
+        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     public void scale(final float scale) {
-        this.scale(this.pointer.address, scale, scale, scale);
+        this.scale(this.pointer.getPointerAddress(), scale, scale, scale);
     }
 
     @Override
     public void scale(final float scaleX, final float scaleY, final float scaleZ) {
-        this.scale(this.pointer.address, scaleX, scaleY, scaleZ);
+        this.scale(this.pointer.getPointerAddress(), scaleX, scaleY, scaleZ);
     }
 
     @Override
     public Point3D translate(final float moveX, final float moveY, final float moveZ) {
-        return Point3D.xyz(this.translate(this.pointer.address, moveX, moveY, moveZ));
+        return Point3D.xyz(this.translate(this.pointer.getPointerAddress(), moveX, moveY, moveZ));
     }
 
     @Override
     public void setDirection(final float dirX, final float dirY, final float dirZ) {
-        this.setDirection(this.pointer.address, dirX, dirY, dirZ);
+        this.setDirection(this.pointer.getPointerAddress(), dirX, dirY, dirZ);
     }
 
     @Override
     public Point3D getDirection() {
-        return Point3D.xyz(this.getDirection(this.pointer.address));
+        return Point3D.xyz(this.getDirection(this.pointer.getPointerAddress()));
     }
 
     @Override
     public Point3D getWorldDirection() {
-        return Point3D.xyz(this.getWorldDirection(this.pointer.address));
+        return Point3D.xyz(this.getWorldDirection(this.pointer.getPointerAddress()));
     }
 
     @Override
     public void show() {
-        this.show(this.pointer.address);
+        this.show(this.pointer.getPointerAddress());
     }
 
     @Override
     public void hide() {
-        this.hide(this.pointer.address);
+        this.hide(this.pointer.getPointerAddress());
     }
 
     @Override
     public Point3D rotate(final float yaw, final float pitch) {
-        float[] v = this.rotate(this.pointer.address, yaw, pitch);
+        float[] v = this.rotate(this.pointer.getPointerAddress(), yaw, pitch);
         return Point3D.xyz(v);
     }
 
     @Override
     public void rotate(final float x, final float y, final float z, final float w) {
-        this.rotateQuaternion(this.pointer.address, x, y, z, w);
+        this.rotateQuaternion(this.pointer.getPointerAddress(), x, y, z, w);
     }
 
     /**
@@ -151,13 +152,13 @@ public final class OgreNode extends Node implements Native {
      * @return A node attached to this node, its position and direction will be relative to this node direction and position..
      */
     public OgreNode createChild() {
-        final long address = this.createChild(this.pointer.address);
+        final long address = this.createChild(this.pointer.getPointerAddress());
         return new OgreNode(NativePointer.create(address), this);
     }
 
     @Override
     public Quaternion getOrientation() {
-        float[] v = this.getOrientation(this.pointer.address);
+        float[] v = this.getOrientation(this.pointer.getPointerAddress());
         return new Quaternion(v[0], v[1], v[2], v[3]);
     }
 
@@ -331,12 +332,12 @@ public final class OgreNode extends Node implements Native {
 
     @Override
     protected void attachToImpl(final Node other) {
-        this.attachToNode(this.pointer.address, ((OgreNode) other).pointer.address);
+        this.attachToNode(this.pointer.getPointerAddress(), ((OgreNode) other).pointer.getPointerAddress());
     }
 
     @Override
     protected void detachFromParent() {
-        this.detachFromParent(this.pointer.address);
+        this.detachFromParent(this.pointer.getPointerAddress());
     }
 
     private native void detachFromParent(final long pointerAddress);

@@ -60,25 +60,25 @@ final class OgreMovableText extends MovableText {
     OgreMovableText(final OgreNode node, final String name, final String text, final Font font) {
         super(node);
         this.node = node;
-        long address = this.constructor(this.node.getPointer().address, name, text, ((OgreFont) font).getPointer().address, font.size);
+        long address = this.constructor(this.node.getPointer().getPointerAddress(), name, text, OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
         this.pointer = NativePointer.create(address);
     }
 
     @Override
     public void setTextColor(final Color color) {
-        this.setTextColor(this.pointer.address, color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.setTextColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
     }
 
     @Override
     public void setTextOffset(final Point3D offset) {
-        this.setTextOffset(this.pointer.address, offset.x, offset.y, offset.z);
+        this.setTextOffset(this.pointer.getPointerAddress(), offset.x, offset.y, offset.z);
     }
 
     @Override
     public void setTextAlignement(final Horizontal h, final Vertical v) {
         // Note The enum values must be in same order as in native code.
         // FIXME do not use ordinal
-        this.setTextAlignement(this.pointer.address, h.ordinal(), v.ordinal());
+        this.setTextAlignement(this.pointer.getPointerAddress(), h.ordinal(), v.ordinal());
     }
 
     @Override

@@ -84,10 +84,10 @@ final class OgreCamera extends AbstractCamera implements Native {
         this.node = node;
         this.resolutionX = resX;
         this.resolutionY = resY;
-        this.enableRenderingDistance(pointer.address);
+        this.enableRenderingDistance(pointer.getPointerAddress());
         //FIXME LOW hardcoded
-        this.setFarClip(this.pointer.address, 200000);
-        this.setNearClip(this.pointer.address, 10);
+        this.setFarClip(this.pointer.getPointerAddress(), 200000);
+        this.setNearClip(this.pointer.getPointerAddress(), 10);
     }
 
     /**
@@ -102,7 +102,7 @@ final class OgreCamera extends AbstractCamera implements Native {
         final float top = rectangle.getTop() / this.resolutionY;
         final float right = rectangle.getRight() / this.resolutionX;
         final float bottom = rectangle.getBottom() / this.resolutionY;
-        final long[] tab = this.throwPlaneRay(this.pointer.address, left, top, right, bottom);
+        final long[] tab = this.throwPlaneRay(this.pointer.getPointerAddress(), left, top, right, bottom);
         final List<EntityId> ids = Lists.newList(tab.length);
         for (long i : tab) {
             ids.add(EntityId.get(i));
@@ -113,14 +113,15 @@ final class OgreCamera extends AbstractCamera implements Native {
     /**
      * Throw a ray from the camera to a position from mouse coordinates.
      *
-     * @param mousePosition Mouse coordinates to compute the ray.
+     * @param x Mouse X coordinates to compute the ray.
+     * @param y Mouse Y coordinates to compute the ray.
      * @return The Id of the closest object hit by the ray, if none, Id.WORLD will be returned.
      */
     @Override
     public Optional<EntityId> throwRay(final int x, final int y) {
         final float screenX = x / this.resolutionX;
         final float screenY = y / this.resolutionY;
-        EntityId id = EntityId.get(this.throwRay(this.pointer.address, screenX, screenY, false));
+        EntityId id = EntityId.get(this.throwRay(this.pointer.getPointerAddress(), screenX, screenY, false));
         if (id.equals(EntityId.WORLD)) {
             return Optional.empty();
         }
@@ -136,70 +137,70 @@ final class OgreCamera extends AbstractCamera implements Native {
     public Point3D computeMoveDestination(final Point2D coordinate) {
         final float screenX = coordinate.getX() / this.resolutionX;
         final float screenY = coordinate.getY() / this.resolutionY;
-        final float[] destination = this.computeMoveDestinationGroundIntersect(this.pointer.address, screenX, screenY);
+        final float[] destination = this.computeMoveDestinationGroundIntersect(this.pointer.getPointerAddress(), screenX, screenY);
         return Point3D.xyz(destination);
     }
 
     @Override
     public void removeListener(final LensFlare ls) {
         OgreLensFlare listener = (OgreLensFlare) ls;
-        this.unregisterListener(this.pointer.address, listener.getPointer().address);
+        this.unregisterListener(this.pointer.getPointerAddress(), listener.getPointer().getPointerAddress());
     }
 
     @Override
     public void stopAutoTrackImpl() {
-        this.stopAutotrack(this.pointer.address);
+        this.stopAutotrack(this.pointer.getPointerAddress());
     }
 
     @Override
     public void autoTrackImpl(final Node e) {
         OgreNode nodeToTrack = (OgreNode) e;
-        this.setAutotrack(this.pointer.address, nodeToTrack.getPointer().address);
+        this.setAutotrack(this.pointer.getPointerAddress(), nodeToTrack.getPointer().getPointerAddress());
     }
 
     @Override
     public void autoTrack(final Point3D pos) {
         this.node.setPosition(pos);
-        this.setAutotrack(this.pointer.address, this.node.getPointer().address);
+        this.setAutotrack(this.pointer.getPointerAddress(), this.node.getPointer().getPointerAddress());
     }
 
     @Override
     protected Point3D rotateImpl(final float yaw, final float pitch) {
-        float[] v = this.rotate(this.pointer.address, yaw * OgreCamera.ROTATION_SPEED, pitch * OgreCamera.ROTATION_SPEED);
+        float[] v = this.rotate(this.pointer.getPointerAddress(), yaw * OgreCamera.ROTATION_SPEED, pitch * OgreCamera.ROTATION_SPEED);
         return Point3D.xyz(v);
     }
 
     @Override
     protected void yaw(final float yaw) {
-        this.rotate(this.pointer.address, yaw * OgreCamera.ROTATION_SPEED, 0);
+        this.rotate(this.pointer.getPointerAddress(), yaw * OgreCamera.ROTATION_SPEED, 0);
     }
 
     @Override
     protected Point3D moveImpl(final float xTranslation, final float yTranslation, final float zTranslation) {
-        float[] v = this.move(this.pointer.address, xTranslation, yTranslation, zTranslation);
+        float[] v = this.move(this.pointer.getPointerAddress(), xTranslation, yTranslation, zTranslation);
         return Point3D.xyz(v);
     }
 
     @Override
     protected Point3D setPositionImpl(final Point2D position, final Axis axis) {
-        float[] v = this.setPositionAxis(this.pointer.address, position.getX(), position.getY(), axis.ordinal());
+        float[] v = this.setPositionAxis(this.pointer.getPointerAddress(), position.getX(), position.getY(), axis.ordinal());
         return Point3D.xyz(v);
     }
 
     @Override
     protected void setPositionImpl(final float xPosition, final float yPosition, final float zPosition) {
-        this.setPosition(this.pointer.address, xPosition, yPosition, zPosition);
+        this.setPosition(this.pointer.getPointerAddress(), xPosition, yPosition, zPosition);
     }
 
     @Override
     protected Point3D setOrientationImpl(final float x, final float y, final float z) {
-        this.setOrientation(this.pointer.address, x, y, z);
+        this.setOrientation(this.pointer.getPointerAddress(), x, y, z);
         return Point3D.xyz(x, y, z);
     }
 
     @Override
     protected Point3D lookAtImpl(final Point3D target) {
-        return Point3D.xyz(this.lookAt(this.pointer.address, target.x, target.y, target.z));
+        return Point3D.xyz(this.lookAt(this.pointer.getPointerAddress(), target.x, target.y, target.z));
     }
 
     /**
@@ -209,12 +210,12 @@ final class OgreCamera extends AbstractCamera implements Native {
      * @return <code>true</code> if the camera can view this object, <code>false</code> otherwise.
      */
     boolean see(final Point3D position) {
-        return this.isVisible(this.pointer.address, position.x, position.y, position.z);
+        return this.isVisible(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     protected Point3D getDirectionImpl() {
-        float[] v = this.getDirection(this.pointer.address);
+        float[] v = this.getDirection(this.pointer.getPointerAddress());
         return Point3D.xyz(v);
     }
 
@@ -222,19 +223,20 @@ final class OgreCamera extends AbstractCamera implements Native {
      * Force the listeners update in native code.
      */
     void forceListenersUpdate() {
-        this.forceListenersUpdate(this.pointer.address);
+        this.forceListenersUpdate(this.pointer.getPointerAddress());
     }
 
     /**
      * Detach the camera from its parent node.
      */
     void detachFromParent() {
-        this.detachFromParent(this.pointer.address);
+        this.detachFromParent(this.pointer.getPointerAddress());
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

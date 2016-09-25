@@ -61,32 +61,32 @@ final class OgreBillboardSet extends BillboardSet implements Native {
         super(node);
         this.pointer = pointer;
         this.node = node;
-        this.attachToNode(this.pointer.address, node.getPointer().address);
+        this.attachToNode(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress());
     }
 
     @Override
     public OgreBillboard createBillboard() {
-        return new OgreBillboard(NativePointer.create(this.createBillboard(this.pointer.address)));
+        return new OgreBillboard(NativePointer.create(this.createBillboard(this.pointer.getPointerAddress())));
     }
 
     @Override
     public void removeBillboard(final Billboard b) {
-        this.remove(this.pointer.address, ((OgreBillboard) b).getPointer().address);
+        this.remove(this.pointer.getPointerAddress(), OgreBillboard.class.cast(b).getPointer().getPointerAddress());
     }
 
     @Override
     public void setSize(final float width, final float height) {
-        this.setSize(this.pointer.address, width, height);
+        this.setSize(this.pointer.getPointerAddress(), width, height);
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.address);
+        this.hide(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.address);
+        this.show(this.pointer.getPointerAddress());
     }
 
     /**

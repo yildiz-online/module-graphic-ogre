@@ -67,7 +67,7 @@ final class ViewPort implements Native {
      * @param active <code>true</code> to set it active, <code>false</code> to deactivate it.
      */
     void setActive(final boolean active) {
-        this.setActive(this.pointer.address, active);
+        this.setActive(this.pointer.getPointerAddress(), active);
     }
 
     /**
@@ -77,12 +77,13 @@ final class ViewPort implements Native {
      */
     void setCamera(final OgreCamera value) {
         this.camera = value;
-        this.setCamera(this.pointer.address, this.camera.getPointer().address);
+        this.setCamera(this.pointer.getPointerAddress(), this.camera.getPointer().getPointerAddress());
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

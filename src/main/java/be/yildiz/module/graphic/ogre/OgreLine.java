@@ -48,27 +48,27 @@ final class OgreLine extends Line {
      */
     OgreLine(final OgreNode node) {
         super();
-        this.pointer = NativePointer.create(this.constructor(node.getPointer().address));
+        this.pointer = NativePointer.create(this.constructor(node.getPointer().getPointerAddress()));
     }
 
     @Override
     protected void update(final float beginX, final float beginY, final float beginZ, final float endX, final float endY, final float endZ) {
-        this.update(this.pointer.address, beginX, beginY, beginZ, endX, endY, endZ);
+        this.update(this.pointer.getPointerAddress(), beginX, beginY, beginZ, endX, endY, endZ);
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.address);
+        this.hide(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.address);
+        this.show(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void setMaterialImpl(final Material material) {
-        this.setMaterial(this.pointer.address, ((OgreMaterial) material).getPointer().address);
+        this.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
     }
 
     /**

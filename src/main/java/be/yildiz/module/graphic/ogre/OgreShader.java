@@ -55,13 +55,14 @@ final class OgreShader extends Shader implements Native {
     OgreShader(final String name, final String path, final String entry, final ShaderType type, final ShaderProfile profile) {
         super(name, type);
         this.pointer = NativePointer.create(this.createShader(name, path, type.getValue()));
-        this.setParameter(this.pointer.address, "entry_point", entry);
-        this.setParameter(this.pointer.address, "profiles", profile.getName());
+        this.setParameter(this.pointer.getPointerAddress(), "entry_point", entry);
+        this.setParameter(this.pointer.getPointerAddress(), "profiles", profile.getName());
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

@@ -48,7 +48,7 @@ final class OgreSkyX implements Sky {
      */
     OgreSkyX(final OgreSceneManager sm, final RenderWindow window) {
         super();
-        final long address = this.constructor(sm.getPointer().address);
+        final long address = this.constructor(sm.getPointer().getPointerAddress());
         this.pointer = NativePointer.create(address);
     }
 

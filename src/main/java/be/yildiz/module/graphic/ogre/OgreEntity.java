@@ -57,14 +57,14 @@ public final class OgreEntity implements Native {
      * @param material New material to use.
      */
     public void setMaterial(final Material material) {
-        this.setMaterial(this.pointer.address, ((OgreMaterial) material).getPointer().address);
+        this.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
     }
 
     /**
      * @return The parent Ogre::SceneNode name.
      */
     public String getParentName() {
-        return this.getParentSceneNode(this.pointer.address);
+        return this.getParentSceneNode(this.pointer.getPointerAddress());
     }
 
     /**
@@ -73,21 +73,21 @@ public final class OgreEntity implements Native {
      * @param cast <code>true</code> to cast shadow, <code>false</code> to stop casting.
      */
     public void castShadow(final boolean cast) {
-        this.castShadow(this.pointer.address, cast);
+        this.castShadow(this.pointer.getPointerAddress(), cast);
     }
 
     /**
      * Set the entity to be not pickable.
      */
     public void setUnpickable() {
-        this.setUnpickable(this.pointer.address);
+        this.setUnpickable(this.pointer.getPointerAddress());
     }
 
     /**
      * Render the entity behind other.
      */
     public void renderBehind() {
-        this.setRenderQueue(this.pointer.address, 8);
+        this.setRenderQueue(this.pointer.getPointerAddress(), 8);
     }
 
     /**
@@ -96,7 +96,7 @@ public final class OgreEntity implements Native {
      * @param index Parameter index.
      */
     public void setParameter(final int index, final float v1, final float v2, final float v3, final float v4) {
-        this.setParameter(this.pointer.address, index, v1, v2, v3, v4);
+        this.setParameter(this.pointer.getPointerAddress(), index, v1, v2, v3, v4);
     }
 
     /**
@@ -105,12 +105,13 @@ public final class OgreEntity implements Native {
      * @param distance Maximum rendering distance.
      */
     public void setRenderingDistance(final int distance) {
-        this.setRenderingDistance(this.pointer.address, distance);
+        this.setRenderingDistance(this.pointer.getPointerAddress(), distance);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.address);
+        this.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**

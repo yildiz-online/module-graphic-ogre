@@ -59,61 +59,61 @@ final class OgreParticleSystem extends AbstractParticleSystem implements Native 
         super(node);
         this.pointer = pointer;
         this.node = node;
-        this.attachToNode(this.pointer.address, this.node.getPointer().address);
+        this.attachToNode(this.pointer.getPointerAddress(), this.node.getPointer().getPointerAddress());
     }
 
     @Override
     protected ParticleEmitter createEmitter(final EmitterType type) {
-        final long address = this.createEmitter(this.pointer.address);
+        final long address = this.createEmitter(this.pointer.getPointerAddress());
         return new OgreParticleEmitter(NativePointer.create(address));
     }
 
     @Override
     protected ParticleColorAffector createColorAffector() {
-        final long address = this.createColorAffector(this.pointer.address);
+        final long address = this.createColorAffector(this.pointer.getPointerAddress());
         return new OgreParticleColorAffector(NativePointer.create(address));
     }
 
     @Override
     protected ParticleForceAffector createForceAffector() {
-        final long address = this.createForceAffector(this.pointer.address);
+        final long address = this.createForceAffector(this.pointer.getPointerAddress());
         return new OgreParticleForceAffector(NativePointer.create(address));
     }
 
     @Override
     protected ParticleScaleAffector createScaleAffector() {
-        final long address = this.createScaleAffector(this.pointer.address);
+        final long address = this.createScaleAffector(this.pointer.getPointerAddress());
         return new OgreParticleScaleAffector(NativePointer.create(address));
     }
 
     @Override
     protected void setMaterialImpl(final Material material) {
-        this.setMaterial(this.pointer.address, ((OgreMaterial) material).getPointer().address);
+        this.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
     }
 
     @Override
     protected void setOrientationImpl(final Orientation orientation) {
-        this.setParticleOrientation(this.pointer.address, orientation.ordinal());
+        this.setParticleOrientation(this.pointer.getPointerAddress(), orientation.ordinal());
     }
 
     @Override
     protected void setQuotaImpl(final int quota) {
-        this.setQuota(this.pointer.address, quota);
+        this.setQuota(this.pointer.getPointerAddress(), quota);
     }
 
     @Override
     protected void setSizeImpl(final float width, final float height) {
-        this.setSize(this.pointer.address, width, height);
+        this.setSize(this.pointer.getPointerAddress(), width, height);
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.address);
+        this.show(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.address);
+        this.hide(this.pointer.getPointerAddress());
     }
 
     @Override
@@ -123,12 +123,12 @@ final class OgreParticleSystem extends AbstractParticleSystem implements Native 
 
     @Override
     public void keepInLocalSpace(final boolean keep) {
-        this.keepInLocalSpace(this.pointer.address, keep);
+        this.keepInLocalSpace(this.pointer.getPointerAddress(), keep);
     }
 
     @Override
     protected void setOriginImpl(final Origin origin) {
-        this.setBillboardOrigin(this.pointer.address, origin.getValue());
+        this.setBillboardOrigin(this.pointer.getPointerAddress(), origin.getValue());
     }
 
     /**
