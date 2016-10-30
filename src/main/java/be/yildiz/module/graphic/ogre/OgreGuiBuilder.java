@@ -49,7 +49,6 @@ public final class OgreGuiBuilder extends GuiBuilder {
      *
      * @param screenSize Contains the screen size data.
      */
-    @Deprecated
     public OgreGuiBuilder(final Size screenSize) {
         super(screenSize);
     }
