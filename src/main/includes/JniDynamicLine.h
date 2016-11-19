@@ -25,8 +25,8 @@
 
 #include <jni.h>
 
-#ifndef _JNI_DYNAMIC_LINE_H_
-#define _JNI_DYNAMIC_LINE_H_
+#ifndef JNI_DYNAMIC_LINE_H
+#define JNI_DYNAMIC_LINE_H
 
 /**
 *@author Grégory Van den Borre

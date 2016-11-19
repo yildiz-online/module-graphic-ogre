@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef ABSTRACTLIGHT_H_
-#define ABSTRACTLIGHT_H_
+#ifndef ABSTRACTLIGHT_H
+#define ABSTRACTLIGHT_H
 
 #include "stdafx.h"
 #include <OgreLight.h>

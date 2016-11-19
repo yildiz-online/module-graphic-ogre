@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_TEXTURE_UNIT_H_
-#define _JNI_TEXTURE_UNIT_H_
+#ifndef JNI_TEXTURE_UNIT_H
+#define JNI_TEXTURE_UNIT_H
 
 /**
 *@author Grégory Van den Borre

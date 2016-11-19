@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _YZ_MOVABLE_H_
-#define _YZ_MOVABLE_H_
+#ifndef YZ_MOVABLE_H
+#define YZ_MOVABLE_H
 
 #include <OgreMovableObject.h>
 #include <OgreSceneNode.h>

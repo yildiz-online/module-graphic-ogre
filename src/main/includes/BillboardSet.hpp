@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _YZ_BILLBOARDSET_H_
-#define _YZ_BILLBOARDSET_H_
+#ifndef YZ_BILLBOARDSET_H
+#define YZ_BILLBOARDSET_H
 
 #include "Material.hpp"
 #include "AbstractMovable.hpp"

@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _OGRE_NODE_LISTENERS_H_
-#define _OGRE_NODE_LISTENERS_H_
+#ifndef OGRE_NODE_LISTENERS_H
+#define OGRE_NODE_LISTENERS_H
 
 #include "stdafx.h"
 #include "AbstractNodeListener.hpp"

@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_BILLBOARD_CHAIN_H_
-#define _JNI_BILLBOARD_CHAIN_H_
+#ifndef JNI_BILLBOARD_CHAIN_H
+#define JNI_BILLBOARD_CHAIN_H
 
 /**
 *@author Grégory Van den Borre

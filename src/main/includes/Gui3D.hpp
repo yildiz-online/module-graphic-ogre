@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _GUI_3D_H_
-#define _GUI_3D_H_
+#ifndef GUI_3D_H
+#define GUI_3D_H
 
 #include "stdafx.h"
 

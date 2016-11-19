@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_OGRE_WORLD_H_
-#define _JNI_OGRE_WORLD_H_
+#ifndef JNI_OGRE_WORLD_H
+#define JNI_OGRE_WORLD_H
 
 /**
 *@author Grégory Van den Borre

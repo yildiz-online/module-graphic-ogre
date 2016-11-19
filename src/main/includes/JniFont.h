@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef FONT_H
-#define FONT_H
+#ifndef JNI_FONT_H
+#define JNI_FONT_H
 
 /**
 *@author Grégory Van den Borre

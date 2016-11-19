@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _YZ_MATERIAL_PASS_H_
-#define _YZ_MATERIAL_PASS_H_
+#ifndef YZ_MATERIAL_PASS_H
+#define YZ_MATERIAL_PASS_H
 
 #include "stdafx.h"
 #include <OgreMaterialManager.h>

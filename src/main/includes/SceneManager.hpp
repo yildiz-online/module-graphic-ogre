@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _Included_be_yildiz_client_graphic_engine_ogre_SceneManager
-#define _Included_be_yildiz_client_graphic_engine_ogre_SceneManager
+#ifndef YZ_SCENEMANAGER_H
+#define YZ_SCENEMANAGER_H
 
 #define SCENEMANAGER YZ::SceneManager
 

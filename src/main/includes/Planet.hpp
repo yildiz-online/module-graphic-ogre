@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _YZ_PLANET_H_
-#define _YZ_PLANET_H_
+#ifndef YZ_PLANET_H
+#define YZ_PLANET_H
 
 #include "stdafx.h"
 

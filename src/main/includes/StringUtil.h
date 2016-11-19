@@ -28,8 +28,8 @@
 /**
 *@author Grégory Van den Borre
 */
-#ifndef _STRING_UTIL_INCLUDED_
-#define _STRING_UTIL_INCLUDED_
+#ifndef STRING_UTIL_H
+#define STRING_UTIL_H
 
 /**
 * @return A std::string formated like this: "v.x, v.y, v.z".

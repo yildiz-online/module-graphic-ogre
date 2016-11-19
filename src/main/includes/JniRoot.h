@@ -25,8 +25,8 @@
 
 #include <jni.h>
 
-#ifndef _JNI_ROOT_H_
-#define _JNI_ROOT_H_
+#ifndef JNI_ROOT_H
+#define JNI_ROOT_H
 
 /**
 *@author Grégory Van den Borre

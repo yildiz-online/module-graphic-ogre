@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _DYNAMIC_LINES_H_
-#define _DYNAMIC_LINES_H_
+#ifndef DYNAMIC_LINES_H
+#define DYNAMIC_LINES_H
 
 #include <Ogre.h>
 #include "DynamicRenderable.hpp"

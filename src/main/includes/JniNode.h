@@ -25,8 +25,8 @@
 
 #include <jni.h>
 
-#ifndef _JNI_NODE_H_
-#define _JNI_NODE_H_
+#ifndef JNI_NODE_H
+#define JNI_NODE_H
 
 /**
 *@author Grégory Van den Borre

@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_PARTICLE_SYSTEM_H_
-#define _JNI_PARTICLE_SYSTEM_H_
+#ifndef JNI_PARTICLE_SYSTEM_H
+#define JNI_PARTICLE_SYSTEM_H
 
 /**
 *@author Grégory Van den Borre

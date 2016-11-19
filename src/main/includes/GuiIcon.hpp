@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _GUI_ICON_H_
-#define _GUI_ICON_H_
+#ifndef GUI_ICON_H
+#define GUI_ICON_H
 
 #define GUIICON YZ::GuiIcon
 

@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _ID_H_
-#define _ID_H_
+#ifndef ID_H
+#define ID_H
 
 namespace YZ {
 

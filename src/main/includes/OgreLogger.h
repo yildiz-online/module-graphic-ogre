@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _OGRE_LOGGER_H_
-#define _OGRE_LOGGER_H_
+#ifndef OGRE_LOGGER_H
+#define OGRE_LOGGER_H
 
 #include "stdafx.h"
 #include <jni.h>

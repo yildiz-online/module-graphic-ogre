@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _YZ_BILLBOARD_H_
-#define _YZ_BILLBOARD_H_
+#ifndef YZ_BILLBOARD_H
+#define YZ_BILLBOARD_H
 
 #include "stdafx.h"
 #include <OgreBillboard.h>

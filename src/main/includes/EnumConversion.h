@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _ENUM_CONVERSION_
-#define _ENUM_CONVERSION_
+#ifndef ENUM_CONVERSION
+#define ENUM_CONVERSION
 
 #include "stdafx.h"
 #include <Ogre.h>

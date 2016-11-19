@@ -12,8 +12,8 @@ conditions of the standard open source license.
 -----------------------------------------------------------------------------
 */
 
-#ifndef _HelperLogics_H__
-#define _HelperLogics_H__
+#ifndef HelperLogics_H
+#define HelperLogics_H
 
 //Demo note :
 //This file contains three compositor logics for the HDR, Heat Vision and Gaussian Blur compositors.

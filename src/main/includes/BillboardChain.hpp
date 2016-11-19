@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef BILLBOARDCHAIN_H_
-#define BILLBOARDCHAIN_H_
+#ifndef BILLBOARDCHAIN_H
+#define BILLBOARDCHAIN_H
 
 #include "AbstractMovable.hpp"
 #include <OgreBillboardChain.h>

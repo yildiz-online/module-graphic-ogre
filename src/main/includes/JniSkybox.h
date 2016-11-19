@@ -25,8 +25,8 @@
 
 #include <jni.h>
 
-#ifndef _JNI_SKYBOX_H_
-#define _JNI_SKYBOX_H_
+#ifndef JNI_SKYBOX_H
+#define JNI_SKYBOX_H
 
 /**
 *@author Grégory Van den Borre

@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _YZ_ROOT_H_
-#define _YZ_ROOT_H_
+#ifndef YZ_ROOT_H
+#define YZ_ROOT_H
 
 #define ROOT YZ::Root
 

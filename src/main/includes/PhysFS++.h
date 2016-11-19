@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef __PHYSFS_PP_H__
-#define __PHYSFS_PP_H__
+#ifndef PHYSFS_PP_H
+#define PHYSFS_PP_H
 
 extern "C"
 {

@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_ELECTRIC_ARC_H_
-#define _JNI_ELECTRIC_ARC_H_
+#ifndef JNI_ELECTRIC_ARC_H
+#define JNI_ELECTRIC_ARC_H
 
 /**
 *@author Grégory Van den Borre

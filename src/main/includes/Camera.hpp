@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _CAMERA_H_
-#define _CAMERA_H_
+#ifndef CAMERA_H
+#define CAMERA_H
 
 #include <vector>
 #include <Ogre.h>

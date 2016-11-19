@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef __PHYSFS_OGRE_H__
-#define __PHYSFS_OGRE_H__
+#ifndef PHYSFS_OGRE_H
+#define PHYSFS_OGRE_H
 
 /**
 *@author Grégory Van den Borre

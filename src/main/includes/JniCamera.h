@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_CAMERA_H_
-#define _JNI_CAMERA_H_
+#ifndef JNI_CAMERA_H
+#define JNI_CAMERA_H
 
 /**
 * @author Grégory Van den Borre

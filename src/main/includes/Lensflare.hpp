@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _LENSFLARE_H_
-#define _LENSFLARE_H_
+#ifndef LENSFLARE_H
+#define LENSFLARE_H
 
 #include "Node.hpp"
 #include "AbstractCameraListener.hpp"

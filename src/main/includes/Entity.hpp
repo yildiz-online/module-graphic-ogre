@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _ENTITY_H_
-#define _ENTITY_H_
+#ifndef ENTITY_H
+#define ENTITY_H
 
 //FIXME do no include everything
 #include "stdafx.h"

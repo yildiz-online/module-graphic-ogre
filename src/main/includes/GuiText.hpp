@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _YZ_GUI_TEXT_H_
-#define _YZ_GUI_TEXT_H_
+#ifndef YZ_GUI_TEXT_H
+#define YZ_GUI_TEXT_H
 
 #include "stdafx.h"
 #include "GuiContainer.hpp"

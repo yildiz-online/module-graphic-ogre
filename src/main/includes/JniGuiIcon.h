@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_GUI_ICON_H_
-#define _JNI_GUI_ICON_H_
+#ifndef JNI_GUI_ICON_H
+#define JNI_GUI_ICON_H
 
 /**
 *@author

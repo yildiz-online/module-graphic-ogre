@@ -1,5 +1,5 @@
-#ifndef _PFXSSAO_H_
-#define _PFXSSAO_H_
+#ifndef PFXSSAO_H
+#define PFXSSAO_H
 
 /*
 Copyright (C) 2012 Ilija Boshkov

@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_ENTITY_HUD_H_
-#define _JNI_ENTITY_HUD_H_
+#ifndef JNI_ENTITY_HUD_H
+#define JNI_ENTITY_HUD_H
 
 /**
 *@author Grégory Van den Borre

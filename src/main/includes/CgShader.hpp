@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _YZ_CG_SHADER_H_
-#define _YZ_CG_SHADER_H_
+#ifndef YZ_CG_SHADER_H
+#define YZ_CG_SHADER_H
 
 #include "stdafx.h"
 

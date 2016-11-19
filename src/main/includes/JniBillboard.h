@@ -25,8 +25,8 @@
 
 #include <jni.h>
 
-#ifndef _JNI_BILLBOARD_H_
-#define _JNI_BILLBOARD_H_
+#ifndef JNI_BILLBOARD_H
+#define JNI_BILLBOARD_H
 
 /**
 *@author Grégory Van den Borre

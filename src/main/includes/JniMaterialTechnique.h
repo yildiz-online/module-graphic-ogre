@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_MATERIAL_TECHNIQUE_H_
-#define _JNI_MATERIAL_TECHNIQUE_H_
+#ifndef JNI_MATERIAL_TECHNIQUE_H
+#define JNI_MATERIAL_TECHNIQUE_H
 
 /**
 *@author Grégory Van den Borre

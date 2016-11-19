@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_MATERIAL_PASS_H_
-#define _JNI_MATERIAL_PASS_H_
+#ifndef JNI_MATERIAL_PASS_H
+#define JNI_MATERIAL_PASS_H
 
 /**
 *@author Grégory Van den Borre

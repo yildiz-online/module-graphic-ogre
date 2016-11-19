@@ -25,8 +25,8 @@
 
 #include <jni.h>
 
-#ifndef _JNI_VIEWPORT_H_
-#define _JNI_VIEWPORT_H_
+#ifndef JNI_VIEWPORT_H
+#define JNI_VIEWPORT_H
 
 /**
 *@author Grégory Van den Borre

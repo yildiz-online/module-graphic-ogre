@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _STENCIL_GLOW_H_
-#define _STENCIL_GLOW_H_
+#ifndef STENCIL_GLOW_H
+#define STENCIL_GLOW_H
 
 #include "stdafx.h"
 

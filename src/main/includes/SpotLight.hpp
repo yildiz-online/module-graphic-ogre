@@ -23,8 +23,8 @@
 //        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //        SOFTWARE.
 
-#ifndef _YZ_SPOT_LIGHT_H_
-#define _YZ_SPOT_LIGHT_H_
+#ifndef YZ_SPOT_LIGHT_H
+#define YZ_SPOT_LIGHT_H
 
 #include "AbstractLight.hpp"
 

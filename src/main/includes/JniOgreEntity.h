@@ -26,8 +26,8 @@
 #include <jni.h>
 #include "stdafx.h"
 
-#ifndef _JNI_3DOBJECT_H_
-#define _JNI_3DOBJECT_H_
+#ifndef JNI_3DOBJECT_H
+#define JNI_3DOBJECT_H
 
 /**
 *@author Grégory Van den Borre

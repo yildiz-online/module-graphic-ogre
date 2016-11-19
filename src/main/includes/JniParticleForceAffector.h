@@ -25,8 +25,8 @@
 
 #include <jni.h>
 
-#ifndef _JNI_PARTICLE_FORCE_AFFECTOR_H_
-#define _JNI_PARTICLE_FORCE_AFFECTOR_H_
+#ifndef JNI_PARTICLE_FORCE_AFFECTOR_H
+#define JNI_PARTICLE_FORCE_AFFECTOR_H
 
 /**
 *@author Grégory Van den Borre
