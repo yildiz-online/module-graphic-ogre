@@ -94,6 +94,10 @@ public final class OgreEntity implements Native {
      * Set a GPU parameter on this entity.
      *
      * @param index Parameter index.
+     * @param v1 Float4 1st value.
+     * @param v2 Float4 2nd value.
+     * @param v3 Float4 3rd value.
+     * @param v4 Float4 4th value.
      */
     public void setParameter(final int index, final float v1, final float v2, final float v3, final float v4) {
         this.setParameter(this.pointer.getPointerAddress(), index, v1, v2, v3, v4);

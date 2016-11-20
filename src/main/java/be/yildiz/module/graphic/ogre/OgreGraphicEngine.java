@@ -73,7 +73,9 @@ public final class OgreGraphicEngine implements GraphicEngine {
     private SelectionRectangle selection;
 
     /**
-     * Deprecated use public OgreGraphicEngine(final WindowEngine windowEngine).
+     * @deprecated use public OgreGraphicEngine(final WindowEngine windowEngine).
+     * @param screenSize Size.
+     * @param handle Windows handle.
      */
     @Deprecated
     public OgreGraphicEngine(final Size screenSize, final WindowHandle handle) {
@@ -116,6 +118,10 @@ public final class OgreGraphicEngine implements GraphicEngine {
         Logger.info("Ogre graphic engine initialized.");
     }
 
+    /**
+     * @deprecated use public OgreGraphicEngine(final WindowEngine windowEngine).
+     * @param screenSize Size.
+     */
     @Deprecated
     public OgreGraphicEngine(final Size screenSize) {
         this(screenSize, new WindowHandle(0));
