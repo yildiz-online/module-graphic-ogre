@@ -14,6 +14,10 @@
       <properties>
         <gpg.keyname>${env.GPG_KEY}</gpg.keyname>
         <gpg.passphrase>${env.GPG_PWD}</gpg.passphrase>
+        <sonar.host.url>https://sonarqube.com</sonar.host.url>
+        <sonar.login>${env.SONAR}</sonar.login>
+        <sonar.cfamily.build-wrapper-output>target/sonar-cpp</sonar.cfamily.build-wrapper-output>
+        <sonar.verbose>true</sonar.verbose>
       </properties>
       <repositories>
         <repository>
