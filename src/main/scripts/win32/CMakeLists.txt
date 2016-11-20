@@ -23,6 +23,10 @@ file(
 )
     
 add_library(yildizogre SHARED ${source_files})
+
+MESSAGE( STATUS "Target link lib Ogre Main:" ${CMAKE_SOURCE_DIR}/ogre/lib/libOgreMain.dll.a )
 target_link_libraries(yildizogre ${CMAKE_SOURCE_DIR}/ogre/lib/libOgreMain.dll.a)
+MESSAGE( STATUS "Target link lib Ogre Overlay:" ${CMAKE_SOURCE_DIR}/ogre/lib/libOgreOverlay.dll.a )
 target_link_libraries(yildizogre ${CMAKE_SOURCE_DIR}/ogre/lib/libOgreOverlay.dll.a)
+MESSAGE( STATUS "Target link lib PhysFS:" ${CMAKE_SOURCE_DIR}/physfs/lib/libphysfs.dll.a )
 target_link_libraries(yildizogre ${CMAKE_SOURCE_DIR}/physfs/lib/libphysfs.dll.a)
