@@ -96,6 +96,7 @@
             </goals>
             <configuration>
               <sources>
+                <source>src/main/java</source>
                 <source>src/main/c++</source>
                 <source>src/main/includes</source>
               </sources>
