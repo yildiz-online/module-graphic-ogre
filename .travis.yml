@@ -2,6 +2,6 @@ language: java
 jdk:
   - oraclejdk8
 script:
-  - mvn -X -V -B -s settings.xml test -Pnoenv
+  - mvn -V -B -s settings.xml test -Denv=linux64
 install:
-  - mvn -X -V -B -s settings.xml clean install -Pnoenv
+  - mvn -V -B -s settings.xml clean install -Denv=linux64
