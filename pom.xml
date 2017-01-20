@@ -218,7 +218,7 @@
             <groupId>org.codehaus.mojo</groupId>
             <executions>
               <execution>
-                <id>Build Yildiz-Bullet 2 binding library for ${nativeEnv}</id>
+                <id>Build Yildiz-Ogre3D binding library for ${nativeEnv}</id>
                 <phase>compile</phase>
                 <goals>
                   <goal>exec</goal>
