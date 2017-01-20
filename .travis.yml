@@ -2,4 +2,4 @@ language: java
 jdk:
   - oraclejdk8
 install:
-  - mvn -V -B -s settings.xml clean install -Pnoenv
+  - mvn -X -V -B -s settings.xml clean install -Pnoenv
