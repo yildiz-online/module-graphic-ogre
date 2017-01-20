@@ -1,5 +1,7 @@
 language: java
 jdk:
   - oraclejdk8
+script:
+  - mvn -X -V -B -s settings.xml test -Pnoenv
 install:
-  - mvn -X -V -B -s settings.xml dependency:list-repositories -Pnoenv
+  - mvn -X -V -B -s settings.xml clean install -Pnoenv
