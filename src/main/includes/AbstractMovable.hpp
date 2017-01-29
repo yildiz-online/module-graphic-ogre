@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#ifndef YZ_MOVABLE_H
-#define YZ_MOVABLE_H
+#ifndef YZE_ABSTRACT_MOVABLE_H
+#define YZE_ABSTRACT_MOVABLE_H
 
 #include <OgreMovableObject.h>
 #include <OgreSceneNode.h>
