@@ -23,6 +23,7 @@
 
 package be.yildiz.module.graphic.ogre;
 
+import be.yildiz.common.nativeresources.NativeResourceLoader;
 import be.yildiz.module.window.swt.SwtWindowEngine;
 
 /**
@@ -30,7 +31,7 @@ import be.yildiz.module.window.swt.SwtWindowEngine;
  */
 public class OgreFactory {
 
-    public static OgreGraphicEngine createOgreGraphic() {
-        return new OgreGraphicEngine(new SwtWindowEngine());
+    public static OgreGraphicEngine createOgreGraphic(NativeResourceLoader nativeResourceLoader) {
+        return new OgreGraphicEngine(new SwtWindowEngine(), nativeResourceLoader);
     }
 }

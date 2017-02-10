@@ -65,6 +65,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
      * Screen size.
      */
     private final Size size;
+    private final NativeResourceLoader nativeResourceLoader;
     private WindowEngine windowEngine;
     /**
      * Only one can be created at a time.
@@ -77,12 +78,13 @@ public final class OgreGraphicEngine implements GraphicEngine {
      * @param handle Windows handle.
      */
     @Deprecated
-    public OgreGraphicEngine(final Size screenSize, final WindowHandle handle) {
+    public OgreGraphicEngine(final Size screenSize, final WindowHandle handle, NativeResourceLoader nativeResourceLoader) {
         super();
         this.size = screenSize;
         Logger.info("Initializing Ogre graphic engine...");
-        NativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
-        NativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
+        nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        this.nativeResourceLoader = nativeResourceLoader;
         this.root = new Root();
         this.loadPlugins();
         this.loadRenderer();
@@ -99,12 +101,13 @@ public final class OgreGraphicEngine implements GraphicEngine {
      */
     //@Ensures this.size == windowEngine.size
     //@Ensures this.root != null
-    public OgreGraphicEngine(final WindowEngine windowEngine) {
+    public OgreGraphicEngine(final WindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
         super();
         this.size = windowEngine.getScreenSize();
         Logger.info("Initializing Ogre graphic engine...");
-        NativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
-        NativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
+        nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        this.nativeResourceLoader = nativeResourceLoader;
         this.root = new Root();
         this.loadPlugins();
         this.loadRenderer();
@@ -123,18 +126,18 @@ public final class OgreGraphicEngine implements GraphicEngine {
      * @param screenSize Size.
      */
     @Deprecated
-    public OgreGraphicEngine(final Size screenSize) {
-        this(screenSize, new WindowHandle(0));
+    public OgreGraphicEngine(final Size screenSize, NativeResourceLoader nativeResourceLoader) {
+        this(screenSize, new WindowHandle(0), nativeResourceLoader);
     }
 
     private void loadPlugins() {
-        this.root.setPlugin(NativeResourceLoader.getLibPath("Plugin_ParticleFX"));
+        this.root.setPlugin(this.nativeResourceLoader.getLibPath("Plugin_ParticleFX"));
         //this.root.setPlugin(NativeResourceLoader.getLibPath("Plugin_CgProgramManager"));
     }
 
     private void loadRenderer() {
         try {
-            this.root.setRenderer(NativeResourceLoader.getLibPath("RenderSystem_GL"));
+            this.root.setRenderer(this.nativeResourceLoader.getLibPath("RenderSystem_GL"));
         } catch (NativeException e) {
             Logger.error(e);
         }
