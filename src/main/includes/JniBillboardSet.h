@@ -34,23 +34,23 @@ extern "C" {
 #endif
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_createBillboard
-  (JNIEnv *, jobject, POINTER);
+(JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_show
-  (JNIEnv *, jobject, POINTER);
+(JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_hide
-  (JNIEnv *, jobject, POINTER);
+(JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_setSize
-(JNIEnv*, jobject, POINTER pointer, jfloat width, jfloat height);
+(JNIEnv* env, jobject, POINTER pointer, jfloat width, jfloat height);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_attachToNode
 (JNIEnv* env, jobject o,POINTER pointer, POINTER nodePointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_remove(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     POINTER bbPointer);
 

@@ -35,22 +35,22 @@ extern "C" {
 #endif
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_setPosition
-  (JNIEnv *, jobject, POINTER, jfloat, jfloat);
+  (JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y);
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_constructor
-  (JNIEnv *, jclass, POINTER, jstring, POINTER, jfloat w, jfloat h, jfloat x, jfloat y);
+  (JNIEnv* env, jclass c, POINTER pointer, jstring name, POINTER parent, jfloat w, jfloat h, jfloat x, jfloat y);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_hide
-  (JNIEnv *, jobject, POINTER);
+  (JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_show
-  (JNIEnv *, jobject, POINTER);
+  (JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_setTexture
-  (JNIEnv *, jobject, POINTER, POINTER);
+  (JNIEnv* env, jobject o, POINTER, POINTER);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_delete
-  (JNIEnv *, jobject, POINTER);
+  (JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT jint JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_getZ
   (JNIEnv* env, jobject o, POINTER pointer);
@@ -59,7 +59,7 @@ JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_getParentN
   (JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_setSize
-  (JNIEnv *, jobject, POINTER, jfloat, jfloat);
+  (JNIEnv* env, jobject o, POINTER pointer, jfloat width, jfloat height);
 #ifdef __cplusplus
 }
 #endif

@@ -64,7 +64,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindo
     JNIEnv* env,
     jobject object,
     jint width,
-    jint heigth,
+    jint height,
     jlong handle);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindowGlContext(

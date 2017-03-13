@@ -34,7 +34,7 @@ extern "C" {
 #endif
 
 JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreSkybox_createSkybox
-  (JNIEnv *, jobject, jstring, jstring);
+  (JNIEnv* env, jobject o, jstring, jstring);
 
 #ifdef __cplusplus
 }

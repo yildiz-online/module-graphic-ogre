@@ -41,7 +41,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setText
 (JNIEnv* env, jobject o, POINTER pointer, jstring jtext);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_delete
-(JNIEnv*, jobject, POINTER pointer);
+(JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_hide
 (JNIEnv* env, jobject o, POINTER pointer);

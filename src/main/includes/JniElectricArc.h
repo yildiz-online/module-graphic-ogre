@@ -36,19 +36,19 @@ extern "C" {
 
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreElectricArc_setMaterial(
-    JNIEnv *env,
+    JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER jmaterial);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreElectricArc_setCeil(
-    JNIEnv *env,
+    JNIEnv* env,
     jobject o,
     POINTER pointer,
     jint ceil);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreElectricArc_addLight(
-    JNIEnv *env,
+    JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER lightPointer);

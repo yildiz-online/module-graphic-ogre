@@ -37,16 +37,16 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_constructo
 (JNIEnv* env, jobject o, POINTER nodePointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_setMaterial
-  (JNIEnv *, jobject, POINTER pointer, POINTER matPointer);
+  (JNIEnv* env, jobject o, POINTER pointer, POINTER matPointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_show
-  (JNIEnv *, jobject,POINTER pointer);
+  (JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_hide
-  (JNIEnv *, jobject,POINTER pointer);
+  (JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_update
-(JNIEnv* env, jobject o,POINTER pointer, jfloat beginX, jfloat beginY, jfloat beginZ, jfloat endX, jfloat endY, jfloat endZ);
+(JNIEnv* env, jobject o, POINTER pointer, jfloat beginX, jfloat beginY, jfloat beginZ, jfloat endX, jfloat endY, jfloat endZ);
 
 
 

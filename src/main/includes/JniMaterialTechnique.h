@@ -46,9 +46,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechniq
     jint index);
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_createPass(
-    JNIEnv *,
-    jobject,
-    POINTER);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_setGlow(
     JNIEnv* env,

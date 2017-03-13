@@ -34,15 +34,15 @@
 extern "C" {
 #endif
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_constructor(
-    JNIEnv *,
-    jclass,
-    POINTER,
-    jstring,
-    jfloat,
-    jfloat);
+    JNIEnv* env,
+    jclass c,
+    POINTER pointer,
+    jstring name,
+    jfloat width,
+    jfloat height);
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_constructorParent(
-    JNIEnv *,
-    jclass,
+    JNIEnv* env,
+    jclass c,
     POINTER,
     jstring,
     jfloat,
@@ -50,57 +50,57 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_co
     POINTER);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_hide(
-    JNIEnv *,
-    jobject,
-    POINTER);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setPosition(
-    JNIEnv *,
-    jobject,
-    POINTER,
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
     jfloat,
     jfloat);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_show(
-    JNIEnv *,
-    jobject,
-    POINTER);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setSize(
-    JNIEnv *,
-    jobject,
-    POINTER,
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
     jfloat,
     jfloat);
 JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_getElement(
-    JNIEnv *,
-    jobject,
-    POINTER,
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
     jfloat,
     jfloat);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_zoom(
-    JNIEnv *,
-    jobject,
-    POINTER,
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
     jfloat);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setZ(
-    JNIEnv *,
-    jobject,
-    POINTER,
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
     jshort);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setMaterial(
-    JNIEnv *,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER,
     POINTER);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_addChildrenPosition(
-    JNIEnv *,
-    jobject,
-    POINTER,
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
     jint,
     jint);
 

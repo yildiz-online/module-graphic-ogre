@@ -39,29 +39,29 @@ extern "C" {
  * @param pointer YZ::PointLight pointer address.
  */
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setDebug(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setPosition(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jfloat z);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setColor(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer,
     jfloat r,
     jfloat g,
     jfloat b);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setAttenuation(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer,
     jfloat range,
     jfloat constant,
@@ -69,8 +69,8 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setAtte
     jfloat quadratic);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_delete(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer);
 
 #ifdef __cplusplus

@@ -33,41 +33,41 @@
 extern "C" {
 #endif
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_createChild(
-    JNIEnv *,
-    jobject,
-    POINTER);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer);
 JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getName(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_setPosition(
-    JNIEnv *,
-    jobject,
-    POINTER,
-    jfloat,
-    jfloat,
-    jfloat);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
+    jfloat x,
+    jfloat y,
+    jfloat z);
     
     JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_detachFromParent(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_setDirection(
-    JNIEnv *,
-    jobject,
-    POINTER,
-    jfloat,
-    jfloat,
-    jfloat);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
+    jfloat x,
+    jfloat y,
+    jfloat z);
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_translate(
-    JNIEnv *,
-    jobject,
-    POINTER,
-    jfloat,
-    jfloat,
-    jfloat);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
+    jfloat x,
+    jfloat y,
+    jfloat z);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_show(
     JNIEnv* env,
@@ -90,22 +90,22 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_delete(
     jobject o,
     POINTER pointer);
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getPosition(
-    JNIEnv *,
-    jobject,
-    POINTER);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer);
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getDirection(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer);
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getWorldDirection(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_scale(
-    JNIEnv*,
-    jobject,
-    POINTER,
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
     jfloat scaleX,
     jfloat scaleY,
     jfloat scaleZ);
@@ -125,8 +125,8 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_attachToNode(
     POINTER pointer,
     POINTER other);
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getOrientation(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer);
 
 #ifdef __cplusplus

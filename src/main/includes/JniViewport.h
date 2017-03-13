@@ -39,7 +39,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreViewPort_enableCom
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_ViewPort_setCamera (JNIEnv* env, jobject current, jlong pointer, jlong cameraPointer);
     
     
- #ifdef __cplusplus
+#ifdef __cplusplus
 }
 #endif
 #endif 

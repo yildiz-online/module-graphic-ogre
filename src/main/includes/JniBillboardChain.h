@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_set
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_delete(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_addElement

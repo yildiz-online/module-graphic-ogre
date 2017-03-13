@@ -35,16 +35,16 @@ extern "C" {
 #endif
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_setPosition(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jfloat z);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_delete(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer);
 
 #ifdef __cplusplus

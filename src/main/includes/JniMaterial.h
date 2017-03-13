@@ -52,24 +52,25 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_getTec
     jint number);
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_createTexture(
-    JNIEnv *,
-    jobject,
-    jstring);
+    JNIEnv* env,
+    jobject o,
+    jstring name);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_loadTexture(
-    JNIEnv *,
-    jobject,
-    POINTER);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer);
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_createTechnique(
-    JNIEnv *,
-    jobject,
-    POINTER);
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_receiveShadow(
     JNIEnv* env,
     jobject o,
-    POINTER pointer, jboolean b);
+    POINTER pointer,
+    jboolean b);
 
 #ifdef __cplusplus
 }

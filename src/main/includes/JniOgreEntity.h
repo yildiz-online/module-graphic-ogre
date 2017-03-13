@@ -35,8 +35,8 @@ extern "C" {
 #endif
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setMaterial(
-    JNIEnv *,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer,
     POINTER matPointer);
 
@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_castShadow(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
-    jboolean);
+    jboolean casting);
 JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_getParentSceneNode(
     JNIEnv* env,
     jobject o,
@@ -52,7 +52,7 @@ JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_getParen
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setParameter(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     jint index,
     jfloat v1, jfloat v2, jfloat v3, jfloat v4);
@@ -64,13 +64,13 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setUnpickab
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderingDistance(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     jint distance);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderQueue(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer,
     jint index);
 

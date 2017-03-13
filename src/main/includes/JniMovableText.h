@@ -36,7 +36,7 @@ extern "C" {
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_constructor(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER nodePointer,
     jstring jname,
     jstring jtext,
@@ -45,7 +45,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_con
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_setTextColor(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     jfloat red,
     jfloat green,
@@ -54,14 +54,14 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_setTex
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_setTextAlignement(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     jint h,
     jint v);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_setTextOffset(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
