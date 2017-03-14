@@ -53,7 +53,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
 		POINTER pointer, jstring jname, jfloat value);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_complexBlend(
-		JNIEnv* env, jobject o o,
+		JNIEnv* env, jobject o,
 		POINTER pointer, jint blend, jint blend2);
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgram(
