@@ -27,7 +27,6 @@
 
 #include "../includes/ParticleScaleAffector.hpp"
 
-YZ::ParticleScaleAffector::ParticleScaleAffector(Ogre::ParticleAffector* affector) {
+YZ::ParticleScaleAffector::ParticleScaleAffector(Ogre::ParticleAffector* affector) : affector(affector) {
     LOG_FUNCTION
-	this->affector = affector;
 }

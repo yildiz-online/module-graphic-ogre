@@ -27,9 +27,8 @@
 
 #include "../includes/Entity.hpp"
 
-YZ::Entity::Entity(Ogre::Entity* e) {
+YZ::Entity::Entity(Ogre::Entity* e) : entity(e) {
     LOG_FUNCTION
-    this->entity = e;
 }
 
 void YZ::Entity::setCustomParameters(const int index, const Ogre::Real p1,

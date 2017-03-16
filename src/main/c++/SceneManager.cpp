@@ -27,10 +27,9 @@
 
 #include "../includes/SceneManager.hpp"
 
-YZ::SceneManager::SceneManager(Ogre::SceneManager* manager) {
+YZ::SceneManager::SceneManager(Ogre::SceneManager* manager) : sceneManager(sceneManager) {
     LOG_FUNCTION
     this->debug = false;
-    this->sceneManager = manager;
     this->rootNode = new YZ::Node(this->sceneManager->getRootSceneNode());
     this->sceneManager->setAmbientLight(Ogre::ColourValue::Black);
    /* this->collisionTool = new YZ::CollisionTools(

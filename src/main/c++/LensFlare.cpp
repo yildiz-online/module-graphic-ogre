@@ -27,21 +27,15 @@
 
 #include "../includes/Lensflare.hpp"
 
-YZ::LensFlare::LensFlare(YZ::Node* node, YZ::BillboardSet* light, YZ::BillboardSet* streak, YZ::BillboardSet* halo, YZ::BillboardSet* burst, Ogre::RaySceneQuery* query, Ogre::Real x, Ogre::Real y, Ogre::Real z) {
+YZ::LensFlare::LensFlare(YZ::Node* node, YZ::BillboardSet* light, YZ::BillboardSet* streak, YZ::BillboardSet* halo, YZ::BillboardSet* burst, Ogre::RaySceneQuery* query, Ogre::Real x, Ogre::Real y, Ogre::Real z) :
+node(node), lightFlareSet(light), streakSet(streak), haloSet(halo), burstSet(burst), query(query) {
     LOG_FUNCTION
-    this->node = node;
 	this->node->setPosition(x, y, z);
 
-	this->lightFlareSet = light;
     this->lightFlareSet->hide();
-    this->streakSet = streak;
     this->streakSet->hide();
-    this->haloSet = halo;
     this->haloSet->hide();
-    this->burstSet = burst;
     this->burstSet->hide();
-
-    this->query = query;
 
     YZ::Billboard* lightFlare = this->lightFlareSet->createBillboard();
     lightFlare->setDimensions(512, 512);

@@ -29,9 +29,8 @@
 
 YZ::RenderWindow* YZ::RenderWindow::instance = NULL;
 
-YZ::RenderWindow::RenderWindow(Ogre::RenderWindow* renderWindow) {
+YZ::RenderWindow::RenderWindow(Ogre::RenderWindow* renderWindow) : window(renderWindow) {
     LOG_FUNCTION
-    this->window = renderWindow;
     this->window->setActive(true);
 }
 

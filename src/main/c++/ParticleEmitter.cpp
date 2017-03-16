@@ -27,9 +27,8 @@
 
 #include "../includes/ParticleEmitter.hpp"
 
-YZ::ParticleEmitter::ParticleEmitter(Ogre::ParticleEmitter* emitter) {
+YZ::ParticleEmitter::ParticleEmitter(Ogre::ParticleEmitter* emitter) : emitter(emitter){
     LOG_FUNCTION
-	this->emitter = emitter;
 	this->minSpeed = 0;
 	this->maxSpeed = 0;
 }

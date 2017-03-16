@@ -40,9 +40,8 @@ class BillboardSet : public AbstractMovable {
 public:
 
 
-    BillboardSet(Ogre::BillboardSet* set) {
+    BillboardSet(Ogre::BillboardSet* set) : set(set){
         LOG_FUNCTION
-        this->set = set;
         this->set->setCullIndividually(true);
         this->set->setQueryFlags(0);
     }

@@ -27,7 +27,6 @@
 
 #include "../includes/ParticleColorAffector.hpp"
 
-YZ::ParticleColorAffector::ParticleColorAffector(Ogre::ParticleAffector* affector) {
+YZ::ParticleColorAffector::ParticleColorAffector(Ogre::ParticleAffector* affector) : affector(affector) {
     LOG_FUNCTION
-	this->affector = affector;
 }

@@ -32,10 +32,8 @@ YZ::ElectricArc::ElectricArc(
     YZ::Node* endNode,
     YZ::Node* baseNode,
     const std::string& name,
-    const Ogre::Real width) {
+    const Ogre::Real width) : start(startNode), end(endNode), base(baseNode) {
     LOG_FUNCTION
-    this->start = startNode;
-    this->end = endNode;
     this->startPosition = this->start->getPosition();
     this->endPosition = this->end->getPosition();
 
@@ -43,7 +41,6 @@ YZ::ElectricArc::ElectricArc(
 
     this->chain = new YZ::BillboardChain(name);
 
-    this->base = baseNode;
     this->base->attachObject(this->chain);
 
     Ogre::Vector3 elementPosition = this->startPosition;
