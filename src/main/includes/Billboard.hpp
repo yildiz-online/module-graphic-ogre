@@ -55,7 +55,7 @@ public:
         this->billboard->setColour(Ogre::ColourValue(r, g, b, a));
     }
 
-    inline Ogre::Billboard* getWrappedBillboard(void) {
+    inline Ogre::Billboard* getWrappedBillboard() {
         LOG_FUNCTION
         return this->billboard;
     }

@@ -28,12 +28,11 @@
 #include "../includes/OgreLogger.h"
 #include "../includes/JniUtil.h"
 
-YZ::OgreLogger::OgreLogger(JNIEnv *env) {
+YZ::OgreLogger::OgreLogger(JNIEnv *env) : env(env){
     LOG_FUNCTION
-	this->env = env;
 }
 
-YZ::OgreLogger::~OgreLogger(void)
+YZ::OgreLogger::~OgreLogger()
 {
     LOG_FUNCTION
 }

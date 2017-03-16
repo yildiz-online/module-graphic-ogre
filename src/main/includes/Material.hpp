@@ -50,7 +50,7 @@ public:
 		this->material = m;
 	}
 
-	inline const std::string& getName(void) const {
+	inline const std::string& getName() const {
 	    LOG_FUNCTION
 		return this->material->getName();
 	}
@@ -60,12 +60,12 @@ public:
 		return new YZ::Material(this->material->clone(name).getPointer());
 	}
 
-	inline void compile(void) {
+	inline void compile() {
 	    LOG_FUNCTION
 		this->material->compile();
 	}
 
-	inline void load(void) {
+	inline void load() {
 	    LOG_FUNCTION
 		this->material->load();
 	}
@@ -75,7 +75,7 @@ public:
 		this->material->setReceiveShadows(receive);
 	}
 
-	inline Ogre::Technique* createTechnique(void) {
+	inline Ogre::Technique* createTechnique() {
 	    LOG_FUNCTION
 		return this->material->createTechnique();
 	}
@@ -85,7 +85,7 @@ public:
 		return this->material->getTechnique(index);
 	}
 
-	inline int getNumTechniques(void) const {
+	inline int getNumTechniques() const {
 	    LOG_FUNCTION
 		return this->material->getNumTechniques();
 	}

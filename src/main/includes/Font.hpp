@@ -46,12 +46,12 @@ public:
 
     void load();
 
-    inline std::string getName(void) const {
+    inline std::string getName() const {
         LOG_FUNCTION
         return this->font->getName();
     }
 
-    Ogre::Real getTrueTypeSize(void) const;
+    Ogre::Real getTrueTypeSize() const;
 
     Ogre::Real getGlyphAspectRatio(const int index) const;
 
@@ -60,12 +60,12 @@ public:
         return this->font->getGlyphTexCoords(c);
     }
 
-    inline Ogre::Font* getWrapped(void) const {
+    inline Ogre::Font* getWrapped() const {
         LOG_FUNCTION
         return this->font;
     }
 
-    inline Ogre::MaterialPtr getMaterial(void) {
+    inline Ogre::MaterialPtr getMaterial() {
         LOG_FUNCTION
         return this->font->getMaterial();
     }

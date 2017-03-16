@@ -56,7 +56,7 @@ public:
         this->set->setMaterialName(material->getName());
     }
 
-    YZ::Billboard* createBillboard(void) {
+    YZ::Billboard* createBillboard() {
         LOG_FUNCTION
         return new YZ::Billboard(this->set->createBillboard(0, 0, 0, Ogre::ColourValue::White));
     }
@@ -86,7 +86,7 @@ public:
         this->set->setDefaultDimensions(width, height);
     }
 
-    Ogre::MovableObject* getMovableObject(void) {
+    Ogre::MovableObject* getMovableObject() {
         LOG_FUNCTION
         return this->set;
     }

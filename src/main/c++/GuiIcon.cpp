@@ -37,7 +37,7 @@ YZ::GuiIcon::GuiIcon(YZ::GuiContainer* parent, const std::string& name, const YZ
     this->icon->hide();
 }
 
-YZ::GuiIcon::~GuiIcon(void) {
+YZ::GuiIcon::~GuiIcon() {
     LOG_FUNCTION
     Ogre::OverlayContainer* c = this->icon->getParent();
     c->removeChild(this->icon->getName());

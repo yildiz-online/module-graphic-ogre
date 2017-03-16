@@ -51,7 +51,7 @@ public:
 
     const Ogre::Vector3& getPoint(unsigned short index) const;
 
-    unsigned short getNumPoints(void) const;
+    unsigned short getNumPoints() const;
 
     void clear();
 

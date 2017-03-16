@@ -120,7 +120,7 @@ public:
     bool getShowOnTop() const {
         return mOnTop;
     }
-    Ogre::AxisAlignedBox GetAABB(void) {
+    Ogre::AxisAlignedBox GetAABB() {
         return mAABB;
     }
 
@@ -133,7 +133,7 @@ protected:
 
     // from MovableObject
     void getWorldTransforms(Ogre::Matrix4 *xform) const;
-    Ogre::Real getBoundingRadius(void) const {
+    Ogre::Real getBoundingRadius() const {
         return mRadius;
     }
 
@@ -147,11 +147,11 @@ protected:
         return mAABB;
     }
 
-    const std::string& getName(void) const {
+    const std::string& getName() const {
         return mName;
     }
 
-    const std::string& getMovableType(void) const {
+    const std::string& getMovableType() const {
         static Ogre::String movType = "MovableText";
         return movType;
     }
@@ -161,12 +161,12 @@ protected:
 
     // from renderable
     void getRenderOperation(Ogre::RenderOperation &op);
-    const Ogre::MaterialPtr &getMaterial(void) const {
+    const Ogre::MaterialPtr &getMaterial() const {
         assert(!mpMaterial.isNull());
         return mpMaterial;
     }
 
-    const Ogre::LightList &getLights(void) const {
+    const Ogre::LightList &getLights() const {
         return mLList;
     }
 

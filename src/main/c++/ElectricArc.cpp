@@ -66,7 +66,7 @@ void YZ::ElectricArc::addLight(YZ::PointLight* light) {
     }
 }
 
-YZ::ElectricArc::~ElectricArc(void) {
+YZ::ElectricArc::~ElectricArc() {
     LOG_FUNCTION
 }
 

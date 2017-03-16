@@ -46,7 +46,7 @@ public:
      */
 	ElectricArc(YZ::Node* startNode, YZ::Node* endNode, YZ::Node* baseNode, const std::string& name, const Ogre::Real width);
 
-	~ElectricArc(void);
+	~ElectricArc();
 
 	inline void setMaterial(YZ::Material* material) {
 	    LOG_FUNCTION

@@ -57,11 +57,11 @@ public:
     void setMaterial(YZ::Material* material);
 
     //FIXME return YZ node
-	Ogre::SceneNode* getParentSceneNode(void) const;
+	Ogre::SceneNode* getParentSceneNode() const;
 
     void setRenderingDistance(const int distance);
 
-    virtual Ogre::MovableObject* getMovableObject(void) {
+    virtual Ogre::MovableObject* getMovableObject() {
         LOG_FUNCTION
         return this->entity;
     }

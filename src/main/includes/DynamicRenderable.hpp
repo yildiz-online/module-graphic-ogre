@@ -50,7 +50,7 @@ public:
                   bool useIndices);
 
   /// Implementation of Ogre::SimpleRenderable
-  virtual Ogre::Real getBoundingRadius(void) const;
+  virtual Ogre::Real getBoundingRadius() const;
   /// Implementation of Ogre::SimpleRenderable
   virtual Ogre::Real getSquaredViewDepth(const Ogre::Camera* cam) const;
 

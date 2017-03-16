@@ -137,7 +137,7 @@ void DynamicRenderable::prepareHardwareBuffers(size_t vertexCount,
   }
 }
 
-Real DynamicRenderable::getBoundingRadius(void) const
+Real DynamicRenderable::getBoundingRadius() const
 {
   return Math::Sqrt(std::max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
 }

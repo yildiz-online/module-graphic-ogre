@@ -84,12 +84,12 @@ public:
 	/**
 	 * @return The wrapped Ogre::SceneNode
 	 */
-	inline Ogre::SceneNode* getWrappedNode(void) {
+	inline Ogre::SceneNode* getWrappedNode() {
 	    LOG_FUNCTION
 		return this->node;
 	}
 
-	inline void needUpdate(void) {
+	inline void needUpdate() {
 	    LOG_FUNCTION
 		this->node->needUpdate();
 	}
@@ -97,7 +97,7 @@ public:
 	/**
 	 * Display every objects attached on this node.
 	 */
-	inline void show(void) {
+	inline void show() {
 	    LOG_FUNCTION
 		this->node->setVisible(true);
 	}
@@ -135,7 +135,7 @@ public:
 	 * Create a child for this node.
 	 * @return A new YZ::Node child of this one.
 	 */
-	inline YZ::Node* createChildNode(void) {
+	inline YZ::Node* createChildNode() {
 	    LOG_FUNCTION
 		YZ::Node* child = new YZ::Node(this->node->createChildSceneNode());
 		//     this->childrenList.push_back(child);
@@ -146,12 +146,12 @@ public:
 	 * Get the wrapped node name.
 	 * @return The name.
 	 */
-	inline std::string getName(void) const{
+	inline std::string getName() const{
 	    LOG_FUNCTION
 		return this->node->getName();
 	}
 
-	inline void destroy(void) {
+	inline void destroy() {
 	    LOG_FUNCTION
 		for (unsigned int i = 0; i < this->manualList.size(); ++i) {
 			Ogre::MovableObject* o = this->manualList.at(i);
@@ -209,7 +209,7 @@ public:
 		return rotation.zAxis();
 	}
 
-	inline Ogre::Quaternion getOrientation(void) {
+	inline Ogre::Quaternion getOrientation() {
 	    LOG_FUNCTION
 		return this->node->getOrientation();
 	}
@@ -257,17 +257,17 @@ public:
 		node->translate(x, y, z, Ogre::Node::TS_WORLD);
 	}
 
-	inline Ogre::Vector3 getPosition(void) const {
+	inline Ogre::Vector3 getPosition() const {
 	    LOG_FUNCTION
 		return this->node->getPosition();
 	}
 
-	inline Ogre::Vector3 getDirection(void) const {
+	inline Ogre::Vector3 getDirection() const {
 	    LOG_FUNCTION
 		return this->node->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
 	}
 
-	inline Ogre::Vector3 getWorldDirection(void) const {
+	inline Ogre::Vector3 getWorldDirection() const {
 	    LOG_FUNCTION
 		return this->node->_getDerivedOrientation()
 				* Ogre::Vector3::NEGATIVE_UNIT_Z;

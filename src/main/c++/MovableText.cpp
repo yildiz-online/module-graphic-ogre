@@ -455,7 +455,7 @@ void YZ::MovableText::_setupGeometry() {
 	mNeedUpdate = false;
 }
 
-void YZ::MovableText::_updateColors(void) {
+void YZ::MovableText::_updateColors() {
 	assert(mpFont);
 	assert(!mpMaterial.isNull());
 
@@ -474,7 +474,7 @@ void YZ::MovableText::_updateColors(void) {
 	mUpdateColors = false;
 }
 
-const Ogre::Quaternion& YZ::MovableText::getWorldOrientation(void) const {
+const Ogre::Quaternion& YZ::MovableText::getWorldOrientation() const {
 	assert(mpCam);
 	return const_cast<Ogre::Quaternion&>(mpCam->getDerivedOrientation());
 }
@@ -484,7 +484,7 @@ void YZ::MovableText::visitRenderables(Ogre::Renderable::Visitor* visitor,
 		bool debugRenderables) {
 }
 
-const Ogre::Vector3& YZ::MovableText::getWorldPosition(void) const {
+const Ogre::Vector3& YZ::MovableText::getWorldPosition() const {
 	assert (mParentNode);
 	return mParentNode->_getDerivedPosition();
 }

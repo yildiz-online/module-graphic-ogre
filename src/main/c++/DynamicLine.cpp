@@ -30,7 +30,6 @@ enum { POSITION_BINDING, TEXCOORD_BINDING };
 DynamicLines::DynamicLines(YZ::Node* node, Ogre::RenderOperation::OperationType opType) {
     LOG_FUNCTION
     initialize(opType,false);
-    //setMaterial("BaseWhiteNoLighting");
     mDirty = true;
     this->node = node;
     this->node->addManualMovable(this);
@@ -69,9 +68,9 @@ const Vector3& DynamicLines::getPoint(unsigned short index) const {
     return mPoints[index];
 }
 
-unsigned short DynamicLines::getNumPoints(void) const {
+unsigned short DynamicLines::getNumPoints() const {
     LOG_FUNCTION
-    return (unsigned short)mPoints.size();
+    return static_cast<unsigned short>mPoints.size();
 }
 
 void DynamicLines::setPoint(unsigned short index, const Ogre::Vector3 &value) {
@@ -129,15 +128,27 @@ void DynamicLines::fillHardwareBuffers() {
             *prPos++ = mPoints[i].x;
             *prPos++ = mPoints[i].y;
             *prPos++ = mPoints[i].z;
-            if(mPoints[i].x < vaabMin.x) vaabMin.x = mPoints[i].x;
-            if(mPoints[i].y < vaabMin.y) vaabMin.y = mPoints[i].y;
-            if(mPoints[i].z < vaabMin.z) vaabMin.z = mPoints[i].z;
-            if(mPoints[i].x > vaabMax.x) vaabMax.x = mPoints[i].x;
-            if(mPoints[i].y > vaabMax.y) vaabMax.y = mPoints[i].y;
-            if(mPoints[i].z > vaabMax.z) vaabMax.z = mPoints[i].z;
+            if(mPoints[i].x < vaabMin.x) {
+                vaabMin.x = mPoints[i].x;
+            }
+            if(mPoints[i].y < vaabMin.y) {
+                vaabMin.y = mPoints[i].y;
+            }
+            if(mPoints[i].z < vaabMin.z) {
+                vaabMin.z = mPoints[i].z;
+            }
+            if(mPoints[i].x > vaabMax.x) {
+                vaabMax.x = mPoints[i].x;
+            }
+            if(mPoints[i].y > vaabMax.y) {
+                vaabMax.y = mPoints[i].y;
+            }
+            if(mPoints[i].z > vaabMax.z) {
+                vaabMax.z = mPoints[i].z;
+            }
         }
 
     vbuf->unlock();
     mBox.setExtents(vaabMin, vaabMax);
     mDirty = false;
-}  /* void DynamicLines::getWorldTransforms(Matrix4 *xform) const { // return identity matrix to prevent parent transforms *xform = Matrix4::IDENTITY; } */ /* const Quaternion &DynamicLines::getWorldOrientation(void) const { return Quaternion::IDENTITY; }  const Vector3 &DynamicLines::getWorldPosition(void) const { return Vector3::ZERO; } */
+}

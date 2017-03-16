@@ -40,7 +40,7 @@ public:
     AbstractLight(Ogre::Light* ogreLight, Ogre::SceneManager* manager) :
             light(ogreLight), creator(manager) {}
 
-    virtual ~AbstractLight(void) {
+    virtual ~AbstractLight() {
         LOG_FUNCTION
         if (this->light->isAttached()) {
             Ogre::SceneNode* node = this->light->getParentSceneNode();
@@ -70,7 +70,7 @@ public:
         this->light->setDiffuseColour(r, g, b);
     }
 
-    inline void setDebug(void) {
+    inline void setDebug() {
         LOG_FUNCTION
         this->light->setDebugDisplayEnabled(true);
     }
@@ -84,7 +84,7 @@ public:
         this->light->setVisible(active);
     }
 
-    inline Ogre::Light* getWrappedLight(void) const {
+    inline Ogre::Light* getWrappedLight() const {
         LOG_FUNCTION
         return this->light;
     }

@@ -63,7 +63,7 @@ public:
         this->listenerList.push_back(l);
     }
 
-    inline void enableRenderingDistance(void) {
+    inline void enableRenderingDistance() {
         LOG_FUNCTION
         this->camera->setUseRenderingDistance(true);
     }
@@ -118,24 +118,24 @@ public:
         this->updateListeners();
     }
 
-    inline void forceListenersUpdate(void) {
+    inline void forceListenersUpdate() {
         LOG_FUNCTION
         this->updateListeners();
     }
 
     void updateListeners();
 
-    inline Ogre::Vector3 getDirection(void) const {
+    inline Ogre::Vector3 getDirection() const {
         LOG_FUNCTION
         return this->camera->getDirection();
     }
 
-    inline Ogre::Vector3 getPosition(void) const {
+    inline Ogre::Vector3 getPosition() const {
         LOG_FUNCTION
         return this->camera->getPosition();
     }
 
-    inline Ogre::Camera* getCamera(void) const{
+    inline Ogre::Camera* getCamera() const{
         LOG_FUNCTION
         return this->camera;
     }
@@ -150,12 +150,12 @@ public:
         this->camera->setAutoTracking(false);
     }
 
-    inline void detachFromParent(void) {
+    inline void detachFromParent() {
         LOG_FUNCTION
         this->camera->detachFromParent();
     }
 
-    Ogre::MovableObject* getMovableObject(void) {
+    Ogre::MovableObject* getMovableObject() {
         LOG_FUNCTION
         return this->camera;
     }

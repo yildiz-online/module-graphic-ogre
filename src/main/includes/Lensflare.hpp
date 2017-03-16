@@ -65,7 +65,7 @@ public:
 		this->node->setPosition(x, y, z);
 	}
 
-	inline std::string getName(void) const {
+	inline std::string getName() const {
 	    LOG_FUNCTION
 		return "LensFlare";
 	}
