@@ -70,7 +70,7 @@ const Vector3& DynamicLines::getPoint(unsigned short index) const {
 
 unsigned short DynamicLines::getNumPoints() const {
     LOG_FUNCTION
-    return static_cast<unsigned short>mPoints.size();
+    return static_cast<unsigned short>(mPoints.size());
 }
 
 void DynamicLines::setPoint(unsigned short index, const Ogre::Vector3 &value) {
