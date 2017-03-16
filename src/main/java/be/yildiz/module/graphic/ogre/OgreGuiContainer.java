@@ -70,8 +70,8 @@ final class OgreGuiContainer extends GuiContainer implements Native {
         this.screenWidth = screenWidth;
         this.pointer = NativePointer.create(this.constructor(OgreMaterial.class.cast(material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height));
         this.setPosition(coordinate.left, coordinate.top);
-        if (!widget && parent.isPresent()) {
-            this.setZ(parent.get().getZ().add(1));
+        if (!widget) {
+            this.getParent().ifPresent(p -> this.setZ(p.getZ().add(1)));
         }
     }
 
