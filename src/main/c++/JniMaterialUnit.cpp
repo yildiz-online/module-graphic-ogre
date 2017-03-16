@@ -39,7 +39,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setTex
     jint duration) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::TextureUnit::get(pointer)->setAnimatedTextureName(name.getValue(), frame, duration);
+    yz::TextureUnit::get(pointer)->setAnimatedTextureName(name.getValue(), frame, duration);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setTextureFilter(
@@ -48,7 +48,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setTex
     POINTER pointer,
     jint filter) {
     LOG_FUNCTION
-    YZ::TextureUnit::get(pointer)->setTextureFiltering(EnumConversion::getTextureFilter(filter));
+    yz::TextureUnit::get(pointer)->setTextureFiltering(EnumConversion::getTextureFilter(filter));
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setCoordinateSet(
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setCoo
     POINTER pointer,
     jint set) {
     LOG_FUNCTION
-    YZ::TextureUnit::get(pointer)->setTextureCoordSet (set);
+    yz::TextureUnit::get(pointer)->setTextureCoordSet (set);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setColorOperation(
@@ -66,7 +66,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setCol
     POINTER pointer,
     jint operation) {
     LOG_FUNCTION
-    YZ::TextureUnit::get(pointer)->setColourOperation(EnumConversion::getLayerBlendOperation(operation));
+    yz::TextureUnit::get(pointer)->setColourOperation(EnumConversion::getLayerBlendOperation(operation));
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_scroll(
@@ -76,7 +76,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_scroll
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    YZ::TextureUnit::get(pointer)->setScrollAnimation(x, y);
+    yz::TextureUnit::get(pointer)->setScrollAnimation(x, y);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setAlphaOperation(
@@ -87,7 +87,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setAlp
     jint src,
     jint src2) {
     LOG_FUNCTION
-    YZ::TextureUnit::get(pointer)->setAlphaOperation(
+    yz::TextureUnit::get(pointer)->setAlphaOperation(
             EnumConversion::getLayerBlendOperationEx(operation),
             EnumConversion::getLayerBlendSource(src),
             EnumConversion::getLayerBlendSource(src2));
@@ -101,7 +101,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setCol
     jint src,
     jint src2) {
     LOG_FUNCTION
-    YZ::TextureUnit::get(pointer)->setColourOperationEx(
+    yz::TextureUnit::get(pointer)->setColourOperationEx(
             EnumConversion::getLayerBlendOperationEx(operation),
             EnumConversion::getLayerBlendSource(src),
             EnumConversion::getLayerBlendSource(src2));
@@ -118,7 +118,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setCol
     jfloat g,
     jfloat b) {
     LOG_FUNCTION
-    YZ::TextureUnit::get(pointer)->setColourOperationEx(
+    yz::TextureUnit::get(pointer)->setColourOperationEx(
             EnumConversion::getLayerBlendOperationEx(operation),
             EnumConversion::getLayerBlendSource(src),
             EnumConversion::getLayerBlendSource(src2),
@@ -132,7 +132,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setTex
     jstring materialName) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, materialName);
-    YZ::TextureUnit::get(pointer)->setTextureName(name.getValue());
+    yz::TextureUnit::get(pointer)->setTextureName(name.getValue());
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setScale(
@@ -142,5 +142,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setSca
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    YZ::TextureUnit::get(pointer)->setTextureScale(x, y);
+    yz::TextureUnit::get(pointer)->setTextureScale(x, y);
 }

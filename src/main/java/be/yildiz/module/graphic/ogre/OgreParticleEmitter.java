@@ -36,7 +36,7 @@ import be.yildiz.module.graphic.ParticleEmitter;
 final class OgreParticleEmitter extends ParticleEmitter {
 
     /**
-     * Pointer address to the associated YZ::ParticleEmitter*.
+     * Pointer address to the associated yz::ParticleEmitter*.
      */
     private final NativePointer pointer;
 
@@ -103,7 +103,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle emission rate in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param rate           Emission rate.
      */
     private native void setRate(final long pointerAddress, final float rate);
@@ -111,7 +111,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle emission duration in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param duration       Emission duration.
      */
     private native void setDuration(final long pointerAddress, final float duration);
@@ -119,7 +119,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle life time in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param lifeTime       Particle life time.
      */
     private native void setLifeTime(final long pointerAddress, final float lifeTime);
@@ -127,7 +127,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle emission direction in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param x              Emission direction X value.
      * @param y              Emission direction Y value.
      * @param z              Emission direction Z value.
@@ -137,7 +137,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle color when created in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param red            Color red value.
      * @param green          Color green value.
      * @param blue           Color blue value.
@@ -148,7 +148,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle color when life is finished in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param red            Color red value.
      * @param green          Color green value.
      * @param blue           Color blue value.
@@ -159,7 +159,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle emission angle in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param angle          emission angle.
      */
     private native void setAngle(final long pointerAddress, final float angle);
@@ -167,7 +167,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle emitter repeat delay in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param repeatDelay    Delay to restart the emitter.
      */
     private native void setRepeatDelay(final long pointerAddress, final float repeatDelay);
@@ -175,7 +175,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle emitter maximum speed emission in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param maxSpeed       Particle emission maximum speed.
      */
     private native void setMaxSpeed(final long pointerAddress, final float maxSpeed);
@@ -183,7 +183,7 @@ final class OgreParticleEmitter extends ParticleEmitter {
     /**
      * Set the particle emitter minimum speed emission in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleEmitter*.
+     * @param pointerAddress Address to the native yz::ParticleEmitter*.
      * @param minSpeed       Particle emission minimum speed.
      */
     private native void setMinSpeed(final long pointerAddress, final float minSpeed);

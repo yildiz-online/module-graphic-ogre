@@ -28,7 +28,7 @@
 #include <OgreSceneNode.h>
 #include "stdafx.h"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre

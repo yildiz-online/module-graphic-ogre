@@ -27,7 +27,7 @@
 
 #include "../includes/Gui3D.hpp"
 
-YZ::Gui3D::Gui3D(Ogre::SceneNode* node) {
+yz::Gui3D::Gui3D(Ogre::SceneNode* node) {
     LOG_FUNCTION
 //Entity* overlayNinjaEntity = mSceneMgr->createEntity("OverlayNinjaEntity", "ninja.mesh");
 //Entity* overlayOgreEntity = mSceneMgr->createEntity("OverlayOgreEntity", "ogrehead.mesh");

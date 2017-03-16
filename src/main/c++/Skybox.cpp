@@ -27,7 +27,7 @@
 
 #include "../includes/Skybox.hpp"
 
-YZ::Skybox::Skybox(const std::string& name, const std::string& path) {
+yz::Skybox::Skybox(const std::string& name, const std::string& path) {
     LOG_FUNCTION
     Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     Ogre::Pass* p = material->getTechnique(0)->getPass(0);
@@ -37,6 +37,6 @@ YZ::Skybox::Skybox(const std::string& name, const std::string& path) {
     tus->setCubicTextureName(path);
 }
 
-YZ::Skybox::~Skybox() {
+yz::Skybox::~Skybox() {
     LOG_FUNCTION
 }

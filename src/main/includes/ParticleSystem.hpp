@@ -24,7 +24,7 @@
 #ifndef YZ_PARTICLE_SYSTEM_H
 #define YZ_PARTICLE_SYSTEM_H
 
-#define PARTICLESYSTEM YZ::ParticleSystem
+#define PARTICLESYSTEM yz::ParticleSystem
 
 #include "stdafx.h"
 #include "Node.hpp"
@@ -35,10 +35,10 @@
 #include "AbstractMovable.hpp"
 #include "Material.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
- * Wrap an Ogre::ParticleSystem the attached YZ::Node.
+ * Wrap an Ogre::ParticleSystem the attached yz::Node.
  * @author Grégory Van den Borre
  */
 class ParticleSystem: public AbstractMovable {
@@ -69,26 +69,26 @@ public:
 		billboardRender->setBillboardOrigin(origin);
 	}
 
-	inline YZ::ParticleEmitter* createEmitter() {
+	inline yz::ParticleEmitter* createEmitter() {
 	    LOG_FUNCTION
-		return new YZ::ParticleEmitter(this->system->addEmitter("Point"));
+		return new yz::ParticleEmitter(this->system->addEmitter("Point"));
 	}
 
-	inline YZ::ParticleColorAffector* createColorAffector() {
+	inline yz::ParticleColorAffector* createColorAffector() {
 	    LOG_FUNCTION
-		return new YZ::ParticleColorAffector(
+		return new yz::ParticleColorAffector(
 				this->system->addAffector("ColourFader"));
 	}
 
-	inline YZ::ParticleScaleAffector* createScaleAffector() {
+	inline yz::ParticleScaleAffector* createScaleAffector() {
 	    LOG_FUNCTION
-		return new YZ::ParticleScaleAffector(
+		return new yz::ParticleScaleAffector(
 				this->system->addAffector("Scaler"));
 	}
 
-	inline YZ::ParticleForceAffector* createForceAffector() {
+	inline yz::ParticleForceAffector* createForceAffector() {
 	    LOG_FUNCTION
-		return new YZ::ParticleForceAffector(
+		return new yz::ParticleForceAffector(
 				this->system->addAffector("LinearForce"));
 	}
 
@@ -107,7 +107,7 @@ public:
 		this->system->setParticleQuota(quota);
 	}
 
-	inline void setMaterial(YZ::Material* material) {
+	inline void setMaterial(yz::Material* material) {
 	    LOG_FUNCTION
 		this->system->setMaterialName(material->getName());
 	}
@@ -133,9 +133,9 @@ public:
 		return this->system;
 	}
 
-    static inline YZ::ParticleSystem* get(const POINTER pointer) {
+    static inline yz::ParticleSystem* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::ParticleSystem*>(pointer);
+        return reinterpret_cast<yz::ParticleSystem*>(pointer);
     }
 
 private:

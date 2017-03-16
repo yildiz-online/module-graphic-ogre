@@ -24,7 +24,7 @@
 #ifndef ID_H
 #define ID_H
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre

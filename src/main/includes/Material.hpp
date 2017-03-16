@@ -27,7 +27,7 @@
 #include "stdafx.h"
 #include <OgreMaterialManager.h>
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -55,9 +55,9 @@ public:
 		return this->material->getName();
 	}
 
-	inline YZ::Material* clone(const std::string& name) const {
+	inline yz::Material* clone(const std::string& name) const {
 	    LOG_FUNCTION
-		return new YZ::Material(this->material->clone(name).getPointer());
+		return new yz::Material(this->material->clone(name).getPointer());
 	}
 
 	inline void compile() {
@@ -90,9 +90,9 @@ public:
 		return this->material->getNumTechniques();
 	}
 
-	inline static YZ::Material* get(const POINTER pointer) {
+	inline static yz::Material* get(const POINTER pointer) {
 	    LOG_FUNCTION
-		return reinterpret_cast<YZ::Material*>(pointer);
+		return reinterpret_cast<yz::Material*>(pointer);
 	}
 
 private:

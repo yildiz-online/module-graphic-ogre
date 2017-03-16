@@ -28,17 +28,17 @@
 #include "AbstractCameraListener.hpp"
 #include "BillboardSet.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
 */
-class LensFlare: public YZ::AbstractCameraListener {
+class LensFlare: public yz::AbstractCameraListener {
 
 public:
 
-	LensFlare(YZ::Node* node, YZ::BillboardSet* light, YZ::BillboardSet* streak,
-			YZ::BillboardSet* halo, YZ::BillboardSet* burst,
+	LensFlare(yz::Node* node, yz::BillboardSet* light, yz::BillboardSet* streak,
+			yz::BillboardSet* halo, yz::BillboardSet* burst,
 			Ogre::RaySceneQuery* query, Ogre::Real x, Ogre::Real y,
 			Ogre::Real z);
 
@@ -82,24 +82,24 @@ public:
 		this->streakSet->getBillboard(0)->resetDimensions();
 	}
 
-    static inline YZ::LensFlare* get(const POINTER pointer) {
+    static inline yz::LensFlare* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::LensFlare*>(pointer);
+        return reinterpret_cast<yz::LensFlare*>(pointer);
     }
 
 private:
 
-	YZ::Node* node;
+	yz::Node* node;
 
 	Ogre::RaySceneQuery* query;
 
-	YZ::BillboardSet* lightFlareSet;
+	yz::BillboardSet* lightFlareSet;
 
-	YZ::BillboardSet* streakSet;
+	yz::BillboardSet* streakSet;
 
-	YZ::BillboardSet* haloSet;
+	yz::BillboardSet* haloSet;
 
-	YZ::BillboardSet* burstSet;
+	yz::BillboardSet* burstSet;
 };
 }
 

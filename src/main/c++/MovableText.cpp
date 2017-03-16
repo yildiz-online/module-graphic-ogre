@@ -14,10 +14,10 @@
 #define POS_TEX_BINDING    0
 #define COLOUR_BINDING     1
 
-YZ::MovableText::MovableText(
+yz::MovableText::MovableText(
 		const std::string& name,
 		const std::string& caption,
-		 YZ::Font* font,
+		 yz::Font* font,
 		const Ogre::Real charHeight,
 		const Ogre::ColourValue &color) :
 		mpCam(NULL),
@@ -48,7 +48,7 @@ YZ::MovableText::MovableText(
 	this->_setupGeometry();
 }
 
-YZ::MovableText::~MovableText() {
+yz::MovableText::~MovableText() {
     LOG_FUNCTION
 	if (this->mRenderOp.vertexData)
 		delete this->mRenderOp.vertexData;
@@ -57,7 +57,7 @@ YZ::MovableText::~MovableText() {
 //        Ogre::MaterialManager::getSingletonPtr()->remove(mpMaterial->getName());
 }
 
-void YZ::MovableText::setFont(YZ::Font* font) {
+void yz::MovableText::setFont(yz::Font* font) {
     LOG_FUNCTION
 	std::string materialName = this->mName + "Material";
 	if ((Ogre::MaterialManager::getSingletonPtr()->resourceExists(materialName))) {
@@ -92,7 +92,7 @@ void YZ::MovableText::setFont(YZ::Font* font) {
 	}
 }
 
-void YZ::MovableText::setCaption(const std::string &caption) {
+void yz::MovableText::setCaption(const std::string &caption) {
     LOG_FUNCTION
 	if (caption != mCaption) {
 		mCaption = caption;
@@ -100,7 +100,7 @@ void YZ::MovableText::setCaption(const std::string &caption) {
 	}
 }
 
-void YZ::MovableText::setColor(const Ogre::Real r, const Ogre::Real g,
+void yz::MovableText::setColor(const Ogre::Real r, const Ogre::Real g,
 		const Ogre::Real b, const Ogre::Real a) {
     LOG_FUNCTION
 	const Ogre::ColourValue color(r, g, b, a);
@@ -110,7 +110,7 @@ void YZ::MovableText::setColor(const Ogre::Real r, const Ogre::Real g,
 	}
 }
 
-void YZ::MovableText::setCharacterHeight(const Ogre::Real height) {
+void yz::MovableText::setCharacterHeight(const Ogre::Real height) {
     LOG_FUNCTION
 	if (height != mCharHeight) {
 		mCharHeight = height;
@@ -118,7 +118,7 @@ void YZ::MovableText::setCharacterHeight(const Ogre::Real height) {
 	}
 }
 
-void YZ::MovableText::setSpaceWidth(const Ogre::Real width) {
+void yz::MovableText::setSpaceWidth(const Ogre::Real width) {
     LOG_FUNCTION
 	if (width != mSpaceWidth) {
 		mSpaceWidth = width;
@@ -126,7 +126,7 @@ void YZ::MovableText::setSpaceWidth(const Ogre::Real width) {
 	}
 }
 
-void YZ::MovableText::setTextAlignment(
+void yz::MovableText::setTextAlignment(
 		const HorizontalAlignment& horizontalAlignment,
 		const VerticalAlignment& verticalAlignment) {
     LOG_FUNCTION
@@ -140,16 +140,16 @@ void YZ::MovableText::setTextAlignment(
 	}
 }
 
-void YZ::MovableText::setGlobalTranslation(Ogre::Vector3 trans) {
+void yz::MovableText::setGlobalTranslation(Ogre::Vector3 trans) {
     LOG_FUNCTION
 	mGlobalTranslation = trans;
 }
 
-void YZ::MovableText::setLocalTranslation(Ogre::Vector3 trans) {
+void yz::MovableText::setLocalTranslation(Ogre::Vector3 trans) {
 	mLocalTranslation = trans;
 }
 
-void YZ::MovableText::showOnTop(bool show) {
+void yz::MovableText::showOnTop(bool show) {
 	if (mOnTop != show && !mpMaterial.isNull()) {
 		mOnTop = show;
 		mpMaterial->setDepthBias(1.0, 1.0);
@@ -158,7 +158,7 @@ void YZ::MovableText::showOnTop(bool show) {
 	}
 }
 
-void YZ::MovableText::_setupGeometry() {
+void yz::MovableText::_setupGeometry() {
 	assert(mpFont);
 	assert(!mpMaterial.isNull());
 
@@ -455,7 +455,7 @@ void YZ::MovableText::_setupGeometry() {
 	mNeedUpdate = false;
 }
 
-void YZ::MovableText::_updateColors() {
+void yz::MovableText::_updateColors() {
 	assert(mpFont);
 	assert(!mpMaterial.isNull());
 
@@ -474,22 +474,22 @@ void YZ::MovableText::_updateColors() {
 	mUpdateColors = false;
 }
 
-const Ogre::Quaternion& YZ::MovableText::getWorldOrientation() const {
+const Ogre::Quaternion& yz::MovableText::getWorldOrientation() const {
 	assert(mpCam);
 	return const_cast<Ogre::Quaternion&>(mpCam->getDerivedOrientation());
 }
 
 // Add to build on Shoggoth:
-void YZ::MovableText::visitRenderables(Ogre::Renderable::Visitor* visitor,
+void yz::MovableText::visitRenderables(Ogre::Renderable::Visitor* visitor,
 		bool debugRenderables) {
 }
 
-const Ogre::Vector3& YZ::MovableText::getWorldPosition() const {
+const Ogre::Vector3& yz::MovableText::getWorldPosition() const {
 	assert (mParentNode);
 	return mParentNode->_getDerivedPosition();
 }
 
-void YZ::MovableText::getWorldTransforms(Ogre::Matrix4 *xform) const {
+void yz::MovableText::getWorldTransforms(Ogre::Matrix4 *xform) const {
 	if (this->isVisible() && mpCam) {
 		Ogre::Matrix3 rot3x3, scale3x3 = Ogre::Matrix3::IDENTITY;
 
@@ -512,7 +512,7 @@ void YZ::MovableText::getWorldTransforms(Ogre::Matrix4 *xform) const {
 	}
 }
 
-void YZ::MovableText::getRenderOperation(Ogre::RenderOperation &op) {
+void yz::MovableText::getRenderOperation(Ogre::RenderOperation &op) {
 	if (this->isVisible()) {
 		if (mNeedUpdate)
 			this->_setupGeometry();
@@ -522,11 +522,11 @@ void YZ::MovableText::getRenderOperation(Ogre::RenderOperation &op) {
 	}
 }
 
-void YZ::MovableText::_notifyCurrentCamera(Ogre::Camera *cam) {
+void yz::MovableText::_notifyCurrentCamera(Ogre::Camera *cam) {
 	this->mpCam = cam;
 }
 
-void YZ::MovableText::_updateRenderQueue(Ogre::RenderQueue* queue) {
+void yz::MovableText::_updateRenderQueue(Ogre::RenderQueue* queue) {
 	if (this->isVisible()) {
 		if (mNeedUpdate)
 			this->_setupGeometry();

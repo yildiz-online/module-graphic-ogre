@@ -29,7 +29,7 @@
 #include "Font.hpp"
 #include <Overlay/OgreTextAreaOverlayElement.h>
 
-namespace YZ {
+namespace yz {
 
 /**
  * Wrap an ogre text overlay.
@@ -44,7 +44,7 @@ public:
 	 * @param parent Container holding the element.
 	 * @param name Element name, must be unique.
 	 */
-	GuiText(YZ::GuiContainer* parent, const std::string& name);
+	GuiText(yz::GuiContainer* parent, const std::string& name);
 
 	/**
 	 * Destructor.
@@ -99,7 +99,7 @@ public:
 	 * @param font Name of the font to use.
 	 * @param charHeight Size of the font to use.
 	 */
-	inline void setFont(const YZ::Font* font, const Ogre::Real charHeight) {
+	inline void setFont(const yz::Font* font, const Ogre::Real charHeight) {
 	    LOG_FUNCTION
 		this->text->setFontName(font->getName());
 		this->text->setCharHeight(charHeight);
@@ -134,9 +134,9 @@ public:
 		this->text->setColour(Ogre::ColourValue(red, green, blue, alpha));
 	}
 
-    inline static YZ::GuiText* get(const POINTER pointer) {
+    inline static yz::GuiText* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::GuiText*>(pointer);
+        return reinterpret_cast<yz::GuiText*>(pointer);
     }
 
 private:

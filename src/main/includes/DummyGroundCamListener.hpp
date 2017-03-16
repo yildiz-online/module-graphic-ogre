@@ -27,15 +27,15 @@
 #include "AbstractCameraListener.hpp"
 #include "Node.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
  * @author Grégory Van den Borre
  */
-class DummyGroundCamListener: public YZ::AbstractCameraListener {
+class DummyGroundCamListener: public yz::AbstractCameraListener {
 public:
 
-    DummyGroundCamListener(YZ::Node* node) {
+    DummyGroundCamListener(yz::Node* node) {
         LOG_FUNCTION
         this->node = node;
     }
@@ -47,7 +47,7 @@ public:
         node->setPosition(camPos.x, -1, camPos.z);
     }
 private:
-    YZ::Node* node;
+    yz::Node* node;
 };
 
 }

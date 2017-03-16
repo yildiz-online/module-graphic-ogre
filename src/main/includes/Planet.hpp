@@ -26,14 +26,14 @@
 
 #include "stdafx.h"
 
-namespace YZ {
+namespace yz {
 	
 	/**
 	*@author Grégory Van den Borre
 	*/
 class Planet {
 public:
-    Planet(YZ::Node* node) {
+    Planet(yz::Node* node) {
         LOG_FUNCTION
         this->node = node;
     }
@@ -49,7 +49,7 @@ public:
     }
 
 private:
-    YZ::Node* node;
+    yz::Node* node;
 };
 }
 

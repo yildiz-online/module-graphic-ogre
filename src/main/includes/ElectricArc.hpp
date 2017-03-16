@@ -24,14 +24,14 @@
 #ifndef ELECTRIC_ARC_H
 #define ELECTRIC_ARC_H
 
-#define ELECTRICARC YZ::ElectricArc
+#define ELECTRICARC yz::ElectricArc
 
 #include "Node.hpp"
 #include "PointLight.hpp"
 #include "BillboardChain.hpp"
 #include "Material.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -44,11 +44,11 @@ public:
      * @param startNode Node for arc origin.
      * @param endNode Node for arc end.
      */
-	ElectricArc(YZ::Node* startNode, YZ::Node* endNode, YZ::Node* baseNode, const std::string& name, const Ogre::Real width);
+	ElectricArc(yz::Node* startNode, yz::Node* endNode, yz::Node* baseNode, const std::string& name, const Ogre::Real width);
 
 	~ElectricArc();
 
-	inline void setMaterial(YZ::Material* material) {
+	inline void setMaterial(yz::Material* material) {
 	    LOG_FUNCTION
         this->chain->setMaterial(material);
     }
@@ -69,24 +69,24 @@ public:
 	    this->ceil = ceil;
 	}
 
-	void addLight(YZ::PointLight* light);
+	void addLight(yz::PointLight* light);
 
     bool frameStarted(const Ogre::FrameEvent& evt);
 
-    static inline YZ::ElectricArc* get(const POINTER pointer) {
+    static inline yz::ElectricArc* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::ElectricArc*>(pointer);
+        return reinterpret_cast<yz::ElectricArc*>(pointer);
     }
 
 	private:
 		static const int MAX_STEP = 20;
-		YZ::BillboardChain* chain;
-		YZ::Node* start;
-		YZ::Node* end;
-		YZ::Node* base;
+		yz::BillboardChain* chain;
+		yz::Node* start;
+		yz::Node* end;
+		yz::Node* base;
 		Ogre::Vector3 startPosition;
 		Ogre::Vector3 endPosition;
-		YZ::PointLight* light;
+		yz::PointLight* light;
 		bool hasLight;
 		int ceil;
 };

@@ -36,7 +36,7 @@ extern "C" {
 
 /**
  * Enable the debug render.
- * @param pointer YZ::PointLight pointer address.
+ * @param pointer yz::PointLight pointer address.
  */
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setDebug(
     JNIEnv* env,

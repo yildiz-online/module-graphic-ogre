@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setFarClip(
     POINTER pointer,
     jint distance) {
     LOG_FUNCTION
-    YZ::Camera::get(pointer)->setFarClipDistance(distance);
+    yz::Camera::get(pointer)->setFarClipDistance(distance);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setNearClip(
@@ -45,99 +45,99 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setNearClip
     POINTER pointer,
     jint distance) {
     LOG_FUNCTION
-    YZ::Camera::get(pointer)->setNearClipDistance(distance);
+    yz::Camera::get(pointer)->setNearClipDistance(distance);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_enableRenderingDistance(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Camera::get(pointer)->enableRenderingDistance();
+    yz::Camera::get(pointer)->enableRenderingDistance();
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_unregisterListener(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     POINTER lsPointer) {
     LOG_FUNCTION
     try {
-        YZ::LensFlare* ls = YZ::LensFlare::get(lsPointer);
-        YZ::Camera::get(pointer)->removeListener(ls);
+        yz::LensFlare* ls = yz::LensFlare::get(lsPointer);
+        yz::Camera::get(pointer)->removeListener(ls);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_forceListenersUpdate(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Camera::get(pointer)->forceListenersUpdate();
+    yz::Camera::get(pointer)->forceListenersUpdate();
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_rotate(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Camera::get(pointer)->rotate(x, y));
+    return vectorToArray(env, yz::Camera::get(pointer)->rotate(x, y));
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_move(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Camera::get(pointer)->move(x, y, z));
+    return vectorToArray(env, yz::Camera::get(pointer)->move(x, y, z));
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_getDirection(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Camera::get(pointer)->getDirection());
+    return vectorToArray(env, yz::Camera::get(pointer)->getDirection());
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setPositionAxis(
     JNIEnv* env,
-    jobject,
+    jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jint axis) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Camera::get(pointer)->setPositionAxis(x, y, axis));
+    return vectorToArray(env, yz::Camera::get(pointer)->setPositionAxis(x, y, axis));
 }
 
 JNIEXPORT jboolean JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_isVisible(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    return YZ::Camera::get(pointer)->isVisible(x, y, z);
+    return yz::Camera::get(pointer)->isVisible(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setPosition(
-    JNIEnv*,
-    jobject,
+    JNIEnv* env,
+    jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::Camera::get(pointer)->setPosition(x, y, z);
+    yz::Camera::get(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_lookAt(
@@ -148,7 +148,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_look
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Camera::get(pointer)->lookAt(x, y, z));
+    return vectorToArray(env, yz::Camera::get(pointer)->lookAt(x, y, z));
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setOrientation(
@@ -159,7 +159,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setOrientat
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::Camera::get(pointer)->setDirection(x, y, z);
+    yz::Camera::get(pointer)->setDirection(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_detachFromParent(
@@ -167,7 +167,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_detachFromP
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Camera::get(pointer)->detachFromParent();
+    yz::Camera::get(pointer)->detachFromParent();
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setAutotrack(
@@ -176,7 +176,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setAutotrac
     POINTER pointer,
     POINTER nodePointer) {
     LOG_FUNCTION
-    YZ::Camera::get(pointer)->track(YZ::Node::get(nodePointer));
+    yz::Camera::get(pointer)->track(yz::Node::get(nodePointer));
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_stopAutotrack(
@@ -184,7 +184,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_stopAutotra
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Camera::get(pointer)->stopTrack();
+    yz::Camera::get(pointer)->stopTrack();
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_computeMoveDestinationGroundIntersect(
@@ -194,7 +194,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_comp
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Camera::get(pointer)->throwRayPos(x, y));
+    return vectorToArray(env, yz::Camera::get(pointer)->throwRayPos(x, y));
 }
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_throwRay(
@@ -205,7 +205,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_throwRay
     jfloat y,
     jboolean poly) {
     LOG_FUNCTION
-    return YZ::Camera::get(pointer)->throwRay(x, y, poly)->value();
+    return yz::Camera::get(pointer)->throwRay(x, y, poly)->value();
 }
 
 JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_throwPlaneRay(
@@ -217,9 +217,9 @@ JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_throw
     jfloat right,
     jfloat bottom) {
     LOG_FUNCTION
-    YZ::Camera* cam = YZ::Camera::get(pointer);
+    yz::Camera* cam = yz::Camera::get(pointer);
     try {
-        std::vector<YZ::Id*> list = cam->throwPlaneRay(left, right, top, bottom);
+        std::vector<yz::Id*> list = cam->throwPlaneRay(left, right, top, bottom);
 
         if (list.empty()) {
             jlong buf[1];

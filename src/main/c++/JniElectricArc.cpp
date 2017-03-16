@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreElectricArc_setCei
     POINTER pointer,
     jint ceil) {
 	LOG_FUNCTION
-	YZ::ElectricArc::get(pointer)->setCeil(ceil);
+	yz::ElectricArc::get(pointer)->setCeil(ceil);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreElectricArc_addLight(
@@ -43,7 +43,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreElectricArc_addLig
     POINTER pointer,
     POINTER lightPointer) {
 	LOG_FUNCTION
-    YZ::ElectricArc::get(pointer)->addLight(YZ::PointLight::get(lightPointer));
+    yz::ElectricArc::get(pointer)->addLight(yz::PointLight::get(lightPointer));
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreElectricArc_setMaterial(
@@ -52,5 +52,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreElectricArc_setMat
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    YZ::ElectricArc::get(pointer)->setMaterial(YZ::Material::get(matPointer));
+    yz::ElectricArc::get(pointer)->setMaterial(yz::Material::get(matPointer));
 }

@@ -27,7 +27,7 @@
 
 #include "../includes/Lensflare.hpp"
 
-YZ::LensFlare::LensFlare(YZ::Node* node, YZ::BillboardSet* light, YZ::BillboardSet* streak, YZ::BillboardSet* halo, YZ::BillboardSet* burst, Ogre::RaySceneQuery* query, Ogre::Real x, Ogre::Real y, Ogre::Real z) :
+yz::LensFlare::LensFlare(yz::Node* node, yz::BillboardSet* light, yz::BillboardSet* streak, yz::BillboardSet* halo, yz::BillboardSet* burst, Ogre::RaySceneQuery* query, Ogre::Real x, Ogre::Real y, Ogre::Real z) :
 node(node), lightFlareSet(light), streakSet(streak), haloSet(halo), burstSet(burst), query(query) {
     LOG_FUNCTION
 	this->node->setPosition(x, y, z);
@@ -37,24 +37,24 @@ node(node), lightFlareSet(light), streakSet(streak), haloSet(halo), burstSet(bur
     this->haloSet->hide();
     this->burstSet->hide();
 
-    YZ::Billboard* lightFlare = this->lightFlareSet->createBillboard();
+    yz::Billboard* lightFlare = this->lightFlareSet->createBillboard();
     lightFlare->setDimensions(512, 512);
 
-    YZ::Billboard* streak1 = this->streakSet->createBillboard();
+    yz::Billboard* streak1 = this->streakSet->createBillboard();
     streak1->setDimensions(512, 512);
 
-    YZ::Billboard* halo1 = this->haloSet->createBillboard();
+    yz::Billboard* halo1 = this->haloSet->createBillboard();
     halo1->setDimensions(250, 250);
-    YZ::Billboard* halo2 = this->haloSet->createBillboard();
+    yz::Billboard* halo2 = this->haloSet->createBillboard();
     halo2->setDimensions(500, 500);
-    YZ::Billboard* halo3 = this->haloSet->createBillboard();
+    yz::Billboard* halo3 = this->haloSet->createBillboard();
     halo3->setDimensions(125, 125);
 
-    YZ::Billboard* burst1 = this->burstSet->createBillboard();
+    yz::Billboard* burst1 = this->burstSet->createBillboard();
     burst1->setDimensions(125, 125);
-    YZ::Billboard* burst2 = this->burstSet->createBillboard();
+    yz::Billboard* burst2 = this->burstSet->createBillboard();
     burst2->setDimensions(250, 250);
-    YZ::Billboard* burst3 = this->burstSet->createBillboard();
+    yz::Billboard* burst3 = this->burstSet->createBillboard();
     burst3->setDimensions(125, 125);
 
     this->node->attachObject(this->streakSet);
@@ -63,7 +63,7 @@ node(node), lightFlareSet(light), streakSet(streak), haloSet(halo), burstSet(bur
     this->node->attachObject(this->burstSet);
 }
 
-void YZ::LensFlare::cameraUpdated(const Ogre::Camera* camera) {
+void yz::LensFlare::cameraUpdated(const Ogre::Camera* camera) {
     LOG_FUNCTION
     Ogre::Vector3 camPosition = camera->getPosition();
     Ogre::Vector3 camDirection = camera->getDirection();

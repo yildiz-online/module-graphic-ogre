@@ -27,7 +27,7 @@
 #include "AbstractNodeListener.hpp"
 #include "BillboardHud.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -36,17 +36,17 @@ class BillboardNodeListener: public AbstractNodeListener {
 public:
 
 
-    BillboardNodeListener(YZ::BillboardHud* billboard) {
+    BillboardNodeListener(yz::BillboardHud* billboard) {
         LOG_FUNCTION
         this->billboardList.push_back(billboard);
     }
 
-    virtual ~BillboardNodeListener(void) {
+    virtual ~BillboardNodeListener() {
         LOG_FUNCTION
         this->billboardList.clear();
     }
 
-    inline void add(YZ::BillboardHud* hud) {
+    inline void add(yz::BillboardHud* hud) {
         LOG_FUNCTION
         this->billboardList.push_back(hud);
     }
@@ -60,7 +60,7 @@ public:
     }
 
 private:
-    std::vector <YZ::BillboardHud*> billboardList;
+    std::vector <yz::BillboardHud*> billboardList;
 };
 
 }

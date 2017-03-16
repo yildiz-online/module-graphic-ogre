@@ -27,14 +27,14 @@
 
 #include "../includes/RenderWindow.hpp"
 
-YZ::RenderWindow* YZ::RenderWindow::instance = NULL;
+yz::RenderWindow* yz::RenderWindow::instance = NULL;
 
-YZ::RenderWindow::RenderWindow(Ogre::RenderWindow* renderWindow) : window(renderWindow) {
+yz::RenderWindow::RenderWindow(Ogre::RenderWindow* renderWindow) : window(renderWindow) {
     LOG_FUNCTION
     this->window->setActive(true);
 }
 
-YZ::Viewport* YZ::RenderWindow::addViewport(YZ::Camera* camera) {
+yz::Viewport* yz::RenderWindow::addViewport(yz::Camera* camera) {
     LOG_FUNCTION
-	return new YZ::Viewport(this->window->addViewport(camera->getCamera()), camera);
+	return new yz::Viewport(this->window->addViewport(camera->getCamera()), camera);
 }

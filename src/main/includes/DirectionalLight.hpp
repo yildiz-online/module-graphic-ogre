@@ -26,7 +26,7 @@
 
 #include "AbstractLight.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -50,8 +50,8 @@ inline void setDirection(
 /**
  * Convert a pointer in a native Directionallight
  */
-static inline YZ::DirectionalLight* get(const POINTER pointer) {
-    return reinterpret_cast<YZ::DirectionalLight*>(pointer);
+static inline yz::DirectionalLight* get(const POINTER pointer) {
+    return reinterpret_cast<yz::DirectionalLight*>(pointer);
 }
 };
 }

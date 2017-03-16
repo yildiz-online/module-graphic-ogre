@@ -39,7 +39,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setPosit
     jfloat z) {
     LOG_FUNCTION
     try {
-        YZ::Billboard::get(pointer)->setPosition(x, y, z);
+        yz::Billboard::get(pointer)->setPosition(x, y, z);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -53,7 +53,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setSize(
     jfloat height) {
     LOG_FUNCTION
     try {
-    	YZ::Billboard::get(pointer)->setDimensions(width, height);
+    	yz::Billboard::get(pointer)->setDimensions(width, height);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -68,5 +68,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setColor
     jfloat blue,
     jfloat alpha) {
     LOG_FUNCTION
-    YZ::Billboard::get(pointer)->setColor(red, green, blue, alpha);
+    yz::Billboard::get(pointer)->setColor(red, green, blue, alpha);
 }

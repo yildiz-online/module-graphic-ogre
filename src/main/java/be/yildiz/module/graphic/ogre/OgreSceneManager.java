@@ -38,7 +38,7 @@ import be.yildiz.module.graphic.GraphicEngine.ShadowType;
 import lombok.Getter;
 
 /**
- * Java part of the YZ::SceneManager.
+ * Java part of the yz::SceneManager.
  *
  * @author Grégory Van den Borre
  */
@@ -60,7 +60,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     private final float resolutionX;
 
     /**
-     * Pointer address to the associated YZ::SceneManager*.
+     * Pointer address to the associated yz::SceneManager*.
      */
     @Getter
     private final NativePointer pointer;
@@ -434,7 +434,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create an Ogre::Entity from a mesh.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param meshName       Name of the mesh to use to build the entity.
      * @param nodePointer    The entity will be attached to this node.
      * @return The created entity pointer address.
@@ -444,7 +444,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create an Ogre::Entity from a box shape.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param nodePointer    The entity will be attached to this node.
      * @return The created entity pointer address.
      */
@@ -453,7 +453,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create an Ogre::Entity from a plane shape.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param nodePointer    The entity will be attached to this node.
      * @return The created entity pointer address.
      */
@@ -462,7 +462,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create an Ogre::Entity from a sphere shape.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param nodePointer    The entity will be attached to this node.
      * @return The created entity pointer address.
      */
@@ -471,7 +471,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Set the scene ambient light in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param red            Light red value.
      * @param green          Light green value.
      * @param blue           Light blue value.
@@ -482,7 +482,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create a particle system in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @return The particle system pointer address.
      */
     private native long createParticleSystem(final long pointerAddress);
@@ -490,34 +490,34 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Set the sky box in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param skybox         Sky box material to use.
      */
     private native void setSkybox(final long pointerAddress, final String skybox);
 
     /**
-     * Build an YZ::Node in native code.
+     * Build an yz::Node in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param name           Node unique name.
-     * @return The created YZ::Node pointer address.
+     * @return The created yz::Node pointer address.
      */
     private native long createNode(final long pointerAddress, final String name);
 
     /**
-     * Build an YZ::Node in native code, it is associated with an id to be retrieved when using picking.
+     * Build an yz::Node in native code, it is associated with an id to be retrieved when using picking.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param associatedId   Id to associate to the node, used to identify the node when interactions occurs(raycast...).
      * @param name           Node unique name.
-     * @return The created YZ::Node pointer address.
+     * @return The created yz::Node pointer address.
      */
     private native long createNodeId(final long pointerAddress, final long associatedId, final String name);
 
     /**
      * Create a lens flare object in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param camPointer     currently used camera.
      * @param light          Material used for the light.
      * @param streak         Material used for the streak.
@@ -535,7 +535,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create a camera in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param name           Camera name.
      * @return The pointer address to the camera native object.
      */
@@ -544,7 +544,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create an electric arc in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param name           Arc unique name.
      * @param x              Arc origin position X value.
      * @param y              Arc origin position Y value.
@@ -560,7 +560,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create a new point light in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param name           Light name, must be unique.
      * @param posX           Light position X value.
      * @param posY           Light position Y value.
@@ -572,7 +572,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Set the shadow technique in Ogre native code.
      *
-     * @param pointer        Address to the native YZ::SceneManager*.
+     * @param pointer        Address to the native yz::SceneManager*.
      * @param techniqueIndex Index of the technique to use.
      */
     private native void setShadowTechnique(final long pointer, final int techniqueIndex);
@@ -580,7 +580,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create a new spot light in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param name           Light name, must be unique.
      * @param posX           Light position X value.
      * @param posY           Light position Y value.
@@ -595,7 +595,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create a new directional light in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param name           Light name, must be unique.
      * @param posX           Light position X value.
      * @param posY           Light position Y value.
@@ -610,7 +610,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Set the shadow type in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param type           Type value.
      */
     private native void setShadowType(final long pointerAddress, final int type);
@@ -618,7 +618,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Create a new billboard set in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
+     * @param pointerAddress Address to the native yz::SceneManager*.
      * @param material       Set material.
      * @return The created set pointer address.
      */
@@ -627,15 +627,15 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Retrieve the root scene node in native code.
      *
-     * @param pointerAddress Address to the native YZ::SceneManager*.
-     * @return The pointer of the native YZ::Node root object.
+     * @param pointerAddress Address to the native yz::SceneManager*.
+     * @return The pointer of the native yz::Node root object.
      */
     private native long getRootNode(final long pointerAddress);
 
     /**
      * Set the size for texture used for shadows.
      *
-     * @param pointer Address to the native YZ::SceneManager*.
+     * @param pointer Address to the native yz::SceneManager*.
      * @param size    Texture size.
      */
     private native void setShadowTextureSize(final long pointer, final int size);
@@ -643,7 +643,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Set the distance to display shadows.
      *
-     * @param pointer  Address to the native YZ::SceneManager*.
+     * @param pointer  Address to the native yz::SceneManager*.
      * @param distance Maximum distance to display shadows..
      */
     private native void setShadowFarDistance(final long pointer, final int distance);

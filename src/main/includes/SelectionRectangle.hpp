@@ -24,11 +24,11 @@
 #ifndef SELECTIONRECTANGLE_H
 #define SELECTIONRECTANGLE_H
 
-#define SELECTIONRECTANGLE YZ::SelectionRectangle
+#define SELECTIONRECTANGLE yz::SelectionRectangle
 
 #include "Material.hpp"
 
-namespace YZ {
+namespace yz {
 	
 	/**
 	*@author Grégory Van den Borre
@@ -37,13 +37,13 @@ class SelectionRectangle {
 
     public:
 
-        SelectionRectangle(YZ::Material* material, YZ::Material* content);
+        SelectionRectangle(yz::Material* material, yz::Material* content);
         void hide();
         void update(const Ogre::Real, const Ogre::Real, const Ogre::Real, const Ogre::Real);
 
-        static inline YZ::SelectionRectangle* get(const POINTER pointer) {
+        static inline yz::SelectionRectangle* get(const POINTER pointer) {
             LOG_FUNCTION
-            return reinterpret_cast<YZ::SelectionRectangle*>(pointer);
+            return reinterpret_cast<yz::SelectionRectangle*>(pointer);
         }
 
     private:

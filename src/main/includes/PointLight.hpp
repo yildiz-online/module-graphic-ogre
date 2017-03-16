@@ -28,7 +28,7 @@
 #include <Ogre.h>
 #include "AbstractLight.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 * @author Grégory Van den Borre
@@ -43,9 +43,9 @@ namespace YZ {
             this->light->setAttenuation(range, constant, linear, quadratic);
         }
 
-        static inline YZ::PointLight* get(const POINTER pointer) {
+        static inline yz::PointLight* get(const POINTER pointer) {
             LOG_FUNCTION
-            return reinterpret_cast<YZ::PointLight*>(pointer);
+            return reinterpret_cast<yz::PointLight*>(pointer);
         }
 
     };

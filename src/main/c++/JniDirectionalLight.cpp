@@ -33,7 +33,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_d
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete YZ::DirectionalLight::get(pointer);
+    delete yz::DirectionalLight::get(pointer);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_setPosition(
@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_s
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::DirectionalLight::get(pointer)->setPosition(x, y, z);
+    yz::DirectionalLight::get(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_setDirection(
@@ -55,5 +55,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_s
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::DirectionalLight::get(pointer)->setDirection(x, y, z);
+    yz::DirectionalLight::get(pointer)->setDirection(x, y, z);
 }

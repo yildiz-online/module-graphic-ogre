@@ -37,7 +37,7 @@ import lombok.Getter;
 final class OgreLensFlare extends LensFlare implements Native {
 
     /**
-     * Pointer address to the native code YZ::LensFlare.
+     * Pointer address to the native code yz::LensFlare.
      */
     @Getter
     private final NativePointer pointer;
@@ -84,7 +84,7 @@ final class OgreLensFlare extends LensFlare implements Native {
     /**
      * Set the lens flare position in native code.
      *
-     * @param pointerAddress Address of the native YZ::LensFlare pointer.
+     * @param pointerAddress Address of the native yz::LensFlare pointer.
      * @param x              New X position.
      * @param y              New Y position.
      * @param z              New Z position.
@@ -94,7 +94,7 @@ final class OgreLensFlare extends LensFlare implements Native {
     /**
      * Set streak billboard size.
      *
-     * @param pointerAddress Address of the native YZ::LensFlare pointer.
+     * @param pointerAddress Address of the native yz::LensFlare pointer.
      * @param w              Width in pixel.
      * @param h              Height in pixel.
      */
@@ -103,7 +103,7 @@ final class OgreLensFlare extends LensFlare implements Native {
     /**
      * Set light billboard size.
      *
-     * @param pointerAddress Address of the native YZ::LensFlare pointer.
+     * @param pointerAddress Address of the native yz::LensFlare pointer.
      * @param w              Width in pixel.
      * @param h              Height in pixel.
      */

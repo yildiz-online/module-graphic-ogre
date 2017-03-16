@@ -43,8 +43,8 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_constructo
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
     try { 
-        YZ::GuiText* text = new YZ::GuiText(YZ::GuiContainer::get(containerPointer), name.getValue());
-        YZ::Font* font = YZ::Font::get(fontPointer);
+        yz::GuiText* text = new yz::GuiText(yz::GuiContainer::get(containerPointer), name.getValue());
+        yz::Font* font = yz::Font::get(fontPointer);
         text->setSize(w, h);
         text->setPosition(x, y);
         text->hide();
@@ -64,7 +64,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setText(
     LOG_FUNCTION
     JniStringWrapper text = JniStringWrapper(env, jtext);
     try {
-        YZ::GuiText::get(pointer)->setText(text.getValue());
+        yz::GuiText::get(pointer)->setText(text.getValue());
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -75,7 +75,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_hide(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::GuiText::get(pointer)->hide();
+    yz::GuiText::get(pointer)->hide();
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_delete(
@@ -83,7 +83,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete YZ::GuiText::get(pointer);
+    delete yz::GuiText::get(pointer);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_show(
@@ -91,7 +91,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_show(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::GuiText::get(pointer)->show();
+    yz::GuiText::get(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setPosition(
@@ -101,7 +101,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setPosition(
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    YZ::GuiText::get(pointer)->setPosition(x, y);
+    yz::GuiText::get(pointer)->setPosition(x, y);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setFont(
@@ -112,8 +112,8 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setFont(
     jfloat size) {
     LOG_FUNCTION
     try {
-        YZ::Font* font = YZ::Font::get(fontPointer);
-        YZ::GuiText::get(pointer)->setFont(font, size);
+        yz::Font* font = yz::Font::get(fontPointer);
+        yz::GuiText::get(pointer)->setFont(font, size);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -128,5 +128,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setColor(
     jfloat blue,
     jfloat alpha) {
     LOG_FUNCTION
-    YZ::GuiText::get(pointer)->setColor(red, green, blue, alpha);
+    yz::GuiText::get(pointer)->setColor(red, green, blue, alpha);
 }

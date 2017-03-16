@@ -30,33 +30,33 @@
 #include "../includes/PhysFS++.h"
 #include "../includes/PhysFSOgre.h"
 
-YZ::Root* YZ::Root::instance = NULL;
+yz::Root* yz::Root::instance = NULL;
 
-YZ::Root::Root() {
+yz::Root::Root() {
     LOG_FUNCTION
     this->root = OGRE_NEW Ogre::Root("", "", "ogre.log");
     this->os = OGRE_NEW Ogre::OverlaySystem();
 }
 
-YZ::Root::~Root() {
+yz::Root::~Root() {
     LOG_FUNCTION
     OGRE_DELETE this->os;
     OGRE_DELETE this->root;
 }
 
-void YZ::Root::initPhysFS() {
+void yz::Root::initPhysFS() {
     LOG_FUNCTION
     PhysFS::init("");
     PhysFS::registerPhysFSToOgre();
 }
 
-void YZ::Root::loadPlugin(const std::string& name) {
+void yz::Root::loadPlugin(const std::string& name) {
     LOG_FUNCTION
     //FIXME use enumeration instead of Strings.
     this->root->loadPlugin(name);
 }
 
-void YZ::Root::initialise(const std::string& renderer) {
+void yz::Root::initialise(const std::string& renderer) {
     LOG_FUNCTION
     //FIXME use enumeration instead of strings
     if(!this->initialized) {
@@ -68,38 +68,38 @@ void YZ::Root::initialise(const std::string& renderer) {
     }
 }
 
-YZ::SceneManager* YZ::Root::createSceneManager(const std::string& name) {
+yz::SceneManager* yz::Root::createSceneManager(const std::string& name) {
     LOG_FUNCTION
     Ogre::SceneManager* sm = this->root->createSceneManager(Ogre::ST_GENERIC, name);
     sm->addRenderQueueListener(this->os);
-    return new YZ::SceneManager(sm);
+    return new yz::SceneManager(sm);
 }
 
-void YZ::Root::createRenderWindow(const Ogre::Real width, const Ogre::Real height, const long handle) {
+void yz::Root::createRenderWindow(const Ogre::Real width, const Ogre::Real height, const long handle) {
     LOG_FUNCTION
     Ogre::NameValuePairList params;
     params["externalWindowHandle"] = Ogre::StringConverter::toString((unsigned int) (handle));
     params["FSAA"] = Ogre::String("4");
     params["vsync"] = Ogre::String("true");
     Ogre::RenderWindow* rw = this->root->createRenderWindow("default", width, height, false, &params);
-    YZ::RenderWindow::create(rw);
+    yz::RenderWindow::create(rw);
 }
 
-void YZ::Root::createRenderWindow(const Ogre::Real width, const Ogre::Real height) {
+void yz::Root::createRenderWindow(const Ogre::Real width, const Ogre::Real height) {
     LOG_FUNCTION
     Ogre::NameValuePairList params;
     params["currentGLContext"] = Ogre::String("true");
     Ogre::RenderWindow* rw = this->root->createRenderWindow("default", width, height, false, &params);
-    YZ::RenderWindow::create(rw);
+    yz::RenderWindow::create(rw);
 }
 
-void YZ::Root::close() {
+void yz::Root::close() {
     LOG_FUNCTION
     this->root->shutdown();
     this->initialized = false;
 }
 
-void YZ::Root::addResourcePath(const std::string& name, const std::string& path, const int type) {
+void yz::Root::addResourcePath(const std::string& name, const std::string& path, const int type) {
     LOG_FUNCTION
     switch (type) {
         case 0:

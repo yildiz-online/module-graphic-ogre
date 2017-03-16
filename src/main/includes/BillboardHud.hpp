@@ -26,16 +26,16 @@
 
 #include "stdafx.h"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
 */
 class BillboardHud {
 public:
-    BillboardHud(YZ::BillboardSet* parent, const Ogre::Vector3& offset) {
+    BillboardHud(yz::BillboardSet* parent, const Ogre::Vector3& offset) {
         LOG_FUNCTION
-        this->billboard = new YZ::Billboard(parent->createBillboard());
+        this->billboard = new yz::Billboard(parent->createBillboard());
         this->parent = parent;
         this->offset = offset;
         this->visible = true;
@@ -75,8 +75,8 @@ public:
     }
 
 private :
-    YZ::Billboard* billboard;
-    YZ::BillboardSet* parent;
+    yz::Billboard* billboard;
+    yz::BillboardSet* parent;
     Ogre::Vector3 offset;
     bool visible;
 };

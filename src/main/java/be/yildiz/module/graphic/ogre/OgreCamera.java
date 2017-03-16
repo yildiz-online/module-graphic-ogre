@@ -329,7 +329,7 @@ final class OgreCamera extends AbstractCamera implements Native {
     /**
      * Detach from the parent node in native code.
      *
-     * @param pointer Address of this YZ::Camera.
+     * @param pointer Address of this yz::Camera.
      */
     private native void detachFromParent(final long pointer);
 
@@ -343,7 +343,7 @@ final class OgreCamera extends AbstractCamera implements Native {
     /**
      * Remove a listener in native code.
      *
-     * @param pointer Address of this YZ::Camera.
+     * @param pointer Address of this yz::Camera.
      * @param ls      Address of the listener to remove.
      */
     private native void unregisterListener(final long pointer, final long ls);
@@ -351,15 +351,15 @@ final class OgreCamera extends AbstractCamera implements Native {
     /**
      * Activate auto tracking for a node in native code.
      *
-     * @param pointer     Address of this YZ::Camera.
-     * @param nodePointer Address of the YZ::Node to track.
+     * @param pointer     Address of this yz::Camera.
+     * @param nodePointer Address of the yz::Node to track.
      */
     private native void setAutotrack(final long pointer, final long nodePointer);
 
     /**
      * Deactivate auto tracking in native code.
      *
-     * @param pointer Address of this YZ::Camera.
+     * @param pointer Address of this yz::Camera.
      */
     private native void stopAutotrack(final long pointer);
 
@@ -389,7 +389,7 @@ final class OgreCamera extends AbstractCamera implements Native {
     /**
      * Throw a plane ray in native code to retrieve the movable in the plane.
      *
-     * @param pointerAddress Address to the native YZ::Camera*.
+     * @param pointerAddress Address to the native yz::Camera*.
      * @param left           Plane left value.
      * @param top            Plane top value.
      * @param right          Plane right value.
@@ -401,7 +401,7 @@ final class OgreCamera extends AbstractCamera implements Native {
     /**
      * Throw a ray to retrieve an entity in native code.
      *
-     * @param pointerAddress Address to the native YZ::Camera*.
+     * @param pointerAddress Address to the native yz::Camera*.
      * @param screenX        Screen X position to throw the ray.
      * @param screenY        Screen Y position to throw the ray.
      * @param poly           <code>true</code> to make selection with polygon precision, false to use bounding box.
@@ -412,7 +412,7 @@ final class OgreCamera extends AbstractCamera implements Native {
     /**
      * Compute the intersection point between the mouse position and the invisible ground associated to the camera.
      *
-     * @param pointerAddress Address to the native YZ::Camera*.
+     * @param pointerAddress Address to the native yz::Camera*.
      * @param screenX        Mouse x position.
      * @param screenY        Mouse y position.
      * @return The intersection point.

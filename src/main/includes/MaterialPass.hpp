@@ -30,7 +30,7 @@
 #include <OgreGpuProgramParams.h>
 #include <Ogre.h>
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre

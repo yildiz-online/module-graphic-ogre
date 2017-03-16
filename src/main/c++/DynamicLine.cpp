@@ -27,7 +27,7 @@ using namespace Ogre;
 enum { POSITION_BINDING, TEXCOORD_BINDING };
 
 
-DynamicLines::DynamicLines(YZ::Node* node, Ogre::RenderOperation::OperationType opType) {
+DynamicLines::DynamicLines(yz::Node* node, Ogre::RenderOperation::OperationType opType) {
     LOG_FUNCTION
     initialize(opType,false);
     mDirty = true;

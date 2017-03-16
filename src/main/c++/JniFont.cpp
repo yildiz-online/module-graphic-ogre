@@ -39,7 +39,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreFont_createFont
     JniStringWrapper name = JniStringWrapper(env, jname);
     JniStringWrapper path = JniStringWrapper(env, jpath);
     try {
-        YZ::Font* font =  new YZ::Font(name.getValue(), path.getValue(), size);
+        yz::Font* font =  new yz::Font(name.getValue(), path.getValue(), size);
         return reinterpret_cast<POINTER>(font);
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -52,7 +52,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreFont_comput
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Font* font = YZ::Font::get(pointer);
+    yz::Font* font = yz::Font::get(pointer);
     font->load();
     Ogre::Real size = font->getTrueTypeSize();
     jfloat buf[256];

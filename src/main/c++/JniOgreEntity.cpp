@@ -35,8 +35,8 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setMaterial
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    YZ::Entity* entity = YZ::Entity::get(pointer);
-    YZ::Material* material = YZ::Material::get(matPointer);
+    yz::Entity* entity = yz::Entity::get(pointer);
+    yz::Material* material = yz::Material::get(matPointer);
     entity->setMaterial(material);
 }
 
@@ -46,7 +46,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderin
     POINTER pointer,
     jint distance) {
     LOG_FUNCTION
-    YZ::Entity::get(pointer)->setRenderingDistance(distance);
+    yz::Entity::get(pointer)->setRenderingDistance(distance);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_castShadow(
@@ -55,7 +55,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_castShadow(
     POINTER pointer,
     jboolean cast) {
     LOG_FUNCTION
-    YZ::Entity::get(pointer)->setCastShadows(cast);
+    yz::Entity::get(pointer)->setCastShadows(cast);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setParameter(
@@ -65,7 +65,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setParamete
     jint index,
     jfloat v1, jfloat v2, jfloat v3, jfloat v4) {
     LOG_FUNCTION
-    YZ::Entity::get(pointer)->setCustomParameters(index, v1, v2, v3, v4);
+    yz::Entity::get(pointer)->setCustomParameters(index, v1, v2, v3, v4);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderQueue(
@@ -74,7 +74,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderQu
     POINTER pointer,
     jint index) {
     LOG_FUNCTION
-    YZ::Entity::get(pointer)->setRenderQueueGroup(index);
+    yz::Entity::get(pointer)->setRenderQueueGroup(index);
 }
 
 JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_getParentSceneNode(
@@ -82,7 +82,7 @@ JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_getParen
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return env->NewStringUTF(YZ::Entity::get(pointer)->getParentSceneNode()->getName().c_str());
+    return env->NewStringUTF(yz::Entity::get(pointer)->getParentSceneNode()->getName().c_str());
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setUnpickable(
@@ -90,5 +90,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setUnpickab
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Entity::get(pointer)->setQueryFlags(Ogre::SceneManager::STATICGEOMETRY_TYPE_MASK);
+    yz::Entity::get(pointer)->setQueryFlags(Ogre::SceneManager::STATICGEOMETRY_TYPE_MASK);
 }

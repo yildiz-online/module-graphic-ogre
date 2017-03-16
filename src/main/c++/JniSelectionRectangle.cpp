@@ -34,9 +34,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSelectionRectan
     POINTER matPointer,
     POINTER contentMatPointer) {
     LOG_FUNCTION
-    YZ::Material* mat = YZ::Material::get(matPointer);
-    YZ::Material* cmat = YZ::Material::get(contentMatPointer);
-    return reinterpret_cast<POINTER>(new YZ::SelectionRectangle(mat, cmat));
+    yz::Material* mat = yz::Material::get(matPointer);
+    yz::Material* cmat = yz::Material::get(contentMatPointer);
+    return reinterpret_cast<POINTER>(new yz::SelectionRectangle(mat, cmat));
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSelectionRectangle_update(
@@ -48,5 +48,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSelectionRectangle
     jfloat x2,
     jfloat y2) {
     LOG_FUNCTION
-    YZ::SelectionRectangle::get(pointer)->update(x1, y1, x2, y2);
+    yz::SelectionRectangle::get(pointer)->update(x1, y1, x2, y2);
 }

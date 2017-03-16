@@ -36,9 +36,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_create
     jobject,
     POINTER camPointer) {
     LOG_FUNCTION
-    YZ::RenderWindow* rw = YZ::RenderWindow::get();
-    YZ::Camera* cam = YZ::Camera::get(camPointer);
-    YZ::Viewport* vp = rw->addViewport(cam);
+    yz::RenderWindow* rw = yz::RenderWindow::get();
+    yz::Camera* cam = yz::Camera::get(camPointer);
+    yz::Viewport* vp = rw->addViewport(cam);
     return reinterpret_cast<POINTER> (vp);
 }
 
@@ -48,12 +48,12 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_printScre
     jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::RenderWindow::get()->printScreen(name.getValue());
+    yz::RenderWindow::get()->printScreen(name.getValue());
 }
 
 JNIEXPORT jfloat JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_getFps(
     JNIEnv*,
     jobject) {
     LOG_FUNCTION
-    return YZ::RenderWindow::get()->getFps();
+    return yz::RenderWindow::get()->getFps();
 }

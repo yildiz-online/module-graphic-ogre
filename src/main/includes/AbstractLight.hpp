@@ -29,7 +29,7 @@
 #include <OgreSceneManager.h>
 #include <OgreSceneNode.h>
 
-namespace YZ {
+namespace yz {
 
 /**
  * Base class for lights.

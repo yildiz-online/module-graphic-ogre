@@ -27,12 +27,12 @@
 
 #include "../includes/SceneManager.hpp"
 
-YZ::SceneManager::SceneManager(Ogre::SceneManager* manager) : sceneManager(sceneManager) {
+yz::SceneManager::SceneManager(Ogre::SceneManager* manager) : sceneManager(sceneManager) {
     LOG_FUNCTION
     this->debug = false;
-    this->rootNode = new YZ::Node(this->sceneManager->getRootSceneNode());
+    this->rootNode = new yz::Node(this->sceneManager->getRootSceneNode());
     this->sceneManager->setAmbientLight(Ogre::ColourValue::Black);
-   /* this->collisionTool = new YZ::CollisionTools(
+   /* this->collisionTool = new yz::CollisionTools(
     this->sceneManager->createRayQuery(Ogre::Ray(),
                     Ogre::SceneManager::ENTITY_TYPE_MASK),
     this->sceneManager->createRayQuery(Ogre::Ray(),
@@ -45,15 +45,15 @@ YZ::SceneManager::SceneManager(Ogre::SceneManager* manager) : sceneManager(scene
     //this->sceneManager->addRenderQueueListener(mStencilOpFrameListener);
 }
 
-YZ::Camera* YZ::SceneManager::createCamera(const std::string& name) {
+yz::Camera* yz::SceneManager::createCamera(const std::string& name) {
     LOG_FUNCTION
     Ogre::RaySceneQuery* query = this->sceneManager->createRayQuery(Ogre::Ray());
     Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery = this->sceneManager->createPlaneBoundedVolumeQuery(Ogre::PlaneBoundedVolumeList());
-    YZ::Camera* cam = new YZ::Camera(this->sceneManager->createCamera(name), query, planeQuery);
+    yz::Camera* cam = new yz::Camera(this->sceneManager->createCamera(name), query, planeQuery);
     return cam;
 }
 
-Ogre::Entity* YZ::SceneManager::createUnpickableEntity(
+Ogre::Entity* yz::SceneManager::createUnpickableEntity(
     const std::string& mesh) {
     LOG_FUNCTION
     Ogre::Entity* e = this->sceneManager->createEntity(mesh);
@@ -61,28 +61,28 @@ Ogre::Entity* YZ::SceneManager::createUnpickableEntity(
     return e;
 }
 
-YZ::LensFlare* YZ::SceneManager::createLensFlare(
+yz::LensFlare* yz::SceneManager::createLensFlare(
     const std::string& name,
-    YZ::Material* light,
-    YZ::Material* streak,
-    YZ::Material* halo,
-    YZ::Material* burst,
+    yz::Material* light,
+    yz::Material* streak,
+    yz::Material* halo,
+    yz::Material* burst,
     const Ogre::Real x,
     const Ogre::Real y,
     const Ogre::Real z) {
     LOG_FUNCTION
-    YZ::BillboardSet* lightSet = this->createBillboardSet(light);
-    YZ::BillboardSet* streakSet = this->createBillboardSet(streak);
-    YZ::BillboardSet* haloSet = this->createBillboardSet(halo);
-    YZ::BillboardSet* burstSet = this->createBillboardSet(burst);
+    yz::BillboardSet* lightSet = this->createBillboardSet(light);
+    yz::BillboardSet* streakSet = this->createBillboardSet(streak);
+    yz::BillboardSet* haloSet = this->createBillboardSet(halo);
+    yz::BillboardSet* burstSet = this->createBillboardSet(burst);
     Ogre::RaySceneQuery* query = this->sceneManager->createRayQuery(Ogre::Ray(),
             Ogre::SceneManager::ENTITY_TYPE_MASK);
-    YZ::Node* node = this->createNode(name);
-    return new YZ::LensFlare(node, lightSet, streakSet, haloSet, burstSet,
+    yz::Node* node = this->createNode(name);
+    return new yz::LensFlare(node, lightSet, streakSet, haloSet, burstSet,
             query, x, y, z);
 }
 
-YZ::Entity* YZ::SceneManager::createSphere(
+yz::Entity* yz::SceneManager::createSphere(
     const std::string& name,
     const int rings,
     const int segments,
@@ -185,10 +185,10 @@ YZ::Entity* YZ::SceneManager::createSphere(
     sphere->_setBoundingSphereRadius(radius);
 // this line makes clear the mesh is loaded (avoids memory leaks)
     sphere->load();
-    return new YZ::Entity(this->sceneManager->createEntity(name));
+    return new yz::Entity(this->sceneManager->createEntity(name));
 }
 
-YZ::PointLight* YZ::SceneManager::createPointLight(
+yz::PointLight* yz::SceneManager::createPointLight(
     const std::string& name,
     const Ogre::Real x,
     const Ogre::Real y,
@@ -196,12 +196,12 @@ YZ::PointLight* YZ::SceneManager::createPointLight(
     LOG_FUNCTION
     Ogre::Light* base = this->sceneManager->createLight(name);
     base->setType(Ogre::Light::LT_POINT);
-    YZ::PointLight* light = new YZ::PointLight(base, this->sceneManager);
+    yz::PointLight* light = new yz::PointLight(base, this->sceneManager);
     light->setPosition(x, y, z);
     return light;
 }
 
-YZ::SpotLight* YZ::SceneManager::createSpotLight(
+yz::SpotLight* yz::SceneManager::createSpotLight(
     const std::string& name,
     const Ogre::Real x,
     const Ogre::Real y,
@@ -213,13 +213,13 @@ YZ::SpotLight* YZ::SceneManager::createSpotLight(
     Ogre::Light* base = this->sceneManager->createLight(name);
     base->setType(Ogre::Light::LT_SPOTLIGHT);
     base->setSpotlightRange(Ogre::Degree(30), Ogre::Degree(60), 1.0);
-    YZ::SpotLight* light = new YZ::SpotLight(base, this->sceneManager);
+    yz::SpotLight* light = new yz::SpotLight(base, this->sceneManager);
     light->setPosition(x, y, z);
     light->setDirection(dirX, dirY, dirZ);
     return light;
 }
 
-YZ::DirectionalLight* YZ::SceneManager::createDirectionalLight(
+yz::DirectionalLight* yz::SceneManager::createDirectionalLight(
     const std::string& name,
     const Ogre::Real x,
     const Ogre::Real y,
@@ -230,7 +230,7 @@ YZ::DirectionalLight* YZ::SceneManager::createDirectionalLight(
     LOG_FUNCTION
     Ogre::Light* base = this->sceneManager->createLight(name);
     base->setType(Ogre::Light::LT_DIRECTIONAL);
-    YZ::DirectionalLight* light = new YZ::DirectionalLight(base, this->sceneManager);
+    yz::DirectionalLight* light = new yz::DirectionalLight(base, this->sceneManager);
     light->setPosition(x, y, z);
     light->setDirection(dirX, dirY, dirZ);
     return light;

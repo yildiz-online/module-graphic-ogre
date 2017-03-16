@@ -131,7 +131,7 @@ final class Root {
     }
 
     /**
-     * Native constructor, instantiate a new YZ::Root.
+     * Native constructor, instantiate a new yz::Root.
      */
     private native void constructor();
 

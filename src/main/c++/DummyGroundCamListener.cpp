@@ -27,7 +27,7 @@
 
 #include "../includes/DummyGroundCamListener.hpp"
 
-YZ::DummyGroundCamListener::~DummyGroundCamListener() {
+yz::DummyGroundCamListener::~DummyGroundCamListener() {
     LOG_FUNCTION
 }
 

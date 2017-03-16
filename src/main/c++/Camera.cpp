@@ -27,18 +27,18 @@
 
 #include "../includes/Camera.hpp"
 
-YZ::Id* YZ::Camera::ID_WORLD(new YZ::Id(0));
+yz::Id* yz::Camera::ID_WORLD(new yz::Id(0));
 
-YZ::Camera::Camera(Ogre::Camera* cam, Ogre::RaySceneQuery* q, Ogre::PlaneBoundedVolumeListSceneQuery* pq) : camera(cam), query(q), planeQuery(pq) {
+yz::Camera::Camera(Ogre::Camera* cam, Ogre::RaySceneQuery* q, Ogre::PlaneBoundedVolumeListSceneQuery* pq) : camera(cam), query(q), planeQuery(pq) {
     LOG_FUNCTION
 }
 
-Ogre::Ray YZ::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
+Ogre::Ray yz::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
     LOG_FUNCTION
     return this->camera->getCameraToViewportRay(x, y);
 }
 
-Ogre::Vector3 YZ::Camera::rotate(const Ogre::Real x, const Ogre::Real y) {
+Ogre::Vector3 yz::Camera::rotate(const Ogre::Real x, const Ogre::Real y) {
     LOG_FUNCTION
     this->camera->yaw(Ogre::Radian(x));
     const Ogre::Real pitch = this->camera->getOrientation().getPitch().valueDegrees();
@@ -49,14 +49,14 @@ Ogre::Vector3 YZ::Camera::rotate(const Ogre::Real x, const Ogre::Real y) {
     return this->camera->getDirection();
 }
 
-std::vector<YZ::Id*> YZ::Camera::throwPlaneRay(
+std::vector<yz::Id*> yz::Camera::throwPlaneRay(
     Ogre::Real x1,
     Ogre::Real x2,
     Ogre::Real y1,
     Ogre::Real y2) {
     LOG_FUNCTION
     this->planeQuery->clearResults();
-    std::vector<YZ::Id*> result;
+    std::vector<yz::Id*> result;
 
     Ogre::Ray topLeft = this->getRay(x1, y1);
     Ogre::Ray topRight = this->getRay(x2, y1);
@@ -92,13 +92,13 @@ std::vector<YZ::Id*> YZ::Camera::throwPlaneRay(
         Ogre::SceneNode* node = (*itr)->getParentSceneNode();
         Ogre::Any any = node->getUserObjectBindings().getUserAny();
         if(!any.isEmpty()) {
-            result.push_back(Ogre::any_cast<YZ::Id*>(any));
+            result.push_back(Ogre::any_cast<yz::Id*>(any));
         }
     }
     return result;
 }
 
-Ogre::Vector3 YZ::Camera::throwRayPos(const Ogre::Real x, const Ogre::Real y) {
+Ogre::Vector3 yz::Camera::throwRayPos(const Ogre::Real x, const Ogre::Real y) {
     LOG_FUNCTION
     const Ogre::Ray ray = this->getRay(x, y);
     this->query->clearResults();
@@ -113,7 +113,7 @@ Ogre::Vector3 YZ::Camera::throwRayPos(const Ogre::Real x, const Ogre::Real y) {
     return Ogre::Vector3::ZERO;
 }
 
-YZ::Id* YZ::Camera::throwRay(
+yz::Id* yz::Camera::throwRay(
     const Ogre::Real x,
     const Ogre::Real y,
     const bool poly) {
@@ -134,7 +134,7 @@ YZ::Id* YZ::Camera::throwRay(
             Ogre::Any any = node->getUserObjectBindings().getUserAny();
             if (!any.isEmpty()) {
                 if (!poly) {
-                    return Ogre::any_cast<YZ::Id*>(any);
+                    return Ogre::any_cast<yz::Id*>(any);
                 } else {/*else if (poly
                         && this->collisionTool->raycast(ray, result, node->getAttachedObject(0),
                                 distance,
@@ -146,17 +146,17 @@ YZ::Id* YZ::Camera::throwRay(
             }
         }
     }
-    return YZ::Camera::ID_WORLD;
+    return yz::Camera::ID_WORLD;
 }
 
-void YZ::Camera::updateListeners() {
+void yz::Camera::updateListeners() {
     LOG_FUNCTION
     for(unsigned int i = 0; i < listenerList.size(); i++) {
         listenerList[i]->cameraUpdated(this->camera);
     }
 }
 
-Ogre::Vector3 YZ::Camera::setPositionAxis(const Ogre::Real x, const Ogre::Real y, const int axis) {
+Ogre::Vector3 yz::Camera::setPositionAxis(const Ogre::Real x, const Ogre::Real y, const int axis) {
     LOG_FUNCTION
     Ogre::Vector3 pos = this->camera->getPosition();
 
@@ -189,7 +189,7 @@ Ogre::Vector3 YZ::Camera::setPositionAxis(const Ogre::Real x, const Ogre::Real y
     return this->camera->getPosition();
 }
 
-Ogre::Vector3 YZ::Camera::getPoint(
+Ogre::Vector3 yz::Camera::getPoint(
     const Ogre::Vector3& pos,
     const Ogre::Real x,
     const Ogre::Real y) {

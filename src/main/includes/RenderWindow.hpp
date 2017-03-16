@@ -24,12 +24,12 @@
 #ifndef YZ_RENDER_WINDOW_H
 #define YZ_RENDER_WINDOW_H
 
-#define RENDERWINDOW YZ::RenderWindow
+#define RENDERWINDOW yz::RenderWindow
 
 #include "Camera.hpp"
 #include "Viewport.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -46,7 +46,7 @@ class RenderWindow {
             }
         }
 
-		YZ::Viewport* addViewport(YZ::Camera*);
+		yz::Viewport* addViewport(yz::Camera*);
 
 		inline Ogre::RenderWindow* getWindow() const{
 		    LOG_FUNCTION
@@ -68,7 +68,7 @@ class RenderWindow {
             this->window->addListener(listener);
         }
 
-        static inline YZ::RenderWindow* get() {
+        static inline yz::RenderWindow* get() {
             LOG_FUNCTION
             return instance;
         }
@@ -76,7 +76,7 @@ class RenderWindow {
 
     private:
 
-        static YZ::RenderWindow* instance;
+        static yz::RenderWindow* instance;
 
 		Ogre::RenderWindow* window;
 

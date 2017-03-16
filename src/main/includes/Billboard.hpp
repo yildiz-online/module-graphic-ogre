@@ -27,7 +27,7 @@
 #include "stdafx.h"
 #include <OgreBillboard.h>
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -60,9 +60,9 @@ public:
         return this->billboard;
     }
 
-    static inline YZ::Billboard* get(const POINTER pointer) {
+    static inline yz::Billboard* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::Billboard*>(pointer);
+        return reinterpret_cast<yz::Billboard*>(pointer);
     }
 
 private :

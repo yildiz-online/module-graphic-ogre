@@ -40,7 +40,7 @@ public:
 	Ogre::CompositorInstance *mCompositor;
 
 
-	PFXSSAO(YZ::RenderWindow* wnd, YZ::Camera* cam)
+	PFXSSAO(yz::RenderWindow* wnd, yz::Camera* cam)
 		: mSceneMgr(0)
 		, mCamera(0)
 		, mViewport(0)

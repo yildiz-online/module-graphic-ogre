@@ -37,8 +37,8 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_
     POINTER nodePointer) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::BillboardChain* chain = new YZ::BillboardChain(name.getValue());
-    YZ::Node* node = YZ::Node::get(nodePointer);
+    yz::BillboardChain* chain = new yz::BillboardChain(name.getValue());
+    yz::Node* node = yz::Node::get(nodePointer);
     node->attachObject(chain);
     return reinterpret_cast<POINTER>(chain);
 }
@@ -48,7 +48,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_del
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete YZ::BillboardChain::get(pointer);
+    delete yz::BillboardChain::get(pointer);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_setMaterial(
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_set
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    YZ::BillboardChain::get(pointer)->setMaterial(YZ::Material::get(matPointer));
+    yz::BillboardChain::get(pointer)->setMaterial(yz::Material::get(matPointer));
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_addElement(
@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_add
     jfloat z,
     jfloat width) {
     LOG_FUNCTION
-    YZ::BillboardChain::get(pointer)->addElement(x, y, z, width);
+    yz::BillboardChain::get(pointer)->addElement(x, y, z, width);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_setElementPosition(
@@ -81,5 +81,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_set
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::BillboardChain::get(pointer)->setElementPosition(element, x, y, z);
+    yz::BillboardChain::get(pointer)->setElementPosition(element, x, y, z);
 }

@@ -33,7 +33,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete YZ::SpotLight::get(pointer);
+    delete yz::SpotLight::get(pointer);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setPosition(
@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setPosit
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::SpotLight::get(pointer)->setPosition(x, y, z);
+    yz::SpotLight::get(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setDirection(
@@ -55,5 +55,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setDirec
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::SpotLight::get(pointer)->setDirection(x, y, z);
+    yz::SpotLight::get(pointer)->setDirection(x, y, z);
 }

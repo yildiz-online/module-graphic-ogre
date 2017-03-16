@@ -27,7 +27,7 @@
 
 #include "../includes/SelectionRectangle.hpp"
 
-YZ::SelectionRectangle::SelectionRectangle(YZ::Material* material, YZ::Material* contentMat) {
+yz::SelectionRectangle::SelectionRectangle(yz::Material* material, yz::Material* contentMat) {
     LOG_FUNCTION
     Ogre::OverlayManager& manager = Ogre::OverlayManager::getSingleton();
     //build container
@@ -88,7 +88,7 @@ YZ::SelectionRectangle::SelectionRectangle(YZ::Material* material, YZ::Material*
     c->addChild(this->content);
 }
 
-void YZ::SelectionRectangle::update(Ogre::Real x1, Ogre::Real y1, Ogre::Real x2, Ogre::Real y2) {
+void yz::SelectionRectangle::update(Ogre::Real x1, Ogre::Real y1, Ogre::Real x2, Ogre::Real y2) {
     LOG_FUNCTION
     if(x1 > x2) {
     	Ogre::Real temp = x1;
@@ -125,7 +125,7 @@ void YZ::SelectionRectangle::update(Ogre::Real x1, Ogre::Real y1, Ogre::Real x2,
     this->content->setDimensions(x - 2, y - 2);
   }
 
-void YZ::SelectionRectangle::hide() {
+void yz::SelectionRectangle::hide() {
     LOG_FUNCTION
     this->top->setWidth(0);
     this->bottom->setWidth(0);

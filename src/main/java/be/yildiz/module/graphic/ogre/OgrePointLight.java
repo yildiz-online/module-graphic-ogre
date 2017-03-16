@@ -37,7 +37,7 @@ import be.yildiz.module.graphic.PointLight;
 final class OgrePointLight extends PointLight implements Native {
 
     /**
-     * Pointer address to the native code YZ::PointLight.
+     * Pointer address to the native code yz::PointLight.
      */
     private final NativePointer pointer;
 
@@ -87,7 +87,7 @@ final class OgrePointLight extends PointLight implements Native {
     /**
      * Set light color in native code.
      *
-     * @param address Address of the native YZ::PointLight pointer.
+     * @param address Address of the native yz::PointLight pointer.
      * @param r       Red value.
      * @param g       Green value.
      * @param b       Blue value.
@@ -97,7 +97,7 @@ final class OgrePointLight extends PointLight implements Native {
     /**
      * Set the light position in native code.
      *
-     * @param pointerAddress Address of the native YZ::PointLight pointer.
+     * @param pointerAddress Address of the native yz::PointLight pointer.
      * @param x              New X position.
      * @param y              New Y position.
      * @param z              New Z position.
@@ -107,14 +107,14 @@ final class OgrePointLight extends PointLight implements Native {
     /**
      * Delete the object in native code.
      *
-     * @param pointerAddress Address of the native YZ::PointLight pointer.
+     * @param pointerAddress Address of the native yz::PointLight pointer.
      */
     private native void delete(final long pointerAddress);
 
     /**
      * Set the light attenuation in native code.
      *
-     * @param pointerAddress Address of the native YZ::PointLight pointer.
+     * @param pointerAddress Address of the native yz::PointLight pointer.
      * @param range          Light range.
      * @param constant       Constant value.
      * @param linear         Linear value.
@@ -126,7 +126,7 @@ final class OgrePointLight extends PointLight implements Native {
     /**
      * Enable debug display in native code.
      *
-     * @param pointerAddress Address of the native YZ::PointLight pointer.
+     * @param pointerAddress Address of the native yz::PointLight pointer.
      */
     private native void setDebug(final long pointerAddress);
 }

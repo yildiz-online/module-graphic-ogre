@@ -24,11 +24,11 @@
 #ifndef PARTICLE_FORCE_AFFECTOR_H
 #define PARTICLE_FORCE_AFFECTOR_H
 
-#define PARTICLEFORCEAFFECTOR YZ::ParticleForceAffector
+#define PARTICLEFORCEAFFECTOR yz::ParticleForceAffector
 
 #include "stdafx.h"
 
-namespace YZ {
+namespace yz {
 	
 	/**
 	*@author Grégory Van den Borre
@@ -47,9 +47,9 @@ class ParticleForceAffector {
 		}
 
 
-		static inline YZ::ParticleForceAffector* get(const POINTER pointer) {
+		static inline yz::ParticleForceAffector* get(const POINTER pointer) {
 		    LOG_FUNCTION
-		    return reinterpret_cast<YZ::ParticleForceAffector*>(pointer);
+		    return reinterpret_cast<yz::ParticleForceAffector*>(pointer);
 		}
 private:
 	Ogre::ParticleAffector* affector;

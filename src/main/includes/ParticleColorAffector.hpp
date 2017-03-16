@@ -24,11 +24,11 @@
 #ifndef PARTICLE_COLOR_AFFECTOR_H
 #define PARTICLE_COLOR_AFFECTOR_H
 
-#define PARTICLECOLORAFFECTOR YZ::ParticleColorAffector
+#define PARTICLECOLORAFFECTOR yz::ParticleColorAffector
 
 #include "stdafx.h"
 
-namespace YZ {
+namespace yz {
 	/**
 	*@author Grégory Van den Borre
 	*/
@@ -42,9 +42,9 @@ public:
                 Ogre::StringConverter::toString(alpha));
     }
 
-    static inline YZ::ParticleColorAffector* get(const POINTER pointer) {
+    static inline yz::ParticleColorAffector* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::ParticleColorAffector*>(pointer);
+        return reinterpret_cast<yz::ParticleColorAffector*>(pointer);
     }
 
 private:

@@ -40,7 +40,7 @@ import lombok.Getter;
 final class OgreIcon extends AbstractIconElement implements Native {
 
     /**
-     * Pointer address to the associated YZ::GuiIcon*.
+     * Pointer address to the associated yz::GuiIcon*.
      */
     @Getter
     private final NativePointer pointer;
@@ -111,21 +111,21 @@ final class OgreIcon extends AbstractIconElement implements Native {
     /**
      * Set the object hidden native code.
      *
-     * @param pointerAddress Address to the native YZ::GuiIcon*.
+     * @param pointerAddress Address to the native yz::GuiIcon*.
      */
     private native void hide(final long pointerAddress);
 
     /**
      * Set the object visible native code.
      *
-     * @param pointerAddress Address to the native YZ::GuiIcon*.
+     * @param pointerAddress Address to the native yz::GuiIcon*.
      */
     private native void show(final long pointerAddress);
 
     /**
      * Update the size in native code.
      *
-     * @param pointerAddress Address to the native YZ::GuiIcon*.
+     * @param pointerAddress Address to the native yz::GuiIcon*.
      * @param width          New object width.
      * @param height         New object height.
      */
@@ -134,7 +134,7 @@ final class OgreIcon extends AbstractIconElement implements Native {
     /**
      * Update the material in native code.
      *
-     * @param pointerAddress Address to the native YZ::GuiIcon*.
+     * @param pointerAddress Address to the native yz::GuiIcon*.
      * @param material       Material to set.
      */
     private native void setTexture(final long pointerAddress, final long material);
@@ -142,14 +142,14 @@ final class OgreIcon extends AbstractIconElement implements Native {
     /**
      * Delete the object in native code.
      *
-     * @param pointerAddress Address to the native YZ::GuiIcon*.
+     * @param pointerAddress Address to the native yz::GuiIcon*.
      */
     private native void delete(final long pointerAddress);
 
     /**
      * Set the position in native code.
      *
-     * @param pointerAddress Address to the native YZ::GuiIcon*.
+     * @param pointerAddress Address to the native yz::GuiIcon*.
      * @param left           X position.
      * @param top            Y position.
      */
@@ -174,7 +174,7 @@ final class OgreIcon extends AbstractIconElement implements Native {
     /**
      * Retrieve the Z value from native code.
      *
-     * @param pointerAddress Address to the native YZ::GuiIcon*.
+     * @param pointerAddress Address to the native yz::GuiIcon*.
      * @return The object Z value.
      */
     private native int getZ(final long pointerAddress);
@@ -182,7 +182,7 @@ final class OgreIcon extends AbstractIconElement implements Native {
     /**
      * Retrieve the parent container name from native code.
      *
-     * @param pointerAddress Address to the native YZ::GuiIcon*.
+     * @param pointerAddress Address to the native yz::GuiIcon*.
      * @return The name of the parent container.
      */
     private native String getParentName(final long pointerAddress);

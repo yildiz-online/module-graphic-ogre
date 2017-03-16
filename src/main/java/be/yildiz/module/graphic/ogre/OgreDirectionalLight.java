@@ -68,7 +68,7 @@ final class OgreDirectionalLight extends DirectionalLight implements Native {
     /**
      * Set the light position in native code.
      *
-     * @param pointer Address of the native YZ::DirectionalLight pointer.
+     * @param pointer Address of the native yz::DirectionalLight pointer.
      * @param x       New X position.
      * @param y       New Y position.
      * @param z       New Z position.
@@ -78,7 +78,7 @@ final class OgreDirectionalLight extends DirectionalLight implements Native {
     /**
      * Delete the object in native code.
      *
-     * @param pointerAddress Address of the native YZ::DirectionalLight pointer.
+     * @param pointerAddress Address of the native yz::DirectionalLight pointer.
      */
     private native void delete(final long pointerAddress);
 

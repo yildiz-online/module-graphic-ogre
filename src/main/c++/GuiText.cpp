@@ -27,7 +27,7 @@
 
 #include "../includes/GuiText.hpp"
 
-YZ::GuiText::GuiText(YZ::GuiContainer* container, const std::string& name) {
+yz::GuiText::GuiText(yz::GuiContainer* container, const std::string& name) {
     LOG_FUNCTION
     this->text = reinterpret_cast<Ogre::TextAreaOverlayElement*>(
                                           Ogre::OverlayManager::getSingleton()
@@ -38,7 +38,7 @@ YZ::GuiText::GuiText(YZ::GuiContainer* container, const std::string& name) {
     this->text->hide();
 }
 
-YZ::GuiText::~GuiText() {
+yz::GuiText::~GuiText() {
     LOG_FUNCTION
     Ogre::OverlayContainer* parent = this->text->getParent();
     parent->removeChild(this->text->getName());

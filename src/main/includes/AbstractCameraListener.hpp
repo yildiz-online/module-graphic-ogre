@@ -27,7 +27,7 @@
 #include <OgreCamera.h>
 
 
-namespace YZ {
+namespace yz {
 
 /**
  * Implementations of this class will be notified for camera updates.

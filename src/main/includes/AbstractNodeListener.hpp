@@ -26,7 +26,7 @@
 
 #include <OgreNode.h>
 
-namespace YZ {
+namespace yz {
 
 /**
  * Called when a node is updated.
@@ -36,7 +36,7 @@ class AbstractNodeListener {
 
 public:
 
-    virtual ~AbstractNodeListener(void) {
+    virtual ~AbstractNodeListener() {
     }
 
     virtual void update(const Ogre::Node* node) = 0;

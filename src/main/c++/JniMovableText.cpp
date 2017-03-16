@@ -42,8 +42,8 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_con
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
     JniStringWrapper text = JniStringWrapper(env, jtext);
-    YZ::Node* node = YZ::Node::get(nodePointer);
-    YZ::Font* font = YZ::Font::get(fontPointer);
+    yz::Node* node = yz::Node::get(nodePointer);
+    yz::Font* font = yz::Font::get(fontPointer);
     MOVABLETEXT* movableText = new MOVABLETEXT(name.getValue(), text.getValue(), font, size);
     node->addManualMovable(movableText);
     return reinterpret_cast<POINTER>(movableText);

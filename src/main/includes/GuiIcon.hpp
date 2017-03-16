@@ -24,13 +24,13 @@
 #ifndef GUI_ICON_H
 #define GUI_ICON_H
 
-#define GUIICON YZ::GuiIcon
+#define GUIICON yz::GuiIcon
 
 #include "stdafx.h"
 #include "GuiContainer.hpp"
 #include "Material.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
  * Wrap an Ogre::OverlayElement.
@@ -48,8 +48,8 @@ public:
 	 * @param witdh Icon witdh.
 	 * @param height Icon height.
 	 */
-	GuiIcon(YZ::GuiContainer* parent, const std::string& name,
-			const YZ::Material* material, const Ogre::Real width,
+	GuiIcon(yz::GuiContainer* parent, const std::string& name,
+			const yz::Material* material, const Ogre::Real width,
 			const Ogre::Real height);
 
 	/**
@@ -154,7 +154,7 @@ public:
 	 * Set the element background material.
 	 * @param material Material.
 	 */
-	inline void setMaterial(const YZ::Material* material) {
+	inline void setMaterial(const yz::Material* material) {
 	    LOG_FUNCTION
 		this->icon->setMaterialName(material->getName());
 	}
@@ -179,9 +179,9 @@ public:
 		return this->icon->getParent()->getName();
 	}
 
-    inline static YZ::GuiIcon* get(const POINTER pointer) {
+    inline static yz::GuiIcon* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::GuiIcon*>(pointer);
+        return reinterpret_cast<yz::GuiIcon*>(pointer);
     }
 
 private:

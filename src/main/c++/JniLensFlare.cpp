@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setPosit
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::LensFlare::get(pointer)->setPosition(x, y, z);
+    yz::LensFlare::get(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setLightSize(
@@ -46,7 +46,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setLight
     jfloat w,
     jfloat h) {
     LOG_FUNCTION
-    YZ::LensFlare::get(pointer)->setLightSize(w, h);
+    yz::LensFlare::get(pointer)->setLightSize(w, h);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setStreakSize(
@@ -56,5 +56,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setStrea
     jfloat w,
     jfloat h) {
     LOG_FUNCTION
-    YZ::LensFlare::get(pointer)->setStreakSize(w, h);
+    yz::LensFlare::get(pointer)->setStreakSize(w, h);
 }

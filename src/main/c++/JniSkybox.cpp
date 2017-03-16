@@ -37,5 +37,5 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSkybox_createSk
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
     JniStringWrapper path = JniStringWrapper(env, jpath);
-    return reinterpret_cast<POINTER>(new YZ::Skybox(name.getValue(), path.getValue()));
+    return reinterpret_cast<POINTER>(new yz::Skybox(name.getValue(), path.getValue()));
 }

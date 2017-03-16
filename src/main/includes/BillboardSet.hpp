@@ -30,7 +30,7 @@
 #include <OgreBillboardSet.h>
 #include <OgreBillboard.h>
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -51,14 +51,14 @@ public:
         this->set = NULL;
     }
 
-    void setMaterial(const YZ::Material* material) {
+    void setMaterial(const yz::Material* material) {
         LOG_FUNCTION
         this->set->setMaterialName(material->getName());
     }
 
-    YZ::Billboard* createBillboard() {
+    yz::Billboard* createBillboard() {
         LOG_FUNCTION
-        return new YZ::Billboard(this->set->createBillboard(0, 0, 0, Ogre::ColourValue::White));
+        return new yz::Billboard(this->set->createBillboard(0, 0, 0, Ogre::ColourValue::White));
     }
 
     Ogre::Billboard* getBillboard(const int index) const {
@@ -66,7 +66,7 @@ public:
         return this->set->getBillboard(index);
     }
 
-    void removeBillboard(YZ::Billboard* b) {
+    void removeBillboard(yz::Billboard* b) {
         LOG_FUNCTION
         this->set->removeBillboard(b->getWrappedBillboard());
     }
@@ -91,9 +91,9 @@ public:
         return this->set;
     }
 
-    inline static YZ::BillboardSet* get(const POINTER pointer) {
+    inline static yz::BillboardSet* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::BillboardSet*>(pointer);
+        return reinterpret_cast<yz::BillboardSet*>(pointer);
     }
 
 

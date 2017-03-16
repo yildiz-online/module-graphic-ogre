@@ -34,7 +34,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_constructo
     jobject,
     POINTER nodePointer) {
     LOG_FUNCTION
-    YZ::Node* node = YZ::Node::get(nodePointer);
+    yz::Node* node = yz::Node::get(nodePointer);
     DynamicLines* line  = new DynamicLines(node);
     return reinterpret_cast<POINTER>(line);
 }
@@ -46,7 +46,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_setMaterial(
     POINTER matPointer) {
     LOG_FUNCTION
     DynamicLines* line = DynamicLines::get(pointer);
-    YZ::Material* material = YZ::Material::get(matPointer);
+    yz::Material* material = yz::Material::get(matPointer);
     line->setMaterial(material);
 }
 

@@ -37,7 +37,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_cr
     POINTER pointer) {
     LOG_FUNCTION
     try {
-        YZ::BillboardSet* set = YZ::BillboardSet::get(pointer); 
+        yz::BillboardSet* set = yz::BillboardSet::get(pointer);
         return reinterpret_cast<POINTER>(set->createBillboard());
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_show(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::BillboardSet::get(pointer)->show();
+    yz::BillboardSet::get(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_hide(
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_hide(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::BillboardSet::get(pointer)->hide();
+    yz::BillboardSet::get(pointer)->hide();
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_setSize(
@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_setSi
     jfloat height) {
     LOG_FUNCTION
     try {
-        YZ::BillboardSet::get(pointer)->setSize(width, height);
+        yz::BillboardSet::get(pointer)->setSize(width, height);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -81,8 +81,8 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_attac
     POINTER pointer,
     POINTER nodePointer) {
     LOG_FUNCTION
-    YZ::BillboardSet* set = YZ::BillboardSet::get(pointer);
-    YZ::Node* node = YZ::Node::get(nodePointer);
+    yz::BillboardSet* set = yz::BillboardSet::get(pointer);
+    yz::Node* node = yz::Node::get(nodePointer);
     node->attachObject(set);
 }
 
@@ -93,7 +93,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_remov
     POINTER billboardPointer) {
     LOG_FUNCTION
     try {
-        YZ::BillboardSet::get(pointer)->removeBillboard(YZ::Billboard::get(billboardPointer));
+        yz::BillboardSet::get(pointer)->removeBillboard(yz::Billboard::get(billboardPointer));
     } catch (std::exception& e) {
         throwException(env, e.what());
     }

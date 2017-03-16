@@ -28,7 +28,7 @@
 #include <Ogre.h>
 #include <Overlay/OgreFont.h>
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -39,9 +39,9 @@ public:
 
     Font(const std::string& name, const std::string& path, const Ogre::Real size);
 
-    inline static YZ::Font* get(const POINTER pointer) {
+    inline static yz::Font* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::Font*>(pointer);
+        return reinterpret_cast<yz::Font*>(pointer);
     }
 
     void load();

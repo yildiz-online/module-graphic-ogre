@@ -29,7 +29,7 @@
 #include "AbstractMovable.hpp"
 #include "Material.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -54,7 +54,7 @@ public:
 
 	void setCastShadows(const bool cast);
 
-    void setMaterial(YZ::Material* material);
+    void setMaterial(yz::Material* material);
 
     //FIXME return YZ node
 	Ogre::SceneNode* getParentSceneNode() const;
@@ -66,9 +66,9 @@ public:
         return this->entity;
     }
 
-	inline static YZ::Entity* get(const POINTER pointer) {
+	inline static yz::Entity* get(const POINTER pointer) {
 	    LOG_FUNCTION
-	    return reinterpret_cast<YZ::Entity*>(pointer);
+	    return reinterpret_cast<yz::Entity*>(pointer);
 	}
 
 private:

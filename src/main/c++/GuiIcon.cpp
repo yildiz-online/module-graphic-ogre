@@ -27,7 +27,7 @@
 
 #include "../includes/GuiIcon.hpp"
 
-YZ::GuiIcon::GuiIcon(YZ::GuiContainer* parent, const std::string& name, const YZ::Material* material, const Ogre::Real width, const Ogre::Real height) {
+yz::GuiIcon::GuiIcon(yz::GuiContainer* parent, const std::string& name, const yz::Material* material, const Ogre::Real width, const Ogre::Real height) {
     LOG_FUNCTION
     this->icon = Ogre::OverlayManager::getSingleton().createOverlayElement("Panel", name);
     parent->addChild(this->icon);
@@ -37,7 +37,7 @@ YZ::GuiIcon::GuiIcon(YZ::GuiContainer* parent, const std::string& name, const YZ
     this->icon->hide();
 }
 
-YZ::GuiIcon::~GuiIcon() {
+yz::GuiIcon::~GuiIcon() {
     LOG_FUNCTION
     Ogre::OverlayContainer* c = this->icon->getParent();
     c->removeChild(this->icon->getName());

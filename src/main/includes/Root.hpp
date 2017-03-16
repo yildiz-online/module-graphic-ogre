@@ -24,12 +24,12 @@
 #ifndef YZ_ROOT_H
 #define YZ_ROOT_H
 
-#define ROOT YZ::Root
+#define ROOT yz::Root
 
 #include "RenderWindow.hpp"
 #include "SceneManager.hpp"
 
-namespace YZ {
+namespace yz {
 
 class OgreLogger;
 class RenderWindow;
@@ -47,13 +47,13 @@ public:
     static void create() {
         LOG_FUNCTION
         if(instance == NULL) {
-            YZ::Root::instance =  new YZ::Root();
+            yz::Root::instance =  new yz::Root();
         }
     }
 
-    static inline YZ::Root* get() {
+    static inline yz::Root* get() {
         LOG_FUNCTION
-        return YZ::Root::instance;
+        return yz::Root::instance;
     }
 
     /**
@@ -89,7 +89,7 @@ private:
     /**
      * Wrapped Ogre::Root.
      */
-    static YZ::Root* instance;
+    static yz::Root* instance;
 
     Ogre::Root* root;
 

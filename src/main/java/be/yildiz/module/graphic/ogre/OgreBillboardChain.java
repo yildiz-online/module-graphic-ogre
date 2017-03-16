@@ -104,7 +104,7 @@ final class OgreBillboardChain implements BillboardChain, Native {
     /**
      * Create the object in native code.
      *
-     * @param nodePointer Pointer to the YZ::Node to attach wih this object.
+     * @param nodePointer Pointer to the yz::Node to attach wih this object.
      * @return The pointer address to the native object.
      */
     private native long constructor(final String name, final long nodePointer);

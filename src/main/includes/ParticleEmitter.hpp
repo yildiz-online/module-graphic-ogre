@@ -24,11 +24,11 @@
 #ifndef PARTICLE_EMITTER_H
 #define PARTICLE_EMITTER_H
 
-#define PARTICLEEMITTER YZ::ParticleEmitter
+#define PARTICLEEMITTER yz::ParticleEmitter
 
 #include "stdafx.h"
 
-namespace YZ {
+namespace yz {
 	
 	/**
 	*@author Grégory Van den Borre
@@ -102,9 +102,9 @@ public:
 		this->emitter->setParticleVelocity(this->minSpeed, this->maxSpeed);
 	}
 
-	inline static YZ::ParticleEmitter* get(const POINTER pointer) {
+	inline static yz::ParticleEmitter* get(const POINTER pointer) {
 	    LOG_FUNCTION
-	    return reinterpret_cast<YZ::ParticleEmitter*>(pointer);
+	    return reinterpret_cast<yz::ParticleEmitter*>(pointer);
 	}
 
 private:

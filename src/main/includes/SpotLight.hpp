@@ -26,7 +26,7 @@
 
 #include "AbstractLight.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 * @author Grégory Van den Borre
@@ -53,8 +53,8 @@ this->light->setDirection(dirX, dirY, dirZ);
 /**
  * Convert a pointer in a native spotlight
  */
-static inline YZ::SpotLight* get(const POINTER pointer) {
-return reinterpret_cast<YZ::SpotLight*>(pointer);
+static inline yz::SpotLight* get(const POINTER pointer) {
+return reinterpret_cast<yz::SpotLight*>(pointer);
 }
 
 };

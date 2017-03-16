@@ -41,7 +41,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setSk
     jstring jfile) {
     LOG_FUNCTION
     JniStringWrapper file = JniStringWrapper(env, jfile);
-    YZ::SceneManager::get(pointer)->setSkyBox(file.getValue());
+    yz::SceneManager::get(pointer)->setSkyBox(file.getValue());
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setShadowTechnique(
@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setSh
     POINTER pointer,
     jint tec) {
     LOG_FUNCTION
-    YZ::SceneManager::get(pointer)->setShadowType(tec);
+    yz::SceneManager::get(pointer)->setShadowType(tec);
 }
 
 
@@ -60,7 +60,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setSh
     POINTER pointer,
     jint size) {
     LOG_FUNCTION
-    YZ::SceneManager::get(pointer)->setShadowTextureSize(size);
+    yz::SceneManager::get(pointer)->setShadowTextureSize(size);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setShadowFarDistance(
@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setSh
     POINTER pointer,
     jint distance) {
     LOG_FUNCTION
-    YZ::SceneManager::get(pointer)->setShadowFarDistance(distance);
+    yz::SceneManager::get(pointer)->setShadowFarDistance(distance);
 }
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createLensFlare(
@@ -88,13 +88,13 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     LOG_FUNCTION
     try {
         JniStringWrapper name = JniStringWrapper(env, jname);
-        YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
-        YZ::Camera* cam = YZ::Camera::get(camPointer);
-        YZ::Material* light = YZ::Material::get(lightPointer);
-        YZ::Material* streak = YZ::Material::get(streakPointer);
-        YZ::Material* halo = YZ::Material::get(haloPointer);
-        YZ::Material* burst = YZ::Material::get(burstPointer);
-        YZ::LensFlare* lens = sm->createLensFlare(name.getValue(), light, streak, halo, burst, x, y, z);
+        yz::SceneManager* sm = yz::SceneManager::get(pointer);
+        yz::Camera* cam = yz::Camera::get(camPointer);
+        yz::Material* light = yz::Material::get(lightPointer);
+        yz::Material* streak = yz::Material::get(streakPointer);
+        yz::Material* halo = yz::Material::get(haloPointer);
+        yz::Material* burst = yz::Material::get(burstPointer);
+        yz::LensFlare* lens = sm->createLensFlare(name.getValue(), light, streak, halo, burst, x, y, z);
         cam->addListener(lens);
         return reinterpret_cast<POINTER>(lens);
     } catch (const std::exception& e) {
@@ -111,15 +111,15 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     LOG_FUNCTION
     try {
         JniStringWrapper name = JniStringWrapper(env, jname);
-        YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
-        YZ::Camera* camera = sm->createCamera(name.getValue());
-        YZ::Entity* e = sm->createCube(camera->getName() + "cam_ground");
+        yz::SceneManager* sm = yz::SceneManager::get(pointer);
+        yz::Camera* camera = sm->createCamera(name.getValue());
+        yz::Entity* e = sm->createCube(camera->getName() + "cam_ground");
         e->setQueryFlags(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-        YZ::Node* node = sm->createNode(camera->getName() + "cam_ground_node");
+        yz::Node* node = sm->createNode(camera->getName() + "cam_ground_node");
         node->scale(200, 0.02, 200);
         node->attachObject(e);
         node->hide();
-        YZ::AbstractCameraListener* ls = new YZ::DummyGroundCamListener(node);
+        yz::AbstractCameraListener* ls = new yz::DummyGroundCamListener(node);
         camera->addListener(ls);
         return reinterpret_cast<POINTER>(camera);
     } catch (std::exception& e) {
@@ -136,9 +136,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     POINTER nodePointer) {
     LOG_FUNCTION
     JniStringWrapper mesh = JniStringWrapper(env, jmesh);
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
-    YZ::Entity* entity = sm->createEntity(mesh.getValue());
-    YZ::Node* node = YZ::Node::get(nodePointer);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::Entity* entity = sm->createEntity(mesh.getValue());
+    yz::Node* node = yz::Node::get(nodePointer);
     node->attachObject(entity);
     return reinterpret_cast<POINTER>(entity);
 }
@@ -149,9 +149,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     POINTER pointer,
     POINTER nodePointer) {
     LOG_FUNCTION
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
-    YZ::Entity* entity = sm->createCube();
-    YZ::Node* node = YZ::Node::get(nodePointer);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::Entity* entity = sm->createCube();
+    yz::Node* node = yz::Node::get(nodePointer);
     node->attachObject(entity);
     return reinterpret_cast<POINTER>(entity);
 }
@@ -162,9 +162,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     POINTER pointer,
     POINTER nodePointer) {
     LOG_FUNCTION
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
-    YZ::Entity* entity = sm->createPlane();
-    YZ::Node* node = YZ::Node::get(nodePointer);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::Entity* entity = sm->createPlane();
+    yz::Node* node = yz::Node::get(nodePointer);
     node->attachObject(entity);
     return reinterpret_cast<POINTER>(entity);
 }
@@ -177,9 +177,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
-    YZ::Node* node = YZ::Node::get(nodePointer);
-    YZ::Entity* entity = sm->createSphere(name.getValue(), 64, 64, 100); //sm->createSphere();
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::Node* node = yz::Node::get(nodePointer);
+    yz::Entity* entity = sm->createSphere(name.getValue(), 64, 64, 100); //sm->createSphere();
     node->attachObject(entity);
     return reinterpret_cast<POINTER>(entity);
 }
@@ -191,9 +191,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
     try {
-        YZ::Node* node = sm->createNode(name.getValue());
+        yz::Node* node = sm->createNode(name.getValue());
         return reinterpret_cast<POINTER>(node);
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -209,9 +209,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
     try {
-        YZ::Node* node = sm->createNode(new YZ::Id(id), name.getValue());
+        yz::Node* node = sm->createNode(new yz::Id(id), name.getValue());
         return reinterpret_cast<POINTER>(node);
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -228,7 +228,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setAm
     jfloat blue,
     jfloat alpha) {
     LOG_FUNCTION
-    YZ::SceneManager::get(pointer)->setAmbientLight(red, green, blue, alpha);
+    yz::SceneManager::get(pointer)->setAmbientLight(red, green, blue, alpha);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setShadowType(
@@ -237,7 +237,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setSh
     POINTER pointer,
     jint type) {
     LOG_FUNCTION
-    YZ::SceneManager::get(pointer)->setShadowType(type);
+    yz::SceneManager::get(pointer)->setShadowType(type);
 }
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createPointLight(
@@ -250,9 +250,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jfloat z) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
     try {
-        YZ::PointLight* light = sm->createPointLight(name.getValue(), x, y, z);
+        yz::PointLight* light = sm->createPointLight(name.getValue(), x, y, z);
         return reinterpret_cast<POINTER>(light);
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -273,9 +273,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jfloat tgtZ) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
     try {
-        YZ::SpotLight* light = sm->createSpotLight(name.getValue(), x, y, z, tgtX, tgtY, tgtZ);
+        yz::SpotLight* light = sm->createSpotLight(name.getValue(), x, y, z, tgtX, tgtY, tgtZ);
         return reinterpret_cast<POINTER>(light);
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -296,9 +296,9 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jfloat tgtZ) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
     try {
-        YZ::DirectionalLight* light = sm->createDirectionalLight(name.getValue(), x, y, z, tgtX, tgtY, tgtZ);
+        yz::DirectionalLight* light = sm->createDirectionalLight(name.getValue(), x, y, z, tgtX, tgtY, tgtZ);
         return reinterpret_cast<POINTER>(light);
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -320,8 +320,8 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jfloat width) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
-    YZ::ElectricArc* arc = sm->createElectricArc(name.getValue(), x, y, z, eX, eY, eZ, width);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::ElectricArc* arc = sm->createElectricArc(name.getValue(), x, y, z, eX, eY, eZ, width);
     return reinterpret_cast<POINTER>(arc);
 }
 
@@ -330,8 +330,8 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
-    YZ::ParticleSystem* system = sm->createParticleSystem();
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::ParticleSystem* system = sm->createParticleSystem();
     return reinterpret_cast<POINTER>(system);
 }
 
@@ -341,15 +341,15 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    YZ::SceneManager* sm = YZ::SceneManager::get(pointer);
-    YZ::Material* material = YZ::Material::get(matPointer);
-    YZ::BillboardSet* set = sm->createBillboardSet(material);
+    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::Material* material = yz::Material::get(matPointer);
+    yz::BillboardSet* set = sm->createBillboardSet(material);
     return reinterpret_cast<POINTER>(set);
 }
 
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_getRootNode(
     JNIEnv* env, jobject, POINTER pointer) {
     LOG_FUNCTION
-    return reinterpret_cast<POINTER>(YZ::SceneManager::get(pointer)->getRootNode());
+    return reinterpret_cast<POINTER>(yz::SceneManager::get(pointer)->getRootNode());
 }
 

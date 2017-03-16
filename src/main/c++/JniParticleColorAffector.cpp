@@ -34,5 +34,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleColorAffec
     POINTER pointer,
     jfloat alpha) {
     LOG_FUNCTION
-    YZ::ParticleColorAffector::get(pointer)->setAlpha(alpha);
+    yz::ParticleColorAffector::get(pointer)->setAlpha(alpha);
 }

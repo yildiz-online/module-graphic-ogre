@@ -35,7 +35,7 @@ import be.yildiz.module.graphic.SpotLight;
 final class OgreSpotLight extends SpotLight {
 
     /**
-     * Pointer address to the native code YZ::SpotLight.
+     * Pointer address to the native code yz::SpotLight.
      */
     private final NativePointer pointer;
 
@@ -71,7 +71,7 @@ final class OgreSpotLight extends SpotLight {
     /**
      * Set the light position in native code.
      *
-     * @param pointerAddress Address of the native YZ::SpotLight pointer.
+     * @param pointerAddress Address of the native yz::SpotLight pointer.
      * @param x              New X position.
      * @param y              New Y position.
      * @param z              New Z position.
@@ -81,7 +81,7 @@ final class OgreSpotLight extends SpotLight {
     /**
      * Set the light direction in native code.
      *
-     * @param pointerAddress Address of the native YZ::SpotLight pointer.
+     * @param pointerAddress Address of the native yz::SpotLight pointer.
      * @param x              New X direction.
      * @param y              New Y direction.
      * @param z              New Z direction.
@@ -91,7 +91,7 @@ final class OgreSpotLight extends SpotLight {
     /**
      * Delete light direction in native code.
      *
-     * @param pointerAddress Address of the native YZ::SpotLight pointer.
+     * @param pointerAddress Address of the native yz::SpotLight pointer.
      */
     private native void delete(final long pointerAddress);
 }

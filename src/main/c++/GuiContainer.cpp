@@ -27,7 +27,7 @@
 
 #include "../includes/GuiContainer.hpp"
 
-YZ::GuiContainer::GuiContainer(const std::string& name, const YZ::Material* material, const Ogre::Real width, const Ogre::Real height) {
+yz::GuiContainer::GuiContainer(const std::string& name, const yz::Material* material, const Ogre::Real width, const Ogre::Real height) {
     LOG_FUNCTION
     this->overlay = Ogre::OverlayManager::getSingleton().create(name);
     this->overlay->show();
@@ -40,7 +40,7 @@ YZ::GuiContainer::GuiContainer(const std::string& name, const YZ::Material* mate
 	this->overlay->add2D(this->container);
 }
 
-YZ::GuiContainer::GuiContainer(const std::string& name, const YZ::Material* material, const Ogre::Real width, const Ogre::Real height, YZ::GuiContainer* parent) {
+yz::GuiContainer::GuiContainer(const std::string& name, const yz::Material* material, const Ogre::Real width, const Ogre::Real height, yz::GuiContainer* parent) {
     LOG_FUNCTION
     this->overlay = parent->overlay;
     this->container = reinterpret_cast<Ogre::OverlayContainer*>(
@@ -51,7 +51,7 @@ YZ::GuiContainer::GuiContainer(const std::string& name, const YZ::Material* mate
 	parent->addChild(this->container);
 }
 
-YZ::GuiContainer::~GuiContainer() {
+yz::GuiContainer::~GuiContainer() {
     LOG_FUNCTION
 }
 

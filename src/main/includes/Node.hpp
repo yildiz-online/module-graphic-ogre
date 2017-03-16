@@ -33,7 +33,7 @@
 #include "AbstractMovable.hpp"
 #include <OgreSceneManager.h>
 
-namespace YZ {
+namespace yz {
 
 /**
  * Simple wrapper for an Ogre::Scenenode, this class provide uniform use for setting direction, yaw,...
@@ -51,14 +51,14 @@ public:
 	Node(Ogre::SceneNode* wrappedNode) {
 	    LOG_FUNCTION
 		this->node = wrappedNode;
-		this->listenerList = new YZ::NodeListeners();
+		this->listenerList = new yz::NodeListeners();
 		this->node->setListener(this->listenerList);
 	}
 
-	Node(Ogre::SceneNode* wrappedNode, YZ::Id* id) {
+	Node(Ogre::SceneNode* wrappedNode, yz::Id* id) {
 	    LOG_FUNCTION
 		this->node = wrappedNode;
-		this->listenerList = new YZ::NodeListeners();
+		this->listenerList = new yz::NodeListeners();
 		this->node->setListener(this->listenerList);
 		this->node->getUserObjectBindings().setUserAny(Ogre::Any(id));
 	}
@@ -69,14 +69,14 @@ public:
         this->node = NULL;
 	}
 
-	inline void attachTo(YZ::Node* other) {
+	inline void attachTo(yz::Node* other) {
 	    LOG_FUNCTION
 		Ogre::SceneNode* parent = this->node->getParentSceneNode();
 		parent->removeChild(this->node);
 		other->addChild(this);
 	}
 
-	inline void addChild(YZ::Node* child) {
+	inline void addChild(yz::Node* child) {
 	    LOG_FUNCTION
 		this->node->addChild(child->getWrappedNode());
 	}
@@ -110,12 +110,12 @@ public:
 		this->node->setVisible(false);
 	}
 
-	void attachObject(YZ::AbstractMovable* movable) {
+	void attachObject(yz::AbstractMovable* movable) {
 	    LOG_FUNCTION
 		this->node->attachObject(movable->getMovableObject());
 	}
 
-	inline void addListener(YZ::AbstractNodeListener* l) {
+	inline void addListener(yz::AbstractNodeListener* l) {
 	    LOG_FUNCTION
 		this->listenerList->addListener(l);
 	}
@@ -133,11 +133,11 @@ public:
 
 	/**
 	 * Create a child for this node.
-	 * @return A new YZ::Node child of this one.
+	 * @return A new yz::Node child of this one.
 	 */
-	inline YZ::Node* createChildNode() {
+	inline yz::Node* createChildNode() {
 	    LOG_FUNCTION
-		YZ::Node* child = new YZ::Node(this->node->createChildSceneNode());
+		yz::Node* child = new yz::Node(this->node->createChildSceneNode());
 		//     this->childrenList.push_back(child);
 		return child;
 	}
@@ -290,9 +290,9 @@ public:
 		this->manualList.push_back(manual);
 	}
 
-	inline static YZ::Node* get(const POINTER pointer) {
+	inline static yz::Node* get(const POINTER pointer) {
 	    LOG_FUNCTION
-		return reinterpret_cast<YZ::Node*>(pointer);
+		return reinterpret_cast<yz::Node*>(pointer);
 	}
 
 private:
@@ -302,7 +302,7 @@ private:
     */
 	Ogre::SceneNode* node;
 
-	YZ::NodeListeners* listenerList;
+	yz::NodeListeners* listenerList;
 
 	/**
 	 * List containing object manually created(not using scene manager), they must be detached and manually deleted.

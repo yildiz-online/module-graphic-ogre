@@ -35,7 +35,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_constructor(
     jobject) {
     LOG_FUNCTION
     try {
-        YZ::Root::create();
+        yz::Root::create();
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -45,7 +45,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_initPhysFS(
     JNIEnv *env,
     jobject) {
     LOG_FUNCTION
-    YZ::Root::get()->initPhysFS();
+    yz::Root::get()->initPhysFS();
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_loadPlugin(
@@ -55,7 +55,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_loadPlugin(
     LOG_FUNCTION
     JniStringWrapper plugin = JniStringWrapper(env, jplugin);
     try {
-        YZ::Root::get()->loadPlugin(plugin.getValue());
+        yz::Root::get()->loadPlugin(plugin.getValue());
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -68,7 +68,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_loadRenderer(
     LOG_FUNCTION
     JniStringWrapper renderer = JniStringWrapper(env, jrenderer);
     try {
-        YZ::Root::get()->initialise(renderer.getValue());
+        yz::Root::get()->initialise(renderer.getValue());
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -81,7 +81,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_Root_createSceneMan
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
     try {
-        return reinterpret_cast<POINTER>(YZ::Root::get()->createSceneManager(name.getValue()));
+        return reinterpret_cast<POINTER>(yz::Root::get()->createSceneManager(name.getValue()));
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -96,7 +96,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindo
     jlong handle) {
     LOG_FUNCTION
     try {
-        YZ::Root::get()->createRenderWindow(width, height, handle);
+        yz::Root::get()->createRenderWindow(width, height, handle);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -109,7 +109,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindo
     jint height) {
     LOG_FUNCTION
     try {
-        YZ::Root::get()->createRenderWindow(width, height);
+        yz::Root::get()->createRenderWindow(width, height);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -125,7 +125,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_addResourcePath(
     JniStringWrapper name = JniStringWrapper(env, jname);
     JniStringWrapper path = JniStringWrapper(env, jpath);
     try {
-        YZ::Root::get()->addResourcePath(name.getValue(), path.getValue(), type);
+        yz::Root::get()->addResourcePath(name.getValue(), path.getValue(), type);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -136,7 +136,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_renderOneFrame(
     jobject) {
     LOG_FUNCTION
     try {
-        YZ::Root::get()->renderOneFrame();
+        yz::Root::get()->renderOneFrame();
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -147,7 +147,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_close(
     jobject) {
     LOG_FUNCTION
     try {
-        YZ::Root::get()->close();
+        yz::Root::get()->close();
     } catch (std::exception& e) {
         throwException(env, e.what());
     }

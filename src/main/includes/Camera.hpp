@@ -33,7 +33,7 @@
 #include "AbstractMovable.hpp"
 
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -58,7 +58,7 @@ public:
         this->camera->setFarClipDistance(dist);
     }
 
-    inline void addListener(YZ::AbstractCameraListener* l) {
+    inline void addListener(yz::AbstractCameraListener* l) {
         LOG_FUNCTION
         this->listenerList.push_back(l);
     }
@@ -72,7 +72,7 @@ public:
      * Remove a listener from the list and call its destructor.
      * @param l Listener to remove.
      */
-    inline void removeListener(YZ::AbstractCameraListener* l) {
+    inline void removeListener(yz::AbstractCameraListener* l) {
         LOG_FUNCTION
         this->listenerList.erase(std::remove(this->listenerList.begin(), this->listenerList.end(), l));
         delete l;
@@ -140,7 +140,7 @@ public:
         return this->camera;
     }
 
-    inline void track(YZ::Node* node) {
+    inline void track(yz::Node* node) {
         LOG_FUNCTION
         this->camera->setAutoTracking(true, node->getWrappedNode());
     }
@@ -160,22 +160,22 @@ public:
         return this->camera;
     }
 
-    YZ::Id* throwRay(const Ogre::Real x, const Ogre::Real y, const bool poly);
+    yz::Id* throwRay(const Ogre::Real x, const Ogre::Real y, const bool poly);
 
     Ogre::Vector3 throwRayPos(const Ogre::Real x, const Ogre::Real y);
 
-    std::vector<YZ::Id*> throwPlaneRay(Ogre::Real x1, Ogre::Real x2, Ogre::Real y1, Ogre::Real y2);
+    std::vector<yz::Id*> throwPlaneRay(Ogre::Real x1, Ogre::Real x2, Ogre::Real y1, Ogre::Real y2);
 
-    inline static YZ::Camera* get(const POINTER pointer) {
+    inline static yz::Camera* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::Camera*>(pointer);
+        return reinterpret_cast<yz::Camera*>(pointer);
     }
 
 private:
 
-    static YZ::Id* ID_WORLD;
+    static yz::Id* ID_WORLD;
 
-    std::vector<YZ::AbstractCameraListener*> listenerList;
+    std::vector<yz::AbstractCameraListener*> listenerList;
 
     Ogre::Camera* camera;
 

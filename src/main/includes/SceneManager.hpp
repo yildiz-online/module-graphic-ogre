@@ -24,7 +24,7 @@
 #ifndef YZ_SCENEMANAGER_H
 #define YZ_SCENEMANAGER_H
 
-#define SCENEMANAGER YZ::SceneManager
+#define SCENEMANAGER yz::SceneManager
 
 #include "CollisionTools.h"
 #include "PointLight.hpp"
@@ -39,7 +39,7 @@
 #include "ElectricArc.hpp"
 #include "Entity.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
  * Wrap an Ogre::SceneManager to provide construction and management for graphic objects.
@@ -101,7 +101,7 @@ public:
         }
     }
 
-    YZ::Camera* createCamera(const std::string& name);
+    yz::Camera* createCamera(const std::string& name);
 
     //FIXME use java sky object and retrieve name from native.
     inline void setSkyBox(const std::string& file) {
@@ -109,18 +109,18 @@ public:
         this->sceneManager->setSkyBox(true, file);
     }
 
-    inline YZ::Node* getRootNode() {
+    inline yz::Node* getRootNode() {
         LOG_FUNCTION
         return this->rootNode;
     }
 
-    YZ::PointLight* createPointLight(
+    yz::PointLight* createPointLight(
         const std::string& name,
         const Ogre::Real x,
         const Ogre::Real y,
         const Ogre::Real z);
 
-    YZ::SpotLight* createSpotLight(
+    yz::SpotLight* createSpotLight(
         const std::string& name,
         const Ogre::Real x,
         const Ogre::Real y,
@@ -129,7 +129,7 @@ public:
         const Ogre::Real dirY,
         const Ogre::Real dirZ);
 
-    YZ::DirectionalLight* createDirectionalLight(
+    yz::DirectionalLight* createDirectionalLight(
         const std::string& name,
         const Ogre::Real x,
         const Ogre::Real y,
@@ -140,35 +140,35 @@ public:
 
     Ogre::Vector3 getPoint(
         const Ogre::Vector3&,
-        YZ::Camera* cam,
+        yz::Camera* cam,
         const Ogre::Real x,
         const Ogre::Real y);
 
-    inline YZ::Entity* createEntity(const std::string& mesh) {
+    inline yz::Entity* createEntity(const std::string& mesh) {
         LOG_FUNCTION
-        YZ::Entity* e = new YZ::Entity(this->sceneManager->createEntity(mesh));
+        yz::Entity* e = new yz::Entity(this->sceneManager->createEntity(mesh));
         e->setQueryFlags(Ogre::SceneManager::ENTITY_TYPE_MASK);
         return e;
     }
 
     Ogre::Entity* createUnpickableEntity(const std::string& mesh);
 
-    inline YZ::ParticleSystem* createParticleSystem() {
+    inline yz::ParticleSystem* createParticleSystem() {
         LOG_FUNCTION
-        return new YZ::ParticleSystem(
+        return new yz::ParticleSystem(
                 this->sceneManager->createParticleSystem());
     }
 
-    inline YZ::BillboardSet* createBillboardSet(YZ::Material* material) {
+    inline yz::BillboardSet* createBillboardSet(yz::Material* material) {
         LOG_FUNCTION
-        YZ::BillboardSet* set = new YZ::BillboardSet(this->sceneManager->createBillboardSet());
+        yz::BillboardSet* set = new yz::BillboardSet(this->sceneManager->createBillboardSet());
         set->setMaterial(material);
         return set;
     }
 
-    inline YZ::Node* createNode(const std::string& name) {
+    inline yz::Node* createNode(const std::string& name) {
         LOG_FUNCTION
-        YZ::Node* node = new YZ::Node(
+        yz::Node* node = new yz::Node(
                 this->sceneManager->getRootSceneNode()->createChildSceneNode(
                         name));
         if (this->debug) {
@@ -178,11 +178,11 @@ public:
     }
 
     /**
-     * Create a YZ::Node and associate it with an ID.
+     * Create a yz::Node and associate it with an ID.
      */
-    inline YZ::Node* createNode(YZ::Id* id, const std::string& name) {
+    inline yz::Node* createNode(yz::Id* id, const std::string& name) {
         LOG_FUNCTION
-        YZ::Node* node = new YZ::Node(
+        yz::Node* node = new yz::Node(
                 this->sceneManager->getRootSceneNode()->createChildSceneNode(
                         name), id);
         if (this->debug) {
@@ -191,12 +191,12 @@ public:
         return node;
     }
 
-    YZ::LensFlare* createLensFlare(
+    yz::LensFlare* createLensFlare(
         const std::string& name,
-        YZ::Material* light,
-        YZ::Material* streak,
-        YZ::Material* halo,
-        YZ::Material* burst,
+        yz::Material* light,
+        yz::Material* streak,
+        yz::Material* halo,
+        yz::Material* burst,
         const Ogre::Real x,
         const Ogre::Real y,
         const Ogre::Real z);
@@ -211,45 +211,45 @@ public:
                 Ogre::ColourValue(red, green, blue, alpha));
     }
 
-    inline YZ::Entity* createCube(const std::string& name) {
+    inline yz::Entity* createCube(const std::string& name) {
         LOG_FUNCTION
         Ogre::Entity* e = this->sceneManager->createEntity(name,
                 Ogre::SceneManager::PT_CUBE);
         e->setMaterialName("_internal_red_");
-        return new YZ::Entity(e);
+        return new yz::Entity(e);
     }
 
-    inline YZ::Entity* createCube() {
+    inline yz::Entity* createCube() {
         LOG_FUNCTION
-        return new YZ::Entity(this->sceneManager->createEntity(Ogre::SceneManager::PT_CUBE));
+        return new yz::Entity(this->sceneManager->createEntity(Ogre::SceneManager::PT_CUBE));
     }
 
-    inline YZ::Entity* createPlane(const std::string& name) {
+    inline yz::Entity* createPlane(const std::string& name) {
         LOG_FUNCTION
-        return new YZ::Entity(this->sceneManager->createEntity(name,
+        return new yz::Entity(this->sceneManager->createEntity(name,
                 Ogre::SceneManager::PT_PLANE));
     }
 
-    inline YZ::Entity* createPlane() {
+    inline yz::Entity* createPlane() {
         LOG_FUNCTION
-        return new YZ::Entity(this->sceneManager->createEntity(Ogre::SceneManager::PT_PLANE));
+        return new yz::Entity(this->sceneManager->createEntity(Ogre::SceneManager::PT_PLANE));
     }
 
-    inline YZ::Entity* createSphere(const std::string& name) {
+    inline yz::Entity* createSphere(const std::string& name) {
         LOG_FUNCTION
-        return new YZ::Entity(this->sceneManager->createEntity(name,
+        return new yz::Entity(this->sceneManager->createEntity(name,
                 Ogre::SceneManager::PT_SPHERE));
     }
 
-    YZ::Entity* createSphere(
+    yz::Entity* createSphere(
         const std::string& name,
         const int ring,
         const int segment,
         const float radius = 100.0f);
 
-    inline YZ::Entity* createSphere() {
+    inline yz::Entity* createSphere() {
         LOG_FUNCTION
-        return new YZ::Entity(this->sceneManager->createEntity(Ogre::SceneManager::PT_SPHERE));
+        return new yz::Entity(this->sceneManager->createEntity(Ogre::SceneManager::PT_SPHERE));
     }
 
     inline Ogre::SceneManager* getSceneManager() {
@@ -257,7 +257,7 @@ public:
         return this->sceneManager;
     }
 
-    inline YZ::ElectricArc* createElectricArc(
+    inline yz::ElectricArc* createElectricArc(
         const std::string& name, const Ogre::Real x, const Ogre::Real y, const Ogre::Real z,
         const Ogre::Real eX, const Ogre::Real eY, const Ogre::Real eZ, const Ogre::Real width) {
         LOG_FUNCTION
@@ -266,18 +266,18 @@ public:
     Node* end = this->createNode(name + "02");
     end->setPosition(eX, eY, eZ);
     Node* base = this->createNode(name + "03");
-    return new YZ::ElectricArc(start, end, base, name, width);
+    return new yz::ElectricArc(start, end, base, name, width);
     }
 
-    static inline YZ::SceneManager* get(const POINTER pointer) {
+    static inline yz::SceneManager* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::SceneManager*>(pointer);
+        return reinterpret_cast<yz::SceneManager*>(pointer);
     }
 
 private:
     Ogre::SceneManager* sceneManager;
     bool debug;
-    YZ::Node* rootNode;
+    yz::Node* rootNode;
 };
 }
 #endif

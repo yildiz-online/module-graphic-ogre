@@ -27,42 +27,42 @@
 
 #include "../includes/Entity.hpp"
 
-YZ::Entity::Entity(Ogre::Entity* e) : entity(e) {
+yz::Entity::Entity(Ogre::Entity* e) : entity(e) {
     LOG_FUNCTION
 }
 
-void YZ::Entity::setCustomParameters(const int index, const Ogre::Real p1,
+void yz::Entity::setCustomParameters(const int index, const Ogre::Real p1,
 			const Ogre::Real p2, const Ogre::Real p3, const Ogre::Real p4) {
     LOG_FUNCTION
 	this->entity->getSubEntity(0)->setCustomParameter(index, Ogre::Vector4(p1, p2, p3, p4));
 }
 
-void YZ::Entity::setRenderQueueGroup(const int group) {
+void yz::Entity::setRenderQueueGroup(const int group) {
     LOG_FUNCTION
     this->entity->setRenderQueueGroup(group);
 }
 
-void YZ::Entity::setQueryFlags(const int mask) {
+void yz::Entity::setQueryFlags(const int mask) {
     LOG_FUNCTION
     this->entity->setQueryFlags(mask);
 }
 
-void YZ::Entity::setCastShadows(const bool cast) {
+void yz::Entity::setCastShadows(const bool cast) {
     LOG_FUNCTION
     this->entity->setCastShadows(cast);
 }
 
-Ogre::SceneNode* YZ::Entity::getParentSceneNode() const {
+Ogre::SceneNode* yz::Entity::getParentSceneNode() const {
     LOG_FUNCTION
     return this->entity->getParentSceneNode();
 }
 
-void YZ::Entity::setMaterial(YZ::Material* material) {
+void yz::Entity::setMaterial(yz::Material* material) {
     LOG_FUNCTION
     this->entity->setMaterialName(material->getName());
 }
 
-void YZ::Entity::setRenderingDistance(const int distance) {
+void yz::Entity::setRenderingDistance(const int distance) {
     LOG_FUNCTION
     this->entity->setRenderingDistance(distance);
 }

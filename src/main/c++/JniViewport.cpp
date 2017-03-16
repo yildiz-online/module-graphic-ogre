@@ -32,7 +32,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreViewPort_enableCom
     JNIEnv* env, jobject current, POINTER pointer, jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    YZ::Viewport* vp = YZ::Viewport::get(pointer);
+    yz::Viewport* vp = yz::Viewport::get(pointer);
     vp->addCompositor(name.getValue());
 }
 
@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_ViewPort_setCamera(
     POINTER pointer,
     POINTER camPointer) {
     LOG_FUNCTION
-    YZ::Viewport* vp = YZ::Viewport::get(pointer);
-    YZ::Camera* cam = YZ::Camera::get(camPointer);
+    yz::Viewport* vp = yz::Viewport::get(pointer);
+    yz::Camera* cam = yz::Camera::get(camPointer);
     vp->setCamera(cam);
 }

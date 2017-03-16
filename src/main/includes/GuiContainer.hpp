@@ -30,7 +30,7 @@
 #include <Overlay/OgreOverlayElement.h>
 #include <Overlay/OgreOverlay.h>
 
-namespace YZ {
+namespace yz {
 
 /**
  * Wrap an Ogre::OverlayContainer.
@@ -47,10 +47,10 @@ public:
 	 * @param width Container width.
 	 * @param height Container height.
 	 */
-	GuiContainer(const std::string& name, const YZ::Material* material,
+	GuiContainer(const std::string& name, const yz::Material* material,
 			const Ogre::Real width, const Ogre::Real height);
 
-	GuiContainer(const std::string& name, const YZ::Material* material,
+	GuiContainer(const std::string& name, const yz::Material* material,
 			const Ogre::Real width, const Ogre::Real height, GuiContainer* parent);
 
 	/**
@@ -192,7 +192,7 @@ public:
 	 * Set the container background material.
 	 * @param material Material name.
 	 */
-	inline void setMaterial(const YZ::Material* material) {
+	inline void setMaterial(const yz::Material* material) {
 	    LOG_FUNCTION
 		this->container->setMaterialName(material->getName());
 	}
@@ -207,9 +207,9 @@ public:
 		}
 	}
 
-    inline static YZ::GuiContainer* get(const POINTER pointer) {
+    inline static yz::GuiContainer* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::GuiContainer*>(pointer);
+        return reinterpret_cast<yz::GuiContainer*>(pointer);
     }
 
 private:

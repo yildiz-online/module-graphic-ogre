@@ -28,7 +28,7 @@
 #include "AbstractNodeListener.hpp"
 #include <OgreNode.h>
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -52,13 +52,13 @@ namespace YZ {
             }
         }
 
-        inline void addListener(YZ::AbstractNodeListener* listener){
+        inline void addListener(yz::AbstractNodeListener* listener){
             LOG_FUNCTION
             this->listeners.push_back(listener);
         }
 
     private:
-        std::vector<YZ::AbstractNodeListener*> listeners;
+        std::vector<yz::AbstractNodeListener*> listeners;
     };
 
 }

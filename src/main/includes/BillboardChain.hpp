@@ -28,7 +28,7 @@
 #include <OgreBillboardChain.h>
 #include "Material.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -44,7 +44,7 @@ public:
         return this->chain;
     }
 
-    void setMaterial(YZ::Material* material);
+    void setMaterial(yz::Material* material);
 
     void addElement(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z, const Ogre::Real width);
 
@@ -56,9 +56,9 @@ public:
 
     void updateChainElement(const int index, Ogre::BillboardChain::Element& element);
 
-    static inline YZ::BillboardChain* get(const POINTER pointer) {
+    static inline yz::BillboardChain* get(const POINTER pointer) {
         LOG_FUNCTION
-        return reinterpret_cast<YZ::BillboardChain*>(pointer);
+        return reinterpret_cast<yz::BillboardChain*>(pointer);
     }
 
 

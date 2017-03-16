@@ -31,5 +31,5 @@
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleForceAffector_setForce
   (JNIEnv*, jobject, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
-    YZ::ParticleForceAffector::get(pointer)->setForce(x, y, z);
+    yz::ParticleForceAffector::get(pointer)->setForce(x, y, z);
   }

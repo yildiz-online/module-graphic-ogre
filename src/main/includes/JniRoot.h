@@ -33,10 +33,10 @@
 extern "C" {
 #endif
 /**
- * Build a new YZ::Root object.
+ * Build a new yz::Root object.
  * @param env JNI environment.
  * @param object Current java object making the call.
- * @return A jlong value representing the address to the object, to cast as YZ::Root* to be used.
+ * @return A jlong value representing the address to the object, to cast as yz::Root* to be used.
  */
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_constructor(
     JNIEnv* env,

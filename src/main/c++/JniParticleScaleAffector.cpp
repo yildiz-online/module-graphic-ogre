@@ -31,5 +31,5 @@
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleScaleAffector_setScale
   (JNIEnv*, jobject, POINTER pointer, jfloat width, jfloat height) {
     LOG_FUNCTION
-    YZ::ParticleScaleAffector::get(pointer)->setScale(width, height);
+    yz::ParticleScaleAffector::get(pointer)->setScale(width, height);
   }

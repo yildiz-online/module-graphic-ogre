@@ -26,7 +26,7 @@
 
 #include "stdafx.h"
 
-namespace YZ {
+namespace yz {
 
 /**
  * Abstract class for a material effect, a class extending this one is supposed to implement the execute method to cotain the effect logic to apply to the material.
@@ -41,7 +41,7 @@ public:
      * @param time Total time to execute the effect.
      * @param material Effect will be applied on this material, as every object using this material will be affected, a copy may be preferable to use.
      */
-    MaterialEffect(const float time, YZ::Material* material) {
+    MaterialEffect(const float time, yz::Material* material) {
         LOG_FUNCTION
         this->maxTime = time;
         this->elapsedTime = 0.0f;
@@ -70,7 +70,7 @@ protected:
     /**
      * Abstract method to execute the materialeffect
      */
-    virtual void execute(YZ::Material* material, const float elapsedTime) = 0;
+    virtual void execute(yz::Material* material, const float elapsedTime) = 0;
 
 private:
     float elapsedTime;
@@ -79,13 +79,13 @@ private:
     /**
      * Material to apply the effect.
      */
-    YZ::Material* material;
+    yz::Material* material;
 };
 
 class MaterialEffectFadeOut: public MaterialEffect {
 
 public:
-    MaterialEffectFadeOut(YZ::Material* material, const float time) :
+    MaterialEffectFadeOut(yz::Material* material, const float time) :
             MaterialEffect(time, material) {
         LOG_FUNCTION
         this->current = 1.0f;
@@ -93,7 +93,7 @@ public:
 
 protected:
 
-    void execute(YZ::Material* material, const float timeElapsed) {
+    void execute(yz::Material* material, const float timeElapsed) {
         LOG_FUNCTION
         //float current = this->elapsedTime / this->maxTime;
         this->current -= 0.001f;

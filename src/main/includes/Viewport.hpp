@@ -24,11 +24,11 @@
 #ifndef YZ_VIEWPORT_H
 #define YZ_VIEWPORT_H
 
-#define VIEWPORT YZ::Viewport
+#define VIEWPORT yz::Viewport
 
 #include "Camera.hpp"
 
-namespace YZ {
+namespace yz {
 
 /**
 *@author Grégory Van den Borre
@@ -42,14 +42,14 @@ class Viewport {
         * @param vp Wrapped Ogre::Viewport.
         * @param cam Associated camera.
         */
-        Viewport(Ogre::Viewport* vp, YZ::Camera* cam);
+        Viewport(Ogre::Viewport* vp, yz::Camera* cam);
         
-        void setCamera(YZ::Camera* cam);
+        void setCamera(yz::Camera* cam);
         
         void addCompositor(const std::string& name);
         
-        static inline YZ::Viewport* get(const POINTER pointer) {
-            return reinterpret_cast<YZ::Viewport*>(pointer);
+        static inline yz::Viewport* get(const POINTER pointer) {
+            return reinterpret_cast<yz::Viewport*>(pointer);
         }
 
     private:

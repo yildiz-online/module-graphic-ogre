@@ -34,7 +34,7 @@ JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass
 		JNIEnv* env, jclass,
 		POINTER pointer) {
 	LOG_FUNCTION
-	Ogre::Pass* pass = YZ::MaterialPass::get(pointer);
+	Ogre::Pass* pass = yz::MaterialPass::get(pointer);
 	int size = pass->getNumTextureUnitStates();
 	jlong* buf;
 	buf = new jlong[size];
@@ -51,7 +51,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_ge
 		POINTER pointer, jint index) {
 	LOG_FUNCTION
 	try {
-		return reinterpret_cast<POINTER>(YZ::MaterialPass::get(pointer)->getTextureUnitState(
+		return reinterpret_cast<POINTER>(yz::MaterialPass::get(pointer)->getTextureUnitState(
 				index));
 	} catch (const std::exception& e) {
 		throwException(env, e.what());
@@ -63,7 +63,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setAl
 		JNIEnv*, jobject,
 		POINTER pointer) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setSceneBlending(
+	yz::MaterialPass::get(pointer)->setSceneBlending(
 			Ogre::SBT_TRANSPARENT_ALPHA);
 }
 
@@ -71,28 +71,28 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setCo
 		JNIEnv*, jobject,
 		POINTER pointer) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setSceneBlending(Ogre::SBT_ADD);
+	yz::MaterialPass::get(pointer)->setSceneBlending(Ogre::SBT_ADD);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setEmissive(
 		JNIEnv*, jobject,
 		POINTER pointer, jfloat red, jfloat green, jfloat blue) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setSelfIllumination(red, green, blue);
+	yz::MaterialPass::get(pointer)->setSelfIllumination(red, green, blue);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_disableLight(
 		JNIEnv*, jobject,
 		POINTER pointer) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setLightingEnabled(false);
+	yz::MaterialPass::get(pointer)->setLightingEnabled(false);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_blend(
 		JNIEnv*, jobject,
 		POINTER pointer, jint blendOp) {
 	LOG_FUNCTION
-	Ogre::Pass* pass = YZ::MaterialPass::get(pointer);
+	Ogre::Pass* pass = yz::MaterialPass::get(pointer);
 	pass->setDepthWriteEnabled(false);
 	pass->setSceneBlendingOperation(
 			EnumConversion::getSceneBlendOperation(blendOp));
@@ -102,7 +102,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_compl
 		JNIEnv*, jobject,
 		POINTER pointer, jint blend, jint blend2) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setSceneBlending(
+	yz::MaterialPass::get(pointer)->setSceneBlending(
 			EnumConversion::getSceneBlendFactor(blend),
 			EnumConversion::getSceneBlendFactor(blend2));
 }
@@ -111,35 +111,35 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_cr
 		JNIEnv*, jobject,
 		POINTER pointer) {
 	LOG_FUNCTION
-	return reinterpret_cast<POINTER>(YZ::MaterialPass::get(pointer)->createTextureUnitState());
+	return reinterpret_cast<POINTER>(yz::MaterialPass::get(pointer)->createTextureUnitState());
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setDiffuse(
 		JNIEnv*, jobject,
 		POINTER pointer, jfloat r, jfloat g, jfloat b, jfloat a) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setDiffuse(r, g, b, a);
+	yz::MaterialPass::get(pointer)->setDiffuse(r, g, b, a);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setAmbient(
 		JNIEnv*, jobject,
 		POINTER pointer, jfloat r, jfloat g, jfloat b) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setAmbient(r, g, b);
+	yz::MaterialPass::get(pointer)->setAmbient(r, g, b);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_enableColor(
 		JNIEnv*, jobject,
 		POINTER pointer) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setColourWriteEnabled(true);
+	yz::MaterialPass::get(pointer)->setColourWriteEnabled(true);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_disableColor(
 		JNIEnv*, jobject,
 		POINTER pointer) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setColourWriteEnabled(false);
+	yz::MaterialPass::get(pointer)->setColourWriteEnabled(false);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgram(
@@ -147,7 +147,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVe
 		POINTER pointer, jstring jname) {
 	LOG_FUNCTION
 	JniStringWrapper name = JniStringWrapper(env, jname);
-	YZ::MaterialPass::get(pointer)->setVertexProgram(name.getValue());
+	yz::MaterialPass::get(pointer)->setVertexProgram(name.getValue());
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgram(
@@ -155,7 +155,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
 		POINTER pointer, jstring jname) {
 	LOG_FUNCTION
 	JniStringWrapper name = JniStringWrapper(env, jname);
-	YZ::MaterialPass::get(pointer)->setFragmentProgram(name.getValue());
+	yz::MaterialPass::get(pointer)->setFragmentProgram(name.getValue());
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterFloat4(
@@ -165,7 +165,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
 	LOG_FUNCTION
 	JniStringWrapper name = JniStringWrapper(env, jname);
 	Ogre::Vector4 vector = Ogre::Vector4(v1, v2, v3, v4);
-	YZ::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(
+	yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(
 			name.getValue(), vector);
 }
 
@@ -176,7 +176,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
 	LOG_FUNCTION
 	JniStringWrapper name = JniStringWrapper(env, jname);
 	Ogre::ColourValue color = Ogre::ColourValue(r, g, b, a);
-	YZ::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(
+	yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(
 			name.getValue(), color);
 }
 
@@ -185,7 +185,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
 		POINTER pointer, jstring jname, jfloat value) {
 	LOG_FUNCTION
 	JniStringWrapper name = JniStringWrapper(env, jname);
-	YZ::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(
+	yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(
 			name.getValue(), value);
 }
 
@@ -194,7 +194,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
 		POINTER pointer, jstring jname, jint autov) {
 	LOG_FUNCTION
 	JniStringWrapper name = JniStringWrapper(env, jname);
-	YZ::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedAutoConstant(
+	yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedAutoConstant(
 			name.getValue(), EnumConversion::getGpuProgramParameterAuto(autov));
 }
 
@@ -203,7 +203,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
 		POINTER pointer, jstring jname, jint autov, jint autop) {
 	LOG_FUNCTION
 	JniStringWrapper name = JniStringWrapper(env, jname);
-	YZ::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedAutoConstant(
+	yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedAutoConstant(
 			name.getValue(), EnumConversion::getGpuProgramParameterAuto(autov),
 			autop);
 }
@@ -213,7 +213,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVe
 		POINTER pointer, jstring jname, jint autov) {
 	LOG_FUNCTION
 	JniStringWrapper name = JniStringWrapper(env, jname);
-	YZ::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedAutoConstant(
+	yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedAutoConstant(
 			name.getValue(), EnumConversion::getGpuProgramParameterAuto(autov));
 }
 
@@ -222,7 +222,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVe
 		POINTER pointer, jstring jname, jint autov, jint autop) {
 	LOG_FUNCTION
 	JniStringWrapper name = JniStringWrapper(env, jname);
-	YZ::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedAutoConstant(
+	yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedAutoConstant(
 			name.getValue(), EnumConversion::getGpuProgramParameterAuto(autov),
 			autop);
 }
@@ -231,12 +231,12 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setAl
 		JNIEnv *, jobject,
 		POINTER pointer, jint value) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setAlphaRejectValue(value);
+	yz::MaterialPass::get(pointer)->setAlphaRejectValue(value);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setDepthWrite(
 		JNIEnv* env, jobject,
 		POINTER pointer, jboolean enabled) {
 	LOG_FUNCTION
-	YZ::MaterialPass::get(pointer)->setDepthWriteEnabled(enabled);
+	yz::MaterialPass::get(pointer)->setDepthWriteEnabled(enabled);
 }

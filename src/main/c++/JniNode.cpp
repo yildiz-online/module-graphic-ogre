@@ -33,7 +33,7 @@
 JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_createChild(
     JNIEnv*, jobject, POINTER pointer) {
     LOG_FUNCTION
-    return reinterpret_cast<jlong>(YZ::Node::get(pointer)->createChildNode());
+    return reinterpret_cast<jlong>(yz::Node::get(pointer)->createChildNode());
 }
 
 JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getName(
@@ -42,7 +42,7 @@ JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getName(
     POINTER pointer) {
     LOG_FUNCTION
     return env->NewStringUTF(
-    		YZ::Node::get(pointer)->getName().c_str());
+    		yz::Node::get(pointer)->getName().c_str());
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_setPosition(
@@ -53,7 +53,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_setPosition(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::Node::get(pointer)->setPosition(x, y, z);
+    yz::Node::get(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_setDirection(
@@ -64,7 +64,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_setDirection(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::Node::get(pointer)->setDirection(x, y, z);
+    yz::Node::get(pointer)->setDirection(x, y, z);
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_translate(
@@ -75,7 +75,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_transl
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    YZ::Node* node = YZ::Node::get(pointer);
+    yz::Node* node = yz::Node::get(pointer);
     node->translate(x, y, z);
     return vectorToArray(env, node->getPosition());
 }
@@ -85,7 +85,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getPos
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Node::get(pointer)->getPosition());
+    return vectorToArray(env, yz::Node::get(pointer)->getPosition());
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getDirection(
@@ -93,7 +93,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getDir
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Node::get(pointer)->getDirection());
+    return vectorToArray(env, yz::Node::get(pointer)->getDirection());
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getWorldDirection(
@@ -101,7 +101,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getWor
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Node::get(pointer)->getWorldDirection());
+    return vectorToArray(env, yz::Node::get(pointer)->getWorldDirection());
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getOrientation(
@@ -109,7 +109,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getOri
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return quaternionToArray(env, YZ::Node::get(pointer)->getOrientation());
+    return quaternionToArray(env, yz::Node::get(pointer)->getOrientation());
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_show(
@@ -117,7 +117,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_show(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Node::get(pointer)->show();
+    yz::Node::get(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_hide(
@@ -125,7 +125,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_hide(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Node::get(pointer)->hide();
+    yz::Node::get(pointer)->hide();
 }
 
 JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_rotate(
@@ -135,7 +135,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_rotate
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    return vectorToArray(env, YZ::Node::get(pointer)->rotate(x, y));
+    return vectorToArray(env, yz::Node::get(pointer)->rotate(x, y));
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_delete(
@@ -143,7 +143,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Node::get(pointer)->destroy();
+    yz::Node::get(pointer)->destroy();
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_scale(
@@ -154,7 +154,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_scale(
     jfloat scaleY,
     jfloat scaleZ) {
     LOG_FUNCTION
-    YZ::Node::get(pointer)->scale(scaleX, scaleY, scaleZ);
+    yz::Node::get(pointer)->scale(scaleX, scaleY, scaleZ);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_rotateQuaternion(
@@ -166,7 +166,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_rotateQuatern
     jfloat z,
     jfloat w) {
     LOG_FUNCTION
-    YZ::Node::get(pointer)->rotate(w, x, y, z);
+    yz::Node::get(pointer)->rotate(w, x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_attachToNode(
@@ -175,8 +175,8 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_attachToNode(
     POINTER pointer,
     POINTER otherPointer) {
     LOG_FUNCTION
-    YZ::Node* node = YZ::Node::get(pointer);
-    YZ::Node* otherNode = YZ::Node::get(otherPointer);
+    yz::Node* node = yz::Node::get(pointer);
+    yz::Node* otherNode = yz::Node::get(otherPointer);
     try {
         node->attachTo(otherNode);
     } catch (std::exception& e) {
@@ -189,7 +189,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_detachFromPar
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    YZ::Node* node = YZ::Node::get(pointer);
+    yz::Node* node = yz::Node::get(pointer);
     try {
         node->detachFromParent();
     } catch (std::exception& e) {

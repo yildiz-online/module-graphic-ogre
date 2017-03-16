@@ -28,15 +28,15 @@
 #include "../includes/OgreLogger.h"
 #include "../includes/JniUtil.h"
 
-YZ::OgreLogger::OgreLogger(JNIEnv *env) : env(env){
+yz::OgreLogger::OgreLogger(JNIEnv *env) : env(env){
     LOG_FUNCTION
 }
 
-YZ::OgreLogger::~OgreLogger()
+yz::OgreLogger::~OgreLogger()
 {
     LOG_FUNCTION
 }
 
-void YZ::OgreLogger::messageLogged(const Ogre::String&, Ogre::LogMessageLevel, bool, const Ogre::String&) {
+void yz::OgreLogger::messageLogged(const Ogre::String&, Ogre::LogMessageLevel, bool, const Ogre::String&) {
     LOG_FUNCTION
 }

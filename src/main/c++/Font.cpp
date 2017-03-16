@@ -27,7 +27,7 @@
 
 #include "../includes/Font.hpp"
 
-YZ::Font::Font(const std::string& name, const std::string& path, const Ogre::Real size) {
+yz::Font::Font(const std::string& name, const std::string& path, const Ogre::Real size) {
     LOG_FUNCTION
     this->font = Ogre::FontManager::getSingleton().create(name, "General").getPointer();
     this->font->setType(Ogre::FT_TRUETYPE);
@@ -38,17 +38,17 @@ YZ::Font::Font(const std::string& name, const std::string& path, const Ogre::Rea
     this->font->load();
 }
 
-Ogre::Real YZ::Font::getTrueTypeSize() const {
+Ogre::Real yz::Font::getTrueTypeSize() const {
     LOG_FUNCTION
     return this->font->getTrueTypeSize();
 }
 
-Ogre::Real YZ::Font::getGlyphAspectRatio(const int index) const {
+Ogre::Real yz::Font::getGlyphAspectRatio(const int index) const {
     LOG_FUNCTION
     return this->font->getGlyphAspectRatio(index);
 }
 
-void YZ::Font::load() {
+void yz::Font::load() {
     LOG_FUNCTION
     this->font->load(true);
 }

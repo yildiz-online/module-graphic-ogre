@@ -34,7 +34,7 @@ import be.yildiz.module.graphic.ParticleForceAffector;
 final class OgreParticleForceAffector extends ParticleForceAffector {
 
     /**
-     * Native pointer for the YZ::ParticleForceAffector.
+     * Native pointer for the yz::ParticleForceAffector.
      */
     private final NativePointer pointer;
 
@@ -56,7 +56,7 @@ final class OgreParticleForceAffector extends ParticleForceAffector {
     /**
      * Set the force in native code.
      *
-     * @param pointerAddress Address to the native YZ::ParticleForceAffector.
+     * @param pointerAddress Address to the native yz::ParticleForceAffector.
      * @param x              X axis force strength.
      * @param y              Y axis force strength.
      * @param z              Z axis force strength.

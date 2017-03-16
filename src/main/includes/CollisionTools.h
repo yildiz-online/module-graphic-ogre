@@ -39,7 +39,7 @@ THE SOFTWARE.
 
 
 
-namespace YZ {
+namespace yz {
 
 class CollisionTools {
 

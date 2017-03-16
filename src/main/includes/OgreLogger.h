@@ -27,7 +27,7 @@
 #include "stdafx.h"
 #include <jni.h>
 
-namespace YZ {
+namespace yz {
 	
 	/**
 	*@author Grégory Van den Borre

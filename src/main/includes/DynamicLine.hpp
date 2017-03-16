@@ -37,7 +37,7 @@ class DynamicLines : public DynamicRenderable {
     typedef Ogre::Quaternion Quaternion;
     typedef Ogre::Camera Camera;
 public:
-    DynamicLines(YZ::Node* node, Ogre::RenderOperation::OperationType opType=Ogre::RenderOperation::OT_LINE_STRIP);
+    DynamicLines(yz::Node* node, Ogre::RenderOperation::OperationType opType=Ogre::RenderOperation::OT_LINE_STRIP);
 
     virtual ~DynamicLines();
 
@@ -71,7 +71,7 @@ public:
         this->node->hide();
     }
 
-    void setMaterial(YZ::Material* material) {
+    void setMaterial(yz::Material* material) {
         LOG_FUNCTION
       //  this->setMaterialName(material->getName());
     }
@@ -94,7 +94,7 @@ private:
 
     bool mDirty;
 
-    YZ::Node* node;
+    yz::Node* node;
 
 };
 

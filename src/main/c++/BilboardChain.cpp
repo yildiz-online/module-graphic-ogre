@@ -27,18 +27,18 @@
 
 #include "../includes/BillboardChain.hpp"
 
-std::list<YZ::BillboardChain*>YZ::BillboardChain::instanceList;
+std::list<yz::BillboardChain*>yz::BillboardChain::instanceList;
 
-YZ::BillboardChain::BillboardChain(const std::string& name) : AbstractMovable() {
+yz::BillboardChain::BillboardChain(const std::string& name) : AbstractMovable() {
     LOG_FUNCTION
     this->chain = new Ogre::BillboardChain(name);
     this->chain->setUseVertexColours(true);
     instanceList.push_back(this);
 }
 
-YZ::BillboardChain::~BillboardChain() {
+yz::BillboardChain::~BillboardChain() {
     LOG_FUNCTION
-    std::list<YZ::BillboardChain*>::iterator p = find(instanceList.begin(), instanceList.end(), this);
+    std::list<yz::BillboardChain*>::iterator p = find(instanceList.begin(), instanceList.end(), this);
     if(p != instanceList.end()){
         instanceList.erase(p);
     }
@@ -48,26 +48,26 @@ YZ::BillboardChain::~BillboardChain() {
 }
 
 
-void YZ::BillboardChain::setMaterial(YZ::Material* material) {
+void yz::BillboardChain::setMaterial(yz::Material* material) {
     LOG_FUNCTION
     this->chain->setMaterialName(material->getName());
 }
 
-void YZ::BillboardChain::addElement(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z, const Ogre::Real width) {
+void yz::BillboardChain::addElement(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z, const Ogre::Real width) {
     LOG_FUNCTION
     this->chain->addChainElement(0,
             Ogre::BillboardChain::Element(Ogre::Vector3(x, y, z), width, 0,
                     Ogre::ColourValue::White, Ogre::Quaternion::IDENTITY));
 }
 
-void YZ::BillboardChain::addElement(Ogre::Vector3& pos, const Ogre::Real width) {
+void yz::BillboardChain::addElement(Ogre::Vector3& pos, const Ogre::Real width) {
     LOG_FUNCTION
     this->chain->addChainElement(0,
             Ogre::BillboardChain::Element(pos, width, 0,
                     Ogre::ColourValue::White, Ogre::Quaternion::IDENTITY));
 }
 
-void YZ::BillboardChain::setElementPosition(const int index, const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
+void yz::BillboardChain::setElementPosition(const int index, const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
     LOG_FUNCTION
     Ogre::BillboardChain::Element e = chain->getChainElement(0, index);
     e.position.x = x;
@@ -76,12 +76,12 @@ void YZ::BillboardChain::setElementPosition(const int index, const Ogre::Real x,
     this->chain->updateChainElement(0, index, e);
 }
 
-Ogre::BillboardChain::Element YZ::BillboardChain::getChainElement(const int index) {
+Ogre::BillboardChain::Element yz::BillboardChain::getChainElement(const int index) {
     LOG_FUNCTION
     return this->chain->getChainElement(0,index);
 }
 
-void YZ::BillboardChain::updateChainElement(const int index, Ogre::BillboardChain::Element& element) {
+void yz::BillboardChain::updateChainElement(const int index, Ogre::BillboardChain::Element& element) {
     LOG_FUNCTION
     this->chain->updateChainElement(0, index, element);
 }

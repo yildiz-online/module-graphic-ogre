@@ -27,10 +27,10 @@
 
 #include "../includes/ElectricArc.hpp"
 
-YZ::ElectricArc::ElectricArc(
-    YZ::Node* startNode,
-    YZ::Node* endNode,
-    YZ::Node* baseNode,
+yz::ElectricArc::ElectricArc(
+    yz::Node* startNode,
+    yz::Node* endNode,
+    yz::Node* baseNode,
     const std::string& name,
     const Ogre::Real width) : start(startNode), end(endNode), base(baseNode) {
     LOG_FUNCTION
@@ -39,7 +39,7 @@ YZ::ElectricArc::ElectricArc(
 
     const Ogre::Vector3 distance = this->endPosition - this->startPosition;
 
-    this->chain = new YZ::BillboardChain(name);
+    this->chain = new yz::BillboardChain(name);
 
     this->base->attachObject(this->chain);
 
@@ -58,7 +58,7 @@ YZ::ElectricArc::ElectricArc(
     this->hasLight = false;
 }
 
-void YZ::ElectricArc::addLight(YZ::PointLight* light) {
+void yz::ElectricArc::addLight(yz::PointLight* light) {
     LOG_FUNCTION
     if (!this->hasLight) {
         this->light = light;
@@ -66,11 +66,11 @@ void YZ::ElectricArc::addLight(YZ::PointLight* light) {
     }
 }
 
-YZ::ElectricArc::~ElectricArc() {
+yz::ElectricArc::~ElectricArc() {
     LOG_FUNCTION
 }
 
-bool YZ::ElectricArc::frameStarted(const Ogre::FrameEvent& evt) {
+bool yz::ElectricArc::frameStarted(const Ogre::FrameEvent& evt) {
     LOG_FUNCTION
     bool rd = rand() % 2 == 0;
     if(this->hasLight) {

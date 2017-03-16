@@ -12,12 +12,12 @@
 #ifndef __include_MovableText_H__
 #define __include_MovableText_H__
 
-#define MOVABLETEXT YZ::MovableText
+#define MOVABLETEXT yz::MovableText
 
 #include "stdafx.h"
 #include "Font.hpp"
 
-namespace YZ {
+namespace yz {
 
 class MovableText: public Ogre::MovableObject, public Ogre::Renderable {
 public:
@@ -57,7 +57,7 @@ private:
 
     Ogre::Camera *mpCam;
     Ogre::RenderWindow *mpWin;
-    YZ::Font *mpFont;
+    yz::Font *mpFont;
     Ogre::MaterialPtr mpMaterial;
     Ogre::MaterialPtr mpBackgroundMaterial;
 
@@ -66,7 +66,7 @@ public:
     MovableText(
         const std::string& name,
         const std::string& caption,
-        YZ::Font* font,
+        yz::Font* font,
         const Ogre::Real charHeight,
         const Ogre::ColourValue &color = Ogre::ColourValue::White);
 
@@ -78,7 +78,7 @@ public:
         bool debugRenderables = false);
 
     // Set settings
-    void setFont(YZ::Font* font);
+    void setFont(yz::Font* font);
     void setCaption(const std::string &caption);
     void setColor(
         const Ogre::Real r,
