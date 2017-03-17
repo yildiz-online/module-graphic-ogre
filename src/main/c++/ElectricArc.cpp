@@ -50,7 +50,7 @@ yz::ElectricArc::ElectricArc(
     for (int i = 0; i < MAX_STEP; ++i) {
         this->chain->addElement(elementPosition, elementWidth);
         elementPosition += step;
-        elementWidth += width * 0.16f;
+        elementWidth += width * 0.16F;
     }
     Ogre::Root::getSingleton().addFrameListener(this);
     this->ceil = 10;

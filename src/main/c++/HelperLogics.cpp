@@ -96,7 +96,7 @@ HeatVisionListener::HeatVisionListener()
 {
     LOG_FUNCTION
 	timer = new Ogre::Timer();
-    start = end = curr = 0.0f;
+    start = end = curr = 0.0F;
 }
 //---------------------------------------------------------------------------
 HeatVisionListener::~HeatVisionListener()
@@ -180,10 +180,10 @@ void HDRListener::notifyCompositor(Ogre::CompositorInstance* instance)
 			float texelSize = 1.0f / (float)mBloomSize;
 
 			// central sample, no offset
-			mBloomTexOffsetsHorz[0][0] = 0.0f;
-			mBloomTexOffsetsHorz[0][1] = 0.0f;
-			mBloomTexOffsetsVert[0][0] = 0.0f;
-			mBloomTexOffsetsVert[0][1] = 0.0f;
+			mBloomTexOffsetsHorz[0][0] = 0.0F;
+			mBloomTexOffsetsHorz[0][1] = 0.0F;
+			mBloomTexOffsetsVert[0][0] = 0.0F;
+			mBloomTexOffsetsVert[0][1] = 0.0F;
 			mBloomTexWeights[0][0] = mBloomTexWeights[0][1] =
 				mBloomTexWeights[0][2] = Ogre::Math::gaussianDistribution(0, 0, deviation);
 			mBloomTexWeights[0][3] = 1.0f;
@@ -282,14 +282,14 @@ void GaussianListener::notifyViewportSize(int width, int height)
 	mVpWidth = width;
 	mVpHeight = height;
 	// Calculate gaussian texture offsets & weights
-	float deviation = 3.0f;
-	float texelSize = 1.0f / (float)std::min(mVpWidth, mVpHeight);
+	float deviation = 3.0F;
+	float texelSize = 1.0F / (float)std::min(mVpWidth, mVpHeight);
 
 	// central sample, no offset
-	mBloomTexOffsetsHorz[0][0] = 0.0f;
-	mBloomTexOffsetsHorz[0][1] = 0.0f;
-	mBloomTexOffsetsVert[0][0] = 0.0f;
-	mBloomTexOffsetsVert[0][1] = 0.0f;
+	mBloomTexOffsetsHorz[0][0] = 0.0F;
+	mBloomTexOffsetsHorz[0][1] = 0.0F;
+	mBloomTexOffsetsVert[0][0] = 0.0F;
+	mBloomTexOffsetsVert[0][1] = 0.0F;
 	mBloomTexWeights[0][0] = mBloomTexWeights[0][1] =
 		mBloomTexWeights[0][2] = Ogre::Math::gaussianDistribution(0, 0, deviation);
 	mBloomTexWeights[0][3] = 1.0f;
@@ -299,10 +299,10 @@ void GaussianListener::notifyViewportSize(int width, int height)
 	{
 		mBloomTexWeights[i][0] = mBloomTexWeights[i][1] =
 			mBloomTexWeights[i][2] = Ogre::Math::gaussianDistribution(i, 0, deviation);
-		mBloomTexWeights[i][3] = 1.0f;
+		mBloomTexWeights[i][3] = 1.0F;
 		mBloomTexOffsetsHorz[i][0] = i * texelSize;
-		mBloomTexOffsetsHorz[i][1] = 0.0f;
-		mBloomTexOffsetsVert[i][0] = 0.0f;
+		mBloomTexOffsetsHorz[i][1] = 0.0F;
+		mBloomTexOffsetsVert[i][0] = 0.0F;
 		mBloomTexOffsetsVert[i][1] = i * texelSize;
 	}
 	// 'post' samples
@@ -310,11 +310,11 @@ void GaussianListener::notifyViewportSize(int width, int height)
 	{
 		mBloomTexWeights[i][0] = mBloomTexWeights[i][1] =
 			mBloomTexWeights[i][2] = mBloomTexWeights[i - 7][0];
-		mBloomTexWeights[i][3] = 1.0f;
+		mBloomTexWeights[i][3] = 1.0F;
 
 		mBloomTexOffsetsHorz[i][0] = -mBloomTexOffsetsHorz[i - 7][0];
-		mBloomTexOffsetsHorz[i][1] = 0.0f;
-		mBloomTexOffsetsVert[i][0] = 0.0f;
+		mBloomTexOffsetsHorz[i][1] = 0.0F;
+		mBloomTexOffsetsVert[i][0] = 0.0F;
 		mBloomTexOffsetsVert[i][1] = -mBloomTexOffsetsVert[i - 7][1];
 	}
 }
