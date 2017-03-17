@@ -39,7 +39,7 @@ class SelectionRectangle {
 
         SelectionRectangle(yz::Material* material, yz::Material* content);
         void hide();
-        void update(const Ogre::Real, const Ogre::Real, const Ogre::Real, const Ogre::Real);
+        void update(const Ogre::Real x1, const Ogre::Real y1, const Ogre::Real x2, const Ogre::Real y2);
 
         static inline yz::SelectionRectangle* get(const POINTER pointer) {
             LOG_FUNCTION

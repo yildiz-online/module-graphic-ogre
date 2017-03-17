@@ -52,9 +52,6 @@ yz::MovableText::~MovableText() {
     LOG_FUNCTION
 	if (this->mRenderOp.vertexData)
 		delete this->mRenderOp.vertexData;
-	// May cause crashing... check this and comment if it does
-//    if (!mpMaterial.isNull())
-//        Ogre::MaterialManager::getSingletonPtr()->remove(mpMaterial->getName());
 }
 
 void yz::MovableText::setFont(yz::Font* font) {
@@ -112,7 +109,8 @@ void yz::MovableText::setColor(const Ogre::Real r, const Ogre::Real g,
 
 void yz::MovableText::setCharacterHeight(const Ogre::Real height) {
     LOG_FUNCTION
-	if (height != mCharHeight) {
+    Ogre::Real r = height - mCharHeight;
+	if (r > 0.001F || r < - 0.001F) {
 		mCharHeight = height;
 		mNeedUpdate = true;
 	}
@@ -120,7 +118,8 @@ void yz::MovableText::setCharacterHeight(const Ogre::Real height) {
 
 void yz::MovableText::setSpaceWidth(const Ogre::Real width) {
     LOG_FUNCTION
-	if (width != mSpaceWidth) {
+    Ogre::Real r = width - mSpaceWidth;
+	if (r > 0.001F || r < - 0.001F) {
 		mSpaceWidth = width;
 		mNeedUpdate = true;
 	}
@@ -232,7 +231,7 @@ void yz::MovableText::_setupGeometry() {
 
 	float spaceWidth = mSpaceWidth;
 	// Derive space width from a capital A
-	if (spaceWidth == 0)
+	if (spaceWidth < 0.001F)
 		spaceWidth = mpFont->getGlyphAspectRatio('A') * mCharHeight * 2.0;
 
 	// for calculation of AABB
@@ -244,7 +243,7 @@ void yz::MovableText::_setupGeometry() {
 	std::string::iterator i, iend;
 	iend = mCaption.end();
 	bool newLine = true;
-	Ogre::Real len = 0.0f;
+	Ogre::Real len = 0.0F;
 
 	Ogre::Real verticalOffset = 0;
 	switch (mVerticalAlignment) {

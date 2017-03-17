@@ -27,11 +27,10 @@ using namespace Ogre;
 enum { POSITION_BINDING, TEXCOORD_BINDING };
 
 
-DynamicLines::DynamicLines(yz::Node* node, Ogre::RenderOperation::OperationType opType) {
+DynamicLines::DynamicLines(yz::Node* node, Ogre::RenderOperation::OperationType opType) : node(node){
     LOG_FUNCTION
     initialize(opType,false);
     mDirty = true;
-    this->node = node;
     this->node->addManualMovable(this);
     this->addPoint(0, 0, 0);
     this->addPoint(0, 0, 0);
