@@ -45,9 +45,8 @@ public:
 		this->material = Ogre::MaterialManager::getSingleton().create(name, "General").getPointer();
 	}
 
-    Material(Ogre::Material* m) {
+    Material(Ogre::Material* m) : material(m){
         LOG_FUNCTION
-		this->material = m;
 	}
 
 	inline const std::string& getName() const {

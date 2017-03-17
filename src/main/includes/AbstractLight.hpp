@@ -89,12 +89,13 @@ public:
         return this->light;
     }
 
+protected:
+    Ogre::Light* light;
+
 private:
 
     Ogre::SceneManager* creator;
 
-protected:
-    Ogre::Light* light;
 };
 
 }

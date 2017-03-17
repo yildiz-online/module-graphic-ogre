@@ -35,9 +35,8 @@ namespace yz {
 class DummyGroundCamListener: public yz::AbstractCameraListener {
 public:
 
-    DummyGroundCamListener(yz::Node* node) {
+    DummyGroundCamListener(yz::Node* node) : node(node) {
         LOG_FUNCTION
-        this->node = node;
     }
     virtual ~DummyGroundCamListener();
 

@@ -44,9 +44,8 @@ namespace yz {
 class ParticleSystem: public AbstractMovable {
 
 public:
-	ParticleSystem(Ogre::ParticleSystem* wrappedSystem) {
+	ParticleSystem(Ogre::ParticleSystem* wrappedSystem) : system(wrappedSystem) {
 	    LOG_FUNCTION
-		this->system = wrappedSystem;
 	}
 
 	inline void keepInLocalSpace(bool keep) {

@@ -33,9 +33,8 @@ namespace yz {
 	*/
 class Planet {
 public:
-    Planet(yz::Node* node) {
+    Planet(yz::Node* node) : node(node){
         LOG_FUNCTION
-        this->node = node;
     }
 
     ~Planet() {

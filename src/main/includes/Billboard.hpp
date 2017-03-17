@@ -35,9 +35,8 @@ namespace yz {
 class Billboard  {
 public:
 
-    Billboard(Ogre::Billboard* billboard) {
+    Billboard(Ogre::Billboard* billboard) : billboard(billboard) {
         LOG_FUNCTION
-        this->billboard = billboard;
     }
 
     inline void setDimensions(const Ogre::Real width, const Ogre::Real height) {
