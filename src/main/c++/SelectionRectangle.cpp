@@ -34,7 +34,7 @@ yz::SelectionRectangle::SelectionRectangle(yz::Material* material, yz::Material*
     Ogre::Overlay* o = manager.create("selection_rectangle");
     
     o->show();
-    Ogre::OverlayContainer* c = reinterpret_cast<Ogre::OverlayContainer*>(
+    Ogre::OverlayContainer* c = static_cast<Ogre::OverlayContainer*>(
     manager.createOverlayElement("Panel", "selectionRectangle", false));
     
     o->setZOrder(650);

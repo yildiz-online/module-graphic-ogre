@@ -31,7 +31,7 @@ yz::GuiContainer::GuiContainer(const std::string& name, const yz::Material* mate
     LOG_FUNCTION
     this->overlay = Ogre::OverlayManager::getSingleton().create(name);
     this->overlay->show();
-	this->container = reinterpret_cast<Ogre::OverlayContainer*>(
+	this->container = static_cast<Ogre::OverlayContainer*>(
     Ogre::OverlayManager::getSingleton().createOverlayElement("Panel", name, false));
 	this->container->setMetricsMode(Ogre::GMM_PIXELS);
     this->container->setDimensions(width, height);
@@ -43,7 +43,7 @@ yz::GuiContainer::GuiContainer(const std::string& name, const yz::Material* mate
 yz::GuiContainer::GuiContainer(const std::string& name, const yz::Material* material, const Ogre::Real width, const Ogre::Real height, yz::GuiContainer* parent) {
     LOG_FUNCTION
     this->overlay = parent->overlay;
-    this->container = reinterpret_cast<Ogre::OverlayContainer*>(
+    this->container = static_cast<Ogre::OverlayContainer*>(
     Ogre::OverlayManager::getSingleton().createOverlayElement("Panel", name, false));
 	this->container->setMetricsMode(Ogre::GMM_PIXELS);
     this->container->setDimensions(width, height);

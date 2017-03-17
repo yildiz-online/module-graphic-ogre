@@ -29,7 +29,7 @@
 
 yz::GuiText::GuiText(yz::GuiContainer* container, const std::string& name) {
     LOG_FUNCTION
-    this->text = reinterpret_cast<Ogre::TextAreaOverlayElement*>(
+    this->text = static_cast<Ogre::TextAreaOverlayElement*>(
                                           Ogre::OverlayManager::getSingleton()
                                           .createOverlayElement("TextArea",name ,false));
     this->text->setMetricsMode(Ogre::GMM_PIXELS);
