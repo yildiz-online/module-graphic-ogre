@@ -30,7 +30,6 @@ import be.yildiz.module.graphic.BaseGraphicObject;
 import be.yildiz.module.graphic.ClientGameEntity;
 import be.yildiz.module.graphic.GraphicMovable;
 import be.yildiz.module.graphic.Material;
-import lombok.Getter;
 
 /**
  * Common code for all Ogre Bullet objects.
@@ -60,18 +59,15 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
     /**
      * Object position.
      */
-    @Getter
     private Point3D position;
     /**
      * Object direction.
      */
-    @Getter
     private Point3D direction;
 
     /**
      * Current scale factor.
      */
-    @Getter
     private Point3D scaleSize = new Point3D(1);
 
     /**
@@ -215,6 +211,21 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
     @Override
     public final OgreNode getNode() {
         return this.node;
+    }
+
+    @Override
+    public Point3D getPosition() {
+        return position;
+    }
+
+    @Override
+    public Point3D getDirection() {
+        return direction;
+    }
+
+    @Override
+    public Point3D getScaleSize() {
+        return scaleSize;
     }
 
     /**

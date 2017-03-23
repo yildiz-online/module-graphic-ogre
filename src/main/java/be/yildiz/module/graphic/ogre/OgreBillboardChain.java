@@ -28,7 +28,6 @@ import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.BillboardChain;
 import be.yildiz.module.graphic.Material;
-import lombok.Getter;
 
 /**
  * Ogre implementation for a BillboardChain.
@@ -40,7 +39,6 @@ final class OgreBillboardChain implements BillboardChain, Native {
     /**
      * Pointer address to the native code object.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -99,6 +97,11 @@ final class OgreBillboardChain implements BillboardChain, Native {
     @Override
     public void start() {
         // TODO Auto-generated method stub
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

@@ -34,7 +34,6 @@ import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.AbstractCamera;
 import be.yildiz.module.graphic.LensFlare;
 import be.yildiz.module.graphic.Node;
-import lombok.Getter;
 
 import java.util.List;
 import java.util.Optional;
@@ -61,7 +60,6 @@ final class OgreCamera extends AbstractCamera implements Native {
     /**
      * Pointer address to the native code object.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -235,6 +233,11 @@ final class OgreCamera extends AbstractCamera implements Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

@@ -26,28 +26,29 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.Material;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * Associated to an Ogre:Entity.
  *
  * @author Grégory Van den Borre
  */
-@AllArgsConstructor
 public final class OgreEntity implements Native {
 
     /**
      * Pointer address to the native code Ogre::Entity.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
      * Associated ogre node.
      */
-    @Getter
     private final OgreNode node;
+
+    public OgreEntity(NativePointer pointer, OgreNode node) {
+        super();
+        this.pointer = pointer;
+        this.node = node;
+    }
 
     /**
      * Set the material to this 3d object.
@@ -114,6 +115,15 @@ public final class OgreEntity implements Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
+    }
+
+    public OgreNode getNode() {
+        return node;
     }
 
     /**

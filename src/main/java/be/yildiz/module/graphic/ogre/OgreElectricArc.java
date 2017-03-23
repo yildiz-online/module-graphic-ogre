@@ -29,7 +29,6 @@ import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.ElectricArc;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.PointLight;
-import lombok.Getter;
 
 /**
  * Ogre implementation for ElectricArc.
@@ -41,7 +40,6 @@ final class OgreElectricArc extends ElectricArc implements Native {
     /**
      * Native pointer.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -78,6 +76,11 @@ final class OgreElectricArc extends ElectricArc implements Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

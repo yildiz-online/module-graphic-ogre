@@ -29,7 +29,6 @@ import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.Billboard;
 import be.yildiz.module.graphic.BillboardSet;
-import lombok.Getter;
 
 /**
  * Ogre implementation for a BillBoardSet.
@@ -41,7 +40,6 @@ final class OgreBillboardSet extends BillboardSet implements Native {
     /**
      * Pointer address to the native code object.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -85,6 +83,11 @@ final class OgreBillboardSet extends BillboardSet implements Native {
     @Override
     protected void showImpl() {
         this.show(this.pointer.getPointerAddress());
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

@@ -25,7 +25,6 @@ package be.yildiz.module.window.swt;
 
 import be.yildiz.common.Color;
 import be.yildiz.common.collections.Maps;
-import lombok.Getter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackListener;
@@ -49,7 +48,6 @@ public final class SwtWindowHelper {
      */
     private final Display display;
 
-    @Getter
     private final Shell shell;
 
     /**
@@ -189,6 +187,10 @@ public final class SwtWindowHelper {
      */
     void execute(final Runnable r) {
         this.display.syncExec(r);
+    }
+
+    public Shell getShell() {
+        return shell;
     }
 
     public enum ColorValue {
