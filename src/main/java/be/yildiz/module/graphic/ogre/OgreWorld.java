@@ -30,7 +30,6 @@ import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.ClientGameEntity;
 import be.yildiz.module.graphic.ClientWorld;
 import be.yildiz.module.graphic.Material;
-import lombok.Getter;
 
 import java.security.InvalidParameterException;
 
@@ -46,7 +45,6 @@ public final class OgreWorld extends AbstractOgreWorld implements ClientWorld {
      */
     private final OgreSceneManager sceneManager;
 
-    @Getter
     private boolean debug;
 
     /**
@@ -105,6 +103,11 @@ public final class OgreWorld extends AbstractOgreWorld implements ClientWorld {
     @Override
     public void serializeShapeFromMesh(final String mesh, final String file, final String name) {
         throw new InvalidParameterException();
+    }
+
+    @Override
+    public boolean isDebug() {
+        return debug;
     }
 
     /**

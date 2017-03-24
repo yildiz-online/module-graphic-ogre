@@ -25,8 +25,6 @@ package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
-import lombok.AccessLevel;
-import lombok.Getter;
 
 /**
  * A ViewPort is the display associated to a camera.
@@ -38,13 +36,11 @@ final class ViewPort implements Native {
     /**
      * Pointer for the native object.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
      * Associated camera.
      */
-    @Getter(value = AccessLevel.PACKAGE)
     private OgreCamera camera;
 
     /**
@@ -82,6 +78,15 @@ final class ViewPort implements Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
+    }
+
+    OgreCamera getCamera() {
+        return camera;
     }
 
     /**

@@ -27,7 +27,6 @@ import be.yildiz.common.Color;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.TextureUnit;
-import lombok.Getter;
 
 /**
  * Ogre implementation for a texture unit.
@@ -39,7 +38,6 @@ final class OgreTextureUnit extends TextureUnit implements Native {
     /**
      * Pointer for the native object.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -104,6 +102,11 @@ final class OgreTextureUnit extends TextureUnit implements Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

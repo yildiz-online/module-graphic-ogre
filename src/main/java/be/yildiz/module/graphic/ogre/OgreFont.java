@@ -27,7 +27,6 @@ import be.yildiz.common.Color;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.Font;
-import lombok.Getter;
 
 /**
  * Ogre implementation for a font.
@@ -39,7 +38,6 @@ final class OgreFont extends Font implements Native {
     /**
      * Pointer address to the native object.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -69,6 +67,11 @@ final class OgreFont extends Font implements Native {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
         // FIXME remove from registerer
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

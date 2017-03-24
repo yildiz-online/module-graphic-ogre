@@ -27,7 +27,6 @@ import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.DirectionalLight;
-import lombok.Getter;
 
 /**
  * Ogre implementation for directional light.
@@ -39,7 +38,6 @@ final class OgreDirectionalLight extends DirectionalLight implements Native {
     /**
      * Pointer address to the native code object.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -63,6 +61,11 @@ final class OgreDirectionalLight extends DirectionalLight implements Native {
     protected void deleteImpl() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

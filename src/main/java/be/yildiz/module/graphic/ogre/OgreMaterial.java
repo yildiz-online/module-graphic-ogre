@@ -28,7 +28,6 @@ import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.*;
 import be.yildiz.module.graphic.MaterialEffect.EffectType;
-import lombok.Getter;
 
 import java.util.List;
 
@@ -42,7 +41,6 @@ final class OgreMaterial extends Material implements Native {
     /**
      * Pointer address to the associated Ogre::Material.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -127,6 +125,11 @@ final class OgreMaterial extends Material implements Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

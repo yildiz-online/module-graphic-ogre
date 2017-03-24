@@ -37,8 +37,6 @@ import be.yildiz.module.graphic.Shader.ShaderType;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.window.WindowEngine;
 import be.yildiz.module.window.WindowHandle;
-import lombok.Getter;
-import lombok.NonNull;
 
 import java.io.File;
 
@@ -59,7 +57,6 @@ public final class OgreGraphicEngine implements GraphicEngine {
      */
     private final RenderWindow renderWindow;
 
-    @Getter
     private final OgreGuiBuilder guiBuilder;
     /**
      * Screen size.
@@ -203,8 +200,11 @@ public final class OgreGraphicEngine implements GraphicEngine {
     }
 
     @Override
-    public Font createFont(@NonNull String name, @NonNull String path, int size, @NonNull Color color) {
+    public Font createFont(String name, String path, int size, Color color) {
         Checker.exceptionNotGreaterThanZero(size);
+        assert name != null;
+        assert path != null;
+        assert  color != null;
         OgreFont font = new OgreFont(name, path, size, color);
         font.load();
         return font;
@@ -239,5 +239,10 @@ public final class OgreGraphicEngine implements GraphicEngine {
     @Override
     public WindowEngine getWindowEngine() {
         return this.windowEngine;
+    }
+
+    @Override
+    public OgreGuiBuilder getGuiBuilder() {
+        return guiBuilder;
     }
 }

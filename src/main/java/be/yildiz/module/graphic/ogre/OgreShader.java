@@ -26,7 +26,6 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.Shader;
-import lombok.Getter;
 
 /**
  * Ogre implementation for a shader.
@@ -38,7 +37,6 @@ final class OgreShader extends Shader implements Native {
     /**
      * Native pointer.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -61,6 +59,11 @@ final class OgreShader extends Shader implements Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

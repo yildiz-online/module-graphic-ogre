@@ -29,7 +29,6 @@ import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.common.vector.Quaternion;
 import be.yildiz.module.graphic.Node;
-import lombok.Getter;
 
 /**
  * Java part for the yz::Node.
@@ -41,13 +40,11 @@ public final class OgreNode extends Node implements Native {
     /**
      * Pointer address to the associated yz::Node.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
      * Name specified in native code.
      */
-    @Getter
     private final String name;
 
     /**
@@ -158,6 +155,15 @@ public final class OgreNode extends Node implements Native {
     public Quaternion getOrientation() {
         float[] v = this.getOrientation(this.pointer.getPointerAddress());
         return new Quaternion(v[0], v[1], v[2], v[3]);
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

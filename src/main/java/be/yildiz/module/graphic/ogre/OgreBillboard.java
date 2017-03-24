@@ -28,22 +28,23 @@ import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.Billboard;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * Ogre implementation for a BillBoard.
  *
  * @author Grégory Van den Borre
  */
-@AllArgsConstructor
 final class OgreBillboard extends Billboard implements Native {
 
     /**
      * Pointer address to the native code object.
      */
-    @Getter
     private final NativePointer pointer;
+
+    public OgreBillboard(NativePointer pointer) {
+        super();
+        this.pointer = pointer;
+    }
 
     @Override
     protected void setSizeImpl(final float width, final float height) {
@@ -64,6 +65,11 @@ final class OgreBillboard extends Billboard implements Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

@@ -27,7 +27,6 @@ import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.LensFlare;
-import lombok.Getter;
 
 /**
  * Ogre implementation for a LensFalre.
@@ -39,7 +38,6 @@ final class OgreLensFlare extends LensFlare implements Native {
     /**
      * Pointer address to the native code yz::LensFlare.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -72,6 +70,11 @@ final class OgreLensFlare extends LensFlare implements Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

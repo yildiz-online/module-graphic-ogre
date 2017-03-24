@@ -35,7 +35,6 @@ import be.yildiz.common.util.StringUtil;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.*;
 import be.yildiz.module.graphic.GraphicEngine.ShadowType;
-import lombok.Getter;
 
 /**
  * Java part of the yz::SceneManager.
@@ -62,7 +61,6 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Pointer address to the associated yz::SceneManager*.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -422,6 +420,11 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**

@@ -30,7 +30,6 @@ import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.AbstractIconElement;
 import be.yildiz.module.graphic.gui.Element;
 import be.yildiz.module.graphic.gui.GuiContainer;
-import lombok.Getter;
 
 /**
  * Ogre implementation for an icon element.
@@ -42,7 +41,6 @@ final class OgreIcon extends AbstractIconElement implements Native {
     /**
      * Pointer address to the associated yz::GuiIcon*.
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -106,6 +104,11 @@ final class OgreIcon extends AbstractIconElement implements Native {
     @Override
     protected void setMaterialImpl(final Material material) {
         this.setTexture(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 
     /**
