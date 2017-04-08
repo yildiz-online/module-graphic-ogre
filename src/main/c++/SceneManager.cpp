@@ -27,7 +27,7 @@
 
 #include "../includes/SceneManager.hpp"
 
-yz::SceneManager::SceneManager(Ogre::SceneManager* manager) : sceneManager(sceneManager) {
+yz::SceneManager::SceneManager(Ogre::SceneManager* manager) : sceneManager(manager) {
     LOG_FUNCTION
     this->debug = false;
     this->rootNode = new yz::Node(this->sceneManager->getRootSceneNode());
