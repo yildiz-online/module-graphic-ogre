@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.8.0)
 project (yildiz_native_ogre)
 
-set(CMAKE_CXX_FLAGS "-O2 -fPIC")
+set(CMAKE_CXX_FLAGS "-O2 -fPIC -std=gnu++11")
 
 find_package(Boost REQUIRED)
 find_package(OGRE REQUIRED)
