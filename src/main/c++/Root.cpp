@@ -112,6 +112,9 @@ void yz::Root::addResourcePath(const std::string& name, const std::string& path,
             PhysFS::addToSearchPath(path);
             this->root->addResourceLocation("", "Package", name, false);
             break;
+        case 3:
+            this->root->addResourceLocation(path, "FileSystem", name, false);
+            break;
         default:
             throw std::exception();
             break;
