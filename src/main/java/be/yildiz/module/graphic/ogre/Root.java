@@ -126,7 +126,6 @@ final class Root {
     }
 
     void addResourcePath(final String name, final String resourcePath, final FileType type) {
-        //FIXME value fileType(4) is not supported 
         this.addResourcePath(name, resourcePath, type.value);
     }
 
