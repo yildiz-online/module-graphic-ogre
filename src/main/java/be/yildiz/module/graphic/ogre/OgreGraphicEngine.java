@@ -36,7 +36,6 @@ import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.ShaderType;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.window.WindowEngine;
-import be.yildiz.module.window.WindowHandle;
 
 import java.io.File;
 
@@ -70,27 +69,6 @@ public final class OgreGraphicEngine implements GraphicEngine {
     private SelectionRectangle selection;
 
     /**
-     * @deprecated use public OgreGraphicEngine(final WindowEngine windowEngine).
-     * @param screenSize Size.
-     * @param handle Windows handle.
-     */
-    @Deprecated
-    public OgreGraphicEngine(final Size screenSize, final WindowHandle handle, NativeResourceLoader nativeResourceLoader) {
-        super();
-        this.size = screenSize;
-        Logger.info("Initializing Ogre graphic engine...");
-        nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
-        nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
-        this.nativeResourceLoader = nativeResourceLoader;
-        this.root = new Root();
-        this.loadPlugins();
-        this.loadRenderer();
-        this.renderWindow = this.root.createWindow(this.size, handle);
-        this.guiBuilder = null;
-        Logger.info("Ogre graphic engine initialized.");
-    }
-
-    /**
      * Simple constructor.
      *
      * @param windowEngine WindowEngine wrapping this graphic context.
@@ -116,15 +94,6 @@ public final class OgreGraphicEngine implements GraphicEngine {
         this.guiBuilder = new OgreGuiBuilder(this.size);
         this.windowEngine = windowEngine;
         Logger.info("Ogre graphic engine initialized.");
-    }
-
-    /**
-     * @deprecated use public OgreGraphicEngine(final WindowEngine windowEngine).
-     * @param screenSize Size.
-     */
-    @Deprecated
-    public OgreGraphicEngine(final Size screenSize, NativeResourceLoader nativeResourceLoader) {
-        this(screenSize, new WindowHandle(0), nativeResourceLoader);
     }
 
     private void loadPlugins() {
