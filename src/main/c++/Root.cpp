@@ -36,6 +36,7 @@ yz::Root::Root() {
     LOG_FUNCTION
     this->root = OGRE_NEW Ogre::Root("", "", "ogre.log");
     this->os = OGRE_NEW Ogre::OverlaySystem();
+    Ogre::LogManager::getSingleton().logMessage("Initializing Ogre native version 1.1.6");
 }
 
 yz::Root::~Root() {
