@@ -33,7 +33,7 @@ yz::Font::Font(const std::string& name, const std::string& path, const Ogre::Rea
     this->font->setType(Ogre::FT_TRUETYPE);
     this->font->setSource(path);
     this->font->setTrueTypeSize(size);
-    this->font->addCodePointRange(Ogre::Font::CodePointRange(33, 126));
+    this->font->addCodePointRange(Ogre::Font::CodePointRange(0, 256));
     this->font->setTrueTypeResolution(96);
     this->font->load();
 }
