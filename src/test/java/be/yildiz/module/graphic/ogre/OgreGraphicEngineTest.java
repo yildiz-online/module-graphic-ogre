@@ -26,8 +26,7 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.common.nativeresources.NativeResourceLoader;
 import be.yildiz.common.nativeresources.SystemLinux64;
 import be.yildiz.common.nativeresources.SystemWin32;
-import be.yildiz.module.window.WindowEngine;
-import be.yildiz.module.window.swt.SwtWindowEngine;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -40,6 +39,7 @@ public class OgreGraphicEngineTest {
 
     public static class Constructor {
 
+        @Ignore
         @Test
         public void happyFlow(){
             NativeResourceLoader loader = NativeResourceLoader.inTestPath(new SystemWin32(), new SystemLinux64());
