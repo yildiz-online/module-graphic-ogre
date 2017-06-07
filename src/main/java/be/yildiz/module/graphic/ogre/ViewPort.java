@@ -31,7 +31,7 @@ import be.yildiz.common.nativeresources.NativePointer;
  *
  * @author Grégory Van den Borre
  */
-final class ViewPort implements Native {
+final class ViewPort implements Native, OgreViewport {
 
     /**
      * Pointer for the native object.

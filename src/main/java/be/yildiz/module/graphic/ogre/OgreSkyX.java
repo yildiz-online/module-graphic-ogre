@@ -44,7 +44,7 @@ final class OgreSkyX implements Sky {
      * @param sm     SceneManager used to create the sky.
      * @param window Window where the sky is rendered.
      */
-    OgreSkyX(final OgreSceneManager sm, final RenderWindow window) {
+    OgreSkyX(final OgreSceneManager sm, final OgreRenderWindow window) {
         super();
         final long address = this.constructor(sm.getPointer().getPointerAddress());
         this.pointer = NativePointer.create(address);

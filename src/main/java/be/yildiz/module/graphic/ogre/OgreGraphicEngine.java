@@ -36,6 +36,7 @@ import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.ShaderType;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.window.WindowEngine;
+import be.yildiz.module.window.dummy.DummyWindowEngine;
 
 import java.io.File;
 
@@ -54,7 +55,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
     /**
      * Ogre render window.
      */
-    private final RenderWindow renderWindow;
+    private final OgreRenderWindow renderWindow;
 
     private final OgreGuiBuilder guiBuilder;
     /**
@@ -62,7 +63,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
      */
     private final Size size;
     private final NativeResourceLoader nativeResourceLoader;
-    private WindowEngine windowEngine;
+    private final WindowEngine windowEngine;
     /**
      * Only one can be created at a time.
      */
@@ -94,6 +95,31 @@ public final class OgreGraphicEngine implements GraphicEngine {
         this.guiBuilder = new OgreGuiBuilder(this.size);
         this.windowEngine = windowEngine;
         Logger.info("Ogre graphic engine initialized.");
+    }
+
+    private OgreGraphicEngine(NativeResourceLoader loader) {
+        super();
+        this.size = new Size(0);
+        this.nativeResourceLoader = loader;
+        Logger.info("Initializing Headless Ogre graphic engine...");
+        nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
+        nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        this.root = new Root();
+        this.loadPlugins();
+        this.loadRenderer();
+        this.renderWindow = new DummyRenderWindow();
+        this.guiBuilder = new OgreGuiBuilder(this.size);
+        this.windowEngine = new DummyWindowEngine();
+        Logger.info("Headless Ogre graphic engine initialized.");
+    }
+
+    /**
+     * Build a headless engine, to be used to test on headless system like CI server.
+     * @param nativeResourceLoader Loader for the native libraries.
+     * @return A headless graphic engine for testing.
+     */
+    public static OgreGraphicEngine headless(NativeResourceLoader nativeResourceLoader) {
+        return new OgreGraphicEngine(nativeResourceLoader);
     }
 
     private void loadPlugins() {

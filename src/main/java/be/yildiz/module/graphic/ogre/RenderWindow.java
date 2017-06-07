@@ -30,7 +30,7 @@ import be.yildiz.common.nativeresources.NativePointer;
  *
  * @author Grégory Van Den Borre
  */
-final class RenderWindow {
+final class RenderWindow implements OgreRenderWindow{
 
     /**
      * Full constructor.
@@ -45,7 +45,8 @@ final class RenderWindow {
      * @param camera Camera to use in the viewport.
      * @return The new built ViewPort.
      */
-    ViewPort createViewport(final OgreCamera camera) {
+    @Override
+    public OgreViewport createViewport(final OgreCamera camera) {
         final long address = this.createViewport(camera.getPointer().getPointerAddress());
         return new ViewPort(NativePointer.create(address), camera);
     }
@@ -53,6 +54,7 @@ final class RenderWindow {
     /**
      * Print in a file the current display in this window.
      */
+    @Override
     public void getPrintScreen() {
         this.printScreen(String.valueOf(System.currentTimeMillis()));
     }
@@ -60,7 +62,8 @@ final class RenderWindow {
     /**
      * @return The current frame per second rate.
      */
-    float getFramerate() {
+    @Override
+    public float getFramerate() {
         return this.getFps();
     }
 

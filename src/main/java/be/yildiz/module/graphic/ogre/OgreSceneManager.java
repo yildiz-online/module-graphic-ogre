@@ -76,7 +76,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
     /**
      * Game render window.
      */
-    private final RenderWindow window;
+    private final OgreRenderWindow window;
 
     /**
      * Scene root node.
@@ -91,7 +91,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
      * @param screenSizeX  Screen width.
      * @param screenSizeY  Screen height.
      */
-    OgreSceneManager(final NativePointer pointer, final RenderWindow renderWindow, final int screenSizeX, final int screenSizeY) {
+    OgreSceneManager(final NativePointer pointer, final OgreRenderWindow renderWindow, final int screenSizeX, final int screenSizeY) {
         super();
         this.cameras = Registerer.newRegisterer();
         this.pointer = pointer;
