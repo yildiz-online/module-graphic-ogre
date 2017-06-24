@@ -68,7 +68,7 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
     /**
      * Current scale factor.
      */
-    private Point3D scaleSize = new Point3D(1);
+    private Point3D scaleSize = Point3D.valueOf(1);
 
     /**
      * Full constructor.
@@ -103,6 +103,7 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
 
     @Override
     public final void setDirection(final Point3D dir) {
+        assert dir != null;
         if (!this.staticObject) {
             this.direction = dir;
             this.node.setDirection(dir);
@@ -193,7 +194,7 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
 
     @Override
     public final void scale(final float x, final float y, final float z) {
-        this.scaleSize = Point3D.xyz(x, y, z);
+        this.scaleSize = Point3D.valueOf(x, y, z);
         this.node.scale(x, y, z);
         this.scaleImpl(x, y, z);
     }
