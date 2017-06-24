@@ -274,7 +274,7 @@ public final class OgreSceneManager implements GraphicWorld, Native {
         // FIXME linked to camera, does not support switching cam
         return new OgreLensFlare(NativePointer.create(this.createLensFlare(StringUtil.buildRandomString("lf_"), this.pointer.getPointerAddress(), this.defaultCamera.getPointer().getPointerAddress(),
                 OgreMaterial.class.cast(light).getPointer().getPointerAddress(), OgreMaterial.class.cast(streak).getPointer().getPointerAddress(), OgreMaterial.class.cast(halo).getPointer().getPointerAddress(), OgreMaterial.class.cast(burst).getPointer().getPointerAddress(),
-                pos.x, pos.y, pos.z)), Point3D.xyz(pos.x, pos.y, pos.z));
+                pos.x, pos.y, pos.z)), Point3D.valueOf(pos.x, pos.y, pos.z));
     }
 
     /**

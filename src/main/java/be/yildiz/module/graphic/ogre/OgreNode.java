@@ -82,7 +82,8 @@ public final class OgreNode extends Node implements Native {
      */
     @Override
     public Point3D getPosition() {
-        return Point3D.xyz(this.getPosition(this.pointer.getPointerAddress()));
+        float[] v = this.getPosition(this.pointer.getPointerAddress());
+        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
@@ -102,7 +103,8 @@ public final class OgreNode extends Node implements Native {
 
     @Override
     public Point3D translate(final float moveX, final float moveY, final float moveZ) {
-        return Point3D.xyz(this.translate(this.pointer.getPointerAddress(), moveX, moveY, moveZ));
+        float[] v = this.translate(this.pointer.getPointerAddress(), moveX, moveY, moveZ);
+        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
@@ -112,12 +114,14 @@ public final class OgreNode extends Node implements Native {
 
     @Override
     public Point3D getDirection() {
-        return Point3D.xyz(this.getDirection(this.pointer.getPointerAddress()));
+        float[] v = this.getDirection(this.pointer.getPointerAddress());
+        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
     public Point3D getWorldDirection() {
-        return Point3D.xyz(this.getWorldDirection(this.pointer.getPointerAddress()));
+        float[] v = this.getWorldDirection(this.pointer.getPointerAddress());
+        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
@@ -133,7 +137,7 @@ public final class OgreNode extends Node implements Native {
     @Override
     public Point3D rotate(final float yaw, final float pitch) {
         float[] v = this.rotate(this.pointer.getPointerAddress(), yaw, pitch);
-        return Point3D.xyz(v);
+        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
@@ -184,10 +188,7 @@ public final class OgreNode extends Node implements Native {
             return false;
         }
         OgreNode other = (OgreNode) obj;
-        if (!this.name.equals(other.name)) {
-            return false;
-        }
-        return this.pointer.equals(other.pointer);
+        return this.name.equals(other.name) && this.pointer.equals(other.pointer);
     }
 
     @Override
