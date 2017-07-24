@@ -29,8 +29,8 @@ import be.yildiz.module.window.Cursor;
 import be.yildiz.module.window.WindowEngine;
 import be.yildiz.module.window.WindowHandle;
 import be.yildiz.module.window.input.WindowInputListener;
-import be.yildiz.module.window.swt.input.GameWindowKeyListener;
-import be.yildiz.module.window.swt.input.GameWindowMouseListener;
+import be.yildiz.module.window.swt.input.SwtGameWindowKeyListener;
+import be.yildiz.module.window.swt.input.SwtGameWindowMouseListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
@@ -128,8 +128,8 @@ public final class SwtWindowEngine implements WindowEngine {
 
     @Override
     public void registerInput(final WindowInputListener listener) {
-        new GameWindowMouseListener(this.gameWindow.getCanvas(), listener);
-        new GameWindowKeyListener(this.gameWindow.getCanvas(), listener);
+        new SwtGameWindowMouseListener(this.gameWindow.getCanvas(), listener);
+        new SwtGameWindowKeyListener(this.gameWindow.getCanvas(), listener);
 
     }
 }

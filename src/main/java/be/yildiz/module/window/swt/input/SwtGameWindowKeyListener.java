@@ -23,8 +23,8 @@
 
 package be.yildiz.module.window.swt.input;
 
-import be.yildiz.common.client.gui.listener.ArrowKey;
-import be.yildiz.common.client.gui.listener.SpecialKey;
+import be.yildiz.module.window.input.ArrowKey;
+import be.yildiz.module.window.input.SpecialKey;
 import be.yildiz.module.window.input.WindowInputListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
@@ -37,7 +37,7 @@ import org.eclipse.swt.widgets.Canvas;
  *
  * @author Grégory Van den Borre
  */
-public final class GameWindowKeyListener implements KeyListener {
+public final class SwtGameWindowKeyListener implements KeyListener {
 
     /**
      * Escape key code.
@@ -80,7 +80,7 @@ public final class GameWindowKeyListener implements KeyListener {
      * @param canvas     SWT canvas.
      * @param listener Event dispatcher
      */
-    public GameWindowKeyListener(final Canvas canvas, final WindowInputListener listener) {
+    public SwtGameWindowKeyListener(final Canvas canvas, final WindowInputListener listener) {
         super();
         this.dispatcher = listener;
         canvas.addKeyListener(this);
@@ -94,7 +94,7 @@ public final class GameWindowKeyListener implements KeyListener {
      */
     @Override
     public void keyPressed(final KeyEvent event) {
-        if (event.keyCode > GameWindowKeyListener.MIN && event.keyCode < GameWindowKeyListener.MAX) {
+        if (event.keyCode > SwtGameWindowKeyListener.MIN && event.keyCode < SwtGameWindowKeyListener.MAX) {
             this.dispatcher.keyboardKeyPressed(event.character);
         } else {
             switch (event.keyCode) {

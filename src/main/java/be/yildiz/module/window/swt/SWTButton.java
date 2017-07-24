@@ -23,8 +23,8 @@
 
 package be.yildiz.module.window.swt;
 
-import be.yildiz.common.client.gui.listener.MouseLeftClickListener;
 import be.yildiz.module.window.WindowButton;
+import be.yildiz.module.window.input.MouseLeftClickListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
