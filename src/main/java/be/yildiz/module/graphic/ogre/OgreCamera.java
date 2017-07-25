@@ -29,7 +29,6 @@ import be.yildiz.common.id.EntityId;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Axis;
-import be.yildiz.common.vector.Point2D;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.AbstractCamera;
 import be.yildiz.module.graphic.LensFlare;
@@ -127,12 +126,13 @@ final class OgreCamera extends AbstractCamera implements Native {
     /**
      * Compute the destination from 2D coordinates to 3D coordinates, collision ground is considered at Y = 0.
      *
-     * @param coordinate X and Y screen coordinates.
+     * @param x X screen coordinates.
+     * @param y Y screen coordinates.
      * @return A point representing a destination.
      */
-    public Point3D computeMoveDestination(final Point2D coordinate) {
-        final float screenX = coordinate.getX() / this.resolutionX;
-        final float screenY = coordinate.getY() / this.resolutionY;
+    public Point3D computeMoveDestination(final int x, int y) {
+        final float screenX = (float) x / this.resolutionX;
+        final float screenY = (float) y / this.resolutionY;
         final float[] destination = this.computeMoveDestinationGroundIntersect(this.pointer.getPointerAddress(), screenX, screenY);
         return Point3D.valueOf(destination[0], destination[1], destination[2]);
     }
@@ -178,8 +178,8 @@ final class OgreCamera extends AbstractCamera implements Native {
     }
 
     @Override
-    protected Point3D setPositionImpl(final Point2D position, final Axis axis) {
-        float[] v = this.setPositionAxis(this.pointer.getPointerAddress(), position.getX(), position.getY(), axis.ordinal());
+    protected Point3D setPositionImpl(final int x, final int y, final Axis axis) {
+        float[] v = this.setPositionAxis(this.pointer.getPointerAddress(), x, y, axis.ordinal());
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
