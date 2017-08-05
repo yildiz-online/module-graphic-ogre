@@ -59,5 +59,5 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_setParamete
         JniStringWrapper name = JniStringWrapper(env, jname);
         JniStringWrapper value = JniStringWrapper(env, jvalue);
         Ogre::GpuProgram* shader = reinterpret_cast<Ogre::GpuProgram*>(pointer);
-        shader->setParameter(name, value);
+        shader->setParameter(name.getValue(), value.getValue());
     }
