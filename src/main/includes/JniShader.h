@@ -21,51 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
+#include <jni.h>
+#include "stdafx.h"
+
+#ifndef JNI_SHADER_H
+#define JNI_SHADER_H
+
 /**
 *@author Grégory Van den Borre
 */
-
-#ifndef STDAFX_H
-#define STDAFX_H
-
-#ifdef DEBUG
-#define LOG_FUNCTION std::cout<<__PRETTY_FUNCTION__<<std::endl;
-#else
-#define LOG_FUNCTION
+#ifdef __cplusplus
+extern "C" {
 #endif
 
-#include <jni.h>
-#define POINTER jlong
-#define INVALID_POINTER -1L
 
-#include "Id.hpp"
-#include <Ogre.h>
-#include <Overlay/OgreTextAreaOverlayElement.h>
-#include <Overlay/OgreOverlayElement.h>
-#include <Overlay/OgreOverlayContainer.h>
+JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createVertexShader(
+    JNIEnv* env, jobject o, jstring name, jstring path);
 
-#include <Overlay/OgreOverlay.h>
-#include <Overlay/OgreOverlaySystem.h>
+JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createFragmentShader(
+    JNIEnv* env, jobject o, jstring name, jstring path);
 
-#include <Overlay/OgreFontManager.h>
-#include <Overlay/OgreFont.h>
-
-#include <OgreBillboardParticleRenderer.h>
-#include <OgreArchive.h>
-#include <OgreGpuProgramParams.h>
-#include <OgreHighLevelGpuProgramManager.h>
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_setParameter(
+    JNIEnv* env, jobject o, jlong pointer, jstring name, jstring value);
 
 
-//#include "Hydrax.h"
 
-#include <iostream>
-#include <vector>
-#include <list>
-#include <algorithm>
-#include <exception>
-#include <iterator>
-#include <cassert>
-#include <cmath>
-#include <cstdlib>
-
+#ifdef __cplusplus
+}
+#endif
 #endif

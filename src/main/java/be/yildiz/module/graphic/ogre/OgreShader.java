@@ -50,7 +50,11 @@ final class OgreShader extends Shader implements Native {
      */
     OgreShader(final String name, final String path, final String entry, final ShaderType type, final ShaderProfile profile) {
         super(name, type);
-        this.pointer = NativePointer.create(this.createShader(name, path, type.getValue()));
+        if(type == ShaderType.VERTEX) {
+            this.pointer = NativePointer.create(this.createVertexShader(name, path));
+        } else {
+            this.pointer = NativePointer.create(this.createFragmentShader(name, path));
+        }
         this.setParameter(this.pointer.getPointerAddress(), "entry_point", entry);
         this.setParameter(this.pointer.getPointerAddress(), "profiles", profile.getName());
     }
@@ -78,10 +82,18 @@ final class OgreShader extends Shader implements Native {
      *
      * @param name Shader name.
      * @param path Path to the file.
-     * @param type Shader type.
      * @return The pointer address of the created object.
      */
-    private native long createShader(final String name, final String path, final int type);
+    private native long createFragmentShader(final String name, final String path);
+
+    /**
+     * Create the shader in native code.
+     *
+     * @param name Shader name.
+     * @param path Path to the file.
+     * @return The pointer address of the created object.
+     */
+    private native long createVertexShader(final String name, final String path);
 
     /**
      * Set parameter to pass to the shader, those parameters are meant to specify to the graphic engine how to load the shader(entry point, profile...), those are not meant to be used as shader
