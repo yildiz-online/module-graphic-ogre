@@ -57,6 +57,7 @@ final class OgreShader extends Shader implements Native {
         }
         this.setParameter(this.pointer.getPointerAddress(), "entry_point", entry);
         this.setParameter(this.pointer.getPointerAddress(), "profiles", profile.getName());
+        this.load(this.pointer.getPointerAddress());
     }
 
     @Override
@@ -104,4 +105,6 @@ final class OgreShader extends Shader implements Native {
      * @param value   Parameter value.
      */
     private native void setParameter(final long pointer, final String name, final String value);
+
+    private native void load(final long pointer);
 }

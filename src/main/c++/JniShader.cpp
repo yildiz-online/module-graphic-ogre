@@ -37,7 +37,7 @@ JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createFrag
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
         "glsl",
         Ogre::GPT_FRAGMENT_PROGRAM).get();
-    shader->setSource(path.getValue());
+    shader->setSourceFile(path.getValue());
     return reinterpret_cast<jlong>(shader);
     }
 
@@ -50,7 +50,7 @@ JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createVert
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
         "glsl",
         Ogre::GPT_VERTEX_PROGRAM).get();
-    shader->setSource(path.getValue());
+    shader->setSourceFile(path.getValue());
     return reinterpret_cast<jlong>(shader);
     }
 
@@ -60,4 +60,9 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_setParamete
         JniStringWrapper value = JniStringWrapper(env, jvalue);
         Ogre::GpuProgram* shader = reinterpret_cast<Ogre::GpuProgram*>(pointer);
         shader->setParameter(name.getValue(), value.getValue());
+    }
+
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_load(
+    JNIEnv* env, jobject o, jlong pointer) {
+        reinterpret_cast<Ogre::GpuProgram*>(pointer)->load();
     }

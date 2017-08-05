@@ -44,7 +44,8 @@ JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createFrag
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_setParameter(
     JNIEnv* env, jobject o, jlong pointer, jstring name, jstring value);
 
-
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_load(
+    JNIEnv* env, jobject o, jlong pointer);
 
 #ifdef __cplusplus
 }
