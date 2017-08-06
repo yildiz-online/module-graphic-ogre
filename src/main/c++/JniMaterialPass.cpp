@@ -185,6 +185,29 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
     }
 }
 
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterFloat2(
+    JNIEnv* env, jobject, POINTER pointer, jstring jname, jfloat v1, jfloat v2) {
+    try {
+        LOG_FUNCTION
+        JniStringWrapper name = JniStringWrapper(env, jname);
+        Ogre::Vector2 vector = Ogre::Vector2(v1, v2);
+        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), vector);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+}
+
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterFloat(
+    JNIEnv* env, jobject, POINTER pointer, jstring jname, jfloat value) {
+    try {
+        LOG_FUNCTION
+        JniStringWrapper name = JniStringWrapper(env, jname);
+        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), value);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+}
+
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterColor(
     JNIEnv* env, jobject, POINTER pointer, jstring jname, jfloat r, jfloat g, jfloat b, jfloat a) {
     try {
@@ -197,12 +220,60 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterFloat(
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterFloat4(
+    JNIEnv* env, jobject, POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3, jfloat v4) {
+    try {
+        LOG_FUNCTION
+        JniStringWrapper name = JniStringWrapper(env, jname);
+        Ogre::Vector4 vector = Ogre::Vector4(v1, v2, v3, v4);
+        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), vector);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+}
+
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterFloat3(
+    JNIEnv* env, jobject, POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3) {
+    try {
+        LOG_FUNCTION
+        JniStringWrapper name = JniStringWrapper(env, jname);
+        Ogre::Vector3 vector = Ogre::Vector3(v1, v2, v3);
+        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), vector);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+}
+
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterFloat2(
+    JNIEnv* env, jobject, POINTER pointer, jstring jname, jfloat v1, jfloat v2) {
+    try {
+        LOG_FUNCTION
+        JniStringWrapper name = JniStringWrapper(env, jname);
+        Ogre::Vector2 vector = Ogre::Vector2(v1, v2);
+        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), vector);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+}
+
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterFloat(
     JNIEnv* env, jobject, POINTER pointer, jstring jname, jfloat value) {
     try {
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), value);
+        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), value);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+}
+
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterColor(
+    JNIEnv* env, jobject, POINTER pointer, jstring jname, jfloat r, jfloat g, jfloat b, jfloat a) {
+    try {
+        LOG_FUNCTION
+        JniStringWrapper name = JniStringWrapper(env, jname);
+        Ogre::ColourValue color = Ogre::ColourValue(r, g, b, a);
+        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), color);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }

@@ -115,19 +115,31 @@ final class OgreMaterialPass extends MaterialPass {
 
     @Override
     public void setFragmentProgramParameter(final ShaderParamFloat4 shaderParam) {
-        float[] v = shaderParam.getValues();
-        this.setFragmentProgramParameterFloat4(this.pointer.getPointerAddress(), shaderParam.getName(), v[0], v[1], v[2], v[3]);
+        this.setFragmentProgramParameterFloat4(this.pointer.getPointerAddress(),
+                shaderParam.name, shaderParam.value1, shaderParam.value2, shaderParam.value3, shaderParam.value4);
     }
 
     @Override
-    public void setFragmentProgramParameter(final ShaderParamColor shaderParam) {
-        Color c = shaderParam.getColor();
-        this.setFragmentProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.getName(), c.normalizedRed, c.normalizedGreen, c.normalizedBlue, c.normalizedAlpha);
+    public void setFragmentProgramParameter(final ShaderParamFloat3 shaderParam) {
+        this.setFragmentProgramParameterFloat3(this.pointer.getPointerAddress(),
+                shaderParam.name, shaderParam.value1, shaderParam.value2, shaderParam.value3);
+    }
+
+    @Override
+    public void setFragmentProgramParameter(final ShaderParamFloat2 shaderParam) {
+        this.setFragmentProgramParameterFloat2(this.pointer.getPointerAddress(),
+                shaderParam.name, shaderParam.value1, shaderParam.value2);
     }
 
     @Override
     public void setFragmentProgramParameter(final ShaderParamFloat shaderParam) {
-        this.setFragmentProgramParameterFloat(this.pointer.getPointerAddress(), shaderParam.getName(), shaderParam.getValue());
+        this.setFragmentProgramParameterFloat(this.pointer.getPointerAddress(), shaderParam.name, shaderParam.value);
+    }
+
+    @Override
+    public void setFragmentProgramParameter(final ShaderParamColor shaderParam) {
+        Color c = shaderParam.color;
+        this.setFragmentProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.name, c.normalizedRed, c.normalizedGreen, c.normalizedBlue, c.normalizedAlpha);
     }
 
     @Override
@@ -138,6 +150,35 @@ final class OgreMaterialPass extends MaterialPass {
     @Override
     public void setFragmentProgramParameterAuto(final String name, final ShaderConstantType constant, final int param) {
         this.setFragmentProgramParameterAutoP(this.pointer.getPointerAddress(), name, constant.getValue(), param);
+    }
+
+    @Override
+    public void setVertexProgramParameter(final ShaderParamFloat4 shaderParam) {
+        this.setVertexProgramParameterFloat4(this.pointer.getPointerAddress(),
+                shaderParam.name, shaderParam.value1, shaderParam.value2, shaderParam.value3, shaderParam.value4);
+    }
+
+    @Override
+    public void setVertexProgramParameter(final ShaderParamFloat3 shaderParam) {
+        this.setVertexProgramParameterFloat3(this.pointer.getPointerAddress(),
+                shaderParam.name, shaderParam.value1, shaderParam.value2, shaderParam.value3);
+    }
+
+    @Override
+    public void setVertexProgramParameter(final ShaderParamFloat2 shaderParam) {
+        this.setVertexProgramParameterFloat2(this.pointer.getPointerAddress(),
+                shaderParam.name, shaderParam.value1, shaderParam.value2);
+    }
+
+    @Override
+    public void setVertexProgramParameter(final ShaderParamFloat shaderParam) {
+        this.setVertexProgramParameterFloat(this.pointer.getPointerAddress(), shaderParam.name, shaderParam.value);
+    }
+
+    @Override
+    public void setVertexProgramParameter(final ShaderParamColor shaderParam) {
+        Color c = shaderParam.color;
+        this.setVertexProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.name, c.normalizedRed, c.normalizedGreen, c.normalizedBlue, c.normalizedAlpha);
     }
 
     @Override
@@ -327,14 +368,6 @@ final class OgreMaterialPass extends MaterialPass {
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
      */
-    private native void setFragmentProgramParameterFloat4(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
-
-    /**
-     * Set a parameter to a fragment program.
-     *
-     * @param pointer Pointer address to the native Ogre::Pass.
-     * @param name    Parameter name.
-     */
     private native void setFragmentProgramParameterColor(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
 
     /**
@@ -342,9 +375,35 @@ final class OgreMaterialPass extends MaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
-     * @param values  Parameter value.
+     * @param value  Parameter value.
      */
-    private native void setFragmentProgramParameterFloat(final long pointer, final String name, final float values);
+    private native void setFragmentProgramParameterFloat(final long pointer, final String name, final float value);
+
+    /**
+     * Set a parameter to a fragment program.
+     *
+     * @param pointer Pointer address to the native Ogre::Pass.
+     * @param name    Parameter name.
+     */
+    private native void setFragmentProgramParameterFloat2(final long pointer, final String name, final float v1, final float v2);
+
+
+    /**
+     * Set a parameter to a fragment program.
+     *
+     * @param pointer Pointer address to the native Ogre::Pass.
+     * @param name    Parameter name.
+     */
+    private native void setFragmentProgramParameterFloat3(final long pointer, final String name, final float v1, final float v2, final float v3);
+
+
+    /**
+     * Set a parameter to a fragment program.
+     *
+     * @param pointer Pointer address to the native Ogre::Pass.
+     * @param name    Parameter name.
+     */
+    private native void setFragmentProgramParameterFloat4(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
 
     /**
      * Set an automatic parameter to a fragment program.
@@ -364,6 +423,50 @@ final class OgreMaterialPass extends MaterialPass {
      * @param param          Additional parameter.
      */
     private native void setFragmentProgramParameterAutoP(final long pointerAddress, final String name, final int constant, final int param);
+
+    /**
+     * Set a parameter to a vertex program.
+     *
+     * @param pointer Pointer address to the native Ogre::Pass.
+     * @param name    Parameter name.
+     */
+    private native void setVertexProgramParameterColor(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
+
+    /**
+     * Set a parameter to a vertex program.
+     *
+     * @param pointer Pointer address to the native Ogre::Pass.
+     * @param name    Parameter name.
+     * @param value  Parameter value.
+     */
+    private native void setVertexProgramParameterFloat(final long pointer, final String name, final float value);
+
+    /**
+     * Set a parameter to a vertex program.
+     *
+     * @param pointer Pointer address to the native Ogre::Pass.
+     * @param name    Parameter name.
+     */
+    private native void setVertexProgramParameterFloat2(final long pointer, final String name, final float v1, final float v2);
+
+
+    /**
+     * Set a parameter to a vertex program.
+     *
+     * @param pointer Pointer address to the native Ogre::Pass.
+     * @param name    Parameter name.
+     */
+    private native void setVertexProgramParameterFloat3(final long pointer, final String name, final float v1, final float v2, final float v3);
+
+
+    /**
+     * Set a parameter to a vertex program.
+     *
+     * @param pointer Pointer address to the native Ogre::Pass.
+     * @param name    Parameter name.
+     */
+    private native void setVertexProgramParameterFloat4(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
+
 
     /**
      * Set an automatic parameter to a vertex program.
