@@ -30,39 +30,58 @@
 
 JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createFragmentShader(
     JNIEnv* env, jobject o, jstring jname, jstring jpath) {
-    JniStringWrapper name = JniStringWrapper(env, jname);
-    JniStringWrapper path = JniStringWrapper(env, jpath);
-    Ogre::GpuProgram* shader = Ogre::HighLevelGpuProgramManager::getSingleton().createProgram(
-        name.getValue(),
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-        "glsl",
-        Ogre::GPT_FRAGMENT_PROGRAM).get();
-    shader->setSourceFile(path.getValue());
-    return reinterpret_cast<jlong>(shader);
+    try {
+        JniStringWrapper name = JniStringWrapper(env, jname);
+        JniStringWrapper path = JniStringWrapper(env, jpath);
+        Ogre::GpuProgram* shader = Ogre::HighLevelGpuProgramManager::getSingleton().createProgram(
+            name.getValue(),
+            Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+            "glsl",
+            Ogre::GPT_FRAGMENT_PROGRAM).get();
+        shader->setSourceFile(path.getValue());
+        return reinterpret_cast<jlong>(shader);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+        return -1L;
     }
+}
 
 JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createVertexShader(
     JNIEnv* env, jobject o, jstring jname, jstring jpath) {
-    JniStringWrapper name = JniStringWrapper(env, jname);
-    JniStringWrapper path = JniStringWrapper(env, jpath);
-    Ogre::GpuProgram* shader = Ogre::HighLevelGpuProgramManager::getSingleton().createProgram(
-        name.getValue(),
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-        "glsl",
-        Ogre::GPT_VERTEX_PROGRAM).get();
-    shader->setSourceFile(path.getValue());
-    return reinterpret_cast<jlong>(shader);
+    try {
+        JniStringWrapper name = JniStringWrapper(env, jname);
+        JniStringWrapper path = JniStringWrapper(env, jpath);
+        Ogre::GpuProgram* shader = Ogre::HighLevelGpuProgramManager::getSingleton().createProgram(
+            name.getValue(),
+            Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+            "glsl",
+            Ogre::GPT_VERTEX_PROGRAM).get();
+        shader->setSourceFile(path.getValue());
+        return reinterpret_cast<jlong>(shader);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+        return -1L;
     }
+}
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_setParameter(
     JNIEnv* env, jobject o, jlong pointer, jstring jname, jstring jvalue) {
+    try {
         JniStringWrapper name = JniStringWrapper(env, jname);
         JniStringWrapper value = JniStringWrapper(env, jvalue);
         Ogre::GpuProgram* shader = reinterpret_cast<Ogre::GpuProgram*>(pointer);
         shader->setParameter(name.getValue(), value.getValue());
+    } catch (std::exception& e) {
+        throwException(env, e.what());
     }
+}
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_load(
     JNIEnv* env, jobject o, jlong pointer) {
+    try {
         reinterpret_cast<Ogre::GpuProgram*>(pointer)->load();
+    } catch (std::exception& e) {
+        throwException(env, e.what());
     }
+}
+
