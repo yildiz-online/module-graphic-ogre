@@ -43,6 +43,10 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFr
 		POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3,
 		jfloat v4);
 
+JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterFloat3(
+		JNIEnv* env, jobject o,
+		POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3);
+
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterColor(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3,

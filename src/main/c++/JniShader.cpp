@@ -42,8 +42,8 @@ JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createFrag
         return reinterpret_cast<jlong>(shader);
     } catch (std::exception& e) {
         throwException(env, e.what());
-        return -1L;
     }
+    return -1L;
 }
 
 JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createVertexShader(
@@ -60,8 +60,8 @@ JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createVert
         return reinterpret_cast<jlong>(shader);
     } catch (std::exception& e) {
         throwException(env, e.what());
-        return -1L;
     }
+    return -1L;
 }
 
 JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_setParameter(
