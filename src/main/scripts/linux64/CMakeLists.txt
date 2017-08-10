@@ -13,6 +13,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 include_directories(${OGRE_INCLUDE_DIRS})
 include_directories(${PhysFS_INCLUDE_DIRS})
 include_directories(${JNI_INCLUDE_DIRS})
+include_directories(${CMAKE_SOURCE_DIR}/../common-native/include)
 include_directories(${JNI_INCLUDE_DIRS}/linux)
 
 file(
