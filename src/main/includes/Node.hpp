@@ -31,6 +31,7 @@
 #include "AbstractNodeListener.hpp"
 #include "NodeListeners.hpp"
 #include "AbstractMovable.hpp"
+#include "NativeMovable.hpp"
 #include <OgreSceneManager.h>
 
 namespace yz {
@@ -39,7 +40,7 @@ namespace yz {
  * Simple wrapper for an Ogre::Scenenode, this class provide uniform use for setting direction, yaw,...
  * @author Grégory Van den Borre
  */
-class Node {
+class Node : public NativeMovableComponent {
 
 public:
 
@@ -223,8 +224,7 @@ public:
 	 * @param z
 	 *           New Z position.
 	 */
-	inline void setPosition(const Ogre::Real x, const Ogre::Real y,
-			const Ogre::Real z) {
+	virtual inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
 	    LOG_FUNCTION
 		this->node->setPosition(x, y, z);
 	}
@@ -238,21 +238,18 @@ public:
 	 * @param z
 	 *           New Z direction.
 	 */
-	inline void setDirection(const Ogre::Real x, const Ogre::Real y,
-			const Ogre::Real z) {
+	virtual inline void setDirection(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
 	    LOG_FUNCTION
 		this->node->setDirection(x, y, z, Ogre::Node::TS_WORLD,
 				Ogre::Vector3::NEGATIVE_UNIT_Z);
 	}
 
-	inline void setOrientation(const Ogre::Real w, const Ogre::Real x,
-			const Ogre::Real y, const Ogre::Real z) {
+	virtual inline void setOrientation(const Ogre::Real w, const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
 	    LOG_FUNCTION
 		this->node->setOrientation(w, x, y, z);
 	}
 
-	inline void translate(const Ogre::Real x, const Ogre::Real y,
-			const Ogre::Real z) {
+	inline void translate(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
 	    LOG_FUNCTION
 		node->translate(x, y, z, Ogre::Node::TS_WORLD);
 	}
