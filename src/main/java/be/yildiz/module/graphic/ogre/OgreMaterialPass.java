@@ -115,94 +115,94 @@ final class OgreMaterialPass extends MaterialPass {
     }
 
     @Override
-    public OgreMaterialPass setFragmentProgramParameter(final ShaderParamFloat4 shaderParam) {
+    public OgreMaterialPass setFragmentShaderParameter(final ShaderParamFloat4 shaderParam) {
         this.setFragmentProgramParameterFloat4(this.pointer.getPointerAddress(),
                 shaderParam.name, shaderParam.value1, shaderParam.value2, shaderParam.value3, shaderParam.value4);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setFragmentProgramParameter(final ShaderParamFloat3 shaderParam) {
+    public OgreMaterialPass setFragmentShaderParameter(final ShaderParamFloat3 shaderParam) {
         this.setFragmentProgramParameterFloat3(this.pointer.getPointerAddress(),
                 shaderParam.name, shaderParam.value1, shaderParam.value2, shaderParam.value3);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setFragmentProgramParameter(final ShaderParamFloat2 shaderParam) {
+    public OgreMaterialPass setFragmentShaderParameter(final ShaderParamFloat2 shaderParam) {
         this.setFragmentProgramParameterFloat2(this.pointer.getPointerAddress(),
                 shaderParam.name, shaderParam.value1, shaderParam.value2);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setFragmentProgramParameter(final ShaderParamFloat shaderParam) {
+    public OgreMaterialPass setFragmentShaderParameter(final ShaderParamFloat shaderParam) {
         this.setFragmentProgramParameterFloat(this.pointer.getPointerAddress(), shaderParam.name, shaderParam.value);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setFragmentProgramParameter(final ShaderParamColor shaderParam) {
+    public OgreMaterialPass setFragmentShaderParameter(final ShaderParamColor shaderParam) {
         Color c = shaderParam.color;
         this.setFragmentProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.name, c.normalizedRed, c.normalizedGreen, c.normalizedBlue, c.normalizedAlpha);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setFragmentProgramParameterAuto(final String name, final ShaderConstantType constant) {
-        this.setFragmentProgramParameterAuto(this.pointer.getPointerAddress(), name, constant.getValue());
+    public OgreMaterialPass setFragmentShaderParameterAuto(final String name, final ShaderConstantType constant) {
+        this.setFragmentShaderParameterAuto(this.pointer.getPointerAddress(), name, constant.getValue());
         return this;
     }
 
     @Override
-    public OgreMaterialPass setFragmentProgramParameterAuto(final String name, final ShaderConstantType constant, final int param) {
+    public OgreMaterialPass setFragmentShaderParameterAuto(final String name, final ShaderConstantType constant, final int param) {
         this.setFragmentProgramParameterAutoP(this.pointer.getPointerAddress(), name, constant.getValue(), param);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setVertexProgramParameter(final ShaderParamFloat4 shaderParam) {
+    public OgreMaterialPass setVertexShaderParameter(final ShaderParamFloat4 shaderParam) {
         this.setVertexProgramParameterFloat4(this.pointer.getPointerAddress(),
                 shaderParam.name, shaderParam.value1, shaderParam.value2, shaderParam.value3, shaderParam.value4);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setVertexProgramParameter(final ShaderParamFloat3 shaderParam) {
+    public OgreMaterialPass setVertexShaderParameter(final ShaderParamFloat3 shaderParam) {
         this.setVertexProgramParameterFloat3(this.pointer.getPointerAddress(),
                 shaderParam.name, shaderParam.value1, shaderParam.value2, shaderParam.value3);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setVertexProgramParameter(final ShaderParamFloat2 shaderParam) {
+    public OgreMaterialPass setVertexShaderParameter(final ShaderParamFloat2 shaderParam) {
         this.setVertexProgramParameterFloat2(this.pointer.getPointerAddress(),
                 shaderParam.name, shaderParam.value1, shaderParam.value2);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setVertexProgramParameter(final ShaderParamFloat shaderParam) {
+    public OgreMaterialPass setVertexShaderParameter(final ShaderParamFloat shaderParam) {
         this.setVertexProgramParameterFloat(this.pointer.getPointerAddress(), shaderParam.name, shaderParam.value);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setVertexProgramParameter(final ShaderParamColor shaderParam) {
+    public OgreMaterialPass setVertexShaderParameter(final ShaderParamColor shaderParam) {
         Color c = shaderParam.color;
         this.setVertexProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.name, c.normalizedRed, c.normalizedGreen, c.normalizedBlue, c.normalizedAlpha);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setVertexProgramParameterAuto(final String name, final ShaderConstantType auto, final int param) {
+    public OgreMaterialPass setVertexShaderParameterAuto(final String name, final ShaderConstantType auto, final int param) {
         this.setVertexProgramParameterAutoP(this.pointer.getPointerAddress(), name, auto.getValue(), param);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setVertexProgramParameterAuto(final String name, final ShaderConstantType auto) {
-        this.setVertexProgramParameterAuto(this.pointer.getPointerAddress(), name, auto.getValue());
+    public OgreMaterialPass setVertexShaderParameterAuto(final String name, final ShaderConstantType auto) {
+        this.setVertexShaderParameterAuto(this.pointer.getPointerAddress(), name, auto.getValue());
         return this;
     }
 
@@ -235,14 +235,14 @@ final class OgreMaterialPass extends MaterialPass {
     }
 
     @Override
-    public OgreMaterialPass setVertexProgram(final String name) {
+    public OgreMaterialPass setVertexShader(final String name) {
         this.setVertexProgram(this.pointer.getPointerAddress(), name);
         return this;
     }
 
     @Override
-    public OgreMaterialPass setFragmentProgram(final String name) {
-        this.setFragmentProgram(this.pointer.getPointerAddress(), name);
+    public OgreMaterialPass setFragmentShader(final String name) {
+        this.setFragmentShader(this.pointer.getPointerAddress(), name);
         return this;
     }
 
@@ -376,7 +376,7 @@ final class OgreMaterialPass extends MaterialPass {
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Fragment program name.
      */
-    private native void setFragmentProgram(final long pointer, final String name);
+    private native void setFragmentShader(final long pointer, final String name);
 
     /**
      * Set a parameter to a fragment program.
@@ -428,7 +428,7 @@ final class OgreMaterialPass extends MaterialPass {
      * @param name           Parameter name.
      * @param constant       Automatic parameter enum value.
      */
-    private native void setFragmentProgramParameterAuto(final long pointerAddress, final String name, final int constant);
+    private native void setFragmentShaderParameterAuto(final long pointerAddress, final String name, final int constant);
 
     /**
      * Set an automatic parameter to a fragment program.
@@ -491,7 +491,7 @@ final class OgreMaterialPass extends MaterialPass {
      * @param name           Parameter name.
      * @param constant       Automatic parameter enum value.
      */
-    private native void setVertexProgramParameterAuto(final long pointerAddress, final String name, final int constant);
+    private native void setVertexShaderParameterAuto(final long pointerAddress, final String name, final int constant);
 
     /**
      * Set an automatic parameter to a vertex program.

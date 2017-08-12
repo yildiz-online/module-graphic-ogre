@@ -28,7 +28,7 @@ import be.yildiz.common.shape.Box;
 import be.yildiz.common.shape.Sphere;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.ClientGameEntity;
-import be.yildiz.module.graphic.ClientWorld;
+import be.yildiz.module.graphic.GraphicWorld;
 import be.yildiz.module.graphic.Material;
 
 import java.security.InvalidParameterException;
@@ -38,7 +38,7 @@ import java.security.InvalidParameterException;
  *
  * @author Grégory Van den Borre
  */
-public final class OgreWorld extends AbstractOgreWorld implements ClientWorld {
+public final class OgreWorld extends AbstractOgreWorld implements GraphicWorld {
 
     /**
      * The scene manager manage the graphic part of this world.

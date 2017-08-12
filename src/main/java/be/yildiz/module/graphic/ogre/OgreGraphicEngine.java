@@ -221,7 +221,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
     }
 
     @Override
-    public ClientWorld createWorld() {
+    public GraphicWorld createWorld() {
         OgreSceneManager graphic = this.createGraphicWorld("sc", ShadowType.NONE);
         return new OgreWorld(graphic);
     }

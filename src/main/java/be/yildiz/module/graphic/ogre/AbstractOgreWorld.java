@@ -39,7 +39,7 @@ import be.yildiz.module.graphic.LensFlare.LensFlareMaterial;
  *
  * @author Grégory Van den Borre
  */
-public abstract class AbstractOgreWorld implements ClientWorld {
+public abstract class AbstractOgreWorld implements GraphicWorld {
 
     /**
      * The scene manager manage the graphic part of this world.

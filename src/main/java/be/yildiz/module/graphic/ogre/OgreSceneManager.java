@@ -41,7 +41,7 @@ import be.yildiz.module.graphic.GraphicEngine.ShadowType;
  *
  * @author Grégory Van den Borre
  */
-public final class OgreSceneManager implements GraphicWorld, Native {
+public final class OgreSceneManager implements SceneManager, Native {
 
     /**
      * Value to scale the boxes to match Ogre and engine sizes.
