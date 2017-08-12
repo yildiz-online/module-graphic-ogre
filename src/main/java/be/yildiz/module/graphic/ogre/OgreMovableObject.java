@@ -44,19 +44,16 @@ public final class OgreMovableObject extends AbstractOgreObject {
         super(id, entity, false);
     }
 
-    @Override
     public Point3D getAbsolutePosition() {
         // FIXME implements add child and correct this
         return this.getPosition();
     }
 
-    @Override
     public void setAbsolutePosition(Point3D pos) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public Point3D getAbsoluteDirection() {
         // FIXME implements add child and correct this
         return this.getPosition();
@@ -70,7 +67,6 @@ public final class OgreMovableObject extends AbstractOgreObject {
     public void deleteImpl() {
     }
 
-    @Override
     public void sleep(final boolean b) {
     }
 
@@ -82,13 +78,11 @@ public final class OgreMovableObject extends AbstractOgreObject {
     protected void setDirectionImpl(final Point3D dir) {
     }
 
-    @Override
     public void detach(Movable other) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void addChild(Movable other) {
         // TODO Auto-generated method stub
 

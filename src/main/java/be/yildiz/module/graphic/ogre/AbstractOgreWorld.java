@@ -63,7 +63,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createStaticDoodad(final Box box, final Material material, final Point3D position, final Point3D direction) {
+    public final OgreStaticObject createStaticDoodad(final Box box, final Material material, final Point3D position, final Point3D direction) {
         final OgreNode node = this.sceneManager.createNode();
         final OgreEntity entity = this.sceneManager.createEntity(box, node);
         entity.setMaterial(material);
@@ -73,7 +73,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public ClientGameEntity createStaticObject(final EntityId id, final GraphicMesh mesh, final Point3D position, final Point3D direction) {
+    public OgreStaticObject createStaticObject(final EntityId id, final GraphicMesh mesh, final Point3D position, final Point3D direction) {
         final OgreNode node = this.sceneManager.createNode(id);
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());
@@ -83,7 +83,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createStaticDoodad(final Plane plane, final Material material, final Point3D position, final Point3D direction) {
+    public final OgreStaticObject createStaticDoodad(final Plane plane, final Material material, final Point3D position, final Point3D direction) {
         final OgreNode node = this.sceneManager.createNode();
         final OgreEntity entity = this.sceneManager.createEntity(plane, node);
         entity.setMaterial(material);
@@ -93,7 +93,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createStaticDoodad(final Sphere sphere, final Material material, final Point3D position, final Point3D direction) {
+    public final OgreStaticObject createStaticDoodad(final Sphere sphere, final Material material, final Point3D position, final Point3D direction) {
         final OgreNode node = this.sceneManager.createNode();
         final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
         entity.setMaterial(material);
@@ -103,12 +103,12 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createStaticDoodad(final Sphere sphere, final Material material, final Point3D position) {
+    public final OgreStaticObject createStaticDoodad(final Sphere sphere, final Material material, final Point3D position) {
         return this.createStaticDoodad(sphere, material, position, Point3D.BASE_DIRECTION);
     }
 
     @Override
-    public final ClientGameEntity createStaticDoodad(final GraphicMesh mesh, final Point3D position, final Point3D direction) {
+    public final OgreStaticObject createStaticDoodad(final GraphicMesh mesh, final Point3D position, final Point3D direction) {
         final OgreNode node = this.sceneManager.createNode();
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());
@@ -118,7 +118,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createMovableDoodad(final Box box, final Material material) {
+    public final OgreMovableObject createMovableDoodad(final Box box, final Material material) {
         final OgreNode node = this.sceneManager.createNode();
         final OgreEntity entity = this.sceneManager.createEntity(box, node);
         entity.setMaterial(material);
@@ -126,7 +126,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createMovableDoodad(final Plane plane, final Material material) {
+    public final OgreMovableObject createMovableDoodad(final Plane plane, final Material material) {
         final OgreNode node = this.sceneManager.createNode();
         final OgreEntity entity = this.sceneManager.createEntity(plane, node);
         entity.setMaterial(material);
@@ -134,7 +134,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createMovableDoodad(final Sphere sphere, final Material material) {
+    public final OgreMovableObject createMovableDoodad(final Sphere sphere, final Material material) {
         final OgreNode node = this.sceneManager.createNode();
         final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
         entity.setMaterial(material);
@@ -142,7 +142,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createMovableDoodad(final GraphicMesh mesh) {
+    public final OgreMovableObject createMovableDoodad(final GraphicMesh mesh) {
         final OgreNode node = this.sceneManager.createNode();
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());
@@ -150,7 +150,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createMovableObject(final EntityId id, final GraphicMesh mesh, final Point3D position) {
+    public final OgreMovableObject createMovableObject(final EntityId id, final GraphicMesh mesh, final Point3D position) {
         final OgreNode node = this.sceneManager.createNode(id);
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());
@@ -159,7 +159,7 @@ public abstract class AbstractOgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final ClientGameEntity createStaticObject(final EntityId id, final GraphicMesh mesh, final Point3D position) {
+    public final OgreStaticObject createStaticObject(final EntityId id, final GraphicMesh mesh, final Point3D position) {
         final OgreNode node = this.sceneManager.createNode(id);
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());

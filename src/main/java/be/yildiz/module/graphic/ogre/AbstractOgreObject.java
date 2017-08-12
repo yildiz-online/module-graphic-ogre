@@ -27,7 +27,6 @@ import be.yildiz.common.gameobject.Movable;
 import be.yildiz.common.id.EntityId;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.BaseGraphicObject;
-import be.yildiz.module.graphic.ClientGameEntity;
 import be.yildiz.module.graphic.GraphicMovable;
 import be.yildiz.module.graphic.Material;
 
@@ -96,12 +95,11 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
     }
 
     @Override
-    public final ClientGameEntity setParameter(final int index, final float v1, final float v2, final float v3, final float v4) {
+    public final AbstractOgreObject setParameter(final int index, final float v1, final float v2, final float v3, final float v4) {
         this.entity.setParameter(index, v1, v2, v3, v4);
         return this;
     }
 
-    @Override
     public final void setDirection(final Point3D dir) {
         assert dir != null;
         if (!this.staticObject) {
@@ -142,18 +140,16 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
     @Override
     public final void lookAt(final Point3D target) {
         if (!this.staticObject) {
-            this.setDirection(target.subtract(this.getAbsolutePosition()));
+            this.setDirection(target.subtract(this.getPosition()));
         }
     }
 
-    @Override
     public final void attachTo(final Movable other) {
         if (!this.staticObject) {
             this.node.attachTo(((GraphicMovable) other).getNode());
         }
     }
 
-    @Override
     public final void attachToOptional(final Movable other) {
         if (!this.staticObject) {
             this.node.attachToOptional(((GraphicMovable) other).getNode());
@@ -182,21 +178,23 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
     }
 
     @Override
-    public final void setUnpickable() {
+    public final AbstractOgreObject setUnpickable() {
         this.entity.setUnpickable();
+        return this;
     }
 
     @Override
-    public final ClientGameEntity setRenderBehind() {
+    public final BaseGraphicObject setRenderBehind() {
         this.entity.renderBehind();
         return this;
     }
 
     @Override
-    public final void scale(final float x, final float y, final float z) {
+    public final AbstractOgreObject scale(final float x, final float y, final float z) {
         this.scaleSize = Point3D.valueOf(x, y, z);
         this.node.scale(x, y, z);
         this.scaleImpl(x, y, z);
+        return this;
     }
 
     @Override
@@ -204,7 +202,6 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
         this.entity.setMaterial(material);
     }
 
-    @Override
     public final EntityId getId() {
         return this.id;
     }
@@ -214,12 +211,10 @@ public abstract class AbstractOgreObject extends BaseGraphicObject implements Gr
         return this.node;
     }
 
-    @Override
     public Point3D getPosition() {
         return position;
     }
 
-    @Override
     public Point3D getDirection() {
         return direction;
     }
