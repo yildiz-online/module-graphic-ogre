@@ -99,7 +99,7 @@ public final class OgreSceneManager implements SceneManager, Native {
         this.resolutionX = screenSizeX;
         this.resolutionY = screenSizeY;
         this.defaultCamera = this.createCamera("default");
-        this.rootNode = new OgreNode(NativePointer.create(this.getRootNode(this.pointer.getPointerAddress())), null);
+        this.rootNode = new OgreNodeStatic(NativePointer.create(this.getRootNode(this.pointer.getPointerAddress())), null, Point3D.ZERO, Point3D.ZERO);
     }
 
     /**
@@ -117,7 +117,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The created billboard chain.
      */
     public OgreBillboardChain createBillboardChain() {
-        OgreNode node = this.createNode(StringUtil.buildRandomString("chain"));
+        OgreNode node = this.createMovableNode();
         return new OgreBillboardChain(node);
     }
 
@@ -213,51 +213,31 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The created line.
      */
     public OgreLine createLine() {
-        return new OgreLine(this.createNode(StringUtil.buildRandomString("line")));
+        return new OgreLine(this.createMovableNode());
     }
 
-    /**
-     * Create an Ogre Node.
-     *
-     * @param name Node's name, must be unique.
-     * @return The created node.
-     */
-    public OgreNode createNode(final String name) {
-        final long address = this.createNode(this.pointer.getPointerAddress(), name);
+    public final OgreNodeStatic createStaticNode(Point3D position, Point3D direction) {
+        final long address = this.createNode(this.pointer.getPointerAddress(), StringUtil.buildRandomString("node"));
         final NativePointer nodePointer = NativePointer.create(address);
-        return new OgreNode(nodePointer, this.rootNode);
+        return new OgreNodeStatic(nodePointer, this.rootNode, position, direction);
     }
 
-    /**
-     * Create an Ogre Node with a random name.
-     *
-     * @return The created node.
-     */
-    public OgreNode createNode() {
-        return this.createNode(StringUtil.buildRandomString("node"));
-    }
-
-    /**
-     * Create an Ogre Node associated to an id.
-     *
-     * @param id   Associated Id, this id will be used to identify the node when interactions occurs(like raycast,...)
-     * @param name Node's name, must be unique.
-     * @return The created node.
-     */
-    public OgreNode createNode(final EntityId id, final String name) {
-        final long address = this.createNodeId(this.pointer.getPointerAddress(), id.value, name);
+    public final OgreNodeStatic createStaticNode(EntityId id, Point3D position, Point3D direction) {
+        final long address = this.createNodeId(this.pointer.getPointerAddress(), id.value, StringUtil.buildRandomString("node"));
         final NativePointer nodePointer = NativePointer.create(address);
-        return new OgreNode(nodePointer, id, this.rootNode);
+        return new OgreNodeStatic(nodePointer, this.rootNode, position, direction);
     }
 
-    /**
-     * Create an Ogre Node associated to an id with a random name.
-     *
-     * @param id Associated Id, this id will be used to identify the node when interactions occurs(like raycast,...)
-     * @return The created node.
-     */
-    public OgreNode createNode(final EntityId id) {
-        return this.createNode(id, StringUtil.buildRandomString(id));
+    public final OgreNodeMovable createMovableNode() {
+        final long address = this.createNode(this.pointer.getPointerAddress(), StringUtil.buildRandomString("node"));
+        final NativePointer nodePointer = NativePointer.create(address);
+        return new OgreNodeMovable(nodePointer, this.rootNode);
+    }
+
+    public final OgreNodeMovable createMovableNode(EntityId id) {
+        final long address = this.createNodeId(this.pointer.getPointerAddress(), id.value, StringUtil.buildRandomString("node"));
+        final NativePointer nodePointer = NativePointer.create(address);
+        return new OgreNodeMovable(nodePointer, this.rootNode);
     }
 
     /**
@@ -285,7 +265,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      */
     public OgreCamera createCamera(final String name) {
         final long address = this.createCamera(this.pointer.getPointerAddress(), name);
-        final OgreCamera cam = new OgreCamera(NativePointer.create(address), name, this.createNode("cam_" + name), this.resolutionX, this.resolutionY);
+        final OgreCamera cam = new OgreCamera(NativePointer.create(address), name, this.createMovableNode(), this.resolutionX, this.resolutionY);
 
         this.window.createViewport(cam);
         this.cameras.register(cam);
@@ -299,7 +279,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param node The created entity will be attached to this node.
      * @return The built mesh entity.
      */
-    public OgreEntity createEntity(final GraphicMesh mesh, final OgreNode node) {
+    public OgreEntity createEntity(final GraphicMesh mesh, final OgreNodeBase node) {
         OgreEntity entity = new OgreEntity(NativePointer.create(this.createMeshEntity(this.pointer.getPointerAddress(), mesh.getFile(), node.getPointer().getPointerAddress())), node);
         entity.setMaterial(mesh.getMaterial());
         return entity;
@@ -312,7 +292,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param node The created entity will be attached to this node.
      * @return The built box entity.
      */
-    public OgreEntity createEntity(final Box box, final OgreNode node) {
+    public OgreEntity createEntity(final Box box, final OgreNodeBase node) {
         final OgreEntity e = new OgreEntity(NativePointer.create(this.createBoxEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress())), node);
         node.scale(box.width * OgreSceneManager.OGRE_SCALE, box.height * OgreSceneManager.OGRE_SCALE, box.depth * OgreSceneManager.OGRE_SCALE);
         return e;
@@ -325,7 +305,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param node  The created entity will be attached to this node.
      * @return The built plane entity.
      */
-    public OgreEntity createEntity(final Plane plane, final OgreNode node) {
+    public OgreEntity createEntity(final Plane plane, final OgreNodeBase node) {
         final OgreEntity e = new OgreEntity(NativePointer.create(this.createPlaneEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress())), node);
         node.scale(plane.width * OgreSceneManager.OGRE_SCALE, plane.depth * OGRE_SCALE, plane.depth * OGRE_SCALE);
         return e;
@@ -338,7 +318,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param node   The created entity will be attached to this node.
      * @return The built sphere entity.
      */
-    public OgreEntity createEntity(final Sphere sphere, final OgreNode node) {
+    public OgreEntity createEntity(final Sphere sphere, final OgreNodeBase node) {
         final OgreEntity e = new OgreEntity(NativePointer.create(this.createSphereEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress(), StringUtil.buildRandomString(node.getName()))), node);
         node.scale(OgreSceneManager.OGRE_SCALE * sphere.radius);
         return e;
@@ -353,7 +333,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The created movable text object.
      */
     public OgreMovableText createMovableText(final String name, final String text, final Font font) {
-        return new OgreMovableText(this.createNode(name), name, text, font);
+        return new OgreMovableText(this.createMovableNode(), name, text, font);
     }
 
     /**
@@ -362,7 +342,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return An OgreParticleSystem.
      */
     public OgreParticleSystem createParticleSystem() {
-        final OgreNode node = this.createNode(StringUtil.buildRandomString("node_particleSystem"));
+        final OgreNode node = this.createMovableNode();
         final long address = this.createParticleSystem(this.pointer.getPointerAddress());
         final NativePointer systemPointer = NativePointer.create(address);
         return new OgreParticleSystem(systemPointer, node);
@@ -394,7 +374,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The created object.
      */
     public OgreParticleSystem[] createExplosion() {
-        final OgreNode node = this.createNode(StringUtil.buildRandomString("node_explosion"));
+        final OgreNode node = this.createMovableNode();
         long address = this.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke1 = new OgreParticleSystem(NativePointer.create(address), node);
         address = this.createParticleSystem(this.pointer.getPointerAddress());

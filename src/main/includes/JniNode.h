@@ -32,16 +32,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_createChild(
+JNIEXPORT POINTER JNICALL Java_jni_OgreNodeNative_createChild(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
-JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getName(
+JNIEXPORT jstring JNICALL Java_jni_OgreNodeNative_getName(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_setPosition(
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setPosition(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -49,19 +49,19 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_setPosition(
     jfloat y,
     jfloat z);
     
-    JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_detachFromParent(
+    JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParent(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_setDirection(
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setDirection(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jfloat z);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_translate(
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_translate(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -69,40 +69,40 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_transl
     jfloat y,
     jfloat z);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_show(
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_show(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_hide(
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_hide(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_rotate(
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_rotate(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_delete(
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_delete(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getPosition(
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getPosition(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getDirection(
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getDirection(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getWorldDirection(
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getWorldDirection(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_scale(
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_scale(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -110,7 +110,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_scale(
     jfloat scaleY,
     jfloat scaleZ);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_rotateQuaternion(
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_rotateQuaternion(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -119,12 +119,12 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_rotateQuatern
     jfloat z,
     jfloat w);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_attachToNode(
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachToNode(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER other);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getOrientation(
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getOrientation(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
