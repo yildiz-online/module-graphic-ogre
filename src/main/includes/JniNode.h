@@ -32,102 +32,51 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-JNIEXPORT POINTER JNICALL Java_jni_OgreNodeNative_createChild(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
-JNIEXPORT jstring JNICALL Java_jni_OgreNodeNative_getName(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
+
+JNIEXPORT jstring JNICALL Java_jni_OgreNodeNative_getName(JNIEnv* env, jobject o, POINTER pointer);
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_show(JNIEnv* env, jobject o, POINTER pointer);
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_hide(JNIEnv* env, jobject o, POINTER pointer);
+
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getPosition(JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setPosition(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z);
-    
-    JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParent(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z);
+
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getDirection(JNIEnv* env, jobject o, POINTER pointer);
 
 JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setDirection(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z);
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z);
+
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getOrientation(JNIEnv* env, jobject o, POINTER pointer);
+
 JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_translate(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z);
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_show(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
-
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_hide(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
 JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_rotate(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y);
-
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_delete(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getPosition(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getDirection(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getWorldDirection(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
-
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_scale(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat scaleX,
-    jfloat scaleY,
-    jfloat scaleZ);
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y);
 
 JNIEXPORT void JNICALL Java_jni_OgreNodeNative_rotateQuaternion(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z,
-    jfloat w);
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z, jfloat w);
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_scale(
+    JNIEnv* env, jobject o, POINTER pointer, jfloat scaleX, jfloat scaleY, jfloat scaleZ);
 
 JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachToNode(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    POINTER other);
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getOrientation(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
+    JNIEnv* env, jobject o, POINTER pointer, POINTER other);
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachTo(
+    JNIEnv* env, jobject o, POINTER pointer, POINTER other);
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParentNode(
+    JNIEnv* env, jobject o, POINTER pointer);
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParent(
+    JNIEnv* env, jobject o, POINTER pointer, POINTER parent);
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_delete(JNIEnv* env, jobject o, POINTER pointer);
+
 
 #ifdef __cplusplus
 }

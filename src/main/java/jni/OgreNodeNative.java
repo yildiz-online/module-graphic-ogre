@@ -30,6 +30,14 @@ package jni;
 public class OgreNodeNative {
 
     /**
+     * Retrieve the node name in native code.
+     *
+     * @param pointerAddress Address to the native yz::Node.
+     * @return The result of Ogre::SceneNode::getName()
+     */
+    public native String getName(final long pointerAddress);
+
+    /**
      * Set the object visible in native code.
      *
      * @param pointerAddress Address to the native yz::Node.
@@ -42,6 +50,61 @@ public class OgreNodeNative {
      * @param pointerAddress Address to the native yz::Node.
      */
     public native void hide(final long pointerAddress);
+
+    /**
+     * Retrieve the object position in native code.
+     *
+     * @param pointerAddress Address to the native yz::Node.
+     * @return An array (0 = X, 1 = Y, 2 = Z).
+     */
+    public native float[] getPosition(final long pointerAddress);
+
+    /**
+     * Set the object position in native code.
+     *
+     * @param pointerAddress Address to the native yz::Node.
+     * @param posX           Position X value.
+     * @param posY           Position Y value.
+     * @param posZ           Position Z value.
+     */
+    public native void setPosition(final long pointerAddress, final float posX, final float posY, final float posZ);
+
+    /**
+     * Retrieve the current direction from native code.
+     *
+     * @param pointerAddress Address to the native yz::Node.
+     * @return An array containing X, Y and Z direction coordinates.
+     */
+    public native float[] getDirection(final long pointerAddress);
+
+    /**
+     * Set the object direction in native code.
+     *
+     * @param pointerAddress Address to the native yz::Node.
+     * @param dirX           Direction X value.
+     * @param dirY           Direction Y value.
+     * @param dirZ           Direction Z value.
+     */
+    public native void setDirection(final long pointerAddress, final float dirX, final float dirY, final float dirZ);
+
+    /**
+     * Retrieve the current orientation from native code.
+     *
+     * @param pointerAddress Address to the native yz::Node.
+     * @return An array containing W, X, Y and Z orientation coordinates.
+     */
+    public native float[] getOrientation(final long pointerAddress);
+
+    /**
+     * Translate the object in native code.
+     *
+     * @param pointerAddress Address to the native yz::Node.
+     * @param moveX          Translation X value.
+     * @param moveY          Translation Y value.
+     * @param moveZ          Translation Z value.
+     * @return The new object position.
+     */
+    public native float[] translate(final long pointerAddress, final float moveX, final float moveY, final float moveZ);
 
     /**
      * Rotate the object in native code.
@@ -65,60 +128,6 @@ public class OgreNodeNative {
     public native void rotateQuaternion(final long pointerAddress, final float quatX, final float quatY, final float quatZ, final float quatW);
 
     /**
-     * Delete the object in native code.
-     *
-     * @param pointerAddress Address to the native yz::Node.
-     */
-    public native void delete(final long pointerAddress);
-
-    /**
-     * Set the object position in native code.
-     *
-     * @param pointerAddress Address to the native yz::Node.
-     * @param posX           Position X value.
-     * @param posY           Position Y value.
-     * @param posZ           Position Z value.
-     */
-    public native void setPosition(final long pointerAddress, final float posX, final float posY, final float posZ);
-
-    /**
-     * Retrieve the object position in native code.
-     *
-     * @param pointerAddress Address to the native yz::Node.
-     * @return An array (0 = X, 1 = Y, 2 = Z).
-     */
-    public native float[] getPosition(final long pointerAddress);
-
-    /**
-     * Translate the object in native code.
-     *
-     * @param pointerAddress Address to the native yz::Node.
-     * @param moveX          Translation X value.
-     * @param moveY          Translation Y value.
-     * @param moveZ          Translation Z value.
-     * @return The new object position.
-     */
-    public native float[] translate(final long pointerAddress, final float moveX, final float moveY, final float moveZ);
-
-    /**
-     * Set the object direction in native code.
-     *
-     * @param pointerAddress Address to the native yz::Node.
-     * @param dirX           Direction X value.
-     * @param dirY           Direction Y value.
-     * @param dirZ           Direction Z value.
-     */
-    public native void setDirection(final long pointerAddress, final float dirX, final float dirY, final float dirZ);
-
-    /**
-     * Create a Movable object child in native code.
-     *
-     * @param pointerAddress Address to the native yz::Node.
-     * @return Address to the native child yz::Node.
-     */
-    public native long createChild(final long pointerAddress);
-
-    /**
      * Scale the object in native code.
      *
      * @param pointerAddress Address to the native object.
@@ -129,44 +138,19 @@ public class OgreNodeNative {
     public native void scale(final long pointerAddress, final float scaleX, final float scaleY, final float scaleZ);
 
     /**
-     * Attach this node to an other in native code.
+     * Attach this node to another movable in native code.
      *
      * @param pointerAddress Address to the native yz::Node.
-     * @param other          Address to the other native yz::Node.
+     * @param other          Address to the other native yz::Movable.
      */
-    public native void attachToNode(final long pointerAddress, final long other);
+    public native void attachTo(final long pointerAddress, final long other);
+
+    public native void detachFromParent(final long pointerAddress, final long parentPointer);
 
     /**
-     * Retrieve the node name in native code.
+     * Delete the object in native code.
      *
      * @param pointerAddress Address to the native yz::Node.
-     * @return The result of Ogre::SceneNode::getName()
      */
-    public native String getName(final long pointerAddress);
-
-    /**
-     * Retrieve the current direction from native code.
-     *
-     * @param pointerAddress Address to the native yz::Node.
-     * @return An array containing X, Y and Z direction coordinates.
-     */
-    public native float[] getDirection(final long pointerAddress);
-
-    /**
-     * Retrieve the current direction associated to the parents from native code.
-     *
-     * @param pointerAddress Address to the native yz::Node.
-     * @return An array containing X, Y and Z direction coordinates.
-     */
-    public native float[] getWorldDirection(final long pointerAddress);
-
-    /**
-     * Retrieve the current orientation from native code.
-     *
-     * @param pointerAddress Address to the native yz::Node.
-     * @return An array containing W, X, Y and Z orientation coordinates.
-     */
-    public native float[] getOrientation(final long pointerAddress);
-
-    public native void detachFromParent(final long pointerAddress);
+    public native void delete(final long pointerAddress);
 }

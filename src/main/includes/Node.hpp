@@ -70,7 +70,7 @@ public:
         this->node = NULL;
 	}
 
-	inline void attachTo(yz::Node* other) {
+	inline void attachToNode(yz::Node* other) {
 	    LOG_FUNCTION
 		Ogre::SceneNode* parent = this->node->getParentSceneNode();
 		parent->removeChild(this->node);
@@ -81,6 +81,16 @@ public:
 	    LOG_FUNCTION
 		this->node->addChild(child->getWrappedNode());
 	}
+
+    inline void addMovableComponent(NativeMovableComponent* c) {
+        LOG_FUNCTION
+        this->movable->addComponent(c);
+	}
+
+    inline void removeMovableComponent(NativeMovableComponent* c) {
+        LOG_FUNCTION
+        this->movable->removeComponent(c);
+    }
 
 	/**
 	 * @return The wrapped Ogre::SceneNode
@@ -227,7 +237,8 @@ public:
 	virtual inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
 	    LOG_FUNCTION
 		this->node->setPosition(x, y, z);
-	}
+		this->movable->setPosition(x, y, z);
+    }
 
 	/**
 	 * Set the direction using Ogre::Node::TS_WORLD and Ogre::Vector3::NEGATIVE_UNIT_Z.
@@ -238,21 +249,20 @@ public:
 	 * @param z
 	 *           New Z direction.
 	 */
-	virtual inline void setDirection(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
-	    LOG_FUNCTION
-		this->node->setDirection(x, y, z, Ogre::Node::TS_WORLD,
-				Ogre::Vector3::NEGATIVE_UNIT_Z);
-	}
+    virtual inline void setDirection(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
+        LOG_FUNCTION
+        this->node->setDirection(x, y, z, Ogre::Node::TS_WORLD, Ogre::Vector3::NEGATIVE_UNIT_Z);
+    }
 
 	virtual inline void setOrientation(const Ogre::Real w, const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
-	    LOG_FUNCTION
-		this->node->setOrientation(w, x, y, z);
-	}
+        LOG_FUNCTION
+        this->node->setOrientation(w, x, y, z);
+    }
 
-	inline void translate(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
-	    LOG_FUNCTION
-		node->translate(x, y, z, Ogre::Node::TS_WORLD);
-	}
+    inline void translate(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
+        LOG_FUNCTION
+        node->translate(x, y, z, Ogre::Node::TS_WORLD);
+    }
 
 	inline Ogre::Vector3 getPosition() const {
 	    LOG_FUNCTION
@@ -264,25 +274,31 @@ public:
 		return this->node->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
 	}
 
-	inline Ogre::Vector3 getWorldDirection() const {
-	    LOG_FUNCTION
-		return this->node->_getDerivedOrientation()
-				* Ogre::Vector3::NEGATIVE_UNIT_Z;
-	}
+    inline Ogre::Vector3 getWorldDirection() const {
+        LOG_FUNCTION
+        return this->node->_getDerivedOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
+    }
 
-	inline void showBoundingBox(const bool visible) {
-	    LOG_FUNCTION
-		this->node->showBoundingBox(visible);
-	}
+    inline void showBoundingBox(const bool visible) {
+        LOG_FUNCTION
+        this->node->showBoundingBox(visible);
+    }
     
+    inline void detachFromParentNode() {
+        LOG_FUNCTION
+        Ogre::SceneNode* parent = this->node->getParentSceneNode();
+        parent->removeChild(this->node);
+        this->node->getCreator()->getRootSceneNode()->addChild(this->node);
+    }
+
     inline void detachFromParent() {
         LOG_FUNCTION
         Ogre::SceneNode* parent = this->node->getParentSceneNode();
-		parent->removeChild(this->node);
-		this->node->getCreator()->getRootSceneNode()->addChild(this->node);
+        parent->removeChild(this->node);
+        this->node->getCreator()->getRootSceneNode()->addChild(this->node);
     }
 
-	inline void addManualMovable(Ogre::MovableObject* manual) {
+    inline void addManualMovable(Ogre::MovableObject* manual) {
 	    LOG_FUNCTION
 		this->manualList.push_back(manual);
 	}
@@ -300,6 +316,8 @@ private:
 	Ogre::SceneNode* node;
 
 	yz::NodeListeners* listenerList;
+
+	yz::NativeMovable* movable = new yz::NativeMovable();
 
 	/**
 	 * List containing object manually created(not using scene manager), they must be detached and manually deleted.

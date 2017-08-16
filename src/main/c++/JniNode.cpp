@@ -30,161 +30,99 @@
 #include "../includes/JniUtil.h"
 #include "../includes/Node.hpp"
 
-JNIEXPORT POINTER JNICALL Java_jni_OgreNodeNative_createChild(
-    JNIEnv*, jobject, POINTER pointer) {
+JNIEXPORT jstring JNICALL Java_jni_OgreNodeNative_getName(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
-    return reinterpret_cast<jlong>(yz::Node::get(pointer)->createChildNode());
+    return env->NewStringUTF(yz::Node::get(pointer)->getName().c_str());
 }
 
-JNIEXPORT jstring JNICALL Java_jni_OgreNodeNative_getName(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer) {
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_show(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
-    return env->NewStringUTF(
-    		yz::Node::get(pointer)->getName().c_str());
+    yz::Node::get(pointer)->show();
+}
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_hide(JNIEnv* env, jobject o, POINTER pointer) {
+    LOG_FUNCTION
+    yz::Node::get(pointer)->hide();
+}
+
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getPosition(JNIEnv* env, jobject o, POINTER pointer) {
+    LOG_FUNCTION
+    return vectorToArray(env, yz::Node::get(pointer)->getPosition());
 }
 
 JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setPosition(
-    JNIEnv*,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z) {
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
     yz::Node::get(pointer)->setPosition(x, y, z);
 }
 
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getDirection(JNIEnv* env, jobject o, POINTER pointer) {
+    LOG_FUNCTION
+    return vectorToArray(env, yz::Node::get(pointer)->getDirection());
+}
+
 JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setDirection(
-    JNIEnv*,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z) {
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
     yz::Node::get(pointer)->setDirection(x, y, z);
 }
 
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getOrientation(JNIEnv* env, jobject o, POINTER pointer) {
+    LOG_FUNCTION
+    return quaternionToArray(env, yz::Node::get(pointer)->getOrientation());
+}
+
 JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_translate(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z) {
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
     yz::Node* node = yz::Node::get(pointer);
     node->translate(x, y, z);
     return vectorToArray(env, node->getPosition());
 }
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getPosition(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer) {
-    LOG_FUNCTION
-    return vectorToArray(env, yz::Node::get(pointer)->getPosition());
-}
-
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getDirection(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer) {
-    LOG_FUNCTION
-    return vectorToArray(env, yz::Node::get(pointer)->getDirection());
-}
-
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreNode_getWorldDirection(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer) {
-    LOG_FUNCTION
-    return vectorToArray(env, yz::Node::get(pointer)->getWorldDirection());
-}
-
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getOrientation(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer) {
-    LOG_FUNCTION
-    return quaternionToArray(env, yz::Node::get(pointer)->getOrientation());
-}
-
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_show(
-    JNIEnv*,
-    jobject,
-    POINTER pointer) {
-    LOG_FUNCTION
-    yz::Node::get(pointer)->show();
-}
-
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_hide(
-    JNIEnv*,
-    jobject,
-    POINTER pointer) {
-    LOG_FUNCTION
-    yz::Node::get(pointer)->hide();
-}
-
 JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_rotate(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y) {
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y) {
     LOG_FUNCTION
     return vectorToArray(env, yz::Node::get(pointer)->rotate(x, y));
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_delete(
-    JNIEnv*,
-    jobject,
-    POINTER pointer) {
-    LOG_FUNCTION
-    yz::Node::get(pointer)->destroy();
-}
-
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_scale(
-    JNIEnv*,
-    jobject,
-    POINTER pointer,
-    jfloat scaleX,
-    jfloat scaleY,
-    jfloat scaleZ) {
-    LOG_FUNCTION
-    yz::Node::get(pointer)->scale(scaleX, scaleY, scaleZ);
-}
-
 JNIEXPORT void JNICALL Java_jni_OgreNodeNative_rotateQuaternion(
-    JNIEnv*,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z,
-    jfloat w) {
+    JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z, jfloat w) {
     LOG_FUNCTION
     yz::Node::get(pointer)->rotate(w, x, y, z);
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachToNode(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer,
-    POINTER otherPointer) {
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_scale(
+    JNIEnv* env, jobject o, POINTER pointer, jfloat scaleX, jfloat scaleY, jfloat scaleZ) {
+    LOG_FUNCTION
+    yz::Node::get(pointer)->scale(scaleX, scaleY, scaleZ);
+}
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachTo(
+    JNIEnv* env, jobject o, POINTER pointer, POINTER otherPointer) {
     LOG_FUNCTION
     yz::Node* node = yz::Node::get(pointer);
-    yz::Node* otherNode = yz::Node::get(otherPointer);
+    yz::NativeMovableComponent* other = reinterpret_cast<yz::NativeMovableComponent*>(otherPointer);
     try {
-        node->attachTo(otherNode);
+        other->addMovableComponent(node);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParent(
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachToNode(
+    JNIEnv* env, jobject o, POINTER pointer, POINTER otherPointer) {
+    LOG_FUNCTION
+    yz::Node* node = yz::Node::get(pointer);
+    yz::Node* other = yz::Node::get(otherPointer);
+    try {
+        node->attachToNode(other);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+}
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParentNode(
     JNIEnv* env,
     jobject,
     POINTER pointer) {
@@ -195,5 +133,29 @@ JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParent(
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
+}
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParent(
+    JNIEnv* env,
+    jobject,
+    POINTER pointer,
+    POINTER parentPointer
+    ) {
+    LOG_FUNCTION
+    yz::Node* node = yz::Node::get(pointer);
+    yz::NativeMovableComponent* parent = reinterpret_cast<yz::NativeMovableComponent*>(parentPointer);
+    try {
+        parent->removeMovableComponent(node);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+}
+
+JNIEXPORT void JNICALL Java_jni_OgreNodeNative_delete(
+    JNIEnv*,
+    jobject,
+    POINTER pointer) {
+    LOG_FUNCTION
+    yz::Node::get(pointer)->destroy();
 }
 

@@ -27,6 +27,7 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.common.collections.Sets;
 import be.yildiz.common.gameobject.Movable;
 import be.yildiz.common.id.EntityId;
+import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.common.vector.Quaternion;
@@ -97,12 +98,6 @@ abstract class OgreNodeBase extends Node implements OgreNode {
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
-    @Override
-    public final Point3D getAbsoluteDirection() {
-        float[] v = this.nodeNative.getWorldDirection(this.pointer.getPointerAddress());
-        return Point3D.valueOf(v[0], v[1], v[2]);
-    }
-
     public final String getName() {
         return name;
     }
@@ -127,7 +122,8 @@ abstract class OgreNodeBase extends Node implements OgreNode {
     @Override
     public final void detachFromParent() {
         this.parent.removeChild(this);
-        this.nodeNative.detachFromParent(this.pointer.getPointerAddress());
+        this.nodeNative.detachFromParent(this.pointer.getPointerAddress(),
+                Native.class.cast(this.parent).getPointer().getPointerAddress());
     }
 
     @Override
