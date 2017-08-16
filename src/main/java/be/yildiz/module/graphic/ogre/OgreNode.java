@@ -33,20 +33,5 @@ import be.yildiz.common.nativeresources.Native;
  */
 public interface OgreNode extends Native, Movable {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    String getName();
 }

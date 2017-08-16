@@ -26,7 +26,6 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.common.gameobject.Movable;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
-import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.Billboard;
 import be.yildiz.module.graphic.BillboardSet;
 
@@ -45,7 +44,7 @@ final class OgreBillboardSet extends BillboardSet implements Native {
     /**
      * Associated node.
      */
-    private OgreNode node;
+    private OgreNodeBase node;
 
     /**
      * Full constructor.
@@ -53,7 +52,7 @@ final class OgreBillboardSet extends BillboardSet implements Native {
      * @param pointer Pointer address to the associated native object.
      * @param node    Associated node.
      */
-    OgreBillboardSet(final NativePointer pointer, final OgreNode node) {
+    OgreBillboardSet(final NativePointer pointer, final OgreNodeBase node) {
         super(node);
         this.pointer = pointer;
         this.node = node;
@@ -138,20 +137,22 @@ final class OgreBillboardSet extends BillboardSet implements Native {
     private native void hide(final long pointerAddress);
 
     @Override
-    public void detach(Movable other) {
-        // TODO Auto-generated method stub
-
+    public void detachFromParent() {
+        this.node.detachFromParent();
     }
 
     @Override
-    public void addChild(Movable other) {
-        // TODO Auto-generated method stub
-
+    public void addOptionalChild(Movable child) {
+        this.addOptionalChild(child);
     }
 
     @Override
-    public void setAbsolutePosition(Point3D pos) {
-        // TODO Auto-generated method stub
+    public void addChild(Movable child) {
+        this.node.addChild(child);
+    }
 
+    @Override
+    public void removeChild(Movable child) {
+        this.node.removeChild(child);
     }
 }

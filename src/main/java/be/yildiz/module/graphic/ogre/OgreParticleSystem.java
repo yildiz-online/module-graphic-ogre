@@ -26,7 +26,6 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.common.gameobject.Movable;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
-import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.*;
 import be.yildiz.module.graphic.ParticleEmitter.EmitterType;
 
@@ -53,7 +52,7 @@ final class OgreParticleSystem extends AbstractParticleSystem implements Native 
      * @param pointer Pointer to the associated native object.
      * @param node    Node used to move the particle system.
      */
-    OgreParticleSystem(final NativePointer pointer, final OgreNode node) {
+    OgreParticleSystem(final NativePointer pointer, final OgreNodeBase node) {
         super(node);
         this.pointer = pointer;
         this.node = node;
@@ -233,21 +232,23 @@ final class OgreParticleSystem extends AbstractParticleSystem implements Native 
     private native void keepInLocalSpace(final long pointer, final boolean keep);
 
     @Override
-    public void detach(Movable other) {
-        // TODO Auto-generated method stub
+    public void detachFromParent() {
+        this.node.detachFromParent();
+    }
+
+    @Override
+    public void addOptionalChild(Movable child) {
+        this.node.addOptionalChild(child);
+    }
+
+    @Override
+    public void addChild(Movable child) {
+        this.node.addChild(child);
 
     }
 
     @Override
-    public void addChild(Movable other) {
-        // TODO Auto-generated method stub
-
+    public void removeChild(Movable child) {
+        this.node.removeChild(child);
     }
-
-    @Override
-    public void setAbsolutePosition(Point3D pos) {
-        // TODO Auto-generated method stub
-
-    }
-
 }

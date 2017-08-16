@@ -45,7 +45,7 @@ final class OgreMovableText extends MovableText {
     /**
      * Associated node.
      */
-    private final OgreNode node;
+    private final OgreNodeBase node;
 
     /**
      * Full constructor.
@@ -55,7 +55,7 @@ final class OgreMovableText extends MovableText {
      * @param text Text to print.
      * @param font Font to use.
      */
-    OgreMovableText(final OgreNode node, final String name, final String text, final Font font) {
+    OgreMovableText(final OgreNodeBase node, final String name, final String text, final Font font) {
         super(node);
         this.node = node;
         long address = this.constructor(this.node.getPointer().getPointerAddress(), name, text, OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
@@ -131,21 +131,24 @@ final class OgreMovableText extends MovableText {
      */
     private native void setTextOffset(final long address, final float x, final float y, final float z);
 
-    @Override
-    public void detach(Movable other) {
-        // TODO Auto-generated method stub
 
+    @Override
+    public void detachFromParent() {
+        this.node.detachFromParent();
     }
 
     @Override
-    public void addChild(Movable other) {
-        // TODO Auto-generated method stub
-
+    public void addOptionalChild(Movable child) {
+        this.node.addOptionalChild(child);
     }
 
     @Override
-    public void setAbsolutePosition(Point3D pos) {
-        // TODO Auto-generated method stub
+    public void addChild(Movable child) {
+        this.node.addChild(child);
+    }
 
+    @Override
+    public void removeChild(Movable child) {
+        this.node.removeChild(child);
     }
 }

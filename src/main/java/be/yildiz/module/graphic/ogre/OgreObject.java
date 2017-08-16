@@ -26,8 +26,8 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.common.gameobject.Movable;
 import be.yildiz.common.id.EntityId;
 import be.yildiz.common.vector.Point3D;
-import be.yildiz.module.graphic.GraphicObject;
 import be.yildiz.module.graphic.GraphicMovable;
+import be.yildiz.module.graphic.GraphicObject;
 import be.yildiz.module.graphic.Material;
 
 /**
@@ -45,7 +45,7 @@ public class OgreObject extends GraphicObject implements GraphicMovable {
     /**
      * Ogre scene node.
      */
-    private final OgreNode node;
+    private final OgreNodeBase node;
 
     /**
      * Ogre 3D entity.
@@ -91,11 +91,6 @@ public class OgreObject extends GraphicObject implements GraphicMovable {
     }
 
     @Override
-    public final void setAbsolutePosition(Point3D pos) {
-        return this.node.setAbsolutePosition(pos);
-    }
-
-    @Override
     public final Point3D getDirection() {
         return this.node.getDirection();
     }
@@ -138,9 +133,14 @@ public class OgreObject extends GraphicObject implements GraphicMovable {
         this.setDirection(target.subtract(this.getPosition()));
     }
 
-    public final void attachTo(final Movable other) {
-        //FIXME attach with native movable
-        //this.node.attachTo(((GraphicMovable) other).getNode());
+    @Override
+    public Point3D getAbsoluteDirection() {
+        return this.node.getAbsoluteDirection();
+    }
+
+    @Override
+    public void addOptionalChild(Movable child) {
+        this.node.addOptionalChild(child);
     }
 
 
@@ -185,13 +185,28 @@ public class OgreObject extends GraphicObject implements GraphicMovable {
     }
 
     @Override
-    public final void detach(Movable other) {
-        //FIXME implements
+    public final void detachFromParent() {
+        this.node.detachFromParent();
     }
 
     @Override
     public final void addChild(Movable other) {
-        //FIXME implements
+        this.node.addChild(other);
+    }
+
+    @Override
+    public void removeChild(Movable child) {
+        this.node.removeChild(child);
+    }
+
+    @Override
+    public void attachTo(Movable other) {
+        this.node.attachTo(other);
+    }
+
+    @Override
+    public void attachToOptional(Movable other) {
+        this.node.attachToOptional(other);
     }
 
     @Override
@@ -204,7 +219,7 @@ public class OgreObject extends GraphicObject implements GraphicMovable {
     }
 
     @Override
-    public final OgreNode getNode() {
+    public final OgreNodeBase getNode() {
         return this.node;
     }
 

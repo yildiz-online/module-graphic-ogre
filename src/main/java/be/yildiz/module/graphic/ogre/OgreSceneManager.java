@@ -81,7 +81,7 @@ public final class OgreSceneManager implements SceneManager, Native {
     /**
      * Scene root node.
      */
-    private final OgreNode rootNode;
+    private final OgreNodeBase rootNode;
 
     /**
      * Full constructor.
@@ -342,7 +342,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return An OgreParticleSystem.
      */
     public OgreParticleSystem createParticleSystem() {
-        final OgreNode node = this.createMovableNode();
+        final OgreNodeBase node = this.createMovableNode();
         final long address = this.createParticleSystem(this.pointer.getPointerAddress());
         final NativePointer systemPointer = NativePointer.create(address);
         return new OgreParticleSystem(systemPointer, node);
@@ -374,7 +374,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The created object.
      */
     public OgreParticleSystem[] createExplosion() {
-        final OgreNode node = this.createMovableNode();
+        final OgreNodeBase node = this.createMovableNode();
         long address = this.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke1 = new OgreParticleSystem(NativePointer.create(address), node);
         address = this.createParticleSystem(this.pointer.getPointerAddress());

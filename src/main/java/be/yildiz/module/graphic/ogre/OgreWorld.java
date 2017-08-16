@@ -66,7 +66,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createStaticDoodad(final Box box, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNode node = this.sceneManager.createStaticNode(position, direction);
+        final OgreNodeBase node = this.sceneManager.createStaticNode(position, direction);
         final OgreEntity entity = this.sceneManager.createEntity(box, node);
         entity.setMaterial(material);
 
@@ -76,7 +76,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createStaticDoodad(final Plane plane, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNode node = this.sceneManager.createStaticNode(position, direction);
+        final OgreNodeBase node = this.sceneManager.createStaticNode(position, direction);
         final OgreEntity entity = this.sceneManager.createEntity(plane, node);
         entity.setMaterial(material);
 
@@ -85,7 +85,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createStaticDoodad(final Sphere sphere, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNode node = this.sceneManager.createStaticNode(position, direction);
+        final OgreNodeBase node = this.sceneManager.createStaticNode(position, direction);
         final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
         entity.setMaterial(material);
 
@@ -99,7 +99,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createStaticDoodad(final GraphicMesh mesh, final Point3D position, final Point3D direction) {
-        final OgreNode node = this.sceneManager.createStaticNode(position, direction);
+        final OgreNodeBase node = this.sceneManager.createStaticNode(position, direction);
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());
 
@@ -108,7 +108,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public OgreObject createStaticObject(final EntityId id, final GraphicMesh mesh, final Point3D position, final Point3D direction) {
-        final OgreNode node = this.sceneManager.createStaticNode(id, position, direction);
+        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, direction);
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());
 
@@ -117,7 +117,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createMovableDoodad(final Box box, final Material material) {
-        final OgreNode node = this.sceneManager.createMovableNode();
+        final OgreNodeBase node = this.sceneManager.createMovableNode();
         final OgreEntity entity = this.sceneManager.createEntity(box, node);
         entity.setMaterial(material);
         return new OgreObject(EntityId.WORLD, entity);
@@ -125,7 +125,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createMovableDoodad(final Plane plane, final Material material) {
-        final OgreNode node = this.sceneManager.createMovableNode();
+        final OgreNodeBase node = this.sceneManager.createMovableNode();
         final OgreEntity entity = this.sceneManager.createEntity(plane, node);
         entity.setMaterial(material);
         return new OgreObject(EntityId.WORLD, entity);
@@ -133,7 +133,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createMovableDoodad(final Sphere sphere, final Material material) {
-        final OgreNode node = this.sceneManager.createMovableNode();
+        final OgreNodeBase node = this.sceneManager.createMovableNode();
         final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
         entity.setMaterial(material);
         return new OgreObject(EntityId.WORLD, entity);
@@ -141,7 +141,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createMovableDoodad(final GraphicMesh mesh) {
-        final OgreNode node = this.sceneManager.createMovableNode();
+        final OgreNodeBase node = this.sceneManager.createMovableNode();
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());
         return new OgreObject(EntityId.WORLD, entity);
@@ -151,7 +151,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createMovableObject(final EntityId id, final GraphicMesh mesh, final Point3D position) {
-        final OgreNode node = this.sceneManager.createMovableNode(id);
+        final OgreNodeBase node = this.sceneManager.createMovableNode(id);
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());
         node.setPosition(position);
@@ -160,7 +160,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final OgreObject createStaticObject(final EntityId id, final GraphicMesh mesh, final Point3D position) {
-        final OgreNode node = this.sceneManager.createStaticNode(id, position, Point3D.BASE_DIRECTION);
+        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, Point3D.BASE_DIRECTION);
         final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
         entity.setMaterial(mesh.getMaterial());
         return new OgreObject(id, entity);
@@ -168,7 +168,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public OgreObject createStaticObject(final EntityId id, final Box box, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNode node = this.sceneManager.createStaticNode(id, position, direction);
+        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, direction);
         final OgreEntity entity = this.sceneManager.createEntity(box, node);
         entity.setMaterial(material);
         return new OgreObject(id, entity);
@@ -176,7 +176,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public OgreObject createStaticObject(final EntityId id, final Sphere sphere, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNode node = this.sceneManager.createStaticNode(id, position, direction);
+        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, direction);
         final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
         entity.setMaterial(material);
 
@@ -185,7 +185,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public OgreObject createMovableObject(final EntityId id, final Box box, final Material material, final Point3D position) {
-        final OgreNode node = this.sceneManager.createMovableNode(id);
+        final OgreNodeBase node = this.sceneManager.createMovableNode(id);
         final OgreEntity entity = this.sceneManager.createEntity(box, node);
         entity.setMaterial(material);
         node.setPosition(position);
@@ -194,7 +194,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public OgreObject createMovableObject(final EntityId id, final Sphere sphere, final Material material, final Point3D position) {
-        final OgreNode node = this.sceneManager.createMovableNode(id);
+        final OgreNodeBase node = this.sceneManager.createMovableNode(id);
         final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
         entity.setMaterial(material);
         node.setPosition(position);

@@ -42,9 +42,9 @@ public final class OgreEntity implements Native {
     /**
      * Associated ogre node.
      */
-    private final OgreNode node;
+    private final OgreNodeBase node;
 
-    public OgreEntity(NativePointer pointer, OgreNode node) {
+    public OgreEntity(NativePointer pointer, OgreNodeBase node) {
         super();
         this.pointer = pointer;
         this.node = node;
@@ -122,7 +122,7 @@ public final class OgreEntity implements Native {
         return pointer;
     }
 
-    public OgreNode getNode() {
+    public OgreNodeBase getNode() {
         return node;
     }
 
