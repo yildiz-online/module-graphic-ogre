@@ -150,7 +150,7 @@ final class OgreMaterialPass extends MaterialPass {
 
     @Override
     public OgreMaterialPass setFragmentShaderParameterAuto(final String name, final ShaderConstantType constant) {
-        this.setFragmentShaderParameterAuto(this.pointer.getPointerAddress(), name, constant.getValue());
+        this.setFragmentProgramParameterAuto(this.pointer.getPointerAddress(), name, constant.getValue());
         return this;
     }
 
@@ -202,7 +202,7 @@ final class OgreMaterialPass extends MaterialPass {
 
     @Override
     public OgreMaterialPass setVertexShaderParameterAuto(final String name, final ShaderConstantType auto) {
-        this.setVertexShaderParameterAuto(this.pointer.getPointerAddress(), name, auto.getValue());
+        this.setVertexProgramParameterAuto(this.pointer.getPointerAddress(), name, auto.getValue());
         return this;
     }
 
@@ -242,7 +242,7 @@ final class OgreMaterialPass extends MaterialPass {
 
     @Override
     public OgreMaterialPass setFragmentShader(final String name) {
-        this.setFragmentShader(this.pointer.getPointerAddress(), name);
+        this.setFragmentProgram(this.pointer.getPointerAddress(), name);
         return this;
     }
 
@@ -376,7 +376,7 @@ final class OgreMaterialPass extends MaterialPass {
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Fragment program name.
      */
-    private native void setFragmentShader(final long pointer, final String name);
+    private native void setFragmentProgram(final long pointer, final String name);
 
     /**
      * Set a parameter to a fragment program.
@@ -428,7 +428,7 @@ final class OgreMaterialPass extends MaterialPass {
      * @param name           Parameter name.
      * @param constant       Automatic parameter enum value.
      */
-    private native void setFragmentShaderParameterAuto(final long pointerAddress, final String name, final int constant);
+    private native void setFragmentProgramParameterAuto(final long pointerAddress, final String name, final int constant);
 
     /**
      * Set an automatic parameter to a fragment program.
@@ -491,7 +491,7 @@ final class OgreMaterialPass extends MaterialPass {
      * @param name           Parameter name.
      * @param constant       Automatic parameter enum value.
      */
-    private native void setVertexShaderParameterAuto(final long pointerAddress, final String name, final int constant);
+    private native void setVertexProgramParameterAuto(final long pointerAddress, final String name, final int constant);
 
     /**
      * Set an automatic parameter to a vertex program.
