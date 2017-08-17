@@ -53,7 +53,10 @@ class OgreNodeMovable extends OgreNodeBase {
         this.parent = parent;
      }
 
-
+    @Override
+    public void setPosition(float posX, float posY, float posZ) {
+        this.nodeNative.setPosition(this.pointer.getPointerAddress(), posX, posY, posZ);
+    }
 
     @Override
     public void setPosition(final Point3D position) {

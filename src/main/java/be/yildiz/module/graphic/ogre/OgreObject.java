@@ -185,6 +185,16 @@ public class OgreObject extends GraphicObject implements GraphicMovable {
     }
 
     @Override
+    public final void setPosition(float posX, float posY, float posZ) {
+        this.node.setPosition(posX, posY, posZ);
+    }
+
+    @Override
+    public final void setDirection(float dirX, float dirY, float dirZ) {
+        this.node.setDirection(dirX, dirY, dirZ);
+    }
+
+    @Override
     public final void detachFromParent() {
         this.node.detachFromParent();
     }

@@ -74,6 +74,11 @@ class OgreNodeStatic extends OgreNodeBase {
     }
 
     @Override
+    public void setPosition(float posX, float posY, float posZ) {
+        // Does nothing.
+    }
+
+    @Override
     public String toString() {
         return "Ogre node static " + this.getName() +  " : pointer:" + this.getPointer();
     }

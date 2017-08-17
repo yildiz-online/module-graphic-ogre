@@ -114,6 +114,16 @@ final class OgreParticleSystem extends AbstractParticleSystem implements Native 
     }
 
     @Override
+    public void setPosition(float posX, float posY, float posZ) {
+        this.node.setPosition(posX, posY, posZ);
+    }
+
+    @Override
+    public void setDirection(float dirX, float dirY, float dirZ) {
+        this.node.setDirection(dirX, dirY, dirZ);
+    }
+
+    @Override
     public NativePointer getPointer() {
         return this.pointer;
     }

@@ -44,7 +44,7 @@ final class OgreBillboardSet extends BillboardSet implements Native {
     /**
      * Associated node.
      */
-    private OgreNodeBase node;
+    private final OgreNodeBase node;
 
     /**
      * Full constructor.
@@ -142,8 +142,18 @@ final class OgreBillboardSet extends BillboardSet implements Native {
     }
 
     @Override
+    public void setPosition(float posX, float posY, float posZ) {
+        this.node.setPosition(posX, posY, posZ);
+    }
+
+    @Override
+    public void setDirection(float dirX, float dirY, float dirZ) {
+        this.node.setDirection(dirX, dirY, dirZ);
+    }
+
+    @Override
     public void addOptionalChild(Movable child) {
-        this.addOptionalChild(child);
+        this.node.addOptionalChild(child);
     }
 
     @Override

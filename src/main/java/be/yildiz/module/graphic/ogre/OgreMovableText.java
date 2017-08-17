@@ -80,6 +80,16 @@ final class OgreMovableText extends MovableText {
     }
 
     @Override
+    public void setPosition(float posX, float posY, float posZ) {
+        this.node.setPosition(posX, posY, posZ);
+    }
+
+    @Override
+    public void setDirection(float dirX, float dirY, float dirZ) {
+        this.node.setDirection(dirX, dirY, dirZ);
+    }
+
+    @Override
     public void showImpl() {
         this.node.show();
     }
