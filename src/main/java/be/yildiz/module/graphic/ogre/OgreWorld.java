@@ -184,9 +184,27 @@ public final class OgreWorld implements GraphicWorld {
     }
 
     @Override
+    public GraphicObject createStaticObject(EntityId id, Plane plane, Material material, Point3D position, Point3D direction) {
+        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, direction);
+        final OgreEntity entity = this.sceneManager.createEntity(plane, node);
+        entity.setMaterial(material);
+
+        return new OgreObject(id, entity);
+    }
+
+    @Override
     public OgreObject createMovableObject(final EntityId id, final Box box, final Material material, final Point3D position) {
         final OgreNodeBase node = this.sceneManager.createMovableNode(id);
         final OgreEntity entity = this.sceneManager.createEntity(box, node);
+        entity.setMaterial(material);
+        node.setPosition(position);
+        return new OgreObject(id, entity);
+    }
+
+    @Override
+    public GraphicObject createMovableObject(EntityId id, Plane plane, Material material, Point3D position) {
+        final OgreNodeBase node = this.sceneManager.createMovableNode(id);
+        final OgreEntity entity = this.sceneManager.createEntity(plane, node);
         entity.setMaterial(material);
         node.setPosition(position);
         return new OgreObject(id, entity);
