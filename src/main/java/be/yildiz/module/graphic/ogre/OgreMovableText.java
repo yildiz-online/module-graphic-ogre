@@ -161,4 +161,9 @@ final class OgreMovableText extends MovableText {
     public void removeChild(Movable child) {
         this.node.removeChild(child);
     }
+
+    @Override
+    public Movable getInternal() {
+        return this.node;
+    }
 }

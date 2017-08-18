@@ -123,7 +123,7 @@ abstract class OgreNodeBase extends Node implements OgreNode {
     public final void detachFromParent() {
         this.parent.removeChild(this);
         this.nodeNative.detachFromParent(this.pointer.getPointerAddress(),
-                Native.class.cast(this.parent).getPointer().getPointerAddress());
+                Native.class.cast(this.parent.getInternal()).getPointer().getPointerAddress());
     }
 
     @Override
@@ -133,14 +133,16 @@ abstract class OgreNodeBase extends Node implements OgreNode {
     }
     @Override
     public final void addOptionalChild(Movable child) {
-        this.optionalList.add(child);
-        child.attachToOptional(this);
+        if(this.optionalList.add(child)) {
+            child.attachToOptional(this);
+        }
     }
 
     @Override
     public final void addChild(Movable child) {
-        this.childrenList.add(child);
-        child.attachTo(this);
+        if(this.childrenList.add(child)) {
+            child.attachTo(this);
+        }
     }
 
     /**
@@ -153,6 +155,11 @@ abstract class OgreNodeBase extends Node implements OgreNode {
         this.optionalList.clear();
         this.childrenList.clear();
         this.pointer.delete();
+    }
+
+    @Override
+    public final Movable getInternal() {
+        return this;
     }
 
     @Override

@@ -237,4 +237,9 @@ public class OgreObject extends GraphicObject implements GraphicMovable {
     public Point3D getScaleSize() {
         return scaleSize;
     }
+
+    @Override
+    public Movable getInternal() {
+        return this.node;
+    }
 }

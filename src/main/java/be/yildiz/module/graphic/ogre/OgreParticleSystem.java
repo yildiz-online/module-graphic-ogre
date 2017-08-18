@@ -261,4 +261,9 @@ final class OgreParticleSystem extends AbstractParticleSystem implements Native 
     public void removeChild(Movable child) {
         this.node.removeChild(child);
     }
+
+    @Override
+    public Movable getInternal() {
+        return this.node;
+    }
 }

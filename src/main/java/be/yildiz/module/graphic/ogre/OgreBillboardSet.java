@@ -165,4 +165,9 @@ final class OgreBillboardSet extends BillboardSet implements Native {
     public void removeChild(Movable child) {
         this.node.removeChild(child);
     }
+
+    @Override
+    public Movable getInternal() {
+        return this.node;
+    }
 }
