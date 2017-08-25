@@ -26,7 +26,6 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.common.Color;
 import be.yildiz.common.Size;
 import be.yildiz.common.exeption.NativeException;
-import be.yildiz.common.log.Logger;
 import be.yildiz.common.nativeresources.NativeResourceLoader;
 import be.yildiz.common.resource.FileResource.FileType;
 import be.yildiz.common.util.Checker;
@@ -37,6 +36,8 @@ import be.yildiz.module.graphic.Shader.ShaderType;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.window.WindowEngine;
 import be.yildiz.module.window.dummy.DummyWindowEngine;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
@@ -46,6 +47,8 @@ import java.io.File;
  * @author Grégory Van Den Borre
  */
 public final class OgreGraphicEngine implements GraphicEngine {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(OgreGraphicEngine.class);
 
     /**
      * Local part of the native Ogre::Root object, mainly used to build renderer, scene manager,....
@@ -80,7 +83,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
     public OgreGraphicEngine(final WindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
         super();
         this.size = windowEngine.getScreenSize();
-        Logger.info("Initializing Ogre graphic engine...");
+        LOGGER.info("Initializing Ogre graphic engine...");
         nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
         nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
         this.nativeResourceLoader = nativeResourceLoader;
@@ -94,14 +97,14 @@ public final class OgreGraphicEngine implements GraphicEngine {
         }
         this.guiBuilder = new OgreGuiBuilder(this.size);
         this.windowEngine = windowEngine;
-        Logger.info("Ogre graphic engine initialized.");
+        LOGGER.info("Ogre graphic engine initialized.");
     }
 
     private OgreGraphicEngine(NativeResourceLoader loader) {
         super();
         this.size = new Size(0);
         this.nativeResourceLoader = loader;
-        Logger.info("Initializing Headless Ogre graphic engine...");
+        LOGGER.info("Initializing Headless Ogre graphic engine...");
         nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
         nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
         this.root = new Root();
@@ -110,7 +113,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
         this.renderWindow = new DummyRenderWindow();
         this.guiBuilder = new OgreGuiBuilder(this.size);
         this.windowEngine = new DummyWindowEngine();
-        Logger.info("Headless Ogre graphic engine initialized.");
+        LOGGER.info("Headless Ogre graphic engine initialized.");
     }
 
     /**
@@ -131,7 +134,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
         try {
             this.root.setRenderer(this.nativeResourceLoader.getLibPath("RenderSystem_GL"));
         } catch (NativeException e) {
-            Logger.error(e);
+            LOGGER.error("Error setting renderer", e);
         }
     }
 

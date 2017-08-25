@@ -25,13 +25,14 @@ package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.common.Color;
 import be.yildiz.common.id.EntityId;
-import be.yildiz.common.log.Logger;
 import be.yildiz.common.shape.Box;
 import be.yildiz.common.shape.Plane;
 import be.yildiz.common.shape.Sphere;
 import be.yildiz.common.util.Registerer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.InvalidParameterException;
 
@@ -41,6 +42,8 @@ import java.security.InvalidParameterException;
  * @author Grégory Van den Borre
  */
 public final class OgreWorld implements GraphicWorld {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(OgreWorld.class);
 
     /**
      * The scene manager manage the graphic part of this world.
@@ -257,7 +260,7 @@ public final class OgreWorld implements GraphicWorld {
 
     @Override
     public final void setSkybox(final Skybox sky) {
-        Logger.info("Set skybox.");
+        LOGGER.info("Set skybox.");
         this.sceneManager.setSkybox(sky);
     }
 

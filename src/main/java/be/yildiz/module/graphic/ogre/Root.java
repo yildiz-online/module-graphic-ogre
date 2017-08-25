@@ -24,10 +24,11 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.common.Size;
-import be.yildiz.common.log.Logger;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.resource.FileResource.FileType;
 import be.yildiz.module.window.WindowHandle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.InvalidParameterException;
 
@@ -37,6 +38,8 @@ import java.security.InvalidParameterException;
  * @author Grégory Van Den Borre
  */
 final class Root {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Root.class);
 
     /**
      * Flag to check if initialized or not.
@@ -62,7 +65,7 @@ final class Root {
         if (this.initialized) {
             throw new InvalidParameterException("You cannot load plug ins once root is initialized.");
         }
-        Logger.info("Loading ogre plugin: " + plugin);
+        LOGGER.info("Loading ogre plugin: " + plugin);
         this.loadPlugin(plugin);
     }
 
