@@ -39,7 +39,6 @@ public class OgreGraphicEngineTest {
 
     public static class Constructor {
 
-        @Ignore
         @Test
         public void happyFlow(){
             NativeResourceLoader loader = NativeResourceLoader.inTestPath(new SystemWin32(), new SystemLinux64());
