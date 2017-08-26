@@ -36,6 +36,7 @@ import be.yildiz.module.graphic.Shader.ShaderType;
 import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.window.WindowEngine;
 import be.yildiz.module.window.dummy.DummyWindowEngine;
+import be.yildiz.module.window.swt.SwtWindowEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,15 +74,17 @@ public final class OgreGraphicEngine implements GraphicEngine {
     private SelectionRectangle selection;
 
     /**
-     * Simple constructor.
+     * Build a windows engine.
      *
      * @param windowEngine WindowEngine wrapping this graphic context.
-     * @throws NullPointerException If windowEngine is null.
+     * @throws AssertionError If any parameter is null.
      */
     //@Ensures this.size == windowEngine.size
     //@Ensures this.root != null
-    public OgreGraphicEngine(final WindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
+    private OgreGraphicEngine(final WindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
         super();
+        assert windowEngine != null;
+        assert nativeResourceLoader != null;
         this.size = windowEngine.getScreenSize();
         LOGGER.info("Initializing Ogre graphic engine...");
         nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
@@ -117,12 +120,21 @@ public final class OgreGraphicEngine implements GraphicEngine {
     }
 
     /**
+     * Build an engine wrapped by a SWT window system
+     * @param loader Loader for the native libraries.
+     * @return An Ogre graphic engine based on a SWT window engine.
+     */
+    public static OgreGraphicEngine fromSwt(NativeResourceLoader loader) {
+        return new OgreGraphicEngine(new SwtWindowEngine(), loader);
+    }
+
+    /**
      * Build a headless engine, to be used to test on headless system like CI server.
-     * @param nativeResourceLoader Loader for the native libraries.
+     * @param loader Loader for the native libraries.
      * @return A headless graphic engine for testing.
      */
-    public static OgreGraphicEngine headless(NativeResourceLoader nativeResourceLoader) {
-        return new OgreGraphicEngine(nativeResourceLoader);
+    public static OgreGraphicEngine headless(NativeResourceLoader loader) {
+        return new OgreGraphicEngine(loader);
     }
 
     private void loadPlugins() {
