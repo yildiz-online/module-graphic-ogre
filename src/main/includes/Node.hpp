@@ -82,16 +82,6 @@ public:
 		this->node->addChild(child->getWrappedNode());
 	}
 
-    inline void addMovableComponent(NativeMovableComponent* c) {
-        LOG_FUNCTION
-        this->movable->addComponent(c);
-	}
-
-    inline void removeMovableComponent(NativeMovableComponent* c) {
-        LOG_FUNCTION
-        this->movable->removeComponent(c);
-    }
-
 	/**
 	 * @return The wrapped Ogre::SceneNode
 	 */
@@ -149,7 +139,7 @@ public:
 	inline yz::Node* createChildNode() {
 	    LOG_FUNCTION
 		yz::Node* child = new yz::Node(this->node->createChildSceneNode());
-		//     this->childrenList.push_back(child);
+        //this->childrenList.push_back(child);
 		return child;
 	}
 
@@ -234,7 +224,7 @@ public:
 	 * @param z
 	 *           New Z position.
 	 */
-	virtual inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
+	/*virtual*/ inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
 	    LOG_FUNCTION
 		this->node->setPosition(x, y, z);
 		this->movable->setPosition(x, y, z);
@@ -249,12 +239,12 @@ public:
 	 * @param z
 	 *           New Z direction.
 	 */
-    virtual inline void setDirection(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
+    /*virtual*/ inline void setDirection(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
         LOG_FUNCTION
         this->node->setDirection(x, y, z, Ogre::Node::TS_WORLD, Ogre::Vector3::NEGATIVE_UNIT_Z);
     }
 
-	virtual inline void setOrientation(const Ogre::Real w, const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
+	/*virtual*/ inline void setOrientation(const Ogre::Real w, const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
         LOG_FUNCTION
         this->node->setOrientation(w, x, y, z);
     }
@@ -308,6 +298,14 @@ public:
 		return reinterpret_cast<yz::Node*>(pointer);
 	}
 
+	inline virtual void addMovableComponent(NativeMovableComponent* c) {
+	    this->movable->addComponent(c);
+	}
+
+    inline virtual void removeMovableComponent(NativeMovableComponent* c) {
+        this->movable->removeComponent(c);
+    }
+
 private:
 
     /**
@@ -317,7 +315,7 @@ private:
 
 	yz::NodeListeners* listenerList;
 
-	yz::NativeMovable* movable = new yz::NativeMovable();
+	yz::NativeMovable* movable;
 
 	/**
 	 * List containing object manually created(not using scene manager), they must be detached and manually deleted.
