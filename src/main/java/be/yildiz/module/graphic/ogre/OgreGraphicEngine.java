@@ -27,7 +27,7 @@ import be.yildiz.common.Color;
 import be.yildiz.common.Size;
 import be.yildiz.common.exeption.NativeException;
 import be.yildiz.common.nativeresources.NativeResourceLoader;
-import be.yildiz.common.resource.FileResource.FileType;
+import be.yildiz.common.resource.ResourcePath;
 import be.yildiz.common.util.Checker;
 import be.yildiz.common.util.Util;
 import be.yildiz.module.graphic.*;
@@ -181,21 +181,21 @@ public final class OgreGraphicEngine implements GraphicEngine {
     }
 
     @Override
-    public void addResourcePath(final String name, final String path, final FileType type) {
+    public void addResourcePath(final ResourcePath resource) {
         String[] cpEntries = System.getProperty("java.class.path", "").split(File.pathSeparator);
         boolean found = false;
         for (String cpEntry : cpEntries) {
             if (!cpEntry.contains(".jar")) {
                 cpEntry = cpEntry.replace("\\", "/").replace("/target/classes", "/");
-                if (new File(cpEntry + path).exists()) {
-                    this.root.addResourcePath(name, cpEntry + path, type);
+                if (new File(cpEntry + resource.getPath()).exists()) {
+                    this.root.addResourcePath(resource.getName(), cpEntry + resource.getPath(), resource.getType());
                     found = true;
                     break;
                 }
             }
         }
         if (!found) {
-            this.root.addResourcePath(name, path, type);
+            this.root.addResourcePath(resource.getName(), resource.getPath(), resource.getType());
         }
     }
 
