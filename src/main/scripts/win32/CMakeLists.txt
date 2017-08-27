@@ -10,7 +10,6 @@ include_directories("ogre/include/OGRE")
 include_directories("physfs/include")
 include_directories("java/include")
 include_directories("java/include/win32")
-include_directories(${CMAKE_SOURCE_DIR}/../common-native/include)
 
 set(CMAKE_SHARED_LINKER_FLAGS "-Xlinker --add-stdcall-alias")
  
