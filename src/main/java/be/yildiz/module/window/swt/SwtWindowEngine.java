@@ -64,6 +64,7 @@ public final class SwtWindowEngine implements WindowEngine {
      */
     public SwtWindowEngine() {
         super();
+        System.setProperty("SWT_GTK3", "0");
         this.gameWindow.initialize(this.display.buildShell());
         this.hideCursor();
         this.display.execute(this.gameWindow::open);
