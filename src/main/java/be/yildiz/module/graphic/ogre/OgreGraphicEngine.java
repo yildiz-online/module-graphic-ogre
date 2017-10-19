@@ -87,7 +87,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
         assert nativeResourceLoader != null;
         this.size = windowEngine.getScreenSize();
         LOGGER.info("Initializing Ogre graphic engine...");
-        nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
+        nativeResourceLoader.loadBaseLibrary();
         nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
         this.nativeResourceLoader = nativeResourceLoader;
         this.root = new Root();
