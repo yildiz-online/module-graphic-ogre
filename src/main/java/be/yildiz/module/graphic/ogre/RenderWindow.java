@@ -23,7 +23,7 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.nativeresources.NativePointer;
+import be.yildizgames.common.nativeresources.NativePointer;
 
 /**
  * Access to the Render Window object in native code.

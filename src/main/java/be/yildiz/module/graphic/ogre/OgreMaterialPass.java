@@ -24,8 +24,8 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.common.Color;
-import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.*;
+import be.yildizgames.common.nativeresources.NativePointer;
 
 import java.util.List;
 

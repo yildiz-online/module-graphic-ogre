@@ -25,11 +25,11 @@ package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.common.BaseCoordinate;
 import be.yildiz.common.Color;
-import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.gui.AbstractTextElement;
 import be.yildiz.module.graphic.gui.Element;
 import be.yildiz.module.graphic.gui.GuiContainer;
+import be.yildizgames.common.nativeresources.NativePointer;
 
 /**
  * Ogre implementation for a text element.

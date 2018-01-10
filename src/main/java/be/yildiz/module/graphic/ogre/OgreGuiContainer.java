@@ -24,12 +24,12 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.nativeresources.Native;
-import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.Element;
 import be.yildiz.module.graphic.gui.GuiContainer;
 import be.yildiz.module.graphic.gui.Zorder;
+import be.yildizgames.common.nativeresources.Native;
+import be.yildizgames.common.nativeresources.NativePointer;
 
 import java.util.Optional;
 

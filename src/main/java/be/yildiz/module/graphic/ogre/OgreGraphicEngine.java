@@ -26,7 +26,6 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.common.Color;
 import be.yildiz.common.Size;
 import be.yildiz.common.exeption.NativeException;
-import be.yildiz.common.nativeresources.NativeResourceLoader;
 import be.yildiz.common.resource.ResourcePath;
 import be.yildiz.common.util.Checker;
 import be.yildiz.common.util.Util;
@@ -37,6 +36,7 @@ import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.window.WindowEngine;
 import be.yildiz.module.window.dummy.DummyWindowEngine;
 import be.yildiz.module.window.swt.SwtWindowEngine;
+import be.yildizgames.common.nativeresources.NativeResourceLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

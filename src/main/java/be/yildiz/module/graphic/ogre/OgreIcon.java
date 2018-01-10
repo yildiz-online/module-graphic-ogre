@@ -24,12 +24,12 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.nativeresources.Native;
-import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.AbstractIconElement;
 import be.yildiz.module.graphic.gui.Element;
 import be.yildiz.module.graphic.gui.GuiContainer;
+import be.yildizgames.common.nativeresources.Native;
+import be.yildizgames.common.nativeresources.NativePointer;
 
 /**
  * Ogre implementation for an icon element.

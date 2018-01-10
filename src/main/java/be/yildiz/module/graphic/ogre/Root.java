@@ -24,9 +24,9 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.common.Size;
-import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.resource.FileResource.FileType;
 import be.yildiz.module.window.WindowHandle;
+import be.yildizgames.common.nativeresources.NativePointer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.ParticleScaleAffector;
+import be.yildizgames.common.nativeresources.NativePointer;
 
 /**
  * Ogre implementation for a particle scale affector.

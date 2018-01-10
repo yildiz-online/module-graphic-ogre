@@ -23,9 +23,9 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.graphic.Line;
 import be.yildiz.module.graphic.Material;
+import be.yildizgames.common.nativeresources.NativePointer;
 
 /**
  * Ogre Line implementation.

@@ -23,12 +23,12 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.nativeresources.Native;
-import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.ElectricArc;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.PointLight;
+import be.yildizgames.common.nativeresources.Native;
+import be.yildizgames.common.nativeresources.NativePointer;
 
 /**
  * Ogre implementation for ElectricArc.
