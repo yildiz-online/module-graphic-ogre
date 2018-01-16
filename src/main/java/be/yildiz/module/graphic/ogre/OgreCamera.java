@@ -23,14 +23,14 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.Rectangle;
-import be.yildiz.common.collections.Lists;
-import be.yildiz.common.id.EntityId;
-import be.yildiz.common.vector.Axis;
-import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.AbstractCamera;
 import be.yildiz.module.graphic.LensFlare;
 import be.yildiz.module.graphic.Node;
+import be.yildizgames.common.collection.Lists;
+import be.yildizgames.common.geometry.Axis;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.geometry.Rectangle;
+import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.nativeresources.Native;
 import be.yildizgames.common.nativeresources.NativePointer;
 

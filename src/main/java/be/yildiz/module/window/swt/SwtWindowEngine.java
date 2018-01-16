@@ -23,14 +23,14 @@
 
 package be.yildiz.module.window.swt;
 
-import be.yildiz.common.Size;
-import be.yildiz.common.collections.Maps;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.window.Cursor;
 import be.yildiz.module.window.WindowEngine;
 import be.yildiz.module.window.WindowHandle;
 import be.yildiz.module.window.input.WindowInputListener;
 import be.yildiz.module.window.swt.input.SwtGameWindowKeyListener;
 import be.yildiz.module.window.swt.input.SwtGameWindowMouseListener;
+import be.yildizgames.common.collection.Maps;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 

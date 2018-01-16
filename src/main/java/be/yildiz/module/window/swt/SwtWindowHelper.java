@@ -23,8 +23,8 @@
 
 package be.yildiz.module.window.swt;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.collections.Maps;
+import be.yildiz.module.color.Color;
+import be.yildizgames.common.collection.Maps;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackListener;

@@ -23,9 +23,9 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.gameobject.Movable;
 import be.yildiz.module.graphic.*;
 import be.yildiz.module.graphic.ParticleEmitter.EmitterType;
+import be.yildizgames.common.geometry.Movable;
 import be.yildizgames.common.nativeresources.Native;
 import be.yildizgames.common.nativeresources.NativePointer;
 

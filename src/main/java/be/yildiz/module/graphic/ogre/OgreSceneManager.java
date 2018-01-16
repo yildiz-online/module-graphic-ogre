@@ -23,15 +23,18 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.util.Registerer;
-import be.yildiz.common.util.StringUtil;
+import be.yildiz.module.color.Color;
 import be.yildiz.module.graphic.*;
 import be.yildiz.module.graphic.GraphicEngine.ShadowType;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.nativeresources.Native;
 import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.shape.Box;
+import be.yildizgames.common.shape.Plane;
+import be.yildizgames.common.shape.Sphere;
+import be.yildizgames.common.util.Registerer;
+import be.yildizgames.common.util.StringUtil;
 
 /**
  * Java part of the yz::SceneManager.

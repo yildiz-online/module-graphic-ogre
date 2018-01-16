@@ -23,9 +23,9 @@
 
 package be.yildiz.module.window.swt;
 
-import be.yildiz.common.Size;
-import be.yildiz.common.exeption.ResourceMissingException;
-import be.yildiz.common.util.Util;
+import be.yildiz.module.coordinate.Size;
+import be.yildizgames.common.exception.technical.ResourceMissingException;
+import be.yildizgames.common.nativeresources.NativeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.layout.FillLayout;
@@ -117,7 +117,7 @@ final class SwtGameWindow {
         this.loadingBackground = new Image(this.shell.getDisplay(), tmpImage.getImageData().scaledTo(this.shell.getBounds().width, this.shell.getBounds().height));
         this.shell.setCursor(this.invisibleCursor);
         this.shell.setBackgroundImage(this.loadingBackground);
-        if (Util.isLinux()) {
+        if (NativeUtil.isLinux()) {
             LOGGER.info("Loading GL context...");
             final GLData data = new GLData();
             data.doubleBuffer = true;

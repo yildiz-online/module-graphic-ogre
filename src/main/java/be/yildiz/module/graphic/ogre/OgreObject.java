@@ -23,12 +23,12 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.gameobject.Movable;
-import be.yildiz.common.id.EntityId;
-import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.GraphicMovable;
 import be.yildiz.module.graphic.GraphicObject;
 import be.yildiz.module.graphic.Material;
+import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.model.EntityId;
 
 /**
  * Common code for all Ogre Bullet objects.
@@ -142,7 +142,6 @@ public class OgreObject extends GraphicObject implements GraphicMovable {
     public void addOptionalChild(Movable child) {
         this.node.addOptionalChild(child);
     }
-
 
     @Override
     protected final void showImpl() {

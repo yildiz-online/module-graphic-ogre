@@ -23,7 +23,7 @@
 
 package be.yildiz.module.window.swt;
 
-import be.yildiz.common.exeption.ResourceMissingException;
+import be.yildizgames.common.exception.technical.ResourceMissingException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
 import org.eclipse.swt.graphics.Image;

@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.BaseCoordinate;
-import be.yildiz.common.Color;
+import be.yildiz.module.color.Color;
+import be.yildiz.module.coordinate.BaseCoordinate;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.gui.AbstractTextElement;
 import be.yildiz.module.graphic.gui.Element;

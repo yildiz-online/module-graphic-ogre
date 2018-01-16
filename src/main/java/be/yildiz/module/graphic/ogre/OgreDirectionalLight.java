@@ -23,8 +23,8 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.graphic.DirectionalLight;
+import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.nativeresources.Native;
 import be.yildizgames.common.nativeresources.NativePointer;
 

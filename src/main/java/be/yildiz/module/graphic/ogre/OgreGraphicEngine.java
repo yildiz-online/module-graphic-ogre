@@ -23,12 +23,8 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.Color;
-import be.yildiz.common.Size;
-import be.yildiz.common.exeption.NativeException;
-import be.yildiz.common.resource.ResourcePath;
-import be.yildiz.common.util.Checker;
-import be.yildiz.common.util.Util;
+import be.yildiz.module.color.Color;
+import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.graphic.*;
 import be.yildiz.module.graphic.Shader.FragmentProfileList;
 import be.yildiz.module.graphic.Shader.ShaderType;
@@ -36,7 +32,11 @@ import be.yildiz.module.graphic.Shader.VertexProfileList;
 import be.yildiz.module.window.WindowEngine;
 import be.yildiz.module.window.dummy.DummyWindowEngine;
 import be.yildiz.module.window.swt.SwtWindowEngine;
+import be.yildizgames.common.exception.technical.NativeException;
+import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.common.nativeresources.NativeResourceLoader;
+import be.yildizgames.common.nativeresources.NativeUtil;
+import be.yildizgames.common.util.Checker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,7 +93,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
         this.root = new Root();
         this.loadPlugins();
         this.loadRenderer();
-        if (Util.isLinux()) {
+        if (NativeUtil.isLinux()) {
             this.renderWindow = this.root.createWindow(this.size);
         } else {
             this.renderWindow = this.root.createWindow(this.size, windowEngine.getHandle());

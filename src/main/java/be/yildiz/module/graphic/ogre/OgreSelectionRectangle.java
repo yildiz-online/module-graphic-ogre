@@ -23,9 +23,9 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.common.Rectangle;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.SelectionRectangle;
+import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.nativeresources.NativePointer;
 
 /**
