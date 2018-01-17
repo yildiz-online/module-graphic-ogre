@@ -26,13 +26,13 @@ package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.module.graphic.Node;
 import be.yildizgames.common.collection.Sets;
-import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.gameobject.Deletable;
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Quaternion;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.nativeresources.Native;
 import be.yildizgames.common.nativeresources.NativePointer;
-import be.yildizgames.common.util.Deletable;
 import jni.OgreNodeNative;
 
 import java.util.Set;
@@ -152,9 +152,7 @@ abstract class OgreNodeBase extends Node implements OgreNode {
     protected final void deleteImpl() {
         this.nodeNative.delete(this.pointer.getPointerAddress());
         this.optionalList.forEach(Movable::detachFromParent);
-        for(Movable m : this.childrenList) {
-            ((Deletable)m).delete();
-        }
+        this.childrenList.forEach(Deletable::delete);
         this.optionalList.clear();
         this.childrenList.clear();
         this.pointer.delete();

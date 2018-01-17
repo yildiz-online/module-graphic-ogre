@@ -25,7 +25,7 @@ package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.module.graphic.Billboard;
 import be.yildiz.module.graphic.BillboardSet;
-import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.nativeresources.Native;
 import be.yildizgames.common.nativeresources.NativePointer;
 

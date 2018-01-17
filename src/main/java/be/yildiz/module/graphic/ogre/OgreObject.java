@@ -26,7 +26,7 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.module.graphic.GraphicMovable;
 import be.yildiz.module.graphic.GraphicObject;
 import be.yildiz.module.graphic.Material;
-import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.model.EntityId;
 

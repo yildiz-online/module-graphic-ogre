@@ -26,7 +26,7 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.module.color.Color;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.MovableText;
-import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.nativeresources.NativePointer;
 
