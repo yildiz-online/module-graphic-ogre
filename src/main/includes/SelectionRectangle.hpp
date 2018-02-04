@@ -27,6 +27,7 @@
 #define SELECTIONRECTANGLE yz::SelectionRectangle
 
 #include "Material.hpp"
+#include <Overlay/OgreOverlayManager.h>
 
 namespace yz {
 	

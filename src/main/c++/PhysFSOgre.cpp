@@ -139,49 +139,42 @@ public:
         LOG_FUNCTION
     }
 
-    inline time_t getModifiedTime(const Ogre::String& file) {
+    inline time_t getModifiedTime(const Ogre::String& file) const {
         LOG_FUNCTION
         return PHYSFS_getLastModTime(file.c_str());
     }
 
     Ogre::DataStreamPtr open(const Ogre::String& filename, bool append) const;
 
-    Ogre::StringVectorPtr list(bool recursive = true, bool dirs = false);
-    Ogre::FileInfoListPtr listFileInfo(
-        bool recursive = true,
-        bool dirs = false);
+    Ogre::StringVectorPtr list(bool recursive = true, bool dirs = false) const;
 
-    Ogre::StringVectorPtr find(const Ogre::String& pattern, bool recursive =
-            true, bool dirs = false);
+    Ogre::FileInfoListPtr listFileInfo(bool recursive = true, bool dirs = false) const;
 
-    bool exists(const Ogre::String& filename);
+    Ogre::StringVectorPtr find(const Ogre::String& pattern, bool recursive = true, bool dirs = false) const;
 
-    Ogre::FileInfoListPtr findFileInfo(
-        const Ogre::String& pattern,
-        bool recursive = true,
-        bool dirs = false) const;
+    bool exists(const Ogre::String& filename) const;
+
+    Ogre::FileInfoListPtr findFileInfo(const Ogre::String& pattern, bool recursive = true, bool dirs = false) const;
 
 private:
     void listInfoRecursive(
         const Ogre::String& base,
         bool recursive,
         bool dirs,
-        Ogre::FileInfoListPtr fileInfoList);
+        Ogre::FileInfoListPtr fileInfoList) const;
     void listRecursive(
         const Ogre::String& base,
         bool recursive,
         bool dirs,
-        Ogre::StringVectorPtr fileList);
+        Ogre::StringVectorPtr fileList) const;
 };
 
-bool Archive::exists(const Ogre::String& filename) {
+bool Archive::exists(const Ogre::String& filename) const {
     LOG_FUNCTION
     return PhysFS::exists(mName + '/' + filename);
 }
 
-Ogre::DataStreamPtr Archive::open(
-    const Ogre::String& filename,
-    bool append) const {
+Ogre::DataStreamPtr Archive::open(const Ogre::String& filename, bool append) const {
     LOG_FUNCTION
     Ogre::String fullName = mName + '/' + filename;
     return Ogre::DataStreamPtr(new DataStream(filename, fullName));
@@ -191,7 +184,7 @@ void Archive::listInfoRecursive(
     const Ogre::String& base,
     bool recursive,
     bool dirs,
-    Ogre::FileInfoListPtr fileInfoList) {
+    Ogre::FileInfoListPtr fileInfoList) const {
     LOG_FUNCTION
 
     Ogre::String baseDir = mName + '/' + base;
@@ -228,11 +221,7 @@ void Archive::listInfoRecursive(
     }
 }
 
-void Archive::listRecursive(
-    const Ogre::String& base,
-    bool recursive,
-    bool dirs,
-    Ogre::StringVectorPtr fileList) {
+void Archive::listRecursive(const Ogre::String& base, bool recursive, bool dirs, Ogre::StringVectorPtr fileList) const {
     LOG_FUNCTION
 
     Ogre::String baseDir = mName + '/' + base;
@@ -252,24 +241,21 @@ void Archive::listRecursive(
     }
 }
 
-Ogre::FileInfoListPtr Archive::listFileInfo(bool recursive, bool dirs) {
+Ogre::FileInfoListPtr Archive::listFileInfo(bool recursive, bool dirs) const {
     LOG_FUNCTION
     Ogre::FileInfoListPtr fileInfoList(new Ogre::FileInfoList());
     listInfoRecursive("", recursive, dirs, fileInfoList);
     return fileInfoList;
 }
 
-Ogre::StringVectorPtr Archive::list(bool recursive, bool dirs) {
+Ogre::StringVectorPtr Archive::list(bool recursive, bool dirs) const {
     LOG_FUNCTION
     Ogre::StringVectorPtr fileList(new Ogre::StringVector());
     listRecursive("", recursive, dirs, fileList);
     return fileList;
 }
 
-Ogre::StringVectorPtr Archive::find(
-    const Ogre::String& pattern,
-    bool recursive,
-    bool dirs) {
+Ogre::StringVectorPtr Archive::find(const Ogre::String& pattern, bool recursive, bool dirs) const {
     LOG_FUNCTION
     Ogre::StringVectorPtr fileList = list(recursive, dirs);
     Ogre::StringVectorPtr ret(new Ogre::StringVector());
@@ -283,10 +269,7 @@ Ogre::StringVectorPtr Archive::find(
     return ret;
 }
 
-Ogre::FileInfoListPtr Archive::findFileInfo(
-    const Ogre::String& pattern,
-    bool recursive,
-    bool dirs) const {
+Ogre::FileInfoListPtr Archive::findFileInfo(const Ogre::String& pattern, bool recursive, bool dirs) const {
     LOG_FUNCTION
     Ogre::FileInfoListPtr fileList = const_cast<Archive*>(this)->listFileInfo(
             recursive, dirs);

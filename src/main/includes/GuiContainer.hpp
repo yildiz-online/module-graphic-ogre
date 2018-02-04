@@ -29,6 +29,7 @@
 #include <Overlay/OgreOverlayContainer.h>
 #include <Overlay/OgreOverlayElement.h>
 #include <Overlay/OgreOverlay.h>
+#include <Overlay/OgreOverlayManager.h>
 
 namespace yz {
 
