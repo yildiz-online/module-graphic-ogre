@@ -27,7 +27,7 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.module.coordinate.Size;
 import be.yildiz.module.window.WindowHandle;
 import be.yildizgames.common.file.FileResource;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

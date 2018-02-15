@@ -33,7 +33,7 @@ import be.yildiz.module.graphic.ShaderParamFloat2;
 import be.yildiz.module.graphic.ShaderParamFloat3;
 import be.yildiz.module.graphic.ShaderParamFloat4;
 import be.yildiz.module.graphic.TextureUnit;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 
 import java.util.List;
 

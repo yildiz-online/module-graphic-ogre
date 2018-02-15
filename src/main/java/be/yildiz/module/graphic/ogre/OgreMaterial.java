@@ -31,8 +31,8 @@ import be.yildiz.module.graphic.MaterialPass;
 import be.yildiz.module.graphic.MaterialTechnique;
 import be.yildiz.module.graphic.TextureUnit;
 import be.yildizgames.common.collection.Lists;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 
 import java.util.List;
 

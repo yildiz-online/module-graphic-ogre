@@ -29,7 +29,7 @@ import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.MovableText;
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 
 /**
  * Ogre implementation for a movable text.

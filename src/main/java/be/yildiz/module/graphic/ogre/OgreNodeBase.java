@@ -30,9 +30,9 @@ import be.yildizgames.common.gameobject.Deletable;
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Quaternion;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
 import jni.OgreNodeNative;
 
 import java.util.Set;

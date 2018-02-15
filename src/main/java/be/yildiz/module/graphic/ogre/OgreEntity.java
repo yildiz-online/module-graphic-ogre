@@ -25,8 +25,8 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.module.graphic.Material;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 
 /**
  * Associated to an Ogre:Entity.

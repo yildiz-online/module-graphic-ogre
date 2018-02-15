@@ -25,7 +25,7 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.module.graphic.Ocean;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 
 /**
  * Ogre implementation for the ocean, use Hydrax plugin.

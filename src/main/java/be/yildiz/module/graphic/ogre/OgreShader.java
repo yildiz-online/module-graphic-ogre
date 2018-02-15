@@ -25,8 +25,8 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.module.graphic.Shader;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 
 /**
  * Ogre implementation for a shader.

@@ -40,8 +40,8 @@ import be.yildiz.module.window.dummy.DummyWindowEngine;
 import be.yildiz.module.window.swt.SwtWindowEngine;
 import be.yildizgames.common.exception.technical.NativeException;
 import be.yildizgames.common.file.ResourcePath;
-import be.yildizgames.common.nativeresources.NativeResourceLoader;
-import be.yildizgames.common.nativeresources.NativeUtil;
+import be.yildizgames.common.nativeresources.loader.NativeResourceLoader;
+import be.yildizgames.common.nativeresources.system.SystemUtil;
 import be.yildizgames.common.util.Checker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,7 +99,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
         this.root = new Root();
         this.loadPlugins();
         this.loadRenderer();
-        if (NativeUtil.isLinux()) {
+        if (SystemUtil.isLinux()) {
             this.renderWindow = this.root.createWindow(this.size);
         } else {
             this.renderWindow = this.root.createWindow(this.size, windowEngine.getHandle());

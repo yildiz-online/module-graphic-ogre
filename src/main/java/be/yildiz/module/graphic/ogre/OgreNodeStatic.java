@@ -26,7 +26,7 @@ package be.yildiz.module.graphic.ogre;
 
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 import jni.OgreNodeNative;
 
 /**

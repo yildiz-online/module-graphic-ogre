@@ -32,8 +32,8 @@ import be.yildiz.module.graphic.ParticleEmitter.EmitterType;
 import be.yildiz.module.graphic.ParticleForceAffector;
 import be.yildiz.module.graphic.ParticleScaleAffector;
 import be.yildizgames.common.gameobject.Movable;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 
 /**
  * Ogre implementation for the ParticleSystem.

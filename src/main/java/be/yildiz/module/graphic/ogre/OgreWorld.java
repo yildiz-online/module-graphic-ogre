@@ -25,10 +25,10 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.module.color.Color;
-import be.yildiz.module.graphic.AbstractCamera;
 import be.yildiz.module.graphic.AbstractLight;
 import be.yildiz.module.graphic.AbstractParticleSystem;
 import be.yildiz.module.graphic.BillboardSet;
+import be.yildiz.module.graphic.Camera;
 import be.yildiz.module.graphic.DirectionalLight;
 import be.yildiz.module.graphic.ElectricArc;
 import be.yildiz.module.graphic.Explosion;
@@ -249,7 +249,7 @@ public final class OgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final AbstractCamera createCamera(final String name) {
+    public final Camera createCamera(final String name) {
         return this.sceneManager.createCamera(name);
     }
 
@@ -311,7 +311,7 @@ public final class OgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final AbstractCamera getDefaultCamera() {
+    public final Camera getDefaultCamera() {
         return this.sceneManager.getDefaultCamera();
     }
 
@@ -345,7 +345,7 @@ public final class OgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final AbstractCamera getCamera(final String name) {
+    public final Camera getCamera(final String name) {
         return this.sceneManager.getCamera(name);
     }
 

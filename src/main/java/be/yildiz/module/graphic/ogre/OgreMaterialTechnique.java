@@ -26,7 +26,7 @@ package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.module.graphic.MaterialPass;
 import be.yildiz.module.graphic.MaterialTechnique;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 
 import java.util.List;
 

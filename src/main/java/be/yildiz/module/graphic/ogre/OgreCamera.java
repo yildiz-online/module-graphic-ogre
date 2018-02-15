@@ -24,16 +24,16 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildiz.module.graphic.AbstractCamera;
+import be.yildiz.module.graphic.Camera;
 import be.yildiz.module.graphic.LensFlare;
 import be.yildiz.module.graphic.Node;
 import be.yildizgames.common.collection.Lists;
 import be.yildizgames.common.geometry.Axis;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Rectangle;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +43,7 @@ import java.util.Optional;
  *
  * @author Grégory Van den Borre
  */
-final class OgreCamera extends AbstractCamera implements Native {
+final class OgreCamera extends Camera implements Native {
 
     /**
      * Rotation camera speed.

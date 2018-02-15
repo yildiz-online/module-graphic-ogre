@@ -24,8 +24,8 @@
 
 package be.yildiz.module.graphic.ogre;
 
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 
 /**
  * A ViewPort is the display associated to a camera.

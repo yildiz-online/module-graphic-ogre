@@ -30,7 +30,7 @@ import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.gui.AbstractTextElement;
 import be.yildiz.module.graphic.gui.Element;
 import be.yildiz.module.graphic.gui.GuiContainer;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 
 /**
  * Ogre implementation for a text element.

@@ -29,8 +29,8 @@ import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.gui.AbstractIconElement;
 import be.yildiz.module.graphic.gui.Element;
 import be.yildiz.module.graphic.gui.GuiContainer;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 
 /**
  * Ogre implementation for an icon element.

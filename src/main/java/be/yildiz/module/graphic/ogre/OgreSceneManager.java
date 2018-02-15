@@ -25,7 +25,7 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildiz.module.color.Color;
-import be.yildiz.module.graphic.AbstractCamera;
+import be.yildiz.module.graphic.Camera;
 import be.yildiz.module.graphic.Font;
 import be.yildiz.module.graphic.GraphicEngine.ShadowType;
 import be.yildiz.module.graphic.GraphicMesh;
@@ -33,9 +33,9 @@ import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.SceneManager;
 import be.yildiz.module.graphic.Skybox;
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
 import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
@@ -168,7 +168,7 @@ public final class OgreSceneManager implements SceneManager, Native {
     /**
      * @return The Camera created at same time as this manager.
      */
-    public AbstractCamera getDefaultCamera() {
+    public Camera getDefaultCamera() {
         return this.defaultCamera;
     }
 

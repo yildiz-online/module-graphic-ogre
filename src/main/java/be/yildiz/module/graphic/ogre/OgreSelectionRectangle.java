@@ -27,7 +27,7 @@ package be.yildiz.module.graphic.ogre;
 import be.yildiz.module.graphic.Material;
 import be.yildiz.module.graphic.SelectionRectangle;
 import be.yildizgames.common.geometry.Rectangle;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 
 /**
  * Ogre implementation for the selection rectangle.

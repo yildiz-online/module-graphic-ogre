@@ -25,7 +25,7 @@
 package be.yildiz.module.graphic.ogre;
 
 import be.yildizgames.common.gameobject.Movable;
-import be.yildizgames.common.nativeresources.Native;
+import be.yildizgames.common.jni.Native;
 
 /**
  * Java part for the yz::Node.
