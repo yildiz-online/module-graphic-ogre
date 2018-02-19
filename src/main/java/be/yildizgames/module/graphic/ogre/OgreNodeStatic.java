@@ -32,9 +32,9 @@ import jni.OgreNodeNative;
 /**
  * @author Grégory Van den Borre
  */
-class OgreNodeStatic extends OgreNodeBase {
+public class OgreNodeStatic extends OgreNodeBase {
 
-    OgreNodeStatic(NativePointer pointerAddress, Movable parent, Point3D position, Point3D direction) {
+    public OgreNodeStatic(NativePointer pointerAddress, Movable parent, Point3D position, Point3D direction) {
         super(pointerAddress, parent);
         OgreNodeNative n = new OgreNodeNative();
         n.setPosition(pointerAddress.getPointerAddress(), position.x, position.y, position.z);

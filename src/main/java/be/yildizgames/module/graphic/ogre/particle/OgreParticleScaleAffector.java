@@ -22,46 +22,52 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.particle;
 
-import be.yildizgames.module.graphic.particle.ParticleForceAffector;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.particle.ParticleScaleAffector;
 
 /**
- * Ogre implementation for the particle force affector.
+ * Ogre implementation for a particle scale affector.
  *
- * @author Grégory Van den Borre
+ * @author Grégory Van Den Borre
  */
-final class OgreParticleForceAffector extends ParticleForceAffector {
+final class OgreParticleScaleAffector extends ParticleScaleAffector {
 
     /**
-     * Native pointer for the yz::ParticleForceAffector.
+     * Address to the associated native object.
      */
     private final NativePointer pointer;
 
     /**
      * Full constructor.
      *
-     * @param pointer Native pointer for this object.
+     * @param pointer Address to the native object.
      */
-    OgreParticleForceAffector(final NativePointer pointer) {
+    OgreParticleScaleAffector(final NativePointer pointer) {
         super();
         this.pointer = pointer;
     }
 
+    /**
+     * Call the native setScale method, parameter are divided by 100 to match
+     * Ogre values(i.e 0.5 is half scale).
+     *
+     * @param width  Particle width scale per second factor.
+     * @param height Particle height scale per second factor.
+     */
     @Override
-    protected void setForceImpl(final float x, final float y, final float z) {
-        this.setForce(this.pointer.getPointerAddress(), x, y, z);
+    protected void setScaleImpl(final int width, final int height) {
+        this.setScale(this.pointer.getPointerAddress(), width / 100.0f, height / 100.0f);
     }
 
     /**
-     * Set the force in native code.
+     * Scale the particle in native code.
      *
-     * @param pointerAddress Address to the native yz::ParticleForceAffector.
-     * @param x              X axis force strength.
-     * @param y              Y axis force strength.
-     * @param z              Z axis force strength.
+     * @param pointer Address to the native object.
+     * @param width   Width scale per second.
+     * @param height  Height scale per second.
      */
-    private native void setForce(final long pointerAddress, final float x, final float y, final float z);
+    private native void setScale(final long pointer, final float width, final float height);
 
 }

@@ -22,7 +22,11 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.impl;
+
+import be.yildizgames.module.graphic.ogre.DummyViewport;
+import be.yildizgames.module.graphic.ogre.OgreCamera;
+import be.yildizgames.module.graphic.ogre.OgreViewport;
 
 /**
  * @author Grégory Van den Borre

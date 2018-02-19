@@ -24,13 +24,13 @@
 
 package be.yildizgames.module.graphic.ogre;
 
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.internal.Element;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.common.jni.NativePointer;
 
 /**
  * Ogre implementation for a text element.
@@ -56,7 +56,7 @@ final class OgreText extends AbstractTextElement {
      * @param font        Text font.
      * @param container   Container holding the text.
      */
-    OgreText(final BaseCoordinate coordinates, final Font font, final SimpleContainer container) {
+    OgreText(final BaseCoordinate coordinates, final Font font, final Container container) {
         super(coordinates, font);
         this.pointer = NativePointer.create(this.constructor(OgreGuiContainer.class.cast(container).getPointer().getPointerAddress(), coordinates.width, coordinates.height, coordinates.left, coordinates.top,
                 OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size, this.getName()));
@@ -66,7 +66,7 @@ final class OgreText extends AbstractTextElement {
     }
 
     @Override
-    protected void setColor(final Color color) {
+    public void setColor(final Color color) {
         if (!color.equals(this.color)) {
             this.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
             this.color = color;
@@ -104,7 +104,7 @@ final class OgreText extends AbstractTextElement {
     }
 
     @Override
-    protected void delete() {
+    public void delete() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
         this.removeFromRegisterer();

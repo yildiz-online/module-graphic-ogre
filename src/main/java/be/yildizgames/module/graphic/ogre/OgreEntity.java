@@ -24,16 +24,16 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.material.Material;
 
 /**
  * Associated to an Ogre:Entity.
  *
  * @author Grégory Van den Borre
  */
-final class OgreEntity implements Native {
+public final class OgreEntity implements Native {
 
     /**
      * Pointer address to the native code Ogre::Entity.
@@ -45,7 +45,7 @@ final class OgreEntity implements Native {
      */
     private final OgreNodeBase node;
 
-    OgreEntity(NativePointer pointer, OgreNodeBase node) {
+    public OgreEntity(NativePointer pointer, OgreNodeBase node) {
         super();
         this.pointer = pointer;
         this.node = node;

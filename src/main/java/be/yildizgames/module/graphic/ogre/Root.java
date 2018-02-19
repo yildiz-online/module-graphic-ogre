@@ -24,12 +24,13 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.coordinate.Size;
-import be.yildizgames.module.window.WindowHandle;
 import be.yildizgames.common.file.FileResource;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.common.logging.LogFactory;
+import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.graphic.ogre.renderwindow.RenderWindow;
+import be.yildizgames.module.window.WindowHandle;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.security.InvalidParameterException;
 
@@ -40,7 +41,7 @@ import java.security.InvalidParameterException;
  */
 final class Root {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Root.class);
+    private static final Logger LOGGER = LogFactory.getInstance().getLogger(Root.class);
 
     /**
      * Flag to check if initialized or not.

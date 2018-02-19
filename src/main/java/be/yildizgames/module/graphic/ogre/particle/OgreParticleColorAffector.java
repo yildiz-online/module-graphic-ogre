@@ -22,25 +22,44 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.particle;
 
-import be.yildizgames.module.graphic.misc.Ocean;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.particle.ParticleColorAffector;
 
 /**
- * Ogre implementation for the ocean, use Hydrax plugin.
+ * Ogre implementation for the particle color affector.
  *
- * @author Grégory Van den Borre
+ * @author Grégory Van Den Borre
  */
-final class OgreHydrax implements Ocean {
+final class OgreParticleColorAffector extends ParticleColorAffector {
 
+    /**
+     * Address to the associated native object.
+     */
     private final NativePointer pointer;
 
-    OgreHydrax(final NativePointer sm, final OgreCamera cam) {
+    /**
+     * Full constructor.
+     *
+     * @param pointer Address to the native object.
+     */
+    OgreParticleColorAffector(final NativePointer pointer) {
         super();
-        final long address = this.constructor(sm.getPointerAddress(), cam.getPointer().getPointerAddress());
-        this.pointer = NativePointer.create(address);
+        this.pointer = pointer;
     }
 
-    public native long constructor(final long sm, final long cam);
+    @Override
+    protected void setAlphaVariationImpl(final int variation) {
+        this.setAlpha(this.pointer.getPointerAddress(), variation / 100f);
+    }
+
+    /**
+     * Set the alpha variation in native code.
+     *
+     * @param pointer   Address to the native object.
+     * @param variation Alpha variation per second.
+     */
+    private native void setAlpha(final long pointer, final float variation);
+
 }

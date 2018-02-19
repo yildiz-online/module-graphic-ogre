@@ -22,20 +22,20 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.light;
 
-import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.light.PointLight;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.light.PointLight;
 
 /**
  * Ogre implementation for a PointLight.
  *
  * @author Grégory Van den Borre
  */
-final class OgrePointLight extends PointLight implements Native {
+public final class OgrePointLight extends PointLight implements Native {
 
     /**
      * Pointer address to the native code yz::PointLight.
@@ -49,7 +49,7 @@ final class OgrePointLight extends PointLight implements Native {
      * @param name           Light unique name.
      * @param position       Light position.
      */
-    OgrePointLight(final NativePointer pointerAddress, final String name, final Point3D position) {
+    public OgrePointLight(final NativePointer pointerAddress, final String name, final Point3D position) {
         super(name, position);
         this.pointer = pointerAddress;
     }

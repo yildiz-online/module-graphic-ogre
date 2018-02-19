@@ -24,15 +24,17 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.graphic.misc.Sky;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.misc.Sky;
+import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
+import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 
 /**
  * Ogre implementation for a Sky.
  *
  * @author Grégory Van den Borre
  */
-final class OgreSkyX implements Sky {
+public final class OgreSkyX implements Sky {
 
     /**
      * Pointer to the native object.
@@ -45,7 +47,7 @@ final class OgreSkyX implements Sky {
      * @param sm     SceneManager used to create the sky.
      * @param window Window where the sky is rendered.
      */
-    OgreSkyX(final OgreSceneManager sm, final OgreRenderWindow window) {
+    public OgreSkyX(final OgreSceneManager sm, final OgreRenderWindow window) {
         super();
         final long address = this.constructor(sm.getPointer().getPointerAddress());
         this.pointer = NativePointer.create(address);

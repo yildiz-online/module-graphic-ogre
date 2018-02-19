@@ -24,13 +24,13 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
-import be.yildizgames.module.graphic.gui.internal.Element;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.graphic.gui.container.Container;
+import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
+import be.yildizgames.module.graphic.gui.internal.Element;
+import be.yildizgames.module.graphic.material.Material;
 
 /**
  * Ogre implementation for an icon element.
@@ -52,7 +52,7 @@ final class OgreIcon extends AbstractIconElement implements Native {
      * @param material    Material to assign.
      * @param container   Container containing this object.
      */
-    OgreIcon(final String name, final BaseCoordinate coordinates, final Material material, final SimpleContainer container) {
+    OgreIcon(final String name, final BaseCoordinate coordinates, final Material material, final Container container) {
         super(name, coordinates, material);
         this.pointer = NativePointer.create(this.constructor(OgreGuiContainer.class.cast(container).getPointer().getPointerAddress(), name, ((OgreMaterial) material).getPointer().getPointerAddress(), coordinates.width,
                 coordinates.height, coordinates.left, coordinates.top));

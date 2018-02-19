@@ -33,7 +33,7 @@ import jni.OgreNodeNative;
 /**
  * @author Grégory Van den Borre
  */
-class OgreNodeMovable extends OgreNodeBase {
+public class OgreNodeMovable extends OgreNodeBase {
 
     /**
      * Pointer address to the associated yz::Node.

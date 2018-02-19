@@ -22,25 +22,28 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.particle;
 
-import be.yildizgames.module.graphic.particle.ParticleSystem;
+import be.yildizgames.common.gameobject.Movable;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.graphic.ogre.OgreMaterial;
+import be.yildizgames.module.graphic.ogre.OgreNode;
+import be.yildizgames.module.graphic.ogre.OgreNodeBase;
 import be.yildizgames.module.graphic.particle.ParticleColorAffector;
 import be.yildizgames.module.graphic.particle.ParticleEmitter;
 import be.yildizgames.module.graphic.particle.ParticleEmitter.EmitterType;
 import be.yildizgames.module.graphic.particle.ParticleForceAffector;
 import be.yildizgames.module.graphic.particle.ParticleScaleAffector;
-import be.yildizgames.common.gameobject.Movable;
-import be.yildizgames.common.jni.Native;
-import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.particle.ParticleSystem;
 
 /**
  * Ogre implementation for the ParticleSystem.
  *
  * @author Grégory Van Den Borre
  */
-final class OgreParticleSystem extends ParticleSystem implements Native {
+public final class OgreParticleSystem extends ParticleSystem implements Native {
 
     /**
      * Pointer for the native object.
@@ -58,7 +61,7 @@ final class OgreParticleSystem extends ParticleSystem implements Native {
      * @param pointer Pointer to the associated native object.
      * @param node    Node used to move the particle system.
      */
-    OgreParticleSystem(final NativePointer pointer, final OgreNodeBase node) {
+    public OgreParticleSystem(final NativePointer pointer, final OgreNodeBase node) {
         super(node);
         this.pointer = pointer;
         this.node = node;

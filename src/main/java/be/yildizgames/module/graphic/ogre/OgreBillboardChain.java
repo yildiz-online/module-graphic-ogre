@@ -24,18 +24,18 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.graphic.billboard.BillboardChain;
-import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.billboard.BillboardChain;
+import be.yildizgames.module.graphic.material.Material;
 
 /**
  * Ogre implementation for a BillboardChain.
  *
  * @author Grégory Van den Borre
  */
-final class OgreBillboardChain implements BillboardChain, Native {
+public final class OgreBillboardChain implements BillboardChain, Native {
 
     /**
      * Pointer address to the native code object.

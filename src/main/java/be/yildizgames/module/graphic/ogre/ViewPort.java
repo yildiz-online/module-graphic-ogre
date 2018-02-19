@@ -32,7 +32,7 @@ import be.yildizgames.common.jni.NativePointer;
  *
  * @author Grégory Van den Borre
  */
-final class ViewPort implements Native, OgreViewport {
+public final class ViewPort implements Native, OgreViewport {
 
     /**
      * Pointer for the native object.

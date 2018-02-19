@@ -22,22 +22,21 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.light;
 
-import be.yildizgames.module.graphic.light.LensFlare;
 import be.yildizgames.common.geometry.Point3D;
-import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.light.SpotLight;
 
 /**
- * Ogre implementation for a LensFalre.
+ * Ogre implementation for a SpotLight.
  *
  * @author Grégory Van den Borre
  */
-final class OgreLensFlare extends LensFlare implements Native {
+public final class OgreSpotLight extends SpotLight {
 
     /**
-     * Pointer address to the native code yz::LensFlare.
+     * Pointer address to the native code yz::SpotLight.
      */
     private final NativePointer pointer;
 
@@ -45,11 +44,18 @@ final class OgreLensFlare extends LensFlare implements Native {
      * Full constructor.
      *
      * @param pointerAddress Pointer address to the associated native object.
-     * @param position       lens flare position.
+     * @param name           Light unique name.
+     * @param position       Light position.
+     * @param direction      Light direction.
      */
-    OgreLensFlare(final NativePointer pointerAddress, final Point3D position) {
-        super(position);
+    public OgreSpotLight(final NativePointer pointerAddress, final String name, final Point3D position, final Point3D direction) {
+        super(name, position, direction);
         this.pointer = pointerAddress;
+    }
+
+    @Override
+    protected void setDirectionImpl(final Point3D direction) {
+        this.setDirection(this.pointer.getPointerAddress(), direction.x, direction.y, direction.z);
     }
 
     @Override
@@ -58,37 +64,15 @@ final class OgreLensFlare extends LensFlare implements Native {
     }
 
     @Override
-    public void setStreakSize(final float w, final float h) {
-        this.setStreakSize(this.pointer.getPointerAddress(), w, h);
-    }
-
-    @Override
-    public void setLightSize(final float w, final float h) {
-        this.setLightSize(this.pointer.getPointerAddress(), w, h);
-    }
-
-    @Override
-    public void delete() {
+    protected void deleteImpl() {
         this.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
-    @Override
-    public NativePointer getPointer() {
-        return pointer;
-    }
-
     /**
-     * Delete the object in native code.
+     * Set the light position in native code.
      *
-     * @param address Address of the native object.
-     */
-    private native void delete(final long address);
-
-    /**
-     * Set the lens flare position in native code.
-     *
-     * @param pointerAddress Address of the native yz::LensFlare pointer.
+     * @param pointerAddress Address of the native yz::SpotLight pointer.
      * @param x              New X position.
      * @param y              New Y position.
      * @param z              New Z position.
@@ -96,21 +80,19 @@ final class OgreLensFlare extends LensFlare implements Native {
     private native void setPosition(final long pointerAddress, final float x, final float y, final float z);
 
     /**
-     * Set streak billboard size.
+     * Set the light direction in native code.
      *
-     * @param pointerAddress Address of the native yz::LensFlare pointer.
-     * @param w              Width in pixel.
-     * @param h              Height in pixel.
+     * @param pointerAddress Address of the native yz::SpotLight pointer.
+     * @param x              New X direction.
+     * @param y              New Y direction.
+     * @param z              New Z direction.
      */
-    private native void setStreakSize(final long pointerAddress, final float w, final float h);
+    private native void setDirection(final long pointerAddress, final float x, final float y, final float z);
 
     /**
-     * Set light billboard size.
+     * Delete light direction in native code.
      *
-     * @param pointerAddress Address of the native yz::LensFlare pointer.
-     * @param w              Width in pixel.
-     * @param h              Height in pixel.
+     * @param pointerAddress Address of the native yz::SpotLight pointer.
      */
-    private native void setLightSize(final long pointerAddress, final float w, final float h);
-
+    private native void delete(final long pointerAddress);
 }

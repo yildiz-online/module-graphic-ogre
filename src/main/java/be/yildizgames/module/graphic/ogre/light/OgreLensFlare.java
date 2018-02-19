@@ -22,34 +22,34 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.light;
 
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.billboard.Billboard;
+import be.yildizgames.module.graphic.light.LensFlare;
 
 /**
- * Ogre implementation for a BillBoard.
+ * Ogre implementation for a Lens flare.
  *
  * @author Grégory Van den Borre
  */
-final class OgreBillboard extends Billboard implements Native {
+public final class OgreLensFlare extends LensFlare implements Native {
 
     /**
-     * Pointer address to the native code object.
+     * Pointer address to the native code yz::LensFlare.
      */
     private final NativePointer pointer;
 
-    OgreBillboard(NativePointer pointer) {
-        super();
-        this.pointer = pointer;
-    }
-
-    @Override
-    protected void setSizeImpl(final float width, final float height) {
-        this.setSize(this.pointer.getPointerAddress(), width, height);
+    /**
+     * Full constructor.
+     *
+     * @param pointerAddress Pointer address to the associated native object.
+     * @param position       lens flare position.
+     */
+    public OgreLensFlare(final NativePointer pointerAddress, final Point3D position) {
+        super(position);
+        this.pointer = pointerAddress;
     }
 
     @Override
@@ -58,8 +58,13 @@ final class OgreBillboard extends Billboard implements Native {
     }
 
     @Override
-    public void setColor(final Color color) {
-        this.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+    public void setStreakSize(final float w, final float h) {
+        this.setStreakSize(this.pointer.getPointerAddress(), w, h);
+    }
+
+    @Override
+    public void setLightSize(final float w, final float h) {
+        this.setLightSize(this.pointer.getPointerAddress(), w, h);
     }
 
     @Override
@@ -81,33 +86,31 @@ final class OgreBillboard extends Billboard implements Native {
     private native void delete(final long address);
 
     /**
-     * Set the billboard position in native code.
+     * Set the lens flare position in native code.
      *
-     * @param pointerAddress Native object pointer address.
-     * @param positionX      New position x value.
-     * @param positionY      New position y value.
-     * @param positionZ      New position z value.
+     * @param pointerAddress Address of the native yz::LensFlare pointer.
+     * @param x              New X position.
+     * @param y              New Y position.
+     * @param z              New Z position.
      */
-    private native void setPosition(final long pointerAddress, final float positionX, final float positionY, final float positionZ);
+    private native void setPosition(final long pointerAddress, final float x, final float y, final float z);
 
     /**
-     * Set the billboard size in native code.
+     * Set streak billboard size.
      *
-     * @param pointerAddress Native object pointer address.
-     * @param width          New billboard width value.
-     * @param height         New billboard height value.
+     * @param pointerAddress Address of the native yz::LensFlare pointer.
+     * @param w              Width in pixel.
+     * @param h              Height in pixel.
      */
-    private native void setSize(final long pointerAddress, final float width, final float height);
+    private native void setStreakSize(final long pointerAddress, final float w, final float h);
 
     /**
-     * Set the billboard color.
+     * Set light billboard size.
      *
-     * @param pointer Ogre::Billboard* pointer address.
-     * @param red     Red color value.
-     * @param green   Green color value.
-     * @param blue    Blue color value.
-     * @param alpha   Alpha value.
+     * @param pointerAddress Address of the native yz::LensFlare pointer.
+     * @param w              Width in pixel.
+     * @param h              Height in pixel.
      */
-    private native void setColor(final long pointer, final float red, final float green, final float blue, final float alpha);
+    private native void setLightSize(final long pointerAddress, final float w, final float h);
 
 }

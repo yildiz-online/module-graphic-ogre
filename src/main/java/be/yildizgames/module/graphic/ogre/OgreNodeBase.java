@@ -24,8 +24,6 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.graphic.movable.Node;
-import be.yildizgames.common.collection.Sets;
 import be.yildizgames.common.gameobject.Deletable;
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
@@ -33,14 +31,16 @@ import be.yildizgames.common.geometry.Quaternion;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
+import be.yildizgames.module.graphic.movable.Node;
 import jni.OgreNodeNative;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * @author Grégory Van den Borre
  */
-abstract class OgreNodeBase extends Node implements OgreNode {
+public abstract class OgreNodeBase extends Node implements OgreNode {
 
     /**
      * Pointer address to the associated yz::Node.
@@ -56,9 +56,9 @@ abstract class OgreNodeBase extends Node implements OgreNode {
 
     protected Movable parent;
 
-    private final Set<Movable> childrenList = Sets.newSet();
+    private final Set<Movable> childrenList = new HashSet<>();
 
-    private final Set<Movable> optionalList = Sets.newSet();
+    private final Set<Movable> optionalList = new HashSet<>();
 
     /**
      * Full constructor.

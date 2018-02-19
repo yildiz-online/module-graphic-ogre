@@ -24,16 +24,16 @@
 
 package be.yildizgames.module.graphic.ogre;
 
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.material.MaterialEffect;
 import be.yildizgames.module.graphic.material.MaterialEffect.EffectType;
 import be.yildizgames.module.graphic.material.MaterialPass;
 import be.yildizgames.module.graphic.material.MaterialTechnique;
 import be.yildizgames.module.graphic.material.TextureUnit;
-import be.yildizgames.common.collection.Lists;
-import be.yildizgames.common.jni.Native;
-import be.yildizgames.common.jni.NativePointer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +41,7 @@ import java.util.List;
  *
  * @author Grégory Van den Borre
  */
-final class OgreMaterial extends Material implements Native {
+public final class OgreMaterial extends Material implements Native {
 
     /**
      * Pointer address to the associated Ogre::Material.
@@ -87,15 +87,15 @@ final class OgreMaterial extends Material implements Native {
     protected Material copyImpl(final String name) {
         final long copyPointer = this.copy(this.pointer.getPointerAddress(), name);
         final long[] copyTechniques = this.getTechniqueList(copyPointer);
-        final List<MaterialTechnique> techniqueCopyList = Lists.newList(copyTechniques.length);
+        final List<MaterialTechnique> techniqueCopyList = new ArrayList<>(copyTechniques.length);
         for (int techniqueIndex = 0; techniqueIndex < copyTechniques.length; techniqueIndex++) {
             final long[] copyPass = OgreMaterialTechnique.getPassList(copyTechniques[techniqueIndex]);
-            final List<MaterialPass> passCopyList = Lists.newList(copyPass.length);
+            final List<MaterialPass> passCopyList = new ArrayList<>(copyPass.length);
             for (int passIndex = 0; passIndex < copyPass.length; passIndex++) {
                 final long[] copyUnit = OgreMaterialPass.getUnitList(copyPass[passIndex]);
-                final List<TextureUnit> unitCopyList = Lists.newList(copyUnit.length);
-                for (int unitIndex = 0; unitIndex < copyUnit.length; unitIndex++) {
-                    final OgreTextureUnit unitCopy = new OgreTextureUnit(copyUnit[unitIndex]);
+                final List<TextureUnit> unitCopyList = new ArrayList<>(copyUnit.length);
+                for (long aCopyUnit : copyUnit) {
+                    final OgreTextureUnit unitCopy = new OgreTextureUnit(aCopyUnit);
                     unitCopyList.add(unitCopy);
                 }
                 final OgreMaterialPass passCopy = new OgreMaterialPass(copyPass[passIndex], passIndex, unitCopyList);

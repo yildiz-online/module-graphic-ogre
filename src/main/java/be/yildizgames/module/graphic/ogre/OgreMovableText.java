@@ -24,19 +24,19 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.misc.MovableText;
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.misc.MovableText;
 
 /**
  * Ogre implementation for a movable text.
  *
  * @author Grégory Van den Borre
  */
-final class OgreMovableText extends MovableText {
+public final class OgreMovableText extends MovableText {
 
     /**
      * Pointer for the native object.

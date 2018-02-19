@@ -22,16 +22,19 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.impl;
 
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.ogre.OgreCamera;
+import be.yildizgames.module.graphic.ogre.OgreViewport;
+import be.yildizgames.module.graphic.ogre.ViewPort;
 
 /**
  * Access to the Render Window object in native code.
  *
  * @author Grégory Van Den Borre
  */
-final class RenderWindow implements OgreRenderWindow{
+final class RenderWindow implements OgreRenderWindow {
 
     /**
      * Full constructor.

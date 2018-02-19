@@ -24,13 +24,14 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.graphic.gui.internal.Element;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.module.graphic.gui.Zorder;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.graphic.gui.Zorder;
+import be.yildizgames.module.graphic.gui.container.Container;
+import be.yildizgames.module.graphic.gui.internal.Element;
+import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
+import be.yildizgames.module.graphic.material.Material;
 
 import java.util.Optional;
 
@@ -86,7 +87,7 @@ final class OgreGuiContainer extends SimpleContainer implements Native {
      * @param screenWidth  Screen width in pixels.
      * @param screenHeight Screen height in pixels.
      */
-    OgreGuiContainer(final String name, final Material material, final BaseCoordinate coordinate, final SimpleContainer parent, final int screenWidth, final int screenHeight, final boolean widget) {
+    OgreGuiContainer(final String name, final Material material, final BaseCoordinate coordinate, final Container parent, final int screenWidth, final int screenHeight, final boolean widget) {
         super(name, coordinate, material, Optional.of(parent), widget);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;

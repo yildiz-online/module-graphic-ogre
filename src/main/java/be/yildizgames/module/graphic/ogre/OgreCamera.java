@@ -24,17 +24,18 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.graphic.camera.Camera;
-import be.yildizgames.module.graphic.light.LensFlare;
-import be.yildizgames.module.graphic.movable.Node;
-import be.yildizgames.common.collection.Lists;
 import be.yildizgames.common.geometry.Axis;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
+import be.yildizgames.module.graphic.camera.Camera;
+import be.yildizgames.module.graphic.light.LensFlare;
+import be.yildizgames.module.graphic.movable.Node;
+import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +44,7 @@ import java.util.Optional;
  *
  * @author Grégory Van den Borre
  */
-final class OgreCamera extends Camera implements Native {
+public final class OgreCamera extends Camera implements Native {
 
     /**
      * Rotation camera speed.
@@ -74,7 +75,7 @@ final class OgreCamera extends Camera implements Native {
      * @param name    Camera name.
      * @param node    The node will be used to auto track a specific position.
      */
-    OgreCamera(final NativePointer pointer, final String name, final OgreNode node, final float resX, final float resY) {
+    public OgreCamera(final NativePointer pointer, final String name, final OgreNode node, final float resX, final float resY) {
         super(name);
         this.pointer = pointer;
         this.node = node;
@@ -99,7 +100,7 @@ final class OgreCamera extends Camera implements Native {
         final float right = rectangle.getRight() / this.resolutionX;
         final float bottom = rectangle.getBottom() / this.resolutionY;
         final long[] tab = this.throwPlaneRay(this.pointer.getPointerAddress(), left, top, right, bottom);
-        final List<EntityId> ids = Lists.newList(tab.length);
+        final List<EntityId> ids = new ArrayList<>(tab.length);
         for (long i : tab) {
             ids.add(EntityId.valueOf(i));
         }

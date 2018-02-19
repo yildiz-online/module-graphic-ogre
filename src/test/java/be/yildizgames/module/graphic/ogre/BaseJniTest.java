@@ -24,6 +24,16 @@
 
 package be.yildizgames.module.graphic.ogre;
 
+import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
+import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
+import be.yildizgames.module.graphic.ogre.light.OgrePointLight;
+import be.yildizgames.module.graphic.ogre.light.OgreSpotLight;
+import be.yildizgames.module.graphic.ogre.misc.OgreElectricArc;
+import be.yildizgames.module.graphic.ogre.misc.OgreLine;
+import be.yildizgames.module.graphic.ogre.particle.OgreParticleEmitter;
+import be.yildizgames.module.graphic.ogre.particle.OgreParticleSystem;
+import be.yildizgames.module.graphic.ogre.renderwindow.RenderWindow;
+
 import java.io.IOException;
 
 /**

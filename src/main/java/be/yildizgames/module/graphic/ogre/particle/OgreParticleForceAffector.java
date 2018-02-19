@@ -22,52 +22,46 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.particle;
 
-import be.yildizgames.module.graphic.particle.ParticleScaleAffector;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.particle.ParticleForceAffector;
 
 /**
- * Ogre implementation for a particle scale affector.
+ * Ogre implementation for the particle force affector.
  *
- * @author Grégory Van Den Borre
+ * @author Grégory Van den Borre
  */
-final class OgreParticleScaleAffector extends ParticleScaleAffector {
+final class OgreParticleForceAffector extends ParticleForceAffector {
 
     /**
-     * Address to the associated native object.
+     * Native pointer for the yz::ParticleForceAffector.
      */
     private final NativePointer pointer;
 
     /**
      * Full constructor.
      *
-     * @param pointer Address to the native object.
+     * @param pointer Native pointer for this object.
      */
-    OgreParticleScaleAffector(final NativePointer pointer) {
+    OgreParticleForceAffector(final NativePointer pointer) {
         super();
         this.pointer = pointer;
     }
 
-    /**
-     * Call the native setScale method, parameter are divided by 100 to match
-     * Ogre values(i.e 0.5 is half scale).
-     *
-     * @param width  Particle width scale per second factor.
-     * @param height Particle height scale per second factor.
-     */
     @Override
-    protected void setScaleImpl(final int width, final int height) {
-        this.setScale(this.pointer.getPointerAddress(), width / 100.0f, height / 100.0f);
+    protected void setForceImpl(final float x, final float y, final float z) {
+        this.setForce(this.pointer.getPointerAddress(), x, y, z);
     }
 
     /**
-     * Scale the particle in native code.
+     * Set the force in native code.
      *
-     * @param pointer Address to the native object.
-     * @param width   Width scale per second.
-     * @param height  Height scale per second.
+     * @param pointerAddress Address to the native yz::ParticleForceAffector.
+     * @param x              X axis force strength.
+     * @param y              Y axis force strength.
+     * @param z              Z axis force strength.
      */
-    private native void setScale(final long pointer, final float width, final float height);
+    private native void setForce(final long pointerAddress, final float x, final float y, final float z);
 
 }

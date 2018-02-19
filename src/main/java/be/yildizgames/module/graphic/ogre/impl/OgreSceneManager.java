@@ -22,16 +22,8 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.impl;
 
-import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.camera.Camera;
-import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.GraphicEngine.ShadowType;
-import be.yildizgames.module.graphic.GraphicMesh;
-import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.graphic.SceneManager;
-import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
@@ -41,13 +33,40 @@ import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.common.util.StringUtil;
+import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.Font;
+import be.yildizgames.module.graphic.GraphicEngine.ShadowType;
+import be.yildizgames.module.graphic.GraphicMesh;
+import be.yildizgames.module.graphic.SceneManager;
+import be.yildizgames.module.graphic.camera.Camera;
+import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.graphic.ogre.OgreBillboardChain;
+import be.yildizgames.module.graphic.ogre.OgreBillboardSet;
+import be.yildizgames.module.graphic.ogre.OgreCamera;
+import be.yildizgames.module.graphic.ogre.OgreEntity;
+import be.yildizgames.module.graphic.ogre.OgreMaterial;
+import be.yildizgames.module.graphic.ogre.OgreMovableText;
+import be.yildizgames.module.graphic.ogre.OgreNode;
+import be.yildizgames.module.graphic.ogre.OgreNodeBase;
+import be.yildizgames.module.graphic.ogre.OgreNodeMovable;
+import be.yildizgames.module.graphic.ogre.OgreNodeStatic;
+import be.yildizgames.module.graphic.ogre.OgreSkyX;
+import be.yildizgames.module.graphic.ogre.light.OgreDirectionalLight;
+import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
+import be.yildizgames.module.graphic.ogre.light.OgrePointLight;
+import be.yildizgames.module.graphic.ogre.light.OgreSpotLight;
+import be.yildizgames.module.graphic.ogre.misc.OgreElectricArc;
+import be.yildizgames.module.graphic.ogre.misc.OgreHydrax;
+import be.yildizgames.module.graphic.ogre.misc.OgreLine;
+import be.yildizgames.module.graphic.ogre.particle.OgreParticleSystem;
 
 /**
  * Java part of the yz::SceneManager.
  *
  * @author Grégory Van den Borre
  */
-final class OgreSceneManager implements SceneManager, Native {
+public final class OgreSceneManager implements SceneManager, Native {
 
     /**
      * Value to scale the boxes to match Ogre and engine sizes.

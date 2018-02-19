@@ -22,18 +22,20 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.misc;
 
-import be.yildizgames.module.graphic.misc.Line;
-import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.graphic.misc.Line;
+import be.yildizgames.module.graphic.ogre.OgreMaterial;
+import be.yildizgames.module.graphic.ogre.OgreNode;
 
 /**
  * Ogre Line implementation.
  *
  * @author Grégory Van den Borre
  */
-final class OgreLine extends Line {
+public final class OgreLine extends Line {
 
     /**
      * Address to the associated native object.

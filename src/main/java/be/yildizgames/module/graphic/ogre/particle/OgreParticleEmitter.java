@@ -22,12 +22,12 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.particle;
 
-import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.particle.ParticleEmitter;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.particle.ParticleEmitter;
 
 /**
  * Ogre implementation for a particle emitter.

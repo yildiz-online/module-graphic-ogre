@@ -24,18 +24,18 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.graphic.billboard.Billboard;
-import be.yildizgames.module.graphic.billboard.BillboardSet;
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.billboard.Billboard;
+import be.yildizgames.module.graphic.billboard.BillboardSet;
 
 /**
  * Ogre implementation for a BillBoardSet.
  *
  * @author Grégory Van den Borre
  */
-final class OgreBillboardSet extends BillboardSet implements Native {
+public final class OgreBillboardSet extends BillboardSet implements Native {
 
     /**
      * Pointer address to the native code object.
@@ -53,7 +53,7 @@ final class OgreBillboardSet extends BillboardSet implements Native {
      * @param pointer Pointer address to the associated native object.
      * @param node    Associated node.
      */
-    OgreBillboardSet(final NativePointer pointer, final OgreNodeBase node) {
+    public OgreBillboardSet(final NativePointer pointer, final OgreNodeBase node) {
         super(node);
         this.pointer = pointer;
         this.node = node;

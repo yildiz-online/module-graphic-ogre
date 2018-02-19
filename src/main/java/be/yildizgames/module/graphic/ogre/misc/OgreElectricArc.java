@@ -22,21 +22,23 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.misc;
 
-import be.yildizgames.module.graphic.misc.ElectricArc;
-import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.graphic.light.PointLight;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.light.PointLight;
+import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.graphic.misc.ElectricArc;
+import be.yildizgames.module.graphic.ogre.OgreMaterial;
+import be.yildizgames.module.graphic.ogre.light.OgrePointLight;
 
 /**
  * Ogre implementation for ElectricArc.
  *
  * @author Grégory Van den Borre
  */
-final class OgreElectricArc extends ElectricArc implements Native {
+public final class OgreElectricArc extends ElectricArc implements Native {
 
     /**
      * Native pointer.
@@ -50,7 +52,7 @@ final class OgreElectricArc extends ElectricArc implements Native {
      * @param start   Arc origin.
      * @param end     Arc end.
      */
-    OgreElectricArc(final NativePointer pointer, final Point3D start, final Point3D end) {
+    public OgreElectricArc(final NativePointer pointer, final Point3D start, final Point3D end) {
         super(start, end);
         this.pointer = pointer;
     }
