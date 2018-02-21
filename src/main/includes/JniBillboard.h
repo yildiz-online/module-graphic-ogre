@@ -33,13 +33,13 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setSize
+JNIEXPORT void JNICALL Java_jni_JniBillboard_setSize
     (JNIEnv* env, jobject o, POINTER pointer, jfloat width, jfloat height);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setPosition
+JNIEXPORT void JNICALL Java_jni_JniBillboard_setPosition
     (JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setColor
+JNIEXPORT void JNICALL Java_jni_JniBillboard_setColor
     (JNIEnv* env, jobject o, POINTER pointer, jfloat red, jfloat green, jfloat blue, jfloat alpha);
 
 

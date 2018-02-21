@@ -26,6 +26,7 @@ package be.yildizgames.module.graphic.ogre.particle;
 
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.particle.ParticleScaleAffector;
+import jni.JniParticleScaleAffector;
 
 /**
  * Ogre implementation for a particle scale affector.
@@ -38,6 +39,8 @@ final class OgreParticleScaleAffector extends ParticleScaleAffector {
      * Address to the associated native object.
      */
     private final NativePointer pointer;
+
+    private final JniParticleScaleAffector jni = new JniParticleScaleAffector();
 
     /**
      * Full constructor.
@@ -58,16 +61,7 @@ final class OgreParticleScaleAffector extends ParticleScaleAffector {
      */
     @Override
     protected void setScaleImpl(final int width, final int height) {
-        this.setScale(this.pointer.getPointerAddress(), width / 100.0f, height / 100.0f);
+        this.jni.setScale(this.pointer.getPointerAddress(), width / 100.0f, height / 100.0f);
     }
-
-    /**
-     * Scale the particle in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param width   Width scale per second.
-     * @param height  Height scale per second.
-     */
-    private native void setScale(final long pointer, final float width, final float height);
 
 }

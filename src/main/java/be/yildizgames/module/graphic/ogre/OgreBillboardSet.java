@@ -29,6 +29,7 @@ import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.billboard.Billboard;
 import be.yildizgames.module.graphic.billboard.BillboardSet;
+import jni.JniBillboardSet;
 
 /**
  * Ogre implementation for a BillBoardSet.
@@ -47,6 +48,8 @@ public final class OgreBillboardSet extends BillboardSet implements Native {
      */
     private final OgreNodeBase node;
 
+    private final JniBillboardSet jni = new JniBillboardSet();
+
     /**
      * Full constructor.
      *
@@ -57,85 +60,38 @@ public final class OgreBillboardSet extends BillboardSet implements Native {
         super(node);
         this.pointer = pointer;
         this.node = node;
-        this.attachToNode(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress());
+        this.jni.attachToNode(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress());
     }
 
     @Override
     public OgreBillboard createBillboard() {
-        return new OgreBillboard(NativePointer.create(this.createBillboard(this.pointer.getPointerAddress())));
+        return new OgreBillboard(NativePointer.create(this.jni.createBillboard(this.pointer.getPointerAddress())));
     }
 
     @Override
     public void removeBillboard(final Billboard b) {
-        this.remove(this.pointer.getPointerAddress(), OgreBillboard.class.cast(b).getPointer().getPointerAddress());
+        this.jni.remove(this.pointer.getPointerAddress(), OgreBillboard.class.cast(b).getPointer().getPointerAddress());
     }
 
     @Override
     public void setSize(final float width, final float height) {
-        this.setSize(this.pointer.getPointerAddress(), width, height);
+        this.jni.setSize(this.pointer.getPointerAddress(), width, height);
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.getPointerAddress());
+        this.jni.hide(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.getPointerAddress());
+        this.jni.show(this.pointer.getPointerAddress());
     }
 
     @Override
     public NativePointer getPointer() {
         return pointer;
     }
-
-    /**
-     * Create a new Billboard in native code.
-     *
-     * @param pointer The billboard set native object pointer address.
-     * @return The newly built billboard native object pointer address.
-     */
-    private native long createBillboard(final long pointer);
-
-    /**
-     * Set the default size in native code.
-     *
-     * @param address The Ogre::BillboardSet pointer address.
-     * @param width   New default width in pixel.
-     * @param height  New default height in pixels.
-     */
-    private native void setSize(final long address, final float width, final float height);
-
-    /**
-     * Remove a billboard from the set.
-     *
-     * @param pointer          The Ogre::BillboardSet pointer address.
-     * @param billboardPointer The Ogre::Billboard to remove pointer address.
-     */
-    private native void remove(final long pointer, final long billboardPointer);
-
-    /**
-     * Attach the set to a node.
-     *
-     * @param pointer     Set pointer address.
-     * @param nodePointer Node address.
-     */
-    private native void attachToNode(final long pointer, final long nodePointer);
-
-    /**
-     * Set the set visible.
-     *
-     * @param pointerAddress Set pointer address.
-     */
-    private native void show(final long pointerAddress);
-
-    /**
-     * Set the set invisible.
-     *
-     * @param pointerAddress Set pointer address.
-     */
-    private native void hide(final long pointerAddress);
 
     @Override
     public void detachFromParent() {

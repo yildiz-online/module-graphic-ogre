@@ -31,6 +31,7 @@ import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.internal.Element;
+import jni.JniGuiText;
 
 /**
  * Ogre implementation for a text element.
@@ -49,6 +50,8 @@ final class OgreText extends AbstractTextElement {
      */
     private Color color;
 
+    private final JniGuiText jni = new JniGuiText();
+
     /**
      * Full constructor.
      *
@@ -58,7 +61,7 @@ final class OgreText extends AbstractTextElement {
      */
     OgreText(final BaseCoordinate coordinates, final Font font, final Container container) {
         super(coordinates, font);
-        this.pointer = NativePointer.create(this.constructor(OgreGuiContainer.class.cast(container).getPointer().getPointerAddress(), coordinates.width, coordinates.height, coordinates.left, coordinates.top,
+        this.pointer = NativePointer.create(this.jni.constructor(OgreGuiContainer.class.cast(container).getPointer().getPointerAddress(), coordinates.width, coordinates.height, coordinates.left, coordinates.top,
                 OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size, this.getName()));
         this.setColor(font.color);
         this.hide();
@@ -68,29 +71,29 @@ final class OgreText extends AbstractTextElement {
     @Override
     public void setColor(final Color color) {
         if (!color.equals(this.color)) {
-            this.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+            this.jni.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
             this.color = color;
         }
     }
 
     @Override
     protected void setTextImpl(final String text) {
-        this.setText(this.pointer.getPointerAddress(), text);
+        this.jni.setText(this.pointer.getPointerAddress(), text);
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.getPointerAddress());
+        this.jni.hide(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.getPointerAddress());
+        this.jni.show(this.pointer.getPointerAddress());
     }
 
     @Override
     protected Element setPositionImpl(final int left, final int top) {
-        this.setPosition(this.pointer.getPointerAddress(), left, top);
+        this.jni.setPosition(this.pointer.getPointerAddress(), left, top);
         return this;
     }
 
@@ -100,86 +103,13 @@ final class OgreText extends AbstractTextElement {
 
     @Override
     protected void setFontImpl(final Font font) {
-        this.setFont(this.pointer.getPointerAddress(), OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
+        this.jni.setFont(this.pointer.getPointerAddress(), OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
         this.removeFromRegisterer();
     }
-
-    /**
-     * Build a new text element in native code.
-     *
-     * @param container  Container holding the element.
-     * @param width      Text element width.
-     * @param height     Text element height.
-     * @param left       Text element Left position from the container left border.
-     * @param top        Text element top position from the container top border.
-     * @param font       Font to use with the text.
-     * @param fontHeight Size of the font to use.
-     * @param name       Name of the element, must be unique.
-     * @return The pointer address to the newly built object.
-     */
-    private native long constructor(final long container, final float width, final float height, final float left, final float top, final long font, final float fontHeight, final String name);
-
-    /**
-     * Update the text in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param text    Text to print.
-     */
-    private native void setText(final long pointer, final String text);
-
-    /**
-     * Show the text element in native code.
-     *
-     * @param pointer Address to the native object.
-     */
-    private native void show(final long pointer);
-
-    /**
-     * Hide the text element in native code.
-     *
-     * @param pointer Address to the native object.
-     */
-    private native void hide(final long pointer);
-
-    /**
-     * Set the text position in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param left    Text element Left position from the container left border.
-     * @param top     Text element top position from the container top border.
-     */
-    private native void setPosition(final long pointer, final float left, final float top);
-
-    /**
-     * Set the text font in native code.
-     *
-     * @param pointer    Address to the native object.
-     * @param font       Font to use with the text.
-     * @param fontHeight Size of the font to use.
-     */
-    private native void setFont(final long pointer, final long font, final float fontHeight);
-
-    /**
-     * Set the text color in native code.
-     *
-     * @param pointerAddress Address to the native object.
-     * @param red            Red value to set.
-     * @param green          Green value to set.
-     * @param blue           Blue value to set.
-     * @param alpha          Alpha value to set.
-     */
-    private native void setColor(final long pointerAddress, final float red, final float green, final float blue, final float alpha);
-
-    /**
-     * Delete the object in native code.
-     *
-     * @param pointerAddress Address to the native object.
-     */
-    private native void delete(final long pointerAddress);
 }

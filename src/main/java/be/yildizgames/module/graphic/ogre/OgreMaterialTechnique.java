@@ -27,6 +27,7 @@ package be.yildizgames.module.graphic.ogre;
 import be.yildizgames.module.graphic.material.MaterialPass;
 import be.yildizgames.module.graphic.material.MaterialTechnique;
 import be.yildizgames.common.jni.NativePointer;
+import jni.JniMaterialTechnique;
 
 import java.util.List;
 
@@ -41,6 +42,8 @@ final class OgreMaterialTechnique extends MaterialTechnique {
      * Pointer to the native object.
      */
     private final NativePointer pointer;
+
+    private final JniMaterialTechnique jni = new JniMaterialTechnique();
 
     /**
      * Full constructor.
@@ -77,39 +80,14 @@ final class OgreMaterialTechnique extends MaterialTechnique {
     @Override
     protected MaterialPass createPassImpl(final int index) {
         if (index == 0) {
-            return new OgreMaterialPass(this.getPass(this.pointer.getPointerAddress(), 0));
+            return new OgreMaterialPass(this.jni.getPass(this.pointer.getPointerAddress(), 0));
         }
-        return new OgreMaterialPass(this.createPass(this.pointer.getPointerAddress()));
+        return new OgreMaterialPass(this.jni.createPass(this.pointer.getPointerAddress()));
 
     }
 
     @Override
     protected void setGlowImpl() {
-        this.setGlow(this.pointer.getPointerAddress());
-
+        this.jni.setGlow(this.pointer.getPointerAddress());
     }
-
-    /**
-     * Create a new pass for this technique.
-     *
-     * @param pointerAddress Address to the native object.
-     * @return The address to the pass native object.
-     */
-    private native long createPass(final long pointerAddress);
-
-    /**
-     * Activate the glow for this technique.
-     *
-     * @param pointerAddress Address to the native object.
-     */
-    private native void setGlow(final long pointerAddress);
-
-    /**
-     * Get a pass from its index.
-     *
-     * @param pointerAddress Address to the native object.
-     * @param index          Pass index.
-     * @return The pass pointer address.
-     */
-    private native long getPass(final long pointerAddress, final int index);
 }

@@ -26,6 +26,7 @@ package be.yildizgames.module.graphic.ogre.particle;
 
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.particle.ParticleColorAffector;
+import jni.JniParticleColorAffector;
 
 /**
  * Ogre implementation for the particle color affector.
@@ -39,6 +40,8 @@ final class OgreParticleColorAffector extends ParticleColorAffector {
      */
     private final NativePointer pointer;
 
+    private final JniParticleColorAffector jni = new JniParticleColorAffector();
+
     /**
      * Full constructor.
      *
@@ -51,15 +54,7 @@ final class OgreParticleColorAffector extends ParticleColorAffector {
 
     @Override
     protected void setAlphaVariationImpl(final int variation) {
-        this.setAlpha(this.pointer.getPointerAddress(), variation / 100f);
+        this.jni.setAlpha(this.pointer.getPointerAddress(), variation / 100f);
     }
-
-    /**
-     * Set the alpha variation in native code.
-     *
-     * @param pointer   Address to the native object.
-     * @param variation Alpha variation per second.
-     */
-    private native void setAlpha(final long pointer, final float variation);
 
 }

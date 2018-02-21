@@ -29,6 +29,7 @@ import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.light.PointLight;
+import jni.JniPointLight;
 
 /**
  * Ogre implementation for a PointLight.
@@ -41,6 +42,8 @@ public final class OgrePointLight extends PointLight implements Native {
      * Pointer address to the native code yz::PointLight.
      */
     private final NativePointer pointer;
+
+    private final JniPointLight jni = new JniPointLight();
 
     /**
      * Full constructor.
@@ -56,78 +59,32 @@ public final class OgrePointLight extends PointLight implements Native {
 
     @Override
     protected void deleteImpl() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
+        this.jni.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     public void setColor(final Color color) {
-        this.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
+        this.jni.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
     }
 
     @Override
     public void setAttenuation(final float range, final float constant, final float linear, final float quadratic) {
-        this.setAttenuation(this.pointer.getPointerAddress(), range, constant, linear, quadratic);
+        this.jni.setAttenuation(this.pointer.getPointerAddress(), range, constant, linear, quadratic);
     }
 
     @Override
     public void setDebug() {
-        this.setDebug(this.pointer.getPointerAddress());
+        this.jni.setDebug(this.pointer.getPointerAddress());
     }
 
     @Override
     public NativePointer getPointer() {
         return this.pointer;
     }
-
-    /**
-     * Set light color in native code.
-     *
-     * @param address Address of the native yz::PointLight pointer.
-     * @param r       Red value.
-     * @param g       Green value.
-     * @param b       Blue value.
-     */
-    private native void setColor(final long address, final float r, final float g, final float b);
-
-    /**
-     * Set the light position in native code.
-     *
-     * @param pointerAddress Address of the native yz::PointLight pointer.
-     * @param x              New X position.
-     * @param y              New Y position.
-     * @param z              New Z position.
-     */
-    private native void setPosition(final long pointerAddress, final float x, final float y, final float z);
-
-    /**
-     * Delete the object in native code.
-     *
-     * @param pointerAddress Address of the native yz::PointLight pointer.
-     */
-    private native void delete(final long pointerAddress);
-
-    /**
-     * Set the light attenuation in native code.
-     *
-     * @param pointerAddress Address of the native yz::PointLight pointer.
-     * @param range          Light range.
-     * @param constant       Constant value.
-     * @param linear         Linear value.
-     * @param quadratic      Quadratic value.
-     */
-    private native void setAttenuation(final long pointerAddress, final float range, final float constant, final float linear,
-                                       final float quadratic);
-
-    /**
-     * Enable debug display in native code.
-     *
-     * @param pointerAddress Address of the native yz::PointLight pointer.
-     */
-    private native void setDebug(final long pointerAddress);
 }

@@ -34,21 +34,21 @@
 extern "C" {
 #endif
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_constructor
+JNIEXPORT POINTER JNICALL Java_jni_JniBillboardChain_constructor
   (JNIEnv* env, jobject o, jstring jname, POINTER nodePointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_setMaterial
+JNIEXPORT void JNICALL Java_jni_JniBillboardChain_setMaterial
 (JNIEnv* env, jobject o, POINTER pointer, POINTER matPointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_delete(
+JNIEXPORT void JNICALL Java_jni_JniBillboardChain_delete(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_addElement
+JNIEXPORT void JNICALL Java_jni_JniBillboardChain_addElement
 (JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z, jfloat width);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_setElementPosition
+JNIEXPORT void JNICALL Java_jni_JniBillboardChain_setElementPosition
 (JNIEnv* env, jobject o, POINTER pointer, jint element, jfloat x, jfloat y, jfloat z);
 
 

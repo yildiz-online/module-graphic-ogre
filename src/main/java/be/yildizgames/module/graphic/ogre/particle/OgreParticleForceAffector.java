@@ -26,6 +26,7 @@ package be.yildizgames.module.graphic.ogre.particle;
 
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.particle.ParticleForceAffector;
+import jni.JniParticleForceAffector;
 
 /**
  * Ogre implementation for the particle force affector.
@@ -39,6 +40,8 @@ final class OgreParticleForceAffector extends ParticleForceAffector {
      */
     private final NativePointer pointer;
 
+    private final JniParticleForceAffector jni = new JniParticleForceAffector();
+
     /**
      * Full constructor.
      *
@@ -51,17 +54,8 @@ final class OgreParticleForceAffector extends ParticleForceAffector {
 
     @Override
     protected void setForceImpl(final float x, final float y, final float z) {
-        this.setForce(this.pointer.getPointerAddress(), x, y, z);
+        this.jni.setForce(this.pointer.getPointerAddress(), x, y, z);
     }
 
-    /**
-     * Set the force in native code.
-     *
-     * @param pointerAddress Address to the native yz::ParticleForceAffector.
-     * @param x              X axis force strength.
-     * @param y              Y axis force strength.
-     * @param z              Z axis force strength.
-     */
-    private native void setForce(final long pointerAddress, final float x, final float y, final float z);
 
 }

@@ -30,7 +30,7 @@
 #include "../includes/BillboardChain.hpp"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_constructor(
+JNIEXPORT POINTER JNICALL Java_jni_JniBillboardChain_constructor(
     JNIEnv* env,
     jobject,
     jstring jname,
@@ -43,7 +43,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_
     return reinterpret_cast<POINTER>(chain);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_delete(
+JNIEXPORT void JNICALL Java_jni_JniBillboardChain_delete(
     JNIEnv* env,
     jobject,
     POINTER pointer) {
@@ -51,7 +51,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_del
     delete yz::BillboardChain::get(pointer);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_setMaterial(
+JNIEXPORT void JNICALL Java_jni_JniBillboardChain_setMaterial(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -60,7 +60,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_set
     yz::BillboardChain::get(pointer)->setMaterial(yz::Material::get(matPointer));
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_addElement(
+JNIEXPORT void JNICALL Java_jni_JniBillboardChain_ddElement(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -72,7 +72,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_add
     yz::BillboardChain::get(pointer)->addElement(x, y, z, width);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardChain_setElementPosition(
+JNIEXPORT void JNICALL Java_jni_JniBillboardChain_setElementPosition(
     JNIEnv*,
     jobject,
     POINTER pointer,

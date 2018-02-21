@@ -30,7 +30,7 @@
 #include "../includes/JniUtil.h"
 
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniBillboard_setPosition(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -45,7 +45,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setPosit
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setSize(
+JNIEXPORT void JNICALL Java_jni_JniBillboard_setSize(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -59,7 +59,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setSize(
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboard_setColor(
+JNIEXPORT void JNICALL Java_jni_JniBillboard_setColor(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
