@@ -28,7 +28,7 @@
 #include "../includes/JniSpotLight.h"
 #include "../includes/SpotLight.hpp"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_delete(
+JNIEXPORT void JNICALL Java_jni_JniSpotLight_delete(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_delete(
     delete yz::SpotLight::get(pointer);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniSpotLight_setPosition(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -47,7 +47,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setPosit
     yz::SpotLight::get(pointer)->setPosition(x, y, z);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setDirection(
+JNIEXPORT void JNICALL Java_jni_JniSpotLight_setDirection(
     JNIEnv*,
     jobject,
     POINTER pointer,

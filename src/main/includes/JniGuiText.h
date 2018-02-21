@@ -34,28 +34,28 @@
 extern "C" {
 #endif
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_constructor
+JNIEXPORT POINTER JNICALL Java_jni_JniGuiText_constructor
 (JNIEnv* env, jclass cl, POINTER container, jfloat w, jfloat h, jfloat x, jfloat y, POINTER jfont, jfloat size, jstring jname);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setText
+JNIEXPORT void JNICALL Java_jni_JniGuiText_setText
 (JNIEnv* env, jobject o, POINTER pointer, jstring jtext);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_delete
+JNIEXPORT void JNICALL Java_jni_JniGuiText_delete
 (JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_hide
+JNIEXPORT void JNICALL Java_jni_JniGuiText_hide
 (JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_show
+JNIEXPORT void JNICALL Java_jni_JniGuiText_show
 (JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setPosition
+JNIEXPORT void JNICALL Java_jni_JniGuiText_setPosition
     (JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setFont
+JNIEXPORT void JNICALL Java_jni_JniGuiText_setFont
   (JNIEnv* env, jobject o, POINTER pointer, POINTER jfont, jfloat size);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setColor
+JNIEXPORT void JNICALL Java_jni_JniGuiText_setColor
   (JNIEnv* env, jobject o, POINTER pointer, jfloat red, jfloat green, jfloat blue, jfloat alpha);
 
 #ifdef __cplusplus

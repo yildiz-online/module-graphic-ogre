@@ -34,39 +34,39 @@
 extern "C" {
 #endif
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_copy(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_copy(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jstring materialName);
 
-JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_getTechniqueList(
+JNIEXPORT jlongArray JNICALL Java_jni_JniMaterial_getTechniqueList(
     JNIEnv* env,
     jclass c,
     POINTER materialPointer);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_getTechnique(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_getTechnique(
     JNIEnv* env,
     jobject o,
     POINTER materialPointer,
     jint number);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_createTexture(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_createTexture(
     JNIEnv* env,
     jobject o,
     jstring name);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_loadTexture(
+JNIEXPORT void JNICALL Java_jni_JniMaterial_loadTexture(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_createTechnique(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_createTechnique(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_receiveShadow(
+JNIEXPORT void JNICALL Java_jni_JniMaterial_receiveShadow(
     JNIEnv* env,
     jobject o,
     POINTER pointer,

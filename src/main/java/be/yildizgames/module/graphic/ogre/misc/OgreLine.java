@@ -29,6 +29,7 @@ import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.Line;
 import be.yildizgames.module.graphic.ogre.OgreMaterial;
 import be.yildizgames.module.graphic.ogre.OgreNode;
+import jni.JniDynamicLine;
 
 /**
  * Ogre Line implementation.
@@ -42,6 +43,8 @@ public final class OgreLine extends Line {
      */
     private final NativePointer pointer;
 
+    private final JniDynamicLine jni = new JniDynamicLine();
+
     /**
      * Full constructor.
      *
@@ -49,70 +52,27 @@ public final class OgreLine extends Line {
      */
     public OgreLine(final OgreNode node) {
         super();
-        this.pointer = NativePointer.create(this.constructor(node.getPointer().getPointerAddress()));
+        this.pointer = NativePointer.create(this.jni.constructor(node.getPointer().getPointerAddress()));
     }
 
     @Override
     protected void update(final float beginX, final float beginY, final float beginZ, final float endX, final float endY, final float endZ) {
-        this.update(this.pointer.getPointerAddress(), beginX, beginY, beginZ, endX, endY, endZ);
+        this.jni.update(this.pointer.getPointerAddress(), beginX, beginY, beginZ, endX, endY, endZ);
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.getPointerAddress());
+        this.jni.hide(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.getPointerAddress());
+        this.jni.show(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void setMaterialImpl(final Material material) {
-        this.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
     }
-
-    /**
-     * Build the line in native code.
-     *
-     * @param nodePointer Address of the Ogre::SceneNode to attach the created line.
-     * @return A pointer address to the newly created line.
-     */
-    private native long constructor(final long nodePointer);
-
-    /**
-     * Update the line in native code.
-     *
-     * @param pointerAddress Address of the native object.
-     * @param beginX         First point X coordinate.
-     * @param beginY         First point Y coordinate.
-     * @param beginZ         First point Z coordinate.
-     * @param endX           Last point X coordinate.
-     * @param endY           Last point Y coordinate.
-     * @param endZ           Last point Z coordinate.
-     */
-    private native void update(final long pointerAddress, final float beginX, final float beginY, final float beginZ, final float endX, final float endY, final float endZ);
-
-    /**
-     * Set the line visible in native code.
-     *
-     * @param pointerAddress Address to the native object.
-     */
-    private native void show(final long pointerAddress);
-
-    /**
-     * Set the line invisible in native code.
-     *
-     * @param pointerAddress Address to the native object.
-     */
-    private native void hide(final long pointerAddress);
-
-    /**
-     * Set the line material in native code.
-     *
-     * @param pointerAddress Address to the native object.
-     * @param material       Material.
-     */
-    private native void setMaterial(final long pointerAddress, final long material);
 
 }

@@ -29,7 +29,7 @@
 #include "../includes/GuiContainer.hpp"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_constructor(
+JNIEXPORT POINTER JNICALL Java_jni_JniGuiContainer_constructor(
     JNIEnv* env,
     jclass,
     POINTER matPointer,
@@ -42,7 +42,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_co
     return reinterpret_cast<POINTER>(new yz::GuiContainer(name.getValue(), material, width, height));
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_constructorParent(
+JNIEXPORT POINTER JNICALL Java_jni_JniGuiContainer_constructorParent(
     JNIEnv* env,
     jclass,
     POINTER matPointer,
@@ -57,7 +57,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_co
     return reinterpret_cast<POINTER>(new yz::GuiContainer(name.getValue(), material, width, height, parent));
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setPosition(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -67,7 +67,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setPo
     yz::GuiContainer::get(pointer)->setPosition(x, y);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_show(
+JNIEXPORT void JNICALL Java_jni_JniGuiContainer_show(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -75,7 +75,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_show(
     yz::GuiContainer::get(pointer)->show();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_hide(
+JNIEXPORT void JNICALL Java_jni_JniGuiContainer_hide(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -83,7 +83,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_hide(
     yz::GuiContainer::get(pointer)->hide();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setSize(
+JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setSize(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -93,7 +93,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setSi
     yz::GuiContainer::get(pointer)->setSize(width, height);
 }
 
-JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_getElement(
+JNIEXPORT jstring JNICALL Java_jni_JniGuiContainer_getElement(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -110,7 +110,7 @@ JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_ge
     return env->NewStringUTF("world");
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_zoom(
+JNIEXPORT void JNICALL Java_jni_JniGuiContainer_zoom(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -119,7 +119,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_zoom(
     yz::GuiContainer::get(pointer)->zoom(factor);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setZ(
+JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setZ(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -128,7 +128,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setZ(
     yz::GuiContainer::get(pointer)->setZ(z);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setMaterial(
+JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setMaterial(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -137,7 +137,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_setMa
     yz::GuiContainer::get(pointer)->setMaterial(yz::Material::get(matPointer));
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreGuiContainer_addChildrenPosition(
+JNIEXPORT void JNICALL Java_jni_JniGuiContainer_addChildrenPosition(
     JNIEnv * env,
     jobject,
     POINTER pointer,

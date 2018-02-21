@@ -27,6 +27,7 @@ package be.yildizgames.module.graphic.ogre.misc;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.misc.Ocean;
 import be.yildizgames.module.graphic.ogre.OgreCamera;
+import jni.JniHydrax;
 
 /**
  * Ogre implementation for the ocean, use Hydrax plugin.
@@ -37,11 +38,11 @@ public final class OgreHydrax implements Ocean {
 
     private final NativePointer pointer;
 
+    private JniHydrax jni = new JniHydrax();
+
     public OgreHydrax(final NativePointer sm, final OgreCamera cam) {
         super();
-        final long address = this.constructor(sm.getPointerAddress(), cam.getPointer().getPointerAddress());
+        final long address = this.jni.constructor(sm.getPointerAddress(), cam.getPointer().getPointerAddress());
         this.pointer = NativePointer.create(address);
     }
-
-    public native long constructor(final long sm, final long cam);
 }

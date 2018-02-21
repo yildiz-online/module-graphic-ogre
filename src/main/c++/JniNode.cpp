@@ -30,49 +30,49 @@
 #include "../includes/JniUtil.h"
 #include "../includes/Node.hpp"
 
-JNIEXPORT jstring JNICALL Java_jni_OgreNodeNative_getName(JNIEnv* env, jobject o, POINTER pointer) {
+JNIEXPORT jstring JNICALL Java_jni_JniNode_getName(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
     return env->NewStringUTF(yz::Node::get(pointer)->getName().c_str());
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_show(JNIEnv* env, jobject o, POINTER pointer) {
+JNIEXPORT void JNICALL Java_jni_JniNode_show(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
     yz::Node::get(pointer)->show();
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_hide(JNIEnv* env, jobject o, POINTER pointer) {
+JNIEXPORT void JNICALL Java_jni_JniNode_hide(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
     yz::Node::get(pointer)->hide();
 }
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getPosition(JNIEnv* env, jobject o, POINTER pointer) {
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_getPosition(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
     return vectorToArray(env, yz::Node::get(pointer)->getPosition());
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniNode_setPosition(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
     yz::Node::get(pointer)->setPosition(x, y, z);
 }
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getDirection(JNIEnv* env, jobject o, POINTER pointer) {
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_getDirection(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
     return vectorToArray(env, yz::Node::get(pointer)->getDirection());
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setDirection(
+JNIEXPORT void JNICALL Java_jni_JniNode_setDirection(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
     yz::Node::get(pointer)->setDirection(x, y, z);
 }
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getOrientation(JNIEnv* env, jobject o, POINTER pointer) {
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_getOrientation(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
     return quaternionToArray(env, yz::Node::get(pointer)->getOrientation());
 }
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_translate(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_translate(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
     yz::Node* node = yz::Node::get(pointer);
@@ -80,25 +80,25 @@ JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_translate(
     return vectorToArray(env, node->getPosition());
 }
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_rotate(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_rotate(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y) {
     LOG_FUNCTION
     return vectorToArray(env, yz::Node::get(pointer)->rotate(x, y));
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_rotateQuaternion(
+JNIEXPORT void JNICALL Java_jni_JniNode_rotateQuaternion(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z, jfloat w) {
     LOG_FUNCTION
     yz::Node::get(pointer)->rotate(w, x, y, z);
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_scale(
+JNIEXPORT void JNICALL Java_jni_JniNode_scale(
     JNIEnv* env, jobject o, POINTER pointer, jfloat scaleX, jfloat scaleY, jfloat scaleZ) {
     LOG_FUNCTION
     yz::Node::get(pointer)->scale(scaleX, scaleY, scaleZ);
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachTo(
+JNIEXPORT void JNICALL Java_jni_JniNode_attachTo(
     JNIEnv* env, jobject o, POINTER pointer, POINTER otherPointer) {
     LOG_FUNCTION
     yz::Node* node = yz::Node::get(pointer);
@@ -110,7 +110,7 @@ JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachTo(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachToNode(
+JNIEXPORT void JNICALL Java_jni_JniNode_attachToNode(
     JNIEnv* env, jobject o, POINTER pointer, POINTER otherPointer) {
     LOG_FUNCTION
     yz::Node* node = yz::Node::get(pointer);
@@ -122,7 +122,7 @@ JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachToNode(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParentNode(
+JNIEXPORT void JNICALL Java_jni_JniNode_detachFromParentNode(
     JNIEnv* env,
     jobject,
     POINTER pointer) {
@@ -135,7 +135,7 @@ JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParentNode(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParent(
+JNIEXPORT void JNICALL Java_jni_JniNode_detachFromParent(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -151,7 +151,7 @@ JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParent(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_delete(
+JNIEXPORT void JNICALL Java_jni_JniNode_delete(
     JNIEnv*,
     jobject,
     POINTER pointer) {

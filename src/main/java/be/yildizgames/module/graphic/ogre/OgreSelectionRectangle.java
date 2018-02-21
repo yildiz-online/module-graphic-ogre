@@ -28,6 +28,7 @@ import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.jni.NativePointer;
+import jni.JniSelectionRectangle;
 
 /**
  * Ogre implementation for the selection rectangle.
@@ -41,6 +42,8 @@ final class OgreSelectionRectangle extends SelectionRectangle {
      */
     private final NativePointer pointer;
 
+    private final JniSelectionRectangle jni = new JniSelectionRectangle();
+
     /**
      * Full constructor.
      *
@@ -49,33 +52,12 @@ final class OgreSelectionRectangle extends SelectionRectangle {
      */
     OgreSelectionRectangle(final Material material, final Material material2) {
         super();
-        this.pointer = NativePointer.create(this.constructor(OgreMaterial.class.cast(material).getPointer().getPointerAddress(),
+        this.pointer = NativePointer.create(this.jni.constructor(OgreMaterial.class.cast(material).getPointer().getPointerAddress(),
                 OgreMaterial.class.cast(material2).getPointer().getPointerAddress()));
     }
 
     @Override
     public void update(final Rectangle rectangle) {
-        this.update(this.pointer.getPointerAddress(), rectangle.getLeft(), rectangle.getTop(), rectangle.getRight(), rectangle.getBottom());
+        this.jni.update(this.pointer.getPointerAddress(), rectangle.getLeft(), rectangle.getTop(), rectangle.getRight(), rectangle.getBottom());
     }
-
-    /**
-     * Build the rectangle in native code.
-     *
-     * @param material  Material to use around the rectangle.
-     * @param material2 Material to use inside the rectangle.
-     * @return The pointer address to the native object.
-     */
-    private native long constructor(final long material, final long material2);
-
-    /**
-     * Redraw the rectangle in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param left    Left border value.
-     * @param top     Top border value.
-     * @param right   Right border value.
-     * @param bottom  Bottom border value.
-     */
-    private native void update(final long pointer, final float left, final float top, final float right, final float bottom);
-
 }

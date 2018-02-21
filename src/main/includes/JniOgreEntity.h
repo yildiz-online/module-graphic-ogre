@@ -34,41 +34,41 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setMaterial(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setMaterial(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER matPointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_castShadow(
+JNIEXPORT void JNICALL Java_jni_JniEntity_castShadow(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jboolean casting);
-JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_getParentSceneNode(
+JNIEXPORT jstring JNICALL Java_jni_JniEntity_getParentSceneNode(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setParameter(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setParameter(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jint index,
     jfloat v1, jfloat v2, jfloat v3, jfloat v4);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setUnpickable(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setUnpickable(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderingDistance(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setRenderingDistance(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jint distance);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderQueue(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setRenderQueue(
     JNIEnv* env,
     jobject o,
     POINTER pointer,

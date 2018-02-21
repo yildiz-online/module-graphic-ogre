@@ -28,7 +28,7 @@
 #include "../includes/JniShader.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createFragmentShader(
+JNIEXPORT jlong JNICALL Java_jni_JniShader_createFragmentShader(
     JNIEnv* env, jobject o, jstring jname, jstring jpath) {
     try {
         JniStringWrapper name = JniStringWrapper(env, jname);
@@ -46,7 +46,7 @@ JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createFrag
     return -1L;
 }
 
-JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createVertexShader(
+JNIEXPORT jlong JNICALL Java_jni_JniShader_createVertexShader(
     JNIEnv* env, jobject o, jstring jname, jstring jpath) {
     try {
         JniStringWrapper name = JniStringWrapper(env, jname);
@@ -64,7 +64,7 @@ JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_createVert
     return -1L;
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_setParameter(
+JNIEXPORT void JNICALL Java_jni_JniShader_setParameter(
     JNIEnv* env, jobject o, jlong pointer, jstring jname, jstring jvalue) {
     try {
         JniStringWrapper name = JniStringWrapper(env, jname);
@@ -76,7 +76,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_setParamete
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreShader_load(
+JNIEXPORT void JNICALL Java_jni_JniShader_load(
     JNIEnv* env, jobject o, jlong pointer) {
     try {
         reinterpret_cast<Ogre::GpuProgram*>(pointer)->load();

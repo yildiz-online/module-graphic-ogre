@@ -32,6 +32,7 @@ import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.ElectricArc;
 import be.yildizgames.module.graphic.ogre.OgreMaterial;
 import be.yildizgames.module.graphic.ogre.light.OgrePointLight;
+import jni.JniElectricArc;
 
 /**
  * Ogre implementation for ElectricArc.
@@ -44,6 +45,8 @@ public final class OgreElectricArc extends ElectricArc implements Native {
      * Native pointer.
      */
     private final NativePointer pointer;
+
+    private final JniElectricArc jni = new JniElectricArc();
 
     /**
      * Full constructor.
@@ -59,25 +62,25 @@ public final class OgreElectricArc extends ElectricArc implements Native {
 
     @Override
     public ElectricArc setMaterial(final Material material) {
-        this.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
         return this;
     }
 
     @Override
     public ElectricArc addLight(final PointLight light) {
-        this.addLight(this.pointer.getPointerAddress(), OgrePointLight.class.cast(light).getPointer().getPointerAddress());
+        this.jni.addLight(this.pointer.getPointerAddress(), OgrePointLight.class.cast(light).getPointer().getPointerAddress());
         return this;
     }
 
     @Override
     public ElectricArc setCeil(final int ceil) {
-        this.setCeil(this.pointer.getPointerAddress(), ceil);
+        this.jni.setCeil(this.pointer.getPointerAddress(), ceil);
         return this;
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
@@ -85,36 +88,5 @@ public final class OgreElectricArc extends ElectricArc implements Native {
     public NativePointer getPointer() {
         return pointer;
     }
-
-    /**
-     * Delete the object in native code.
-     *
-     * @param address Address of the native object.
-     */
-    private native void delete(final long address);
-
-    /**
-     * Set the material in native code.
-     *
-     * @param pointer  Native pointer address.
-     * @param material Material to set.
-     */
-    private native void setMaterial(final long pointer, final long material);
-
-    /**
-     * Set the ceil in native code.
-     *
-     * @param pointer Native pointer address.
-     * @param ceil    Ceil value.
-     */
-    private native void setCeil(final long pointer, final int ceil);
-
-    /**
-     * Add a blinking light.
-     *
-     * @param pointer      Native pointer address.
-     * @param lightPointer Native light pointer address.
-     */
-    private native void addLight(final long pointer, final long lightPointer);
 
 }

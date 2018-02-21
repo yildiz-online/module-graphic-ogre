@@ -34,34 +34,34 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setMinSpeed
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setMinSpeed
   (JNIEnv *, jobject, POINTER, jfloat);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setMaxSpeed
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setMaxSpeed
   (JNIEnv *, jobject, POINTER, jfloat);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setStartColor
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setStartColor
 (JNIEnv* env, jobject o, POINTER pointer, jfloat r, jfloat g, jfloat b, jfloat a);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setEndColor
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setEndColor
 (JNIEnv* env, jobject o, POINTER pointer, jfloat r, jfloat g, jfloat b, jfloat a);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setAngle
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setAngle
 (JNIEnv* env, jobject o, POINTER pointer, jfloat angle);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setRate
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setRate
 (JNIEnv* env, jobject o, POINTER pointer, jfloat rate);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setLifeTime
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setLifeTime
 (JNIEnv* env, jobject o, POINTER pointer, jfloat life);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setDuration
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setDuration
 (JNIEnv* env, jobject o, POINTER pointer, jfloat duration);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setRepeatDelay
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setRepeatDelay
 (JNIEnv* env, jobject o, POINTER pointer, jfloat delay);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setDirection
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setDirection
 (JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z);
 
 #ifdef __cplusplus

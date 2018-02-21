@@ -29,7 +29,7 @@
 #include "../includes/ParticleSystem.hpp"
 #include "../includes/EnumConversion.h"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_attachToNode(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_attachToNode(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -40,7 +40,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_att
     node->attachObject(system);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_keepInLocalSpace(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_keepInLocalSpace(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -49,7 +49,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_kee
     yz::ParticleSystem::get(pointer)->keepInLocalSpace(keep);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setParticleOrientation(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setParticleOrientation(
     JNIEnv *,
     jobject,
     POINTER pointer,
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_set
     yz::ParticleSystem::get(pointer)->setParticleOrientation(EnumConversion::getBillboardType(type));
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_createEmitter(
+JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createEmitter(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -66,7 +66,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_
     return reinterpret_cast<POINTER>(yz::ParticleSystem::get(pointer)->createEmitter());
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setBillboardOrigin(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setBillboardOrigin(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -76,7 +76,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_set
 }
 
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_createColorAffector(
+JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createColorAffector(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -84,7 +84,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_
     return reinterpret_cast<POINTER>(yz::ParticleSystem::get(pointer)->createColorAffector());
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_createForceAffector(
+JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createForceAffector(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -92,7 +92,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_
     return reinterpret_cast<POINTER>(yz::ParticleSystem::get(pointer)->createForceAffector());
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_createScaleAffector(
+JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createScaleAffector(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -100,7 +100,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_
     return reinterpret_cast<POINTER>(yz::ParticleSystem::get(pointer)->createScaleAffector());
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setSize(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setSize(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -110,7 +110,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_set
     yz::ParticleSystem::get(pointer)->setDefaultDimensions(width, height);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setMaterial(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setMaterial(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -121,7 +121,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_set
     system->setMaterial(material);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setQuota(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setQuota(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -130,7 +130,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_set
     yz::ParticleSystem::get(pointer)->setParticleQuota(quota);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_show(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_show(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -138,7 +138,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_sho
     yz::ParticleSystem::get(pointer)->show();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_hide(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_hide(
     JNIEnv*,
     jobject,
     POINTER pointer) {

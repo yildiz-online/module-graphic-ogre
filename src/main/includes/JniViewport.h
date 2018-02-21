@@ -33,10 +33,10 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreViewPort_enableCompositor (JNIEnv* env, jobject current, jlong pointer, jstring name);
+JNIEXPORT void JNICALL Java_jni_JniViewPort_enableCompositor (JNIEnv* env, jobject current, jlong pointer, jstring name);
   
   
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_ViewPort_setCamera (JNIEnv* env, jobject current, jlong pointer, jlong cameraPointer);
+JNIEXPORT void JNICALL Java_jni_JniViewPort_JniViewPort_setCamera (JNIEnv* env, jobject current, jlong pointer, jlong cameraPointer);
     
     
 #ifdef __cplusplus

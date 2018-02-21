@@ -33,10 +33,10 @@
 extern "C" {
 #endif
 
-JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreSelectionRectangle_constructor
+JNIEXPORT jlong JNICALL Java_jni_JniSelectionRectangle_constructor
   (JNIEnv* env, jclass c, jlong material, jlong contentMaterial);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSelectionRectangle_update
+JNIEXPORT void JNICALL Java_jni_JniSelectionRectangle_update
   (JNIEnv* env, jobject o, jlong pointer, jfloat, jfloat, jfloat, jfloat);
 
 #ifdef __cplusplus

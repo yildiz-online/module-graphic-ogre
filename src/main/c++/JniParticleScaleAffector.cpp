@@ -28,7 +28,7 @@
 #include "../includes/JniParticleScaleAffector.h"
 #include "../includes/ParticleScaleAffector.hpp"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleScaleAffector_setScale
+JNIEXPORT void JNICALL Java_jni_JniParticleScaleAffector_setScale
   (JNIEnv*, jobject, POINTER pointer, jfloat width, jfloat height) {
     LOG_FUNCTION
     yz::ParticleScaleAffector::get(pointer)->setScale(width, height);

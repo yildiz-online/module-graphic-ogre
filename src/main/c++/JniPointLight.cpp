@@ -28,7 +28,7 @@
 #include "../includes/JniPointLight.h"
 #include "../includes/PointLight.hpp"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setDebug(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_setDebug(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setDebu
     yz::PointLight::get(pointer)->setDebug();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_setPosition(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -47,7 +47,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setPosi
     yz::PointLight::get(pointer)->setPosition(x, y, z);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setColor(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_setColor(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setColo
     yz::PointLight::get(pointer)->setColor(r,g,b);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setAttenuation(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_setAttenuation(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -70,7 +70,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setAtte
     yz::PointLight::get(pointer)->setAttenuation(range, constant, linear, quadratic);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_delete(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_delete(
     JNIEnv*,
     jobject,
     POINTER pointer) {

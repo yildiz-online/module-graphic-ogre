@@ -33,7 +33,7 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleForceAffector_setForce
+JNIEXPORT void JNICALL Java_jni_JniParticleForceAffector_setForce
   (JNIEnv* env, jobject o, jlong pointer, jfloat x, jfloat y, jfloat z);
 
 #ifdef __cplusplus

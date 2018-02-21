@@ -29,7 +29,7 @@
 #include "../includes/JniOgreEntity.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setMaterial(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setMaterial(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -40,7 +40,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setMaterial
     entity->setMaterial(material);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderingDistance(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setRenderingDistance(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -49,7 +49,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderin
     yz::Entity::get(pointer)->setRenderingDistance(distance);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_castShadow(
+JNIEXPORT void JNICALL Java_jni_JniEntity_castShadow(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_castShadow(
     yz::Entity::get(pointer)->setCastShadows(cast);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setParameter(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setParameter(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -68,7 +68,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setParamete
     yz::Entity::get(pointer)->setCustomParameters(index, v1, v2, v3, v4);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderQueue(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setRenderQueue(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -77,7 +77,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setRenderQu
     yz::Entity::get(pointer)->setRenderQueueGroup(index);
 }
 
-JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_getParentSceneNode(
+JNIEXPORT jstring JNICALL Java_jni_JniEntity_getParentSceneNode(
     JNIEnv* env,
     jobject,
     POINTER pointer) {
@@ -85,7 +85,7 @@ JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_getParen
     return env->NewStringUTF(yz::Entity::get(pointer)->getParentSceneNode()->getName().c_str());
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreEntity_setUnpickable(
+JNIEXPORT void JNICALL Java_jni_JniEntity_setUnpickable(
     JNIEnv*,
     jobject,
     POINTER pointer) {

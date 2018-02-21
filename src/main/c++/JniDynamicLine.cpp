@@ -29,7 +29,7 @@
 #include "../includes/JniDynamicLine.h"
 #include "../includes/DynamicLine.hpp"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_constructor(
+JNIEXPORT POINTER JNICALL Java_jni_JniDynamicLine_constructor(
     JNIEnv*,
     jobject,
     POINTER nodePointer) {
@@ -39,7 +39,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_constructo
     return reinterpret_cast<POINTER>(line);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_setMaterial(
+JNIEXPORT void JNICALL Java_jni_JniDynamicLine_setMaterial(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_setMaterial(
     line->setMaterial(material);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_show(
+JNIEXPORT void JNICALL Java_jni_JniDynamicLine_show(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_show(
     DynamicLines::get(pointer)->show();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_hide(
+JNIEXPORT void JNICALL Java_jni_JniDynamicLine_hide(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -66,7 +66,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_hide(
     DynamicLines::get(pointer)->hide();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_update(
+JNIEXPORT void JNICALL Java_jni_JniDynamicLine_update(
     JNIEnv*,
     jobject,
     POINTER pointer,

@@ -29,7 +29,7 @@
 #include "../includes/JniUtil.h"
 #include "../includes/GuiText.hpp"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_constructor(
+JNIEXPORT POINTER JNICALL Java_jni_JniGuiText_constructor(
     JNIEnv* env,
     jclass,
     POINTER containerPointer,
@@ -56,7 +56,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_constructo
     return INVALID_POINTER;
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setText(
+JNIEXPORT void JNICALL Java_jni_JniGuiText_setText(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -70,7 +70,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setText(
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_hide(
+JNIEXPORT void JNICALL Java_jni_JniGuiText_hide(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -78,7 +78,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_hide(
     yz::GuiText::get(pointer)->hide();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_delete(
+JNIEXPORT void JNICALL Java_jni_JniGuiText_delete(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -86,7 +86,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_delete(
     delete yz::GuiText::get(pointer);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_show(
+JNIEXPORT void JNICALL Java_jni_JniGuiText_show(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -94,7 +94,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_show(
     yz::GuiText::get(pointer)->show();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniGuiText_setPosition(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -104,7 +104,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setPosition(
     yz::GuiText::get(pointer)->setPosition(x, y);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setFont(
+JNIEXPORT void JNICALL Java_jni_JniGuiText_setFont(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -119,7 +119,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setFont(
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreText_setColor(
+JNIEXPORT void JNICALL Java_jni_JniGuiText_setColor(
     JNIEnv*,
     jobject,
     POINTER pointer,

@@ -31,7 +31,7 @@
 #include "../includes/Camera.hpp"
 #include "../includes/PFXSSAO.h"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_createViewport(
+JNIEXPORT POINTER JNICALL Java_jni_JniRenderWindow_createViewport(
     JNIEnv*,
     jobject,
     POINTER camPointer) {
@@ -42,7 +42,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_create
     return reinterpret_cast<POINTER> (vp);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_printScreen(
+JNIEXPORT void JNICALL Java_jni_JniRenderWindow_printScreen(
     JNIEnv* env,
     jobject,
     jstring jname) {
@@ -51,7 +51,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_printScre
     yz::RenderWindow::get()->printScreen(name.getValue());
 }
 
-JNIEXPORT jfloat JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_getFps(
+JNIEXPORT jfloat JNICALL Java_jni_JniRenderWindow_getFps(
     JNIEnv*,
     jobject) {
     LOG_FUNCTION

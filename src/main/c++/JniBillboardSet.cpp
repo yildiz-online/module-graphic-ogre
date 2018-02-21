@@ -31,7 +31,7 @@
 #include "../includes/Node.hpp"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_createBillboard(
+JNIEXPORT POINTER JNICALL Java_jni_JniBillboardSet_createBillboard(
     JNIEnv* env,
     jobject,
     POINTER pointer) {
@@ -45,7 +45,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_cr
     return INVALID_POINTER;
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_show(
+JNIEXPORT void JNICALL Java_jni_JniBillboardSet_show(
     JNIEnv *,
     jobject,
     POINTER pointer) {
@@ -53,7 +53,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_show(
     yz::BillboardSet::get(pointer)->show();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_hide(
+JNIEXPORT void JNICALL Java_jni_JniBillboardSet_hide(
     JNIEnv *,
     jobject,
     POINTER pointer) {
@@ -61,7 +61,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_hide(
     yz::BillboardSet::get(pointer)->hide();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_setSize(
+JNIEXPORT void JNICALL Java_jni_JniBillboardSet_setSize(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -75,7 +75,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_setSi
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_attachToNode(
+JNIEXPORT void JNICALL Java_jni_JniBillboardSet_attachToNode(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -86,7 +86,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_attac
     node->attachObject(set);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreBillboardSet_remove(
+JNIEXPORT void JNICALL Java_jni_JniBillboardSet_remove(
     JNIEnv* env,
     jobject,
     POINTER pointer,

@@ -34,7 +34,7 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniSpotLight_setPosition(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -42,12 +42,12 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setPosit
     jfloat y,
     jfloat z);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_delete(
+JNIEXPORT void JNICALL Java_jni_JniSpotLight_delete(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSpotLight_setDirection(
+JNIEXPORT void JNICALL Java_jni_JniSpotLight_setDirection(
     JNIEnv* env,
     jobject o,
     POINTER pointer,

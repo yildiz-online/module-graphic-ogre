@@ -33,7 +33,7 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleColorAffector_setAlpha
+JNIEXPORT void JNICALL Java_jni_JniParticleColorAffector_setAlpha
   (JNIEnv* env, jobject o, jlong pointer, jfloat alpha);
 
 #ifdef __cplusplus

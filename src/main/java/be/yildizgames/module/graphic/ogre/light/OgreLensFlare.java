@@ -28,6 +28,7 @@ import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.light.LensFlare;
+import jni.JniLensFlare;
 
 /**
  * Ogre implementation for a Lens flare.
@@ -40,6 +41,8 @@ public final class OgreLensFlare extends LensFlare implements Native {
      * Pointer address to the native code yz::LensFlare.
      */
     private final NativePointer pointer;
+
+    private final JniLensFlare jni = new JniLensFlare();
 
     /**
      * Full constructor.
@@ -54,22 +57,22 @@ public final class OgreLensFlare extends LensFlare implements Native {
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
+        this.jni.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     public void setStreakSize(final float w, final float h) {
-        this.setStreakSize(this.pointer.getPointerAddress(), w, h);
+        this.jni.setStreakSize(this.pointer.getPointerAddress(), w, h);
     }
 
     @Override
     public void setLightSize(final float w, final float h) {
-        this.setLightSize(this.pointer.getPointerAddress(), w, h);
+        this.jni.setLightSize(this.pointer.getPointerAddress(), w, h);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
@@ -77,40 +80,5 @@ public final class OgreLensFlare extends LensFlare implements Native {
     public NativePointer getPointer() {
         return pointer;
     }
-
-    /**
-     * Delete the object in native code.
-     *
-     * @param address Address of the native object.
-     */
-    private native void delete(final long address);
-
-    /**
-     * Set the lens flare position in native code.
-     *
-     * @param pointerAddress Address of the native yz::LensFlare pointer.
-     * @param x              New X position.
-     * @param y              New Y position.
-     * @param z              New Z position.
-     */
-    private native void setPosition(final long pointerAddress, final float x, final float y, final float z);
-
-    /**
-     * Set streak billboard size.
-     *
-     * @param pointerAddress Address of the native yz::LensFlare pointer.
-     * @param w              Width in pixel.
-     * @param h              Height in pixel.
-     */
-    private native void setStreakSize(final long pointerAddress, final float w, final float h);
-
-    /**
-     * Set light billboard size.
-     *
-     * @param pointerAddress Address of the native yz::LensFlare pointer.
-     * @param w              Width in pixel.
-     * @param h              Height in pixel.
-     */
-    private native void setLightSize(final long pointerAddress, final float w, final float h);
 
 }

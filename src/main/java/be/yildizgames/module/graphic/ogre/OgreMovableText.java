@@ -30,6 +30,7 @@ import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.misc.MovableText;
+import jni.JniMovableText;
 
 /**
  * Ogre implementation for a movable text.
@@ -48,6 +49,8 @@ public final class OgreMovableText extends MovableText {
      */
     private final OgreNodeBase node;
 
+    private final JniMovableText jni = new JniMovableText();
+
     /**
      * Full constructor.
      *
@@ -59,25 +62,25 @@ public final class OgreMovableText extends MovableText {
     public OgreMovableText(final OgreNodeBase node, final String name, final String text, final Font font) {
         super(node);
         this.node = node;
-        long address = this.constructor(this.node.getPointer().getPointerAddress(), name, text, OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
+        long address = this.jni.constructor(this.node.getPointer().getPointerAddress(), name, text, OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
         this.pointer = NativePointer.create(address);
     }
 
     @Override
     public void setTextColor(final Color color) {
-        this.setTextColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.jni.setTextColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
     }
 
     @Override
     public void setTextOffset(final Point3D offset) {
-        this.setTextOffset(this.pointer.getPointerAddress(), offset.x, offset.y, offset.z);
+        this.jni.setTextOffset(this.pointer.getPointerAddress(), offset.x, offset.y, offset.z);
     }
 
     @Override
     public void setTextAlignement(final Horizontal h, final Vertical v) {
         // Note The enum values must be in same order as in native code.
         // FIXME do not use ordinal
-        this.setTextAlignement(this.pointer.getPointerAddress(), h.ordinal(), v.ordinal());
+        this.jni.setTextAlignement(this.pointer.getPointerAddress(), h.ordinal(), v.ordinal());
     }
 
     @Override
@@ -99,49 +102,6 @@ public final class OgreMovableText extends MovableText {
     public void hideImpl() {
         this.node.hide();
     }
-
-    /**
-     * Create the object.
-     *
-     * @param nodePointer Pointer for the associated node.
-     * @param name        Object unique name.
-     * @param text        Object text to display.
-     * @param font        Object text font.
-     * @param textSize    Font size.
-     * @return The pointer address of the created object.
-     */
-    private native long constructor(final long nodePointer, final String name, final String text, final long font, final float textSize);
-
-    /**
-     * Set the text color.
-     *
-     * @param address Pointer address of the native object.
-     * @param red     Color red value.
-     * @param green   Color green value.
-     * @param blue    Color blue value.
-     * @param alpha   Color alpha value.
-     */
-    private native void setTextColor(final long address, final float red, final float green, final float blue, final float alpha);
-
-    /**
-     * Set the text alignment.
-     *
-     * @param pointerAddress Pointer address of the native object.
-     * @param h              Horizontal alignment.
-     * @param v              Vertical alignment.
-     */
-    private native void setTextAlignement(final long pointerAddress, final int h, final int v);
-
-    /**
-     * Set the text offset from the node.
-     *
-     * @param address Pointer address of the native object.
-     * @param x       Offset X value.
-     * @param y       Offset Y value.
-     * @param z       Offset Z value.
-     */
-    private native void setTextOffset(final long address, final float x, final float y, final float z);
-
 
     @Override
     public void detachFromParent() {

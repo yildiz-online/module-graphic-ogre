@@ -34,7 +34,7 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniLensFlare_setPosition(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -42,14 +42,14 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setPosit
     jfloat y,
     jfloat z);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setLightSize(
+JNIEXPORT void JNICALL Java_jni_JniLensFlare_setLightSize(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jfloat w,
     jfloat h);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setStreakSize(
+JNIEXPORT void JNICALL Java_jni_JniLensFlare_setStreakSize(
     JNIEnv* env,
     jobject o,
     POINTER pointer,

@@ -38,29 +38,29 @@ extern "C" {
  * @param object Current java object making the call.
  * @return A jlong value representing the address to the object, to cast as yz::Root* to be used.
  */
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_constructor(JNIEnv* env, jobject object);
+JNIEXPORT void JNICALL Java_jni_JniRoot_constructor(JNIEnv* env, jobject object);
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_initPhysFS(JNIEnv* env,jobject object);
+JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(JNIEnv* env,jobject object);
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadPlugin(JNIEnv* env, jobject object, jstring plugin);
+JNIEXPORT void JNICALL Java_jni_JniRoot_loadPlugin(JNIEnv* env, jobject object, jstring plugin);
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadRenderer(
+JNIEXPORT void JNICALL Java_jni_JniRoot_loadRenderer(
     JNIEnv* env,
     jobject object,
     jstring renderer);
-JNIEXPORT POINTER JNICALL Java_jni_OgreRootNative_createSceneManager(
+JNIEXPORT POINTER JNICALL Java_jni_JniRoot_createSceneManager(
     JNIEnv* env,
     jobject object,
     jstring jname);
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindow(
+JNIEXPORT void JNICALL Java_jni_JniRoot_createRenderWindow(
     JNIEnv* env,
     jobject object,
     jint width,
     jint height,
     jlong handle);
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindowGlContext(
+JNIEXPORT void JNICALL Java_jni_JniRoot_createRenderWindowGlContext(
     JNIEnv* env,
     jobject object,
     jint width,
@@ -69,18 +69,18 @@ JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindowGlContext(
 /**
  * @param type: 0 = file system, 1 = zip, 2 = physfs.
  */
- JNIEXPORT void JNICALL Java_jni_OgreRootNative_addResourcePath(
+ JNIEXPORT void JNICALL Java_jni_JniRoot_addResourcePath(
     JNIEnv* env,
     jobject object,
     jstring jname,
     jstring mediaPath,
     jint type);
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_renderOneFrame(
+JNIEXPORT void JNICALL Java_jni_JniRoot_renderOneFrame(
     JNIEnv* env,
     jobject object);
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_close(JNIEnv* env, jobject object);
+JNIEXPORT void JNICALL Java_jni_JniRoot_close(JNIEnv* env, jobject object);
 
 #ifdef __cplusplus
 }

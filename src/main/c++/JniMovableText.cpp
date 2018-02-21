@@ -31,7 +31,7 @@
 #include "../includes/Node.hpp"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_constructor(
+JNIEXPORT POINTER JNICALL Java_jni_JniMovableText_constructor(
     JNIEnv* env,
     jobject,
     POINTER nodePointer,
@@ -49,7 +49,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_con
     return reinterpret_cast<POINTER>(movableText);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_setTextColor(
+JNIEXPORT void JNICALL Java_jni_JniMovableText_setTextColor(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -61,7 +61,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_setTex
     reinterpret_cast<MOVABLETEXT*>(pointer)->setColor(red, green, blue, alpha);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_setTextAlignement(
+JNIEXPORT void JNICALL Java_jni_JniMovableText_setTextAlignement(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -71,7 +71,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_setTex
     reinterpret_cast<MOVABLETEXT*>(pointer)->setTextAlignment((MOVABLETEXT::HorizontalAlignment)h, (MOVABLETEXT::VerticalAlignment)v);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMovableText_setTextOffset(
+JNIEXPORT void JNICALL Java_jni_JniMovableText_setTextOffset(
     JNIEnv* env,
     jobject,
     POINTER pointer,

@@ -33,7 +33,7 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleScaleAffector_setScale
+JNIEXPORT void JNICALL Java_jni_JniParticleScaleAffector_setScale
   (JNIEnv* env, jobject o, jlong pointer, jfloat width, jfloat height);
 
 #ifdef __cplusplus

@@ -28,6 +28,7 @@ import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.light.DirectionalLight;
+import jni.JniDirectionalLight;
 
 /**
  * Ogre implementation for directional light.
@@ -40,6 +41,8 @@ public final class OgreDirectionalLight extends DirectionalLight implements Nati
      * Pointer address to the native code object.
      */
     private final NativePointer pointer;
+
+    private final JniDirectionalLight jni = new JniDirectionalLight();
 
     /**
      * Full constructor.
@@ -55,12 +58,12 @@ public final class OgreDirectionalLight extends DirectionalLight implements Nati
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
+        this.jni.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     protected void deleteImpl() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
@@ -68,22 +71,5 @@ public final class OgreDirectionalLight extends DirectionalLight implements Nati
     public NativePointer getPointer() {
         return pointer;
     }
-
-    /**
-     * Set the light position in native code.
-     *
-     * @param pointer Address of the native yz::DirectionalLight pointer.
-     * @param x       New X position.
-     * @param y       New Y position.
-     * @param z       New Z position.
-     */
-    private native void setPosition(final long pointer, final float x, final float y, final float z);
-
-    /**
-     * Delete the object in native code.
-     *
-     * @param pointerAddress Address of the native yz::DirectionalLight pointer.
-     */
-    private native void delete(final long pointerAddress);
 
 }

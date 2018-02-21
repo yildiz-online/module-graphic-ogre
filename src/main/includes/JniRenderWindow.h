@@ -34,13 +34,13 @@
 extern "C" {
 #endif
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_createViewport
+JNIEXPORT POINTER JNICALL Java_jni_JniRenderWindow_createViewport
   (JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT jfloat JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_getFps
+JNIEXPORT jfloat JNICALL Java_jni_JniRenderWindow_getFps
   (JNIEnv* env, jobject o);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_RenderWindow_printScreen
+JNIEXPORT void JNICALL Java_jni_JniRenderWindow_printScreen
 (JNIEnv* env, jobject o,  jstring fileName);
 
 

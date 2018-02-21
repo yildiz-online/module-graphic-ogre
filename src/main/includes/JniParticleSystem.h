@@ -34,71 +34,71 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_attachToNode(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_attachToNode(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER nodePointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_keepInLocalSpace(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_keepInLocalSpace(
     JNIEnv*,
     jobject,
     POINTER pointer,
     jboolean keep);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_createEmitter(
+JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createEmitter(
     JNIEnv *,
     jobject,
     POINTER);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setBillboardOrigin(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setBillboardOrigin(
         JNIEnv*,
         jobject,
         POINTER pointer,
         jint origin);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setParticleOrientation(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setParticleOrientation(
     JNIEnv *,
     jobject,
     POINTER pointer,
     jint type);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_createColorAffector(
+JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createColorAffector(
     JNIEnv *,
     jobject,
     POINTER);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_createForceAffector(
+JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createForceAffector(
     JNIEnv *,
     jobject,
     POINTER);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_createScaleAffector(
+JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createScaleAffector(
     JNIEnv *,
     jobject,
     POINTER);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setSize(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setSize(
     JNIEnv *,
     jobject,
     POINTER,
     jfloat,
     jfloat);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setMaterial(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setMaterial(
     JNIEnv *,
     jobject,
     POINTER,
     POINTER);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_setQuota(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setQuota(
     JNIEnv *,
     jobject,
     POINTER,
     jint);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_show(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_show(
     JNIEnv *,
     jobject,
     POINTER);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleSystem_hide(
+JNIEXPORT void JNICALL Java_jni_JniParticleSystem_hide(
     JNIEnv *,
     jobject,
     POINTER);

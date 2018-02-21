@@ -30,7 +30,7 @@
 #include "../includes/EnumConversion.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_createTexture(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_createTexture(
     JNIEnv* env,
     jobject,
     jstring jname) {
@@ -40,7 +40,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_create
     return reinterpret_cast<POINTER>(mat);
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_copy(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_copy(
     JNIEnv* env, jobject, POINTER pointer, jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
@@ -49,7 +49,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_copy(
     return reinterpret_cast<POINTER>(copy);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_loadTexture(
+JNIEXPORT void JNICALL Java_jni_JniMaterial_loadTexture(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -59,7 +59,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_loadTextu
     material->load();
 }
 
-JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_getTechniqueList(
+JNIEXPORT jlongArray JNICALL Java_jni_JniMaterial_getTechniqueList(
     JNIEnv* env,
     jclass,
     POINTER pointer) {
@@ -76,7 +76,7 @@ JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_get
     return result;
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_getTechnique(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_getTechnique(
     JNIEnv* env, jobject, POINTER pointer, jint index) {
     LOG_FUNCTION
     try {
@@ -88,13 +88,13 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_getTec
     return INVALID_POINTER;
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_createTechnique(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_createTechnique(
     JNIEnv*, jobject, POINTER pointer) {
     LOG_FUNCTION
     return reinterpret_cast<POINTER>(yz::Material::get(pointer)->createTechnique());
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterial_receiveShadow(
+JNIEXPORT void JNICALL Java_jni_JniMaterial_receiveShadow(
     JNIEnv* env,
     jobject o,
     POINTER pointer,

@@ -27,6 +27,7 @@ package be.yildizgames.module.graphic.ogre.light;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.light.SpotLight;
+import jni.JniSpotLight;
 
 /**
  * Ogre implementation for a SpotLight.
@@ -39,6 +40,8 @@ public final class OgreSpotLight extends SpotLight {
      * Pointer address to the native code yz::SpotLight.
      */
     private final NativePointer pointer;
+
+    private final JniSpotLight jni = new JniSpotLight();
 
     /**
      * Full constructor.
@@ -55,44 +58,17 @@ public final class OgreSpotLight extends SpotLight {
 
     @Override
     protected void setDirectionImpl(final Point3D direction) {
-        this.setDirection(this.pointer.getPointerAddress(), direction.x, direction.y, direction.z);
+        this.jni.setDirection(this.pointer.getPointerAddress(), direction.x, direction.y, direction.z);
     }
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
+        this.jni.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     protected void deleteImpl() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
-
-    /**
-     * Set the light position in native code.
-     *
-     * @param pointerAddress Address of the native yz::SpotLight pointer.
-     * @param x              New X position.
-     * @param y              New Y position.
-     * @param z              New Z position.
-     */
-    private native void setPosition(final long pointerAddress, final float x, final float y, final float z);
-
-    /**
-     * Set the light direction in native code.
-     *
-     * @param pointerAddress Address of the native yz::SpotLight pointer.
-     * @param x              New X direction.
-     * @param y              New Y direction.
-     * @param z              New Z direction.
-     */
-    private native void setDirection(final long pointerAddress, final float x, final float y, final float z);
-
-    /**
-     * Delete light direction in native code.
-     *
-     * @param pointerAddress Address of the native yz::SpotLight pointer.
-     */
-    private native void delete(final long pointerAddress);
 }

@@ -34,65 +34,65 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setFarClip(
+JNIEXPORT void JNICALL Java_jni_JniCamera_setFarClip(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jint distance);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setNearClip(
+JNIEXPORT void JNICALL Java_jni_JniCamera_setNearClip(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jint distance);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_enableRenderingDistance(
+JNIEXPORT void JNICALL Java_jni_JniCamera_enableRenderingDistance(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_unregisterListener(
+JNIEXPORT void JNICALL Java_jni_JniCamera_unregisterListener(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER lsPointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_forceListenersUpdate(
+JNIEXPORT void JNICALL Java_jni_JniCamera_forceListenersUpdate(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_rotate(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_rotate(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_move(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_move(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jfloat z);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_lookAt(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_lookAt(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jfloat z);
-JNIEXPORT jboolean JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_isVisible(
+JNIEXPORT jboolean JNICALL Java_jni_JniCamera_isVisible(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jfloat x,
     jfloat y,
     jfloat z);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_getDirection(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_getDirection(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setPositionAxis(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_setPositionAxis(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -100,7 +100,7 @@ JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setP
     jfloat y,
     jint axis);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniCamera_setPosition(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -108,7 +108,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setPosition
     jfloat y,
     jfloat z);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setOrientation(
+JNIEXPORT void JNICALL Java_jni_JniCamera_setOrientation(
     JNIEnv *,
     jobject,
     POINTER,
@@ -116,23 +116,23 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setOrientat
     jfloat,
     jfloat);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_detachFromParent(
+JNIEXPORT void JNICALL Java_jni_JniCamera_detachFromParent(
     JNIEnv *,
     jobject,
     POINTER);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_setAutotrack(
+JNIEXPORT void JNICALL Java_jni_JniCamera_setAutotrack(
     JNIEnv *,
     jobject,
     POINTER,
     POINTER);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_stopAutotrack(
+JNIEXPORT void JNICALL Java_jni_JniCamera_stopAutotrack(
     JNIEnv *,
     jobject,
     POINTER);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_throwRay(
+JNIEXPORT POINTER JNICALL Java_jni_JniCamera_throwRay(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -140,7 +140,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_throwRay
     jfloat y,
     jboolean poly);
 
-JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_throwPlaneRay(
+JNIEXPORT jlongArray JNICALL Java_jni_JniCamera_throwPlaneRay(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -149,7 +149,7 @@ JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_throw
     jfloat right,
     jfloat bottom);
 
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreCamera_computeMoveDestinationGroundIntersect(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_computeMoveDestinationGroundIntersect(
     JNIEnv* env,
     jobject o,
     POINTER pointer,

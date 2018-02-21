@@ -33,7 +33,7 @@
 extern "C" {
 #endif
 
-JNIEXPORT jlong JNICALL Java_be_yildiz_module_graphic_ogre_OgreSkybox_createSkybox
+JNIEXPORT jlong JNICALL Java_jni_JniSkybox_createSkybox
   (JNIEnv* env, jobject o, jstring, jstring);
 
 #ifdef __cplusplus

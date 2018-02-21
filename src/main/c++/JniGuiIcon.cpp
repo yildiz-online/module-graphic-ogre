@@ -31,7 +31,7 @@
 #include "../includes/JniGuiIcon.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_constructor(
+JNIEXPORT POINTER JNICALL Java_jni_JniGuiIcon_constructor(
     JNIEnv* env,
     jclass,
     POINTER containerPointer,
@@ -50,7 +50,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_constructo
     return reinterpret_cast<POINTER>(icon);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_setTexture(
+JNIEXPORT void JNICALL Java_jni_JniGuiIcon_setTexture(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -63,7 +63,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_setTexture(
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniGuiIcon_setPosition(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -73,7 +73,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_setPosition(
     yz::GuiIcon::get(pointer)->setPosition(x, y);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_hide(
+JNIEXPORT void JNICALL Java_jni_JniGuiIcon_hide(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -81,7 +81,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_hide(
     yz::GuiIcon::get(pointer)->hide();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_show(
+JNIEXPORT void JNICALL Java_jni_JniGuiIcon_show(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -89,7 +89,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_show(
     yz::GuiIcon::get(pointer)->show();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_delete(
+JNIEXPORT void JNICALL Java_jni_JniGuiIcon_delete(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -97,7 +97,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_delete(
     delete yz::GuiIcon::get(pointer);
 }
 
-JNIEXPORT jint JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_getZ(
+JNIEXPORT jint JNICALL Java_jni_JniGuiIcon_getZ(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -105,7 +105,7 @@ JNIEXPORT jint JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_getZ(
     return yz::GuiIcon::get(pointer)->getZ();
 }
 
-JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_getParentName(
+JNIEXPORT jstring JNICALL Java_jni_JniGuiIcon_getParentName(
     JNIEnv* env,
     jobject,
     POINTER pointer) {
@@ -113,7 +113,7 @@ JNIEXPORT jstring JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_getParentN
     return env->NewStringUTF(yz::GuiIcon::get(pointer)->getParent().c_str());
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreIcon_setSize(
+JNIEXPORT void JNICALL Java_jni_JniGuiIcon_setSize(
     JNIEnv*,
     jobject,
     POINTER pointer,

@@ -28,7 +28,7 @@
 #include "../includes/JniSelectionRectangle.h"
 #include "../includes/SelectionRectangle.hpp"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSelectionRectangle_constructor(
+JNIEXPORT POINTER JNICALL Java_jni_JniSelectionRectangle_constructor(
     JNIEnv* env,
     jclass,
     POINTER matPointer,
@@ -39,7 +39,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSelectionRectan
     return reinterpret_cast<POINTER>(new yz::SelectionRectangle(mat, cmat));
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSelectionRectangle_update(
+JNIEXPORT void JNICALL Java_jni_JniSelectionRectangle_update(
     JNIEnv*,
     jobject,
     POINTER pointer,

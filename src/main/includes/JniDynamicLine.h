@@ -33,19 +33,19 @@
 extern "C" {
 #endif
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_constructor
+JNIEXPORT POINTER JNICALL Java_jni_JniDynamicLine_constructor
 (JNIEnv* env, jobject o, POINTER nodePointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_setMaterial
+JNIEXPORT void JNICALL Java_jni_JniDynamicLine_setMaterial
   (JNIEnv* env, jobject o, POINTER pointer, POINTER matPointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_show
+JNIEXPORT void JNICALL Java_jni_JniDynamicLine_show
   (JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_hide
+JNIEXPORT void JNICALL Java_jni_JniDynamicLine_hide
   (JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLine_update
+JNIEXPORT void JNICALL Java_jni_JniDynamicLine_update
 (JNIEnv* env, jobject o, POINTER pointer, jfloat beginX, jfloat beginY, jfloat beginZ, jfloat endX, jfloat endY, jfloat endZ);
 
 

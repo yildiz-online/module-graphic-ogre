@@ -38,12 +38,12 @@ extern "C" {
  * Enable the debug render.
  * @param pointer yz::PointLight pointer address.
  */
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setDebug(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_setDebug(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_setPosition(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -51,7 +51,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setPosi
     jfloat y,
     jfloat z);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setColor(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_setColor(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -59,7 +59,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setColo
     jfloat g,
     jfloat b);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setAttenuation(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_setAttenuation(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -68,7 +68,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_setAtte
     jfloat linear,
     jfloat quadratic);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgrePointLight_delete(
+JNIEXPORT void JNICALL Java_jni_JniPointLight_delete(
     JNIEnv* env,
     jobject o,
     POINTER pointer);

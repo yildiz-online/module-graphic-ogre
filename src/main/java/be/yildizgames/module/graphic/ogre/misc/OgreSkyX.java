@@ -28,6 +28,8 @@ import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.misc.Sky;
 import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
+import jni.JniSkyX;
+import jni.JniSkybox;
 
 /**
  * Ogre implementation for a Sky.
@@ -41,6 +43,8 @@ public final class OgreSkyX implements Sky {
      */
     private final NativePointer pointer;
 
+    private final JniSkyX jni = new JniSkyX();
+
     /**
      * Full constructor.
      *
@@ -49,15 +53,7 @@ public final class OgreSkyX implements Sky {
      */
     public OgreSkyX(final OgreSceneManager sm, final OgreRenderWindow window) {
         super();
-        final long address = this.constructor(sm.getPointer().getPointerAddress());
+        final long address = this.jni.constructor(sm.getPointer().getPointerAddress());
         this.pointer = NativePointer.create(address);
     }
-
-    /**
-     * Build the object in native code.
-     *
-     * @param sm Scene manager pointer.
-     * @return The native built object pointer address.
-     */
-    public native long constructor(final long sm);
 }

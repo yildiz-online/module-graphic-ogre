@@ -28,7 +28,7 @@
 #include "../includes/JniLensFlare.h"
 #include "../includes/Lensflare.hpp"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniLensFlare_setPosition(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -39,7 +39,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setPosit
     yz::LensFlare::get(pointer)->setPosition(x, y, z);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setLightSize(
+JNIEXPORT void JNICALL Java_jni_JniLensFlare_setLightSize(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -49,7 +49,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setLight
     yz::LensFlare::get(pointer)->setLightSize(w, h);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreLensFlare_setStreakSize(
+JNIEXPORT void JNICALL Java_jni_JniLensFlare_setStreakSize(
     JNIEnv*,
     jobject,
     POINTER pointer,

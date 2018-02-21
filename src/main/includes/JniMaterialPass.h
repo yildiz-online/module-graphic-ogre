@@ -34,117 +34,117 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setEmissive(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setEmissive(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jfloat red, jfloat green, jfloat blue);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterFloat4(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterFloat4(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3, jfloat v4);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterFloat3(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterFloat3(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterFloat2(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterFloat2(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterFloat(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterFloat(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat value);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterColor(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterColor(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3, jfloat v4);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterFloat4(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterFloat4(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3, jfloat v4);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterFloat3(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterFloat3(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterFloat2(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterFloat2(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat v1, jfloat v2);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterFloat(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterFloat(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat value);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterColor(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterColor(
     JNIEnv* env, jobject o, POINTER pointer, jstring jname, jfloat v1, jfloat v2, jfloat v3, jfloat v4);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_complexBlend(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_complexBlend(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jint blend, jint blend2);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgram(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgram(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jstring jname);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgram(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgram(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jstring jname);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterAuto(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterAuto(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jstring jname, jint autov);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setFragmentProgramParameterAutoP(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterAutoP(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jstring jname, jint autov, jint autop);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterAuto(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterAuto(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jstring jname, jint autov);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setVertexProgramParameterAutoP(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterAutoP(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jstring jname, jint autov, jint autop);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_createUnit(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterialPass_createUnit(
 		JNIEnv* env, jobject o,
 		POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setAlphaTransparency(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setAlphaTransparency(
 		JNIEnv* env, jobject o,
 		POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setAlphaRejection(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setAlphaRejection(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jint value);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_blend(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_blend(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jint blendOp);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setColorTransparency(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setColorTransparency(
 		JNIEnv* env, jobject o,
 		POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setDiffuse(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setDiffuse(
 		JNIEnv* env, jobject o,
 		POINTER passPointer, jfloat r, jfloat g, jfloat b, jfloat a);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setAmbient(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setAmbient(
 		JNIEnv* env, jobject o,
 		POINTER passPointer, jfloat r, jfloat g, jfloat b);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_enableColor(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_enableColor(
 		JNIEnv* env, jobject o,
 		POINTER passPointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_disableLight(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_disableLight(
 		JNIEnv* env, jobject o,
 		POINTER passPointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_disableColor(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_disableColor(
 		JNIEnv* env, jobject o,
 		POINTER passPointer);
 
-JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_getUnitList(
+JNIEXPORT jlongArray JNICALL Java_jni_JniMaterialPass_getUnitList(
 		JNIEnv* env, jclass c,
 		POINTER passPointer);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_getUnit(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterialPass_getUnit(
 		JNIEnv* env, jclass c,
 		POINTER passPointer, jint index);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialPass_setDepthWrite(
+JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setDepthWrite(
 		JNIEnv* env, jobject o,
 		POINTER pointer, jboolean enabled);
 

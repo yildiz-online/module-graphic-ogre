@@ -28,7 +28,7 @@
 #include "../includes/JniDirectionalLight.h"
 #include "../includes/DirectionalLight.hpp"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_delete(
+JNIEXPORT void JNICALL Java_jni_JniDirectionalLight_delete(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_d
     delete yz::DirectionalLight::get(pointer);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniDirectionalLight_setPosition(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -47,7 +47,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_s
     yz::DirectionalLight::get(pointer)->setPosition(x, y, z);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreDirectionalLight_setDirection(
+JNIEXPORT void JNICALL Java_jni_JniDirectionalLight_setDirection(
     JNIEnv*,
     jobject,
     POINTER pointer,

@@ -28,7 +28,7 @@
 #include "../includes/JniParticleForceAffector.h"
 #include "../includes/ParticleForceAffector.hpp"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleForceAffector_setForce
+JNIEXPORT void JNICALL Java_jni_JniParticleForceAffector_setForce
   (JNIEnv*, jobject, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
     yz::ParticleForceAffector::get(pointer)->setForce(x, y, z);

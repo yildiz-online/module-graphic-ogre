@@ -34,23 +34,23 @@
 extern "C" {
 #endif
 
-JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_getPassList(
+JNIEXPORT jlongArray JNICALL Java_jni_JniMaterialTechnique_getPassList(
     JNIEnv* env,
     jclass c,
     POINTER techniquePointer);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_getPass(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterialTechnique_getPass(
     JNIEnv* env,
     jclass c,
     POINTER techniquePointer,
     jint index);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_createPass(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterialTechnique_createPass(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_setGlow(
+JNIEXPORT void JNICALL Java_jni_JniMaterialTechnique_setGlow(
     JNIEnv* env,
     jobject o,
     POINTER pointer);

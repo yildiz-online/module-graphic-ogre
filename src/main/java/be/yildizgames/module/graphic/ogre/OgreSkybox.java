@@ -26,6 +26,7 @@ package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.common.jni.NativePointer;
+import jni.JniSkybox;
 
 /**
  * Ogre skybox implementation.
@@ -39,6 +40,8 @@ final class OgreSkybox extends Skybox {
      */
     private final NativePointer pointer;
 
+    private final JniSkybox jni = new JniSkybox();
+
     /**
      * Full constructor.
      *
@@ -47,20 +50,11 @@ final class OgreSkybox extends Skybox {
      */
     OgreSkybox(final String name, final String path) {
         super(name, path);
-        final long address = this.createSkybox(name, path);
+        final long address = this.jni.createSkybox(name, path);
         this.pointer = NativePointer.create(address);
     }
 
     @Override
     protected void loadImpl() {
     }
-
-    /**
-     * Create the native object.
-     *
-     * @param name Skybox unique name.
-     * @param path Files to use.
-     * @return The native object pointer address.
-     */
-    private native long createSkybox(final String name, final String path);
 }

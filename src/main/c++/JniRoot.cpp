@@ -30,7 +30,7 @@
 #include "../includes/JniRoot.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_constructor(
+JNIEXPORT void JNICALL Java_jni_JniRoot_constructor(
     JNIEnv *env,
     jobject) {
     LOG_FUNCTION
@@ -41,14 +41,14 @@ JNIEXPORT void JNICALL Java_jni_OgreRootNative_constructor(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_initPhysFS(
+JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(
     JNIEnv *env,
     jobject) {
     LOG_FUNCTION
     yz::Root::get()->initPhysFS();
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadPlugin(
+JNIEXPORT void JNICALL Java_jni_JniRoot_loadPlugin(
     JNIEnv* env,
     jobject,
     jstring jplugin) {
@@ -61,7 +61,7 @@ JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadPlugin(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadRenderer(
+JNIEXPORT void JNICALL Java_jni_JniRoot_loadRenderer(
     JNIEnv *env,
     jobject,
     jstring jrenderer) {
@@ -74,7 +74,7 @@ JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadRenderer(
     }
 }
 
-JNIEXPORT POINTER JNICALL Java_jni_OgreRootNative_createSceneManager(
+JNIEXPORT POINTER JNICALL Java_jni_JniRoot_createSceneManager(
     JNIEnv* env,
     jobject,
     jstring jname) {
@@ -88,7 +88,7 @@ JNIEXPORT POINTER JNICALL Java_jni_OgreRootNative_createSceneManager(
     return INVALID_POINTER;
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindow(
+JNIEXPORT void JNICALL Java_jni_JniRoot_createRenderWindow(
     JNIEnv* env,
     jobject,
     jint width,
@@ -102,7 +102,7 @@ JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindow(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindowGlContext(
+JNIEXPORT void JNICALL Java_jni_JniRoot_createRenderWindowGlContext(
     JNIEnv* env,
     jobject,
     jint width,
@@ -115,7 +115,7 @@ JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindowGlContext(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_addResourcePath(
+JNIEXPORT void JNICALL Java_jni_JniRoot_addResourcePath(
     JNIEnv* env,
     jobject,
     jstring jname,
@@ -131,7 +131,7 @@ JNIEXPORT void JNICALL Java_jni_OgreRootNative_addResourcePath(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_renderOneFrame(
+JNIEXPORT void JNICALL Java_jni_JniRoot_renderOneFrame(
     JNIEnv* env,
     jobject) {
     LOG_FUNCTION
@@ -142,7 +142,7 @@ JNIEXPORT void JNICALL Java_jni_OgreRootNative_renderOneFrame(
     }
 }
 
-JNIEXPORT void JNICALL Java_jni_OgreRootNative_close(
+JNIEXPORT void JNICALL Java_jni_JniRoot_close(
     JNIEnv* env,
     jobject) {
     LOG_FUNCTION

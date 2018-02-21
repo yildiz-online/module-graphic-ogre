@@ -28,7 +28,7 @@
 #include "../includes/JniParticleEmitter.h"
 #include "../includes/ParticleEmitter.hpp"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setMinSpeed(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setMinSpeed(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -37,7 +37,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_se
     yz::ParticleEmitter::get(pointer)->setMinSpeed(speed);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setMaxSpeed(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setMaxSpeed(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -46,7 +46,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_se
     yz::ParticleEmitter::get(pointer)->setMaxSpeed(speed);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setStartColor(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setStartColor(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_se
     yz::ParticleEmitter::get(pointer)->setStartColor(r, g, b, a);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setEndColor(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setEndColor(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -70,7 +70,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_se
     yz::ParticleEmitter::get(pointer)->setEndColor(r, g, b, a);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setAngle(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setAngle(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -79,7 +79,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_se
     yz::ParticleEmitter::get(pointer)->setAngle(angle);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setRate(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setRate(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -88,7 +88,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_se
     yz::ParticleEmitter::get(pointer)->setRate(rate);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setLifeTime(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setLifeTime(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -97,7 +97,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_se
     yz::ParticleEmitter::get(pointer)->setLifeTime(life);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setDuration(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setDuration(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -106,7 +106,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_se
     reinterpret_cast<yz::ParticleEmitter*>(pointer)->setDuration(duration);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setRepeatDelay(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setRepeatDelay(
     JNIEnv*,
     jobject,
     POINTER pointer,
@@ -115,7 +115,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_se
     yz::ParticleEmitter::get(pointer)->setRepeatDelay(delay);
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleEmitter_setDirection(
+JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setDirection(
     JNIEnv*,
     jobject,
     POINTER pointer,

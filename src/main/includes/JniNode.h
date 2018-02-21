@@ -33,49 +33,49 @@
 extern "C" {
 #endif
 
-JNIEXPORT jstring JNICALL Java_jni_OgreNodeNative_getName(JNIEnv* env, jobject o, POINTER pointer);
+JNIEXPORT jstring JNICALL Java_jni_JniNode_getName(JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_show(JNIEnv* env, jobject o, POINTER pointer);
+JNIEXPORT void JNICALL Java_jni_JniNode_show(JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_hide(JNIEnv* env, jobject o, POINTER pointer);
+JNIEXPORT void JNICALL Java_jni_JniNode_hide(JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getPosition(JNIEnv* env, jobject o, POINTER pointer);
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_getPosition(JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setPosition(
+JNIEXPORT void JNICALL Java_jni_JniNode_setPosition(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z);
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getDirection(JNIEnv* env, jobject o, POINTER pointer);
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_getDirection(JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_setDirection(
+JNIEXPORT void JNICALL Java_jni_JniNode_setDirection(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z);
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_getOrientation(JNIEnv* env, jobject o, POINTER pointer);
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_getOrientation(JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_translate(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_translate(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z);
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreNodeNative_rotate(
+JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_rotate(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_rotateQuaternion(
+JNIEXPORT void JNICALL Java_jni_JniNode_rotateQuaternion(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z, jfloat w);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_scale(
+JNIEXPORT void JNICALL Java_jni_JniNode_scale(
     JNIEnv* env, jobject o, POINTER pointer, jfloat scaleX, jfloat scaleY, jfloat scaleZ);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachToNode(
+JNIEXPORT void JNICALL Java_jni_JniNode_attachToNode(
     JNIEnv* env, jobject o, POINTER pointer, POINTER other);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_attachTo(
+JNIEXPORT void JNICALL Java_jni_JniNode_attachTo(
     JNIEnv* env, jobject o, POINTER pointer, POINTER other);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParentNode(
+JNIEXPORT void JNICALL Java_jni_JniNode_detachFromParentNode(
     JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_detachFromParent(
+JNIEXPORT void JNICALL Java_jni_JniNode_detachFromParent(
     JNIEnv* env, jobject o, POINTER pointer, POINTER parent);
 
-JNIEXPORT void JNICALL Java_jni_OgreNodeNative_delete(JNIEnv* env, jobject o, POINTER pointer);
+JNIEXPORT void JNICALL Java_jni_JniNode_delete(JNIEnv* env, jobject o, POINTER pointer);
 
 
 #ifdef __cplusplus

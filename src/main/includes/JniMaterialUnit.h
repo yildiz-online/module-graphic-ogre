@@ -34,19 +34,19 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setTextureFilter(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTextureFilter(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
         jint filter);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setCoordinateSet(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setCoordinateSet(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
         jint set);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setColorOperationExManual(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationExManual(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setCol
         jfloat g,
         jfloat b);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setAlphaOperation(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setAlphaOperation(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
@@ -65,13 +65,13 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setAlp
         jint src,
         jint src2);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setTexture(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTexture(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
         jstring name);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setTextureAnimated(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTextureAnimated(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
@@ -79,20 +79,20 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setTex
         jint,
         jint);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setScale(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setScale(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
         jfloat width,
         jfloat height);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setColorOperation(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperation(
         JNIEnv* env,
         jobject o,
         POINTER unitPointer,
         jint operation);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setColorOperationEx(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationEx(
         JNIEnv* env,
         jobject o,
         POINTER unitPointer,
@@ -100,7 +100,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_setCol
         jint src,
         jint src2);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreTextureUnit_scroll(
+JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_scroll(
         JNIEnv* env,
         jobject o,
         POINTER unitPointer,

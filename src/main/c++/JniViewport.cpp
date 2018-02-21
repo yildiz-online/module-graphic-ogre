@@ -28,7 +28,7 @@
 #include "../includes/JniViewport.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreViewPort_enableCompositor (
+JNIEXPORT void JNICALL Java_jni_JniViewPort_enableCompositor (
     JNIEnv* env, jobject current, POINTER pointer, jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreViewPort_enableCom
     vp->addCompositor(name.getValue());
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_ViewPort_setCamera(
+JNIEXPORT void JNICALL Java_jni_JniViewPort_setCamera(
     JNIEnv*,
     jobject,
     POINTER pointer,

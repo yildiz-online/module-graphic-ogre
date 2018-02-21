@@ -30,7 +30,7 @@
 #include "../includes/EnumConversion.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_getPassList(
+JNIEXPORT jlongArray JNICALL Java_jni_JniMaterialTechnique_getPassList(
     JNIEnv* env,
     jclass,
     POINTER pointer) {
@@ -47,7 +47,7 @@ JNIEXPORT jlongArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTech
     return result;
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_createPass(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterialTechnique_createPass(
     JNIEnv*,
     jobject,
     POINTER pointer) {
@@ -56,7 +56,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechniq
     return reinterpret_cast<POINTER>(technique->createPass());
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_getPass(
+JNIEXPORT POINTER JNICALL Java_jni_JniMaterialTechnique_getPass(
     JNIEnv* env,
     jclass c,
     POINTER pointer,
@@ -66,7 +66,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechniq
             index));
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreMaterialTechnique_setGlow(
+JNIEXPORT void JNICALL Java_jni_JniMaterialTechnique_setGlow(
     JNIEnv*,
     jobject,
     POINTER pointer) {

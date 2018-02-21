@@ -33,7 +33,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createLensFlare(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createLensFlare(
     JNIEnv* env,
     jobject o,
     jstring name,
@@ -47,71 +47,71 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jfloat y,
     jfloat z);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setShadowTextureSize(
+JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowTextureSize(
     JNIEnv* env,
     jobject o,
     POINTER smPointer,
     jint size);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setShadowFarDistance(
+JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowFarDistance(
     JNIEnv* env,
     jobject o,
     POINTER smPointer,
     jint distance);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setSkybox(
+JNIEXPORT void JNICALL Java_jni_JniSceneManager_setSkybox(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jstring name);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createCamera(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createCamera(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jstring name);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createMeshEntity(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createMeshEntity(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jstring mesh,
     POINTER);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createBoxEntity(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createBoxEntity(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER jnode);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createSphereEntity(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createSphereEntity(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER jnode,
     jstring jname);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setShadowTechnique(
+JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowTechnique(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jint tec);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createPlaneEntity(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createPlaneEntity(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER jnode);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createNode(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createNode(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jstring);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createNodeId(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createNodeId(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER id,
     jstring);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setAmbientLight(
+JNIEXPORT void JNICALL Java_jni_JniSceneManager_setAmbientLight(
     JNIEnv *env,
     jobject o,
     POINTER pointer,
@@ -122,7 +122,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setAm
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////// LIGHTS /////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createPointLight(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createPointLight(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -130,7 +130,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jfloat,
     jfloat,
     jfloat);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createSpotLight(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createSpotLight(
     JNIEnv* env,
     jobject o,
     POINTER smPointer,
@@ -142,7 +142,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jfloat tgtY,
     jfloat tgtZ);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createDirectionalLight(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDirectionalLight(
     JNIEnv* env,
     jobject o,
     POINTER smPointer,
@@ -154,7 +154,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jfloat tgtY,
     jfloat tgtZ);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createElectricArc(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createElectricArc(
     JNIEnv *env,
     jobject o,
     POINTER smPointer,
@@ -167,23 +167,23 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_cr
     jfloat eZ,
     jfloat width);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createParticleSystem(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createParticleSystem(
     JNIEnv* env,
     jobject o,
     POINTER smPointer);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_setShadowType(
+JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowType(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     jint type);
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_createBillboardSet(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createBillboardSet(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
     POINTER mat);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSceneManager_getRootNode(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_getRootNode(
     JNIEnv* env,
     jobject o,
     POINTER pointer);

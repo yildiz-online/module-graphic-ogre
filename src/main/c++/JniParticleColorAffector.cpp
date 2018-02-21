@@ -28,7 +28,7 @@
 #include "../includes/JniParticleColorAffector.h"
 #include "../includes/ParticleColorAffector.hpp"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_OgreParticleColorAffector_setAlpha(
+JNIEXPORT void JNICALL Java_jni_JniParticleColorAffector_setAlpha(
     JNIEnv*,
     jobject,
     POINTER pointer,

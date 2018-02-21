@@ -29,7 +29,7 @@
 #include "../includes/Skybox.hpp"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreSkybox_createSkybox(
+JNIEXPORT POINTER JNICALL Java_jni_JniSkybox_createSkybox(
     JNIEnv* env,
     jobject,
     jstring jname,
