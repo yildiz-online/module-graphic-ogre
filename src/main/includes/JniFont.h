@@ -34,10 +34,10 @@
 extern "C" {
 #endif
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreFont_createFont
+JNIEXPORT POINTER JNICALL Java_jni_OgreFontNative_createFont
   (JNIEnv* env, jobject o, jstring name, jstring file, jfloat size);
 
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreFont_computeCharSize
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreFontNative_computeCharSize
   (JNIEnv* env, jobject o, POINTER pointer);
 
 #ifdef __cplusplus

@@ -37,7 +37,7 @@ public final class OgreHydrax implements Ocean {
 
     private final NativePointer pointer;
 
-    OgreHydrax(final NativePointer sm, final OgreCamera cam) {
+    public OgreHydrax(final NativePointer sm, final OgreCamera cam) {
         super();
         final long address = this.constructor(sm.getPointerAddress(), cam.getPointer().getPointerAddress());
         this.pointer = NativePointer.create(address);

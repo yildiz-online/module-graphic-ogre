@@ -29,6 +29,7 @@ import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.billboard.BillboardChain;
 import be.yildizgames.module.graphic.material.Material;
+import jni.JniBillboardChain;
 
 /**
  * Ogre implementation for a BillboardChain.
@@ -47,30 +48,32 @@ public final class OgreBillboardChain implements BillboardChain, Native {
      */
     private final OgreNode node;
 
+    private final JniBillboardChain jni = new JniBillboardChain();
+
     /**
      * Full constructor.
      *
      * @param node Associated movable object.
      */
-    OgreBillboardChain(final OgreNode node) {
+    public OgreBillboardChain(final OgreNode node) {
         super();
-        this.pointer = NativePointer.create(this.constructor(node.getName(), node.getPointer().getPointerAddress()));
+        this.pointer = NativePointer.create(this.jni.constructor(node.getName(), node.getPointer().getPointerAddress()));
         this.node = node;
     }
 
     @Override
     public void addElement(final Point3D pos, final float elementWidth) {
-        this.addElement(this.pointer.getPointerAddress(), pos.x, pos.y, pos.z, elementWidth);
+        this.jni.addElement(this.pointer.getPointerAddress(), pos.x, pos.y, pos.z, elementWidth);
     }
 
     @Override
     public void setElementPosition(final int listPosition, final Point3D pos) {
-        this.setElementPosition(this.pointer.getPointerAddress(), listPosition, pos.x, pos.y, pos.z);
+        this.jni.setElementPosition(this.pointer.getPointerAddress(), listPosition, pos.x, pos.y, pos.z);
     }
 
     @Override
     public void setMaterial(final Material material) {
-        this.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
     }
 
     @Override
@@ -86,7 +89,7 @@ public final class OgreBillboardChain implements BillboardChain, Native {
 
     @Override
     public void delete() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
@@ -104,49 +107,4 @@ public final class OgreBillboardChain implements BillboardChain, Native {
     public NativePointer getPointer() {
         return pointer;
     }
-
-    /**
-     * Create the object in native code.
-     *
-     * @param nodePointer Pointer to the yz::Node to attach wih this object.
-     * @return The pointer address to the native object.
-     */
-    private native long constructor(final String name, final long nodePointer);
-
-    /**
-     * Add an element to the chain in native code.
-     *
-     * @param address      Native billboard chain pointer address.
-     * @param xPosition    New element x position.
-     * @param yPosition    New element y position.
-     * @param zPosition    New element z position.
-     * @param elementWidth New element width.
-     */
-    private native void addElement(final long address, final float xPosition, final float yPosition, final float zPosition, final float elementWidth);
-
-    /**
-     * Set the material in native code.
-     *
-     * @param pointer  Billboard chain native pointer address.
-     * @param material Material to set.
-     */
-    private native void setMaterial(final long pointer, final long material);
-
-    /**
-     * Set the position of an element in native code.
-     *
-     * @param pointer      Billboard chain native pointer address.
-     * @param listPosition Element position in the chain.
-     * @param xPosition    Element x position.
-     * @param yPosition    Element y position.
-     * @param zPosition    Element z position.
-     */
-    private native void setElementPosition(final long pointer, final int listPosition, final float xPosition, final float yPosition, final float zPosition);
-
-    /**
-     * Delete the native object.
-     *
-     * @param pointer Billboard chain native pointer address.
-     */
-    private native void delete(final long pointer);
 }

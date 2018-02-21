@@ -27,7 +27,7 @@ package be.yildizgames.module.graphic.ogre;
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.NativePointer;
-import jni.OgreNodeNative;
+import jni.JniNode;
 
 /**
  * @author Grégory Van den Borre
@@ -36,7 +36,7 @@ public class OgreNodeStatic extends OgreNodeBase {
 
     public OgreNodeStatic(NativePointer pointerAddress, Movable parent, Point3D position, Point3D direction) {
         super(pointerAddress, parent);
-        OgreNodeNative n = new OgreNodeNative();
+        JniNode n = new JniNode();
         n.setPosition(pointerAddress.getPointerAddress(), position.x, position.y, position.z);
         n.setDirection(pointerAddress.getPointerAddress(), direction.x, direction.y, direction.z);
     }

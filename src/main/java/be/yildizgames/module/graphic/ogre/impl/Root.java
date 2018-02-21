@@ -22,14 +22,14 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.impl;
 
 import be.yildizgames.common.file.FileResource;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.module.coordinate.Size;
-import be.yildizgames.module.graphic.ogre.renderwindow.RenderWindow;
 import be.yildizgames.module.window.WindowHandle;
+import jni.JniRoot;
 import org.slf4j.Logger;
 
 import java.security.InvalidParameterException;
@@ -39,9 +39,11 @@ import java.security.InvalidParameterException;
  *
  * @author Grégory Van Den Borre
  */
-final class Root {
+public final class Root {
 
     private static final Logger LOGGER = LogFactory.getInstance().getLogger(Root.class);
+
+    private final JniRoot jni = new JniRoot();
 
     /**
      * Flag to check if initialized or not.
@@ -52,10 +54,10 @@ final class Root {
      * Simple constructor, call the native constructor to get the pointer to the
      * native object.
      */
-    Root() {
+    public Root() {
         super();
-        this.constructor();
-        this.initPhysFS();
+        this.jni.constructor();
+        this.jni.initPhysFS();
     }
 
     /**
@@ -63,12 +65,12 @@ final class Root {
      *
      * @param plugin Plug-in name.
      */
-    void setPlugin(final String plugin) {
+    public void setPlugin(final String plugin) {
         if (this.initialized) {
             throw new InvalidParameterException("You cannot load plug ins once root is initialized.");
         }
         LOGGER.info("Loading ogre plugin: " + plugin);
-        this.loadPlugin(plugin);
+        this.jni.loadPlugin(plugin);
     }
 
     /**
@@ -76,16 +78,16 @@ final class Root {
      *
      * @param renderer Renderer name to load.
      */
-    void setRenderer(final String renderer) {
-        this.loadRenderer(renderer);
+    public void setRenderer(final String renderer) {
+        this.jni.loadRenderer(renderer);
         this.initialized = true;
     }
 
     /**
      * Render the current frame.
      */
-    void render() {
-        this.renderOneFrame();
+    public void render() {
+        this.jni.renderOneFrame();
     }
 
     /**
@@ -94,8 +96,8 @@ final class Root {
      * @param name Scene manager name, must be unique.
      * @return The built SceneManager.
      */
-    NativePointer createScene(final String name) {
-        final long pointerAddress = this.createSceneManager(name);
+    public NativePointer createScene(final String name) {
+        final long pointerAddress = this.jni.createSceneManager(name);
         return NativePointer.create(pointerAddress);
     }
 
@@ -107,8 +109,8 @@ final class Root {
      *               unused.
      * @return The built render window.
      */
-    RenderWindow createWindow(final Size res, final WindowHandle handle) {
-        this.createRenderWindow(res.width, res.height, handle.value);
+    public RenderWindow createWindow(final Size res, final WindowHandle handle) {
+        this.jni.createRenderWindow(res.width, res.height, handle.value);
         return new RenderWindow();
     }
 
@@ -118,89 +120,19 @@ final class Root {
      * @param res Resolution to use.
      * @return The built render window.
      */
-    RenderWindow createWindow(final Size res) {
-        this.createRenderWindowGlContext(res.width, res.height);
+    public RenderWindow createWindow(final Size res) {
+        this.jni.createRenderWindowGlContext(res.width, res.height);
         return new RenderWindow();
     }
 
     /**
      * Close the root object.
      */
-    void closeRoot() {
-        this.close();
+    public void closeRoot() {
+        this.jni.close();
     }
 
-    void addResourcePath(final String name, final String resourcePath, final FileResource.FileType type) {
-        this.addResourcePath(name, resourcePath, type.value);
+    public void addResourcePath(final String name, final String resourcePath, final FileResource.FileType type) {
+        this.jni.addResourcePath(name, resourcePath, type.value);
     }
-
-    /**
-     * Native constructor, instantiate a new yz::Root.
-     */
-    private native void constructor();
-
-    /**
-     * Load an ogre plugin in native code.
-     *
-     * @param plugin Plugin name.
-     */
-    private native void loadPlugin(final String plugin);
-
-    /**
-     * Load an ogre renderer in native code.
-     *
-     * @param renderer Renderer name.
-     */
-    private native void loadRenderer(final String renderer);
-
-    /**
-     * Render the current frame in native code.
-     */
-    private native void renderOneFrame();
-
-    /**
-     * Add a new folder to be used as graphic container.
-     *
-     * @param name         Name associated to the group of resources.
-     * @param resourcePath Path to the folder.
-     * @param type         Resource type value.
-     */
-    private native void addResourcePath(final String name, final String resourcePath, final int type);
-
-    /**
-     * Build a generic scene manager in native code.
-     *
-     * @param name Scene manager name, must be unique.
-     * @return The pointer address of the scene manager native object.
-     */
-    private native long createSceneManager(final String name);
-
-    /**
-     * Build a render window in native code.
-     *
-     * @param width  RenderWindow resolution width.
-     * @param height RenderWindow resolution height.
-     * @param handle Handle to the win32 window containing the render window, not
-     *               used for other OS.
-     */
-    private native void createRenderWindow(final int width, final int height, final long handle);
-
-    /**
-     * Build a render window in native code using the current GL context.
-     *
-     * @param width  RenderWindow resolution width.
-     * @param height RenderWindow resolution height.
-     */
-    private native void createRenderWindowGlContext(final int width, final int height);
-
-    /**
-     * Close the root object in native code.
-     */
-    private native void close();
-
-    /**
-     * Initialize the physFS virtual file system capabilities.
-     */
-    private native void initPhysFS();
-
 }

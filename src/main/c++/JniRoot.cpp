@@ -30,7 +30,7 @@
 #include "../includes/JniRoot.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_constructor(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_constructor(
     JNIEnv *env,
     jobject) {
     LOG_FUNCTION
@@ -41,14 +41,14 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_constructor(
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_initPhysFS(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_initPhysFS(
     JNIEnv *env,
     jobject) {
     LOG_FUNCTION
     yz::Root::get()->initPhysFS();
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_loadPlugin(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadPlugin(
     JNIEnv* env,
     jobject,
     jstring jplugin) {
@@ -61,7 +61,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_loadPlugin(
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_loadRenderer(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadRenderer(
     JNIEnv *env,
     jobject,
     jstring jrenderer) {
@@ -74,7 +74,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_loadRenderer(
     }
 }
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_Root_createSceneManager(
+JNIEXPORT POINTER JNICALL Java_jni_OgreRootNative_createSceneManager(
     JNIEnv* env,
     jobject,
     jstring jname) {
@@ -88,7 +88,7 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_Root_createSceneMan
     return INVALID_POINTER;
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindow(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindow(
     JNIEnv* env,
     jobject,
     jint width,
@@ -102,7 +102,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindo
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindowGlContext(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindowGlContext(
     JNIEnv* env,
     jobject,
     jint width,
@@ -115,7 +115,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindo
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_addResourcePath(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_addResourcePath(
     JNIEnv* env,
     jobject,
     jstring jname,
@@ -131,7 +131,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_addResourcePath(
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_renderOneFrame(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_renderOneFrame(
     JNIEnv* env,
     jobject) {
     LOG_FUNCTION
@@ -142,7 +142,7 @@ JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_renderOneFrame(
     }
 }
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_close(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_close(
     JNIEnv* env,
     jobject) {
     LOG_FUNCTION

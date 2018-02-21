@@ -24,15 +24,8 @@
 
 package be.yildizgames.module.graphic.ogre.impl;
 
-import be.yildizgames.module.graphic.ogre.OgreCamera;
-
 /**
  * @author Grégory Van den Borre
  */
-public interface OgreRenderWindow {
-    OgreViewport createViewport(OgreCamera camera);
-
-    void getPrintScreen();
-
-    float getFramerate();
+public interface OgreViewport {
 }

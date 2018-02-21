@@ -22,10 +22,33 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package jni;
 
 /**
  * @author Grégory Van den Borre
  */
-public interface OgreViewport {
+public class JniViewPort {
+
+    /**
+     * Delete the object in native code.
+     *
+     * @param address Address of the native object.
+     */
+    public native void delete(final long address);
+
+    /**
+     * Change the camera associated to this view port in native code.
+     *
+     * @param pointer    This object pointer address.
+     * @param camPointer The pointer to the camera to associate.
+     */
+    public native void setCamera(final long pointer, final long camPointer);
+
+    /**
+     * Set the active state in native code.
+     *
+     * @param pointer Pointer to the native object.
+     * @param active  Flag to set active or not the viewport.
+     */
+    public native void setActive(final long pointer, final boolean active);
 }

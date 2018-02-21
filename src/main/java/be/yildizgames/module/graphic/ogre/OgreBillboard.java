@@ -29,6 +29,7 @@ import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.billboard.Billboard;
+import jni.JniBillboard;
 
 /**
  * Ogre implementation for a BillBoard.
@@ -42,6 +43,8 @@ final class OgreBillboard extends Billboard implements Native {
      */
     private final NativePointer pointer;
 
+    private final JniBillboard jni = new JniBillboard();
+
     OgreBillboard(NativePointer pointer) {
         super();
         this.pointer = pointer;
@@ -49,65 +52,29 @@ final class OgreBillboard extends Billboard implements Native {
 
     @Override
     protected void setSizeImpl(final float width, final float height) {
-        this.setSize(this.pointer.getPointerAddress(), width, height);
+        this.jni.setSize(this.pointer.getPointerAddress(), width, height);
     }
 
     @Override
     protected void setPositionImpl(final Point3D position) {
-        this.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
+        this.jni.setPosition(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     public void setColor(final Color color) {
-        this.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.jni.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
     @Override
     public NativePointer getPointer() {
-        return pointer;
+        return this.pointer;
     }
 
-    /**
-     * Delete the object in native code.
-     *
-     * @param address Address of the native object.
-     */
-    private native void delete(final long address);
-
-    /**
-     * Set the billboard position in native code.
-     *
-     * @param pointerAddress Native object pointer address.
-     * @param positionX      New position x value.
-     * @param positionY      New position y value.
-     * @param positionZ      New position z value.
-     */
-    private native void setPosition(final long pointerAddress, final float positionX, final float positionY, final float positionZ);
-
-    /**
-     * Set the billboard size in native code.
-     *
-     * @param pointerAddress Native object pointer address.
-     * @param width          New billboard width value.
-     * @param height         New billboard height value.
-     */
-    private native void setSize(final long pointerAddress, final float width, final float height);
-
-    /**
-     * Set the billboard color.
-     *
-     * @param pointer Ogre::Billboard* pointer address.
-     * @param red     Red color value.
-     * @param green   Green color value.
-     * @param blue    Blue color value.
-     * @param alpha   Alpha value.
-     */
-    private native void setColor(final long pointer, final float red, final float green, final float blue, final float alpha);
 
 }

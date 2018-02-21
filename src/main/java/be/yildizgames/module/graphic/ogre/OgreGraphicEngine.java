@@ -40,6 +40,7 @@ import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.ogre.impl.DummyRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
+import be.yildizgames.module.graphic.ogre.impl.Root;
 import be.yildizgames.module.graphic.shader.Shader;
 import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
 import be.yildizgames.module.graphic.shader.Shader.ShaderType;
@@ -56,7 +57,7 @@ import java.io.File;
  *
  * @author Grégory Van Den Borre
  */
-public final class OgreGraphicEngine implements GraphicEngine {
+public final class OgreGraphicEngine extends GraphicEngine {
 
     private static final Logger LOGGER = LogFactory.getInstance().getLogger(OgreGraphicEngine.class);
 
@@ -71,6 +72,7 @@ public final class OgreGraphicEngine implements GraphicEngine {
     private final OgreRenderWindow renderWindow;
 
     private final OgreGuiFactory guiBuilder;
+
     /**
      * Screen size.
      */

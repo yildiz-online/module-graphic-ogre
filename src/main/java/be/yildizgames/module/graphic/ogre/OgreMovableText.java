@@ -56,7 +56,7 @@ public final class OgreMovableText extends MovableText {
      * @param text Text to print.
      * @param font Font to use.
      */
-    OgreMovableText(final OgreNodeBase node, final String name, final String text, final Font font) {
+    public OgreMovableText(final OgreNodeBase node, final String name, final String text, final Font font) {
         super(node);
         this.node = node;
         long address = this.constructor(this.node.getPointer().getPointerAddress(), name, text, OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);

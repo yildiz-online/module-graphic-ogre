@@ -32,7 +32,7 @@ import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.graphic.movable.Node;
-import jni.OgreNodeNative;
+import jni.JniNode;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -47,7 +47,7 @@ public abstract class OgreNodeBase extends Node implements OgreNode {
      */
     private final NativePointer pointer;
 
-    private final OgreNodeNative nodeNative = new OgreNodeNative();
+    private final JniNode nodeNative = new JniNode();
 
     /**
      * Name specified in native code.

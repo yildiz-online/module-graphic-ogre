@@ -22,10 +22,12 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.impl;
 
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.graphic.ogre.OgreCamera;
+import jni.JniViewPort;
 
 /**
  * A ViewPort is the display associated to a camera.
@@ -43,6 +45,8 @@ public final class ViewPort implements Native, OgreViewport {
      * Associated camera.
      */
     private OgreCamera camera;
+
+    private final JniViewPort jni = new JniViewPort();
 
     /**
      * Full constructor.
@@ -62,7 +66,7 @@ public final class ViewPort implements Native, OgreViewport {
      * @param active <code>true</code> to set it active, <code>false</code> to deactivate it.
      */
     void setActive(final boolean active) {
-        this.setActive(this.pointer.getPointerAddress(), active);
+        this.jni.setActive(this.pointer.getPointerAddress(), active);
     }
 
     /**
@@ -72,45 +76,21 @@ public final class ViewPort implements Native, OgreViewport {
      */
     void setCamera(final OgreCamera value) {
         this.camera = value;
-        this.setCamera(this.pointer.getPointerAddress(), this.camera.getPointer().getPointerAddress());
+        this.jni.setCamera(this.pointer.getPointerAddress(), this.camera.getPointer().getPointerAddress());
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
     @Override
     public NativePointer getPointer() {
-        return pointer;
+        return this.pointer;
     }
 
     OgreCamera getCamera() {
-        return camera;
+        return this.camera;
     }
-
-    /**
-     * Delete the object in native code.
-     *
-     * @param address Address of the native object.
-     */
-    private native void delete(final long address);
-
-    /**
-     * Change the camera associated to this view port in native code.
-     *
-     * @param pointer    This object pointer address.
-     * @param camPointer The pointer to the camera to associate.
-     */
-    private native void setCamera(final long pointer, final long camPointer);
-
-    /**
-     * Set the active state in native code.
-     *
-     * @param pointer Pointer to the native object.
-     * @param active  Flag to set active or not the viewport.
-     */
-    private native void setActive(final long pointer, final boolean active);
-
 }

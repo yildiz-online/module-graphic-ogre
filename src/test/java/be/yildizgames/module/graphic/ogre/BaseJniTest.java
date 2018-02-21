@@ -25,6 +25,7 @@
 package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
+import be.yildizgames.module.graphic.ogre.impl.Root;
 import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
 import be.yildizgames.module.graphic.ogre.light.OgrePointLight;
 import be.yildizgames.module.graphic.ogre.light.OgreSpotLight;

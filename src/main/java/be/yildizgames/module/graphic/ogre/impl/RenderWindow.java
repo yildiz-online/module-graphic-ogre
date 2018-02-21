@@ -26,8 +26,7 @@ package be.yildizgames.module.graphic.ogre.impl;
 
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.ogre.OgreCamera;
-import be.yildizgames.module.graphic.ogre.OgreViewport;
-import be.yildizgames.module.graphic.ogre.ViewPort;
+import jni.JniRenderWindow;
 
 /**
  * Access to the Render Window object in native code.
@@ -35,6 +34,8 @@ import be.yildizgames.module.graphic.ogre.ViewPort;
  * @author Grégory Van Den Borre
  */
 final class RenderWindow implements OgreRenderWindow {
+
+    private final JniRenderWindow jni = new JniRenderWindow();
 
     /**
      * Full constructor.
@@ -51,7 +52,7 @@ final class RenderWindow implements OgreRenderWindow {
      */
     @Override
     public OgreViewport createViewport(final OgreCamera camera) {
-        final long address = this.createViewport(camera.getPointer().getPointerAddress());
+        final long address = this.jni.createViewport(camera.getPointer().getPointerAddress());
         return new ViewPort(NativePointer.create(address), camera);
     }
 
@@ -60,7 +61,7 @@ final class RenderWindow implements OgreRenderWindow {
      */
     @Override
     public void getPrintScreen() {
-        this.printScreen(String.valueOf(System.currentTimeMillis()));
+        this.jni.printScreen(String.valueOf(System.currentTimeMillis()));
     }
 
     /**
@@ -68,29 +69,8 @@ final class RenderWindow implements OgreRenderWindow {
      */
     @Override
     public float getFramerate() {
-        return this.getFps();
+        return this.jni.getFps();
     }
 
-    /**
-     * Build a new Viewport in native code.
-     *
-     * @param cameraPointer Camera pointer address.
-     * @return The new Viewport pointer address.
-     */
-    private native long createViewport(final long cameraPointer);
-
-    /**
-     * Get the number of frame rendered in one second.
-     *
-     * @return The Frame rate from native code.
-     */
-    private native float getFps();
-
-    /**
-     * Print the current display in a file.
-     *
-     * @param name File name
-     */
-    private native void printScreen(final String name);
 
 }

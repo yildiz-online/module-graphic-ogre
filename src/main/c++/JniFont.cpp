@@ -29,7 +29,7 @@
 #include "../includes/Font.hpp"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreFont_createFont(
+JNIEXPORT POINTER JNICALL Java_jni_OgreFontNative_createFont(
     JNIEnv* env,
     jobject,
     jstring jname,
@@ -47,10 +47,8 @@ JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_OgreFont_createFont
     return INVALID_POINTER;
 }
 
-JNIEXPORT jfloatArray JNICALL Java_be_yildiz_module_graphic_ogre_OgreFont_computeCharSize(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer) {
+JNIEXPORT jfloatArray JNICALL Java_jni_OgreFontNative_computeCharSize(JNIEnv* env, jobject, POINTER pointer) {
+
     LOG_FUNCTION
     yz::Font* font = yz::Font::get(pointer);
     font->load();

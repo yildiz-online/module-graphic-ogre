@@ -22,42 +22,48 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
-
-import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.module.graphic.misc.Sky;
-import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
-import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
+package jni;
 
 /**
- * Ogre implementation for a Sky.
- *
  * @author Grégory Van den Borre
  */
-public final class OgreSkyX implements Sky {
+public class JniBillboard {
 
     /**
-     * Pointer to the native object.
-     */
-    private final NativePointer pointer;
-
-    /**
-     * Full constructor.
+     * Delete the object in native code.
      *
-     * @param sm     SceneManager used to create the sky.
-     * @param window Window where the sky is rendered.
+     * @param address Address of the native object.
      */
-    public OgreSkyX(final OgreSceneManager sm, final OgreRenderWindow window) {
-        super();
-        final long address = this.constructor(sm.getPointer().getPointerAddress());
-        this.pointer = NativePointer.create(address);
-    }
+    public native void delete(final long address);
 
     /**
-     * Build the object in native code.
+     * Set the billboard position in native code.
      *
-     * @param sm Scene manager pointer.
-     * @return The native built object pointer address.
+     * @param pointerAddress Native object pointer address.
+     * @param positionX      New position x value.
+     * @param positionY      New position y value.
+     * @param positionZ      New position z value.
      */
-    public native long constructor(final long sm);
+    public native void setPosition(final long pointerAddress, final float positionX, final float positionY, final float positionZ);
+
+    /**
+     * Set the billboard size in native code.
+     *
+     * @param pointerAddress Native object pointer address.
+     * @param width          New billboard width value.
+     * @param height         New billboard height value.
+     */
+    public native void setSize(final long pointerAddress, final float width, final float height);
+
+    /**
+     * Set the billboard color.
+     *
+     * @param pointer Ogre::Billboard* pointer address.
+     * @param red     Red color value.
+     * @param green   Green color value.
+     * @param blue    Blue color value.
+     * @param alpha   Alpha value.
+     */
+    public native void setColor(final long pointer, final float red, final float green, final float blue, final float alpha);
+
 }

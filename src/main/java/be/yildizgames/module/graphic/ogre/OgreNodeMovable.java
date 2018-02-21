@@ -28,7 +28,7 @@ import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
-import jni.OgreNodeNative;
+import jni.JniNode;
 
 /**
  * @author Grégory Van den Borre
@@ -40,14 +40,14 @@ public class OgreNodeMovable extends OgreNodeBase {
      */
     private final NativePointer pointer;
 
-    private final OgreNodeNative nodeNative = new OgreNodeNative();
+    private final JniNode nodeNative = new JniNode();
 
     /**
      * Full constructor.
      *
      * @param pointerAddress Address to the native object.
      */
-     OgreNodeMovable(final NativePointer pointerAddress, final Movable parent) {
+    public OgreNodeMovable(final NativePointer pointerAddress, final Movable parent) {
         super(pointerAddress, parent);
         this.pointer = pointerAddress;
         this.parent = parent;

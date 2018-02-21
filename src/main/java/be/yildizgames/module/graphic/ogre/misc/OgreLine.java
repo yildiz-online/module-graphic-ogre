@@ -47,7 +47,7 @@ public final class OgreLine extends Line {
      *
      * @param node Node to attach the created line.
      */
-    OgreLine(final OgreNode node) {
+    public OgreLine(final OgreNode node) {
         super();
         this.pointer = NativePointer.create(this.constructor(node.getPointer().getPointerAddress()));
     }

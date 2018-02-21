@@ -24,9 +24,9 @@
 
 package be.yildizgames.module.window.swt;
 
-import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.common.exception.technical.ResourceMissingException;
-import be.yildizgames.common.nativeresources.system.SystemUtil;
+import be.yildizgames.common.os.SystemUtil;
+import be.yildizgames.module.coordinate.Size;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;

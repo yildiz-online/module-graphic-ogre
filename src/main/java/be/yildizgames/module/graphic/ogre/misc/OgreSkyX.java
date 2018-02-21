@@ -22,60 +22,42 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package be.yildizgames.module.graphic.ogre.misc;
 
-import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.Font;
-import jni.JniFont;
+import be.yildizgames.module.graphic.misc.Sky;
+import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
+import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 
 /**
- * Ogre implementation for a font.
+ * Ogre implementation for a Sky.
  *
- * @author Grégory Van Den Borre
+ * @author Grégory Van den Borre
  */
-final class OgreFont extends Font implements Native {
+public final class OgreSkyX implements Sky {
 
     /**
-     * Pointer address to the native object.
+     * Pointer to the native object.
      */
     private final NativePointer pointer;
-
-    private final JniFont jni = new JniFont();
 
     /**
      * Full constructor.
      *
-     * @param name Font name, must be unique.
-     * @param path Path to the file to load the font.
-     * @param size Font height.
+     * @param sm     SceneManager used to create the sky.
+     * @param window Window where the sky is rendered.
      */
-    OgreFont(final String name, final String path, final int size, final Color color) {
-        super(name, size, color);
-        this.pointer = NativePointer.create(this.jni.createFont(this.getName(), path, this.size));
+    public OgreSkyX(final OgreSceneManager sm, final OgreRenderWindow window) {
+        super();
+        final long address = this.constructor(sm.getPointer().getPointerAddress());
+        this.pointer = NativePointer.create(address);
     }
 
     /**
-     * Get the char width value from the native code and set it to the object.
+     * Build the object in native code.
+     *
+     * @param sm Scene manager pointer.
+     * @return The native built object pointer address.
      */
-    @Override
-    protected void loadImpl() {
-        float[] widthArray = this.jni.computeCharSize(this.pointer.getPointerAddress());
-        widthArray[32] = widthArray[32] * 0.5f;
-        this.setCharWidth(widthArray);
-    }
-
-    @Override
-    public void delete() {
-        this.jni.delete(this.pointer.getPointerAddress());
-        this.pointer.delete();
-        // FIXME remove from registerer
-    }
-
-    @Override
-    public NativePointer getPointer() {
-        return this.pointer;
-    }
-
+    public native long constructor(final long sm);
 }

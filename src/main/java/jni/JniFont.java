@@ -22,10 +22,35 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre;
+package jni;
 
 /**
  * @author Grégory Van den Borre
  */
-public class DummyViewport implements OgreViewport{
+public class JniFont {
+
+    /**
+     * Delete the object in native code.
+     *
+     * @param address Address of the native object.
+     */
+    public native void delete(final long address);
+
+    /**
+     * Create a font in the native code.
+     *
+     * @param name Font name, must be unique.
+     * @param path Font file path.
+     * @param size Font height.
+     * @return The pointer address to the native object.
+     */
+    public native long createFont(final String name, final String path, final float size);
+
+    /**
+     * Compute the width, in pixel for each char.
+     *
+     * @param pointerAddress Address value to the native object.
+     * @return An array containing the char width, the place of the char in the array is its ASCII value.(i.e. width of 'A' is array[65]);
+     */
+    public native float[] computeCharSize(final long pointerAddress);
 }

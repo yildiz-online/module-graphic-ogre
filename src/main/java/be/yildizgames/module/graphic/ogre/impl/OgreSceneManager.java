@@ -51,7 +51,6 @@ import be.yildizgames.module.graphic.ogre.OgreNode;
 import be.yildizgames.module.graphic.ogre.OgreNodeBase;
 import be.yildizgames.module.graphic.ogre.OgreNodeMovable;
 import be.yildizgames.module.graphic.ogre.OgreNodeStatic;
-import be.yildizgames.module.graphic.ogre.OgreSkyX;
 import be.yildizgames.module.graphic.ogre.light.OgreDirectionalLight;
 import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
 import be.yildizgames.module.graphic.ogre.light.OgrePointLight;
@@ -59,7 +58,9 @@ import be.yildizgames.module.graphic.ogre.light.OgreSpotLight;
 import be.yildizgames.module.graphic.ogre.misc.OgreElectricArc;
 import be.yildizgames.module.graphic.ogre.misc.OgreHydrax;
 import be.yildizgames.module.graphic.ogre.misc.OgreLine;
+import be.yildizgames.module.graphic.ogre.misc.OgreSkyX;
 import be.yildizgames.module.graphic.ogre.particle.OgreParticleSystem;
+import jni.JniSceneManager;
 
 /**
  * Java part of the yz::SceneManager.
@@ -108,6 +109,8 @@ public final class OgreSceneManager implements SceneManager, Native {
      */
     private final OgreNodeBase rootNode;
 
+    private final JniSceneManager jni = new JniSceneManager();
+
     /**
      * Full constructor.
      *
@@ -116,7 +119,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param screenSizeX  Screen width.
      * @param screenSizeY  Screen height.
      */
-    OgreSceneManager(final NativePointer pointer, final OgreRenderWindow renderWindow, final int screenSizeX, final int screenSizeY) {
+    public OgreSceneManager(final NativePointer pointer, final OgreRenderWindow renderWindow, final int screenSizeX, final int screenSizeY) {
         super();
         this.cameras = Registerer.newRegisterer();
         this.pointer = pointer;
@@ -124,7 +127,7 @@ public final class OgreSceneManager implements SceneManager, Native {
         this.resolutionX = screenSizeX;
         this.resolutionY = screenSizeY;
         this.defaultCamera = this.createCamera("default");
-        this.rootNode = new OgreNodeStatic(NativePointer.create(this.getRootNode(this.pointer.getPointerAddress())), null, Point3D.ZERO, Point3D.ZERO);
+        this.rootNode = new OgreNodeStatic(NativePointer.create(this.jni.getRootNode(this.pointer.getPointerAddress())), null, Point3D.ZERO, Point3D.ZERO);
     }
 
     /**
@@ -133,7 +136,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param color World ambient light color.
      */
     public void setAmbientLight(final Color color) {
-        this.setAmbientLight(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.jni.setAmbientLight(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
     }
 
     /**
@@ -154,7 +157,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The created point light.
      */
     public OgrePointLight createPointLight(final String name, final Point3D position) {
-        final long lightPointer = this.createPointLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z);
+        final long lightPointer = this.jni.createPointLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z);
         return new OgrePointLight(NativePointer.create(lightPointer), name, position);
     }
 
@@ -167,7 +170,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The created spot light.
      */
     public OgreSpotLight createSpotLight(final String name, final Point3D position, final Point3D direction) {
-        final long lightPointer = this.createSpotLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
+        final long lightPointer = this.jni.createSpotLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
         return new OgreSpotLight(NativePointer.create(lightPointer), name, position, direction);
     }
 
@@ -180,7 +183,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The created directional light.
      */
     public OgreDirectionalLight createDirectionalLight(final String name, final Point3D position, final Point3D direction) {
-        final long lightPointer = this.createDirectionalLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
+        final long lightPointer = this.jni.createDirectionalLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
         return new OgreDirectionalLight(NativePointer.create(lightPointer), name, direction);
     }
 
@@ -200,7 +203,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return An Ogre implementation for ElectricArc.
      */
     public OgreElectricArc createElectricArc(final Point3D start, final Point3D end, final float width) {
-        final long arcPointer = this.createElectricArc(this.pointer.getPointerAddress(), StringUtil.buildRandomString("earc"), start.x, start.y, start.z, end.x, end.y, end.z, width);
+        final long arcPointer = this.jni.createElectricArc(this.pointer.getPointerAddress(), StringUtil.buildRandomString("earc"), start.x, start.y, start.z, end.x, end.y, end.z, width);
         return new OgreElectricArc(NativePointer.create(arcPointer), start, end);
     }
 
@@ -229,7 +232,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param sky Sky box to use.
      */
     public void setSkybox(final Skybox sky) {
-        this.setSkybox(this.pointer.getPointerAddress(), sky.getName());
+        this.jni.setSkybox(this.pointer.getPointerAddress(), sky.getName());
     }
 
     /**
@@ -242,25 +245,25 @@ public final class OgreSceneManager implements SceneManager, Native {
     }
 
     public final OgreNodeStatic createStaticNode(Point3D position, Point3D direction) {
-        final long address = this.createNode(this.pointer.getPointerAddress(), StringUtil.buildRandomString("node"));
+        final long address = this.jni.createNode(this.pointer.getPointerAddress(), StringUtil.buildRandomString("node"));
         final NativePointer nodePointer = NativePointer.create(address);
         return new OgreNodeStatic(nodePointer, this.rootNode, position, direction);
     }
 
     public final OgreNodeStatic createStaticNode(EntityId id, Point3D position, Point3D direction) {
-        final long address = this.createNodeId(this.pointer.getPointerAddress(), id.value, StringUtil.buildRandomString("node"));
+        final long address = this.jni.createNodeId(this.pointer.getPointerAddress(), id.value, StringUtil.buildRandomString("node"));
         final NativePointer nodePointer = NativePointer.create(address);
         return new OgreNodeStatic(nodePointer, this.rootNode, position, direction);
     }
 
     public final OgreNodeMovable createMovableNode() {
-        final long address = this.createNode(this.pointer.getPointerAddress(), StringUtil.buildRandomString("node"));
+        final long address = this.jni.createNode(this.pointer.getPointerAddress(), StringUtil.buildRandomString("node"));
         final NativePointer nodePointer = NativePointer.create(address);
         return new OgreNodeMovable(nodePointer, this.rootNode);
     }
 
     public final OgreNodeMovable createMovableNode(EntityId id) {
-        final long address = this.createNodeId(this.pointer.getPointerAddress(), id.value, StringUtil.buildRandomString("node"));
+        final long address = this.jni.createNodeId(this.pointer.getPointerAddress(), id.value, StringUtil.buildRandomString("node"));
         final NativePointer nodePointer = NativePointer.create(address);
         return new OgreNodeMovable(nodePointer, this.rootNode);
     }
@@ -277,7 +280,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      */
     public OgreLensFlare createLensFlare(final Material light, final Material streak, final Material halo, final Material burst, final Point3D pos) {
         // FIXME linked to camera, does not support switching cam
-        return new OgreLensFlare(NativePointer.create(this.createLensFlare(StringUtil.buildRandomString("lf_"), this.pointer.getPointerAddress(), this.defaultCamera.getPointer().getPointerAddress(),
+        return new OgreLensFlare(NativePointer.create(this.jni.createLensFlare(StringUtil.buildRandomString("lf_"), this.pointer.getPointerAddress(), this.defaultCamera.getPointer().getPointerAddress(),
                 OgreMaterial.class.cast(light).getPointer().getPointerAddress(), OgreMaterial.class.cast(streak).getPointer().getPointerAddress(), OgreMaterial.class.cast(halo).getPointer().getPointerAddress(), OgreMaterial.class.cast(burst).getPointer().getPointerAddress(),
                 pos.x, pos.y, pos.z)), Point3D.valueOf(pos.x, pos.y, pos.z));
     }
@@ -289,7 +292,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The newly built camera.
      */
     public OgreCamera createCamera(final String name) {
-        final long address = this.createCamera(this.pointer.getPointerAddress(), name);
+        final long address = this.jni.createCamera(this.pointer.getPointerAddress(), name);
         final OgreCamera cam = new OgreCamera(NativePointer.create(address), name, this.createMovableNode(), this.resolutionX, this.resolutionY);
 
         this.window.createViewport(cam);
@@ -305,7 +308,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The built mesh entity.
      */
     public OgreEntity createEntity(final GraphicMesh mesh, final OgreNodeBase node) {
-        OgreEntity entity = new OgreEntity(NativePointer.create(this.createMeshEntity(this.pointer.getPointerAddress(), mesh.getFile(), node.getPointer().getPointerAddress())), node);
+        OgreEntity entity = new OgreEntity(NativePointer.create(this.jni.createMeshEntity(this.pointer.getPointerAddress(), mesh.getFile(), node.getPointer().getPointerAddress())), node);
         entity.setMaterial(mesh.getMaterial());
         return entity;
     }
@@ -318,7 +321,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The built box entity.
      */
     public OgreEntity createEntity(final Box box, final OgreNodeBase node) {
-        final OgreEntity e = new OgreEntity(NativePointer.create(this.createBoxEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress())), node);
+        final OgreEntity e = new OgreEntity(NativePointer.create(this.jni.createBoxEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress())), node);
         node.scale(box.width * OgreSceneManager.OGRE_SCALE, box.height * OgreSceneManager.OGRE_SCALE, box.depth * OgreSceneManager.OGRE_SCALE);
         return e;
     }
@@ -331,7 +334,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The built plane entity.
      */
     public OgreEntity createEntity(final Plane plane, final OgreNodeBase node) {
-        final OgreEntity e = new OgreEntity(NativePointer.create(this.createPlaneEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress())), node);
+        final OgreEntity e = new OgreEntity(NativePointer.create(this.jni.createPlaneEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress())), node);
         node.scale(plane.width * OgreSceneManager.OGRE_SCALE, plane.depth * OGRE_SCALE, plane.depth * OGRE_SCALE);
         return e;
     }
@@ -344,7 +347,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return The built sphere entity.
      */
     public OgreEntity createEntity(final Sphere sphere, final OgreNodeBase node) {
-        final OgreEntity e = new OgreEntity(NativePointer.create(this.createSphereEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress(), StringUtil.buildRandomString(node.getName()))), node);
+        final OgreEntity e = new OgreEntity(NativePointer.create(this.jni.createSphereEntity(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress(), StringUtil.buildRandomString(node.getName()))), node);
         node.scale(OgreSceneManager.OGRE_SCALE * sphere.radius);
         return e;
     }
@@ -368,7 +371,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      */
     public OgreParticleSystem createParticleSystem() {
         final OgreNodeBase node = this.createMovableNode();
-        final long address = this.createParticleSystem(this.pointer.getPointerAddress());
+        final long address = this.jni.createParticleSystem(this.pointer.getPointerAddress());
         final NativePointer systemPointer = NativePointer.create(address);
         return new OgreParticleSystem(systemPointer, node);
     }
@@ -379,7 +382,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param type Shadow type to set.
      */
     public void setShadowType(final ShadowType type) {
-        this.setShadowType(this.pointer.getPointerAddress(), type.ordinal());
+        this.jni.setShadowType(this.pointer.getPointerAddress(), type.ordinal());
     }
 
     /**
@@ -389,7 +392,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return A new OgreBillboardSet attached to the root scene node.
      */
     public OgreBillboardSet createBillboardSet(final Material material) {
-        NativePointer setPointer = NativePointer.create(this.createBillboardSet(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress()));
+        NativePointer setPointer = NativePointer.create(this.jni.createBillboardSet(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress()));
         return new OgreBillboardSet(setPointer, this.rootNode);
     }
 
@@ -400,13 +403,13 @@ public final class OgreSceneManager implements SceneManager, Native {
      */
     public OgreParticleSystem[] createExplosion() {
         final OgreNodeBase node = this.createMovableNode();
-        long address = this.createParticleSystem(this.pointer.getPointerAddress());
+        long address = this.jni.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke1 = new OgreParticleSystem(NativePointer.create(address), node);
-        address = this.createParticleSystem(this.pointer.getPointerAddress());
+        address = this.jni.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke2 = new OgreParticleSystem(NativePointer.create(address), node);
-        address = this.createParticleSystem(this.pointer.getPointerAddress());
+        address = this.jni.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke3 = new OgreParticleSystem(NativePointer.create(address), node);
-        address = this.createParticleSystem(this.pointer.getPointerAddress());
+        address = this.jni.createParticleSystem(this.pointer.getPointerAddress());
         final OgreParticleSystem smoke4 = new OgreParticleSystem(NativePointer.create(address), node);
         return new OgreParticleSystem[]{smoke1, smoke2, smoke3, smoke4};
     }
@@ -423,7 +426,7 @@ public final class OgreSceneManager implements SceneManager, Native {
 
     @Override
     public void delete() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
@@ -431,228 +434,4 @@ public final class OgreSceneManager implements SceneManager, Native {
     public NativePointer getPointer() {
         return pointer;
     }
-
-    /**
-     * Delete the object in native code.
-     *
-     * @param address Address of the native object.
-     */
-    private native void delete(final long address);
-
-    /**
-     * Create an Ogre::Entity from a mesh.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param meshName       Name of the mesh to use to build the entity.
-     * @param nodePointer    The entity will be attached to this node.
-     * @return The created entity pointer address.
-     */
-    private native long createMeshEntity(final long pointerAddress, final String meshName, final long nodePointer);
-
-    /**
-     * Create an Ogre::Entity from a box shape.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param nodePointer    The entity will be attached to this node.
-     * @return The created entity pointer address.
-     */
-    private native long createBoxEntity(final long pointerAddress, final long nodePointer);
-
-    /**
-     * Create an Ogre::Entity from a plane shape.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param nodePointer    The entity will be attached to this node.
-     * @return The created entity pointer address.
-     */
-    private native long createPlaneEntity(final long pointerAddress, final long nodePointer);
-
-    /**
-     * Create an Ogre::Entity from a sphere shape.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param nodePointer    The entity will be attached to this node.
-     * @return The created entity pointer address.
-     */
-    private native long createSphereEntity(final long pointerAddress, final long nodePointer, final String name);
-
-    /**
-     * Set the scene ambient light in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param red            Light red value.
-     * @param green          Light green value.
-     * @param blue           Light blue value.
-     * @param alpha          Light intensity.
-     */
-    private native void setAmbientLight(final long pointerAddress, final float red, final float green, final float blue, final float alpha);
-
-    /**
-     * Create a particle system in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @return The particle system pointer address.
-     */
-    private native long createParticleSystem(final long pointerAddress);
-
-    /**
-     * Set the sky box in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param skybox         Sky box material to use.
-     */
-    private native void setSkybox(final long pointerAddress, final String skybox);
-
-    /**
-     * Build an yz::Node in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param name           Node unique name.
-     * @return The created yz::Node pointer address.
-     */
-    private native long createNode(final long pointerAddress, final String name);
-
-    /**
-     * Build an yz::Node in native code, it is associated with an id to be retrieved when using picking.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param associatedId   Id to associate to the node, used to identify the node when interactions occurs(raycast...).
-     * @param name           Node unique name.
-     * @return The created yz::Node pointer address.
-     */
-    private native long createNodeId(final long pointerAddress, final long associatedId, final String name);
-
-    /**
-     * Create a lens flare object in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param camPointer     currently used camera.
-     * @param light          Material used for the light.
-     * @param streak         Material used for the streak.
-     * @param haloMaterial   Material used for the halo.
-     * @param burstMaterial  Material used for the burst.
-     * @param posX           Lens flare position X value.
-     * @param posY           Lens flare position Y value.
-     * @param posZ           Lens flare position Z value.
-     * @return The pointer address to the newly built lens flare.
-     */
-    // FIXME does not support camera switch.
-    private native long createLensFlare(final String name, final long pointerAddress, final long camPointer, final long light, final long streak, final long haloMaterial, final long burstMaterial,
-                                        final float posX, final float posY, final float posZ);
-
-    /**
-     * Create a camera in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param name           Camera name.
-     * @return The pointer address to the camera native object.
-     */
-    private native long createCamera(final long pointerAddress, final String name);
-
-    /**
-     * Create an electric arc in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param name           Arc unique name.
-     * @param x              Arc origin position X value.
-     * @param y              Arc origin position Y value.
-     * @param z              Arc origin position Z value.
-     * @param x2             Arc end position X value.
-     * @param y2             Arc end position Y value.
-     * @param z2             Arc end position Z value.
-     * @param width          elements width.
-     * @return The pointer address to the newly built arc.
-     */
-    private native long createElectricArc(final long pointerAddress, final String name, final float x, final float y, final float z, final float x2, final float y2, final float z2, final float width);
-
-    /**
-     * Create a new point light in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param name           Light name, must be unique.
-     * @param posX           Light position X value.
-     * @param posY           Light position Y value.
-     * @param posZ           Light position Z value.
-     * @return The pointer address to the light native object.
-     */
-    private native long createPointLight(final long pointerAddress, final String name, final float posX, final float posY, final float posZ);
-
-    /**
-     * Set the shadow technique in Ogre native code.
-     *
-     * @param pointer        Address to the native yz::SceneManager*.
-     * @param techniqueIndex Index of the technique to use.
-     */
-    private native void setShadowTechnique(final long pointer, final int techniqueIndex);
-
-    /**
-     * Create a new spot light in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param name           Light name, must be unique.
-     * @param posX           Light position X value.
-     * @param posY           Light position Y value.
-     * @param posZ           Light position Z value.
-     * @param dirX           Spot direction X value.
-     * @param dirY           Spot direction Y value.
-     * @param dirZ           Spot direction Z value.
-     * @return The pointer address to the light native object.
-     */
-    private native long createSpotLight(final long pointerAddress, final String name, final float posX, final float posY, final float posZ, final float dirX, final float dirY, final float dirZ);
-
-    /**
-     * Create a new directional light in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param name           Light name, must be unique.
-     * @param posX           Light position X value.
-     * @param posY           Light position Y value.
-     * @param posZ           Light position Z value.
-     * @param dirX           Spot direction X value.
-     * @param dirY           Spot direction Y value.
-     * @param dirZ           Spot direction Z value.
-     * @return The pointer address to the light native object.
-     */
-    private native long createDirectionalLight(final long pointerAddress, final String name, final float posX, final float posY, final float posZ, final float dirX, final float dirY, final float dirZ);
-
-    /**
-     * Set the shadow type in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param type           Type value.
-     */
-    private native void setShadowType(final long pointerAddress, final int type);
-
-    /**
-     * Create a new billboard set in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @param material       Set material.
-     * @return The created set pointer address.
-     */
-    private native long createBillboardSet(final long pointerAddress, final long material);
-
-    /**
-     * Retrieve the root scene node in native code.
-     *
-     * @param pointerAddress Address to the native yz::SceneManager*.
-     * @return The pointer of the native yz::Node root object.
-     */
-    private native long getRootNode(final long pointerAddress);
-
-    /**
-     * Set the size for texture used for shadows.
-     *
-     * @param pointer Address to the native yz::SceneManager*.
-     * @param size    Texture size.
-     */
-    private native void setShadowTextureSize(final long pointer, final int size);
-
-    /**
-     * Set the distance to display shadows.
-     *
-     * @param pointer  Address to the native yz::SceneManager*.
-     * @param distance Maximum distance to display shadows..
-     */
-    private native void setShadowFarDistance(final long pointer, final int distance);
 }

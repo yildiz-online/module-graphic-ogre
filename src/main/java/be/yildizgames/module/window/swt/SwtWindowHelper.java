@@ -25,7 +25,6 @@
 package be.yildizgames.module.window.swt;
 
 import be.yildizgames.module.color.Color;
-import be.yildizgames.common.collection.Maps;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackListener;
@@ -41,6 +40,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -58,7 +58,7 @@ public final class SwtWindowHelper {
     /**
      * A map containing all the cursor file, use their file name to get them.
      */
-    private final Map<String, Cursor> cursorList = Maps.newMap();
+    private final Map<String, Cursor> cursorList = new HashMap<>();
 
     public SwtWindowHelper(final Shell shell) {
         super();

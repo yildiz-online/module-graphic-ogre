@@ -27,7 +27,7 @@ package jni;
 /**
  * @author Grégory Van den Borre
  */
-public class OgreNodeNative {
+public class JniNode {
 
     /**
      * Retrieve the node name in native code.

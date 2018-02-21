@@ -22,17 +22,32 @@
  *
  */
 
-package be.yildizgames.module.graphic.ogre.impl;
-
-import be.yildizgames.module.graphic.ogre.OgreCamera;
+package jni;
 
 /**
  * @author Grégory Van den Borre
  */
-public interface OgreRenderWindow {
-    OgreViewport createViewport(OgreCamera camera);
+public class JniRenderWindow {
 
-    void getPrintScreen();
+    /**
+     * Build a new Viewport in native code.
+     *
+     * @param cameraPointer Camera pointer address.
+     * @return The new Viewport pointer address.
+     */
+    public native long createViewport(final long cameraPointer);
 
-    float getFramerate();
+    /**
+     * Get the number of frame rendered in one second.
+     *
+     * @return The Frame rate from native code.
+     */
+    public native float getFps();
+
+    /**
+     * Print the current display in a file.
+     *
+     * @param name File name
+     */
+    public native void printScreen(final String name);
 }

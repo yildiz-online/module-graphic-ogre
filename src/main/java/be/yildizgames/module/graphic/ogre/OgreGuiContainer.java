@@ -33,8 +33,6 @@ import be.yildizgames.module.graphic.gui.internal.Element;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.graphic.material.Material;
 
-import java.util.Optional;
-
 /**
  * Ogre implementation for a GuiContainer.
  *
@@ -67,14 +65,11 @@ final class OgreGuiContainer extends SimpleContainer implements Native {
      * @param screenHeight Screen height in pixels.
      */
     OgreGuiContainer(final String name, final Material material, final BaseCoordinate coordinate, final int screenWidth, final int screenHeight, final boolean widget) {
-        super(name, coordinate, material, Optional.empty(), widget);
+        super(name, coordinate, material, widget);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         this.pointer = NativePointer.create(this.constructor(OgreMaterial.class.cast(material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height));
         this.setPosition(coordinate.left, coordinate.top);
-        if (!widget) {
-            this.getParent().ifPresent(p -> this.setZ(p.getZ().add(1)));
-        }
     }
 
     /**
@@ -88,13 +83,16 @@ final class OgreGuiContainer extends SimpleContainer implements Native {
      * @param screenHeight Screen height in pixels.
      */
     OgreGuiContainer(final String name, final Material material, final BaseCoordinate coordinate, final Container parent, final int screenWidth, final int screenHeight, final boolean widget) {
-        super(name, coordinate, material, Optional.of(parent), widget);
+        super(name, coordinate, material, OgreGuiContainer.class.cast(parent), widget);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         this.pointer = NativePointer.create(this.constructorParent(OgreMaterial.class.cast(material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height,
                 OgreGuiContainer.class.cast(parent).getPointer().getPointerAddress()));
         this.setPosition(coordinate.left, coordinate.top);
         this.show();
+        if (!widget) {
+            this.setZ(parent.getZ().add(1));
+        }
     }
 
     @Override

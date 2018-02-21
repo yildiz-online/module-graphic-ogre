@@ -64,12 +64,12 @@ final class OgreIcon extends AbstractIconElement implements Native {
     }
 
     @Override
-    protected String getParentName() {
+    public String getParentName() {
         return this.getParentName(this.pointer.getPointerAddress());
     }
 
     @Override
-    protected void rotateRadian(final float value) {
+    public void rotateRadian(final float value) {
         // FIXME uncomment
         // this.rotateRadian(this.pointer.address, value);
     }

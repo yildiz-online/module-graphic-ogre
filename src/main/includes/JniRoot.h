@@ -38,58 +38,49 @@ extern "C" {
  * @param object Current java object making the call.
  * @return A jlong value representing the address to the object, to cast as yz::Root* to be used.
  */
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_constructor(
-    JNIEnv* env,
-    jobject object);
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_constructor(JNIEnv* env, jobject object);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_initPhysFS(
-    JNIEnv *env,
-    jobject);
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_initPhysFS(JNIEnv* env,jobject object);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_loadPlugin(
-    JNIEnv* env,
-    jobject object,
-    jstring plugin);
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadPlugin(JNIEnv* env, jobject object, jstring plugin);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_loadRenderer(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_loadRenderer(
     JNIEnv* env,
     jobject object,
     jstring renderer);
-JNIEXPORT POINTER JNICALL Java_be_yildiz_module_graphic_ogre_Root_createSceneManager(
+JNIEXPORT POINTER JNICALL Java_jni_OgreRootNative_createSceneManager(
     JNIEnv* env,
     jobject object,
     jstring jname);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindow(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindow(
     JNIEnv* env,
     jobject object,
     jint width,
     jint height,
     jlong handle);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_createRenderWindowGlContext(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_createRenderWindowGlContext(
     JNIEnv* env,
     jobject object,
     jint width,
-    jint heigth);
+    jint height);
 
 /**
  * @param type: 0 = file system, 1 = zip, 2 = physfs.
  */
- JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_addResourcePath(
+ JNIEXPORT void JNICALL Java_jni_OgreRootNative_addResourcePath(
     JNIEnv* env,
     jobject object,
     jstring jname,
     jstring mediaPath,
     jint type);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_renderOneFrame(
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_renderOneFrame(
     JNIEnv* env,
     jobject object);
 
-JNIEXPORT void JNICALL Java_be_yildiz_module_graphic_ogre_Root_close(
-    JNIEnv* env,
-    jobject object);
+JNIEXPORT void JNICALL Java_jni_OgreRootNative_close(JNIEnv* env, jobject object);
 
 #ifdef __cplusplus
 }
