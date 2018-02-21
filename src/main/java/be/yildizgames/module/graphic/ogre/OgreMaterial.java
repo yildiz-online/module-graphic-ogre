@@ -32,6 +32,7 @@ import be.yildizgames.module.graphic.material.MaterialEffect.EffectType;
 import be.yildizgames.module.graphic.material.MaterialPass;
 import be.yildizgames.module.graphic.material.MaterialTechnique;
 import be.yildizgames.module.graphic.material.TextureUnit;
+import jni.JniMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,8 @@ public final class OgreMaterial extends Material implements Native {
      */
     private final NativePointer pointer;
 
+    private final JniMaterial jni = new JniMaterial();
+
     /**
      * Full constructor.
      *
@@ -55,7 +58,7 @@ public final class OgreMaterial extends Material implements Native {
      */
     OgreMaterial(final String name) {
         super(name);
-        this.pointer = NativePointer.create(this.createTexture(name));
+        this.pointer = NativePointer.create(this.jni.createTexture(name));
         this.createTechnique();
     }
 
@@ -80,13 +83,13 @@ public final class OgreMaterial extends Material implements Native {
 
     @Override
     protected void loadImpl() {
-        this.loadTexture(this.pointer.getPointerAddress());
+        this.jni.loadTexture(this.pointer.getPointerAddress());
     }
 
     @Override
     protected Material copyImpl(final String name) {
-        final long copyPointer = this.copy(this.pointer.getPointerAddress(), name);
-        final long[] copyTechniques = this.getTechniqueList(copyPointer);
+        final long copyPointer = this.jni.copy(this.pointer.getPointerAddress(), name);
+        final long[] copyTechniques = this.jni.getTechniqueList(copyPointer);
         final List<MaterialTechnique> techniqueCopyList = new ArrayList<>(copyTechniques.length);
         for (int techniqueIndex = 0; techniqueIndex < copyTechniques.length; techniqueIndex++) {
             final long[] copyPass = OgreMaterialTechnique.getPassList(copyTechniques[techniqueIndex]);
@@ -116,19 +119,19 @@ public final class OgreMaterial extends Material implements Native {
     @Override
     protected OgreMaterialTechnique createTechniqueImpl(final int index) {
         if (index == 0) {
-            return new OgreMaterialTechnique(this.getTechnique(this.pointer.getPointerAddress(), 0), 0);
+            return new OgreMaterialTechnique(this.jni.getTechnique(this.pointer.getPointerAddress(), 0), 0);
         }
-        return new OgreMaterialTechnique(this.createTechnique(this.pointer.getPointerAddress()), index);
+        return new OgreMaterialTechnique(this.jni.createTechnique(this.pointer.getPointerAddress()), index);
     }
 
     @Override
     protected void receiveShadowImpl(final boolean receive) {
-        this.receiveShadow(this.pointer.getPointerAddress(), receive);
+        this.jni.receiveShadow(this.pointer.getPointerAddress(), receive);
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
@@ -136,68 +139,4 @@ public final class OgreMaterial extends Material implements Native {
     public NativePointer getPointer() {
         return pointer;
     }
-
-    /**
-     * Delete the object in native code.
-     *
-     * @param address Address of the native object.
-     */
-    private native void delete(final long address);
-
-    /**
-     * Create a new Ogre::Material in native code.
-     *
-     * @param name Material name, must be unique.
-     * @return A pointer address to the newly created Ogre::Material.
-     */
-    private native long createTexture(final String name);
-
-    /**
-     * Copy this material.
-     *
-     * @param pointerAddress Address to the native Ogre::Material*.
-     * @param name           Copied object name, must be unique.
-     * @return A pointer address to the newly created Ogre::Material.
-     */
-    private native long copy(final long pointerAddress, final String name);
-
-    /**
-     * Load the material in native code.
-     *
-     * @param pointerAddress Address to the native Ogre::Material*.
-     */
-    private native void loadTexture(final long pointerAddress);
-
-    /**
-     * Create a new technique for this material.
-     *
-     * @param pointerAddress Address to the native Ogre::Material*.
-     * @return A pointer address to the newly created Ogre::Technique.
-     */
-    private native long createTechnique(final long pointerAddress);
-
-    /**
-     * Retrieve a technique in native from its index.
-     *
-     * @param pointerAddress Address to the native Ogre::Material*.
-     * @param index          Index of the technique to retrieve.
-     * @return A pointer address to the retrieved Ogre::Technique.
-     */
-    private native long getTechnique(final long pointerAddress, final int index);
-
-    /**
-     * Get all techniques for this material.
-     *
-     * @param pointerAddress Address to the native Ogre::Material*.
-     * @return A list pointer addresses to the retrieved Ogre::Technique.
-     */
-    private native long[] getTechniqueList(final long pointerAddress);
-
-    /**
-     * Set the material receive or not shadows.
-     *
-     * @param pointerAddress Address to the native Ogre::Material*.
-     * @param receive        <code>true</code> to receive shadows.
-     */
-    private native void receiveShadow(final long pointerAddress, final boolean receive);
 }

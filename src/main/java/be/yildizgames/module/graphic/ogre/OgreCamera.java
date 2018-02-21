@@ -34,6 +34,7 @@ import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.light.LensFlare;
 import be.yildizgames.module.graphic.movable.Node;
 import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
+import jni.JniCamera;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +69,8 @@ public final class OgreCamera extends Camera implements Native {
      */
     private final OgreNode node;
 
+    private final JniCamera jni = new JniCamera();
+
     /**
      * Full constructor.
      *
@@ -81,10 +84,10 @@ public final class OgreCamera extends Camera implements Native {
         this.node = node;
         this.resolutionX = resX;
         this.resolutionY = resY;
-        this.enableRenderingDistance(pointer.getPointerAddress());
+        this.jni.enableRenderingDistance(pointer.getPointerAddress());
         //FIXME LOW hardcoded
-        this.setFarClip(this.pointer.getPointerAddress(), 200000);
-        this.setNearClip(this.pointer.getPointerAddress(), 10);
+        this.jni.setFarClip(this.pointer.getPointerAddress(), 200000);
+        this.jni.setNearClip(this.pointer.getPointerAddress(), 10);
     }
 
     /**
@@ -99,7 +102,7 @@ public final class OgreCamera extends Camera implements Native {
         final float top = rectangle.getTop() / this.resolutionY;
         final float right = rectangle.getRight() / this.resolutionX;
         final float bottom = rectangle.getBottom() / this.resolutionY;
-        final long[] tab = this.throwPlaneRay(this.pointer.getPointerAddress(), left, top, right, bottom);
+        final long[] tab = this.jni.throwPlaneRay(this.pointer.getPointerAddress(), left, top, right, bottom);
         final List<EntityId> ids = new ArrayList<>(tab.length);
         for (long i : tab) {
             ids.add(EntityId.valueOf(i));
@@ -118,7 +121,7 @@ public final class OgreCamera extends Camera implements Native {
     public Optional<EntityId> throwRay(final int x, final int y) {
         final float screenX = x / this.resolutionX;
         final float screenY = y / this.resolutionY;
-        EntityId id = EntityId.valueOf(this.throwRay(this.pointer.getPointerAddress(), screenX, screenY, false));
+        EntityId id = EntityId.valueOf(this.jni.throwRay(this.pointer.getPointerAddress(), screenX, screenY, false));
         if (id.equals(EntityId.WORLD)) {
             return Optional.empty();
         }
@@ -135,70 +138,70 @@ public final class OgreCamera extends Camera implements Native {
     public Point3D computeMoveDestination(final int x, int y) {
         final float screenX = (float) x / this.resolutionX;
         final float screenY = (float) y / this.resolutionY;
-        final float[] destination = this.computeMoveDestinationGroundIntersect(this.pointer.getPointerAddress(), screenX, screenY);
+        final float[] destination = this.jni.computeMoveDestinationGroundIntersect(this.pointer.getPointerAddress(), screenX, screenY);
         return Point3D.valueOf(destination[0], destination[1], destination[2]);
     }
 
     @Override
     public void removeListener(final LensFlare ls) {
         OgreLensFlare listener = (OgreLensFlare) ls;
-        this.unregisterListener(this.pointer.getPointerAddress(), listener.getPointer().getPointerAddress());
+        this.jni.unregisterListener(this.pointer.getPointerAddress(), listener.getPointer().getPointerAddress());
     }
 
     @Override
     public void stopAutoTrackImpl() {
-        this.stopAutotrack(this.pointer.getPointerAddress());
+        this.jni.stopAutotrack(this.pointer.getPointerAddress());
     }
 
     @Override
     public void autoTrackImpl(final Node e) {
         OgreNode nodeToTrack = (OgreNode) e;
-        this.setAutotrack(this.pointer.getPointerAddress(), nodeToTrack.getPointer().getPointerAddress());
+        this.jni.setAutotrack(this.pointer.getPointerAddress(), nodeToTrack.getPointer().getPointerAddress());
     }
 
     @Override
     public void autoTrack(final Point3D pos) {
         this.node.setPosition(pos);
-        this.setAutotrack(this.pointer.getPointerAddress(), this.node.getPointer().getPointerAddress());
+        this.jni.setAutotrack(this.pointer.getPointerAddress(), this.node.getPointer().getPointerAddress());
     }
 
     @Override
     protected Point3D rotateImpl(final float yaw, final float pitch) {
-        float[] v = this.rotate(this.pointer.getPointerAddress(), yaw * OgreCamera.ROTATION_SPEED, pitch * OgreCamera.ROTATION_SPEED);
+        float[] v = this.jni.rotate(this.pointer.getPointerAddress(), yaw * OgreCamera.ROTATION_SPEED, pitch * OgreCamera.ROTATION_SPEED);
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
     protected void yaw(final float yaw) {
-        this.rotate(this.pointer.getPointerAddress(), yaw * OgreCamera.ROTATION_SPEED, 0);
+        this.jni.rotate(this.pointer.getPointerAddress(), yaw * OgreCamera.ROTATION_SPEED, 0);
     }
 
     @Override
     protected Point3D moveImpl(final float xTranslation, final float yTranslation, final float zTranslation) {
-        float[] v = this.move(this.pointer.getPointerAddress(), xTranslation, yTranslation, zTranslation);
+        float[] v = this.jni.move(this.pointer.getPointerAddress(), xTranslation, yTranslation, zTranslation);
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
     protected Point3D setPositionImpl(final int x, final int y, final Axis axis) {
-        float[] v = this.setPositionAxis(this.pointer.getPointerAddress(), x, y, axis.ordinal());
+        float[] v = this.jni.setPositionAxis(this.pointer.getPointerAddress(), x, y, axis.ordinal());
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
     protected void setPositionImpl(final float xPosition, final float yPosition, final float zPosition) {
-        this.setPosition(this.pointer.getPointerAddress(), xPosition, yPosition, zPosition);
+        this.jni.setPosition(this.pointer.getPointerAddress(), xPosition, yPosition, zPosition);
     }
 
     @Override
     protected Point3D setOrientationImpl(final float x, final float y, final float z) {
-        this.setOrientation(this.pointer.getPointerAddress(), x, y, z);
+        this.jni.setOrientation(this.pointer.getPointerAddress(), x, y, z);
         return Point3D.valueOf(x, y, z);
     }
 
     @Override
     protected Point3D lookAtImpl(final Point3D target) {
-        float[] l = this.lookAt(this.pointer.getPointerAddress(), target.x, target.y, target.z);
+        float[] l = this.jni.lookAt(this.pointer.getPointerAddress(), target.x, target.y, target.z);
         return Point3D.valueOf(l[0], l[1], l[2]);
     }
 
@@ -209,12 +212,12 @@ public final class OgreCamera extends Camera implements Native {
      * @return <code>true</code> if the camera can view this object, <code>false</code> otherwise.
      */
     boolean see(final Point3D position) {
-        return this.isVisible(this.pointer.getPointerAddress(), position.x, position.y, position.z);
+        return this.jni.isVisible(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
     @Override
     protected Point3D getDirectionImpl() {
-        float[] v = this.getDirection(this.pointer.getPointerAddress());
+        float[] v = this.jni.getDirection(this.pointer.getPointerAddress());
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
@@ -222,19 +225,19 @@ public final class OgreCamera extends Camera implements Native {
      * Force the listeners update in native code.
      */
     void forceListenersUpdate() {
-        this.forceListenersUpdate(this.pointer.getPointerAddress());
+        this.jni.forceListenersUpdate(this.pointer.getPointerAddress());
     }
 
     /**
      * Detach the camera from its parent node.
      */
     void detachFromParent() {
-        this.detachFromParent(this.pointer.getPointerAddress());
+        this.jni.detachFromParent(this.pointer.getPointerAddress());
     }
 
     @Override
     public void delete() {
-        this.delete(this.pointer.getPointerAddress());
+        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
@@ -242,186 +245,4 @@ public final class OgreCamera extends Camera implements Native {
     public NativePointer getPointer() {
         return pointer;
     }
-
-    /**
-     * Delete the object in native code.
-     *
-     * @param address Address of the native object.
-     */
-    private native void delete(final long address);
-
-    /**
-     * Rotate the camera in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param yaw     Rotation X axis.
-     * @param pitch   Rotation Y axis.
-     * @return The new camera direction in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    private native float[] rotate(final long pointer, final float yaw, final float pitch);
-
-    /**
-     * Set the camera look to a position.
-     *
-     * @param pointer Address to the native object.
-     * @param targetX Target position X value.
-     * @param targetY Target position Y value.
-     * @param targetZ Target position Z value.
-     * @return The new camera direction in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    private native float[] lookAt(final long pointer, final float targetX, final float targetY, final float targetZ);
-
-    /**
-     * Set the camera direction.
-     *
-     * @param pointer Address to the native object.
-     * @param dirX    Direction X value.
-     * @param dirY    Direction Y value.
-     * @param dirZ    Direction Z value.
-     */
-    private native void setOrientation(final long pointer, final float dirX, final float dirY, final float dirZ);
-
-    /**
-     * Check if a position in visible by the camera.
-     *
-     * @param pointer   Address to the native object.
-     * @param xPosition Position to check X value.
-     * @param yPosition Position to check Y value.
-     * @param zPosition Position to check Z value.
-     * @return <code>true</code> if visible, <code>false</code> otherwise.
-     */
-    private native boolean isVisible(final long pointer, final float xPosition, final float yPosition, final float zPosition);
-
-    /**
-     * Set the camera position in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param posX    Camera new position X value.
-     * @param posY    Camera new position Y value.
-     * @param posZ    Camera new position Z value.
-     */
-    private native void setPosition(final long pointer, final float posX, final float posY, final float posZ);
-
-    /**
-     * Set the camera position in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param posX    Camera new position X value.
-     * @param posY    Camera new position Y value.
-     * @param ordinal Axis to assign X and Y.
-     * @return The camera new position in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    private native float[] setPositionAxis(final long pointer, final float posX, final float posY, final int ordinal);
-
-    /**
-     * Move the camera in native code.
-     *
-     * @param pointer      Address to the native object.
-     * @param translationX Translation X value.
-     * @param translationY Translation Y value.
-     * @param translationZ Translation Z value.
-     * @return The camera new position in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    private native float[] move(final long pointer, final float translationX, final float translationY, final float translationZ);
-
-    /**
-     * Retrieve the camera direction in native code.
-     *
-     * @param pointer Address to the native object.
-     * @return The camera direction in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    private native float[] getDirection(final long pointer);
-
-    /**
-     * Detach from the parent node in native code.
-     *
-     * @param pointer Address of this yz::Camera.
-     */
-    private native void detachFromParent(final long pointer);
-
-    /**
-     * Use this when the camera is not moved directly(i.e. by nodes) to force listeners being updated.
-     *
-     * @param pointer Address to the native object.
-     */
-    private native void forceListenersUpdate(final long pointer);
-
-    /**
-     * Remove a listener in native code.
-     *
-     * @param pointer Address of this yz::Camera.
-     * @param ls      Address of the listener to remove.
-     */
-    private native void unregisterListener(final long pointer, final long ls);
-
-    /**
-     * Activate auto tracking for a node in native code.
-     *
-     * @param pointer     Address of this yz::Camera.
-     * @param nodePointer Address of the yz::Node to track.
-     */
-    private native void setAutotrack(final long pointer, final long nodePointer);
-
-    /**
-     * Deactivate auto tracking in native code.
-     *
-     * @param pointer Address of this yz::Camera.
-     */
-    private native void stopAutotrack(final long pointer);
-
-    /**
-     * Enable the rendering distance.
-     *
-     * @param pointer Pointer to the native object.
-     */
-    private native void enableRenderingDistance(final long pointer);
-
-    /**
-     * Set the far clip distance.
-     *
-     * @param pointer  Pointer to the native object.
-     * @param distance Far clip distance.
-     */
-    private native void setFarClip(final long pointer, final int distance);
-
-    /**
-     * Set the near clip distance.
-     *
-     * @param pointer  Pointer to the native object.
-     * @param distance Near clip distance.
-     */
-    private native void setNearClip(final long pointer, final int distance);
-
-    /**
-     * Throw a plane ray in native code to retrieve the movable in the plane.
-     *
-     * @param pointerAddress Address to the native yz::Camera*.
-     * @param left           Plane left value.
-     * @param top            Plane top value.
-     * @param right          Plane right value.
-     * @param bottom         Plane bottom value.
-     * @return An array with the movable pointer addresses.
-     */
-    private native long[] throwPlaneRay(final long pointerAddress, final float left, final float top, final float right, final float bottom);
-
-    /**
-     * Throw a ray to retrieve an entity in native code.
-     *
-     * @param pointerAddress Address to the native yz::Camera*.
-     * @param screenX        Screen X position to throw the ray.
-     * @param screenY        Screen Y position to throw the ray.
-     * @param poly           <code>true</code> to make selection with polygon precision, false to use bounding box.
-     * @return The pointer value of the found movable object, if none, 0.
-     */
-    private native long throwRay(final long pointerAddress, final float screenX, final float screenY, final boolean poly);
-
-    /**
-     * Compute the intersection point between the mouse position and the invisible ground associated to the camera.
-     *
-     * @param pointerAddress Address to the native yz::Camera*.
-     * @param screenX        Mouse x position.
-     * @param screenY        Mouse y position.
-     * @return The intersection point.
-     */
-    private native float[] computeMoveDestinationGroundIntersect(final long pointerAddress, final float screenX, final float screenY);
 }

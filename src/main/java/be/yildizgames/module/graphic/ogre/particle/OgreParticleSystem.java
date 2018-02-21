@@ -37,6 +37,7 @@ import be.yildizgames.module.graphic.particle.ParticleEmitter.EmitterType;
 import be.yildizgames.module.graphic.particle.ParticleForceAffector;
 import be.yildizgames.module.graphic.particle.ParticleScaleAffector;
 import be.yildizgames.module.graphic.particle.ParticleSystem;
+import jni.JniParticleSystem;
 
 /**
  * Ogre implementation for the ParticleSystem.
@@ -55,6 +56,8 @@ public final class OgreParticleSystem extends ParticleSystem implements Native {
      */
     private OgreNode node;
 
+    private final JniParticleSystem jni = new JniParticleSystem();
+
     /**
      * Full constructor.
      *
@@ -65,61 +68,61 @@ public final class OgreParticleSystem extends ParticleSystem implements Native {
         super(node);
         this.pointer = pointer;
         this.node = node;
-        this.attachToNode(this.pointer.getPointerAddress(), this.node.getPointer().getPointerAddress());
+        this.jni.attachToNode(this.pointer.getPointerAddress(), this.node.getPointer().getPointerAddress());
     }
 
     @Override
     protected ParticleEmitter createEmitter(final EmitterType type) {
-        final long address = this.createEmitter(this.pointer.getPointerAddress());
+        final long address = this.jni.createEmitter(this.pointer.getPointerAddress());
         return new OgreParticleEmitter(NativePointer.create(address));
     }
 
     @Override
     protected ParticleColorAffector createColorAffector() {
-        final long address = this.createColorAffector(this.pointer.getPointerAddress());
+        final long address = this.jni.createColorAffector(this.pointer.getPointerAddress());
         return new OgreParticleColorAffector(NativePointer.create(address));
     }
 
     @Override
     protected ParticleForceAffector createForceAffector() {
-        final long address = this.createForceAffector(this.pointer.getPointerAddress());
+        final long address = this.jni.createForceAffector(this.pointer.getPointerAddress());
         return new OgreParticleForceAffector(NativePointer.create(address));
     }
 
     @Override
     protected ParticleScaleAffector createScaleAffector() {
-        final long address = this.createScaleAffector(this.pointer.getPointerAddress());
+        final long address = this.jni.createScaleAffector(this.pointer.getPointerAddress());
         return new OgreParticleScaleAffector(NativePointer.create(address));
     }
 
     @Override
     protected void setMaterialImpl(final Material material) {
-        this.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
     }
 
     @Override
     protected void setOrientationImpl(final Orientation orientation) {
-        this.setParticleOrientation(this.pointer.getPointerAddress(), orientation.ordinal());
+        this.jni.setParticleOrientation(this.pointer.getPointerAddress(), orientation.ordinal());
     }
 
     @Override
     protected void setQuotaImpl(final int quota) {
-        this.setQuota(this.pointer.getPointerAddress(), quota);
+        this.jni.setQuota(this.pointer.getPointerAddress(), quota);
     }
 
     @Override
     protected void setSizeImpl(final float width, final float height) {
-        this.setSize(this.pointer.getPointerAddress(), width, height);
+        this.jni.setSize(this.pointer.getPointerAddress(), width, height);
     }
 
     @Override
     protected void showImpl() {
-        this.show(this.pointer.getPointerAddress());
+        this.jni.show(this.pointer.getPointerAddress());
     }
 
     @Override
     protected void hideImpl() {
-        this.hide(this.pointer.getPointerAddress());
+        this.jni.hide(this.pointer.getPointerAddress());
     }
 
     @Override
@@ -139,116 +142,13 @@ public final class OgreParticleSystem extends ParticleSystem implements Native {
 
     @Override
     public void keepInLocalSpace(final boolean keep) {
-        this.keepInLocalSpace(this.pointer.getPointerAddress(), keep);
+        this.jni.keepInLocalSpace(this.pointer.getPointerAddress(), keep);
     }
 
     @Override
     protected void setOriginImpl(final Origin origin) {
-        this.setBillboardOrigin(this.pointer.getPointerAddress(), origin.getValue());
+        this.jni.setBillboardOrigin(this.pointer.getPointerAddress(), origin.getValue());
     }
-
-    /**
-     * Create an emitter in native code.
-     *
-     * @param pointer Pointer address to the native object.
-     * @return The emitter pointer address.
-     */
-    private native long createEmitter(final long pointer);
-
-    /**
-     * Create a color affector in native code.
-     *
-     * @param pointer Address to the native object.
-     * @return The color affector pointer address.
-     */
-    private native long createColorAffector(final long pointer);
-
-    /**
-     * Create a force affector in native code.
-     *
-     * @param pointer Address to the native object.
-     * @return The force affector pointer address.
-     */
-    private native long createForceAffector(final long pointer);
-
-    /**
-     * Create a scale affector in native code.
-     *
-     * @param pointer Address to the native object.
-     * @return The scale affector pointer address.
-     */
-    private native long createScaleAffector(final long pointer);
-
-    /**
-     * Set the particle size in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param width   Particle width.
-     * @param height  Particle height.
-     */
-    private native void setSize(final long pointer, final float width, final float height);
-
-    /**
-     * Set the particle material in native code.
-     *
-     * @param pointer  Address to the native object.
-     * @param material Material to use.
-     */
-    private native void setMaterial(final long pointer, final long material);
-
-    /**
-     * Set the particle quota in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param quota   Quota to set.
-     */
-    private native void setQuota(final long pointer, final int quota);
-
-    /**
-     * Show the particle in native code.
-     *
-     * @param pointer Address to the native object.
-     */
-    private native void show(final long pointer);
-
-    /**
-     * Hide the particle system in native code.
-     *
-     * @param pointer Address to the native object.
-     */
-    private native void hide(final long pointer);
-
-    /**
-     * Set the particle billboard orientation in native code.
-     *
-     * @param pointer         Address to the native object.
-     * @param orientationType Orientation type.
-     */
-    private native void setParticleOrientation(final long pointer, final int orientationType);
-
-    /**
-     * Set the billboard origin.
-     *
-     * @param pointerAddress Address to the native object.
-     * @param value          Origin enum value.
-     */
-    private native void setBillboardOrigin(final long pointerAddress, final int value);
-
-    /**
-     * Attach this object to a node in native code.
-     *
-     * @param pointer     Address to the native object.
-     * @param nodePointer Address to the native node object.
-     */
-    private native void attachToNode(final long pointer, final long nodePointer);
-
-    /**
-     * Keep particle in local space.
-     *
-     * @param pointer Address to the native object.
-     * @param keep    <code>true</code> to keep.
-     */
-    private native void keepInLocalSpace(final long pointer, final boolean keep);
 
     @Override
     public void detachFromParent() {
@@ -263,7 +163,6 @@ public final class OgreParticleSystem extends ParticleSystem implements Native {
     @Override
     public void addChild(Movable child) {
         this.node.addChild(child);
-
     }
 
     @Override
