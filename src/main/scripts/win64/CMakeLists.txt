@@ -21,7 +21,7 @@ file(
         ${CMAKE_SOURCE_DIR}/../../includes/*.h
 )
     
-add_library(ogre SHARED ${source_files})
-target_link_libraries(ogre ${CMAKE_SOURCE_DIR}/ogre3d/win64/lib/libOgreMain.dll.a)
-target_link_libraries(ogre ${CMAKE_SOURCE_DIR}/ogre3d/win64/lib/libOgreOverlay.dll.a)
-target_link_libraries(ogre ${CMAKE_SOURCE_DIR}/physicsfs/win64/lib/libphysfs.a)
+add_library(yildizogre SHARED ${source_files})
+target_link_libraries(yildizogre ${CMAKE_SOURCE_DIR}/ogre3d/win64/lib/libOgreMain.dll.a)
+target_link_libraries(yildizogre ${CMAKE_SOURCE_DIR}/ogre3d/win64/lib/libOgreOverlay.dll.a)
+target_link_libraries(yildizogre ${CMAKE_SOURCE_DIR}/physicsfs/win64/lib/libphysfs.a)

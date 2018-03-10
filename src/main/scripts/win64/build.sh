@@ -7,6 +7,11 @@ make
 r1=$?
 
 cd ..
+cp physicsfs/win64/bin/libphysfs.dll ../../../../target/classes/win64
+cp ogre3d/win64/bin/OgreMain.dll ../../../../target/classes/win64
+cp ogre3d/win64/bin/OgreOverlay.dll ../../../../target/classes/win64
+cp ogre3d/win64/bin/Plugin_ParticleFX.dll ../../../../target/classes/win64
+cp ogre3d/win64/bin/RenderSystem_GL.dll ../../../../target/classes/win64
 rm -R build
 
 return $r1
