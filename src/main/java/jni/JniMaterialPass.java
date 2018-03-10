@@ -167,6 +167,10 @@ public class JniMaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
+     * @param v1 Parameter red.
+     * @param v2 Parameter green.
+     * @param v3 Parameter blue.
+     * @param v4 Parameter alpha.
      */
     public native void setFragmentProgramParameterColor(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
 
@@ -184,6 +188,8 @@ public class JniMaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
+     * @param v1 Parameter value 1.
+     * @param v2 Parameter value 2.
      */
     public native void setFragmentProgramParameterFloat2(final long pointer, final String name, final float v1, final float v2);
 
@@ -193,6 +199,9 @@ public class JniMaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
+     * @param v1 Parameter value 1.
+     * @param v2 Parameter value 2.
+     * @param v3 Parameter value 3.
      */
     public native void setFragmentProgramParameterFloat3(final long pointer, final String name, final float v1, final float v2, final float v3);
 
@@ -202,6 +211,10 @@ public class JniMaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
+     * @param v1 Parameter value 1.
+     * @param v2 Parameter value 2.
+     * @param v3 Parameter value 3.
+     * @param v4 Parameter value 4.
      */
     public native void setFragmentProgramParameterFloat4(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
 
@@ -229,6 +242,10 @@ public class JniMaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
+     * @param v1 Parameter red.
+     * @param v2 Parameter green.
+     * @param v3 Parameter blue.
+     * @param v4 Parameter alpha.
      */
     public native void setVertexProgramParameterColor(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
 
@@ -246,6 +263,8 @@ public class JniMaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
+     * @param v1 Parameter value 1.
+     * @param v2 Parameter value 2.
      */
     public native void setVertexProgramParameterFloat2(final long pointer, final String name, final float v1, final float v2);
 
@@ -255,6 +274,9 @@ public class JniMaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
+     * @param v1 Parameter value 1.
+     * @param v2 Parameter value 2.
+     * @param v3 Parameter value 3.
      */
     public native void setVertexProgramParameterFloat3(final long pointer, final String name, final float v1, final float v2, final float v3);
 
@@ -264,6 +286,10 @@ public class JniMaterialPass {
      *
      * @param pointer Pointer address to the native Ogre::Pass.
      * @param name    Parameter name.
+     * @param v1 Parameter value 1.
+     * @param v2 Parameter value 2.
+     * @param v3 Parameter value 3.
+     * @param v4 Parameter value 4.
      */
     public native void setVertexProgramParameterFloat4(final long pointer, final String name, final float v1, final float v2, final float v3, final float v4);
 

@@ -46,6 +46,7 @@ public class OgreNodeMovable extends OgreNodeBase {
      * Full constructor.
      *
      * @param pointerAddress Address to the native object.
+     * @param parent Parent object.
      */
     public OgreNodeMovable(final NativePointer pointerAddress, final Movable parent) {
         super(pointerAddress, parent);

@@ -69,6 +69,7 @@ public class JniSceneManager {
      *
      * @param pointerAddress Address to the native yz::SceneManager*.
      * @param nodePointer    The entity will be attached to this node.
+     * @param name Entity name.
      * @return The created entity pointer address.
      */
     public native long createSphereEntity(final long pointerAddress, final long nodePointer, final String name);
@@ -122,6 +123,7 @@ public class JniSceneManager {
     /**
      * Create a lens flare object in native code.
      *
+     * @param name Object name.
      * @param pointerAddress Address to the native yz::SceneManager*.
      * @param camPointer     currently used camera.
      * @param light          Material used for the light.

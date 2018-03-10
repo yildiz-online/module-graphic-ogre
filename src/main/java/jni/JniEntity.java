@@ -41,7 +41,7 @@ public class JniEntity {
      * Get the parent scene node name.
      *
      * @param pointerAddress Address of the native Ogre::Entity pointer.
-     * @return Ogre::Entity::getParentSceneNode()->getName().
+     * @return Ogre::Entity::getParentSceneNode().getName().
      */
     public native String getParentSceneNode(final long pointerAddress);
 
@@ -73,6 +73,11 @@ public class JniEntity {
      *
      * @param pointerAddress Address of the native Ogre::Entity pointer.
      * @param index          Parameter index.
+     * @param v1 Parameter value 1.
+     * @param v2 Parameter value 2.
+     * @param v3 Parameter value 3.
+     * @param v4 Parameter value 4.
+     *
      */
     public native void setParameter(final long pointerAddress, final int index, final float v1, final float v2, final float v3, final float v4);
 

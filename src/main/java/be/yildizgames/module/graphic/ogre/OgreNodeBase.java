@@ -64,6 +64,7 @@ public abstract class OgreNodeBase extends Node implements OgreNode {
      * Full constructor.
      *
      * @param pointerAddress Address to the native object.
+     * @param parent Parent object.
      */
     protected OgreNodeBase(final NativePointer pointerAddress, final Movable parent) {
         super(parent);
@@ -76,6 +77,8 @@ public abstract class OgreNodeBase extends Node implements OgreNode {
      * Full constructor.
      *
      * @param pointerAddress Address to the native object.
+     * @param id Object unique id.
+     * @param parent Parent object.
      */
     protected OgreNodeBase(final NativePointer pointerAddress, final EntityId id, final Movable parent) {
         super(id, parent);

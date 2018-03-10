@@ -77,8 +77,15 @@ public final class OgreCamera extends Camera implements Native {
      * @param pointer Pointer address to the associated native object.
      * @param name    Camera name.
      * @param node    The node will be used to auto track a specific position.
+     * @param resX    Resolution width.
+     * @param resY    Resolution height.
      */
-    public OgreCamera(final NativePointer pointer, final String name, final OgreNode node, final float resX, final float resY) {
+    public OgreCamera(
+            final NativePointer pointer,
+            final String name,
+            final OgreNode node,
+            final float resX,
+            final float resY) {
         super(name);
         this.pointer = pointer;
         this.node = node;

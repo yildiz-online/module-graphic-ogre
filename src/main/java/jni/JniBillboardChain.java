@@ -32,6 +32,7 @@ public class JniBillboardChain {
     /**
      * Create the object in native code.
      *
+     * @param name Object unique name.
      * @param nodePointer Pointer to the yz::Node to attach wih this object.
      * @return The pointer address to the native object.
      */
