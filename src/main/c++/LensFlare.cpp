@@ -65,8 +65,8 @@ node(node), lightFlareSet(light), streakSet(streak), haloSet(halo), burstSet(bur
 
 void yz::LensFlare::cameraUpdated(const Ogre::Camera* camera) {
     LOG_FUNCTION
-    Ogre::Vector3 camPosition = camera->getPosition();
-    Ogre::Vector3 camDirection = camera->getDirection();
+    Ogre::Vector3 camPosition = camera->getParentSceneNode()->getPosition();
+    Ogre::Vector3 camDirection = camera->getParentSceneNode()->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
 
     this->query->setRay(Ogre::Ray(camPosition, this->node->getPosition()));
     Ogre::RaySceneQueryResult result = this->query->execute();

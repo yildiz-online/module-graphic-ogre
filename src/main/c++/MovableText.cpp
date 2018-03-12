@@ -61,7 +61,7 @@ void yz::MovableText::setFont(yz::Font* font) {
 		Ogre::MaterialManager::getSingleton().remove(materialName);
 	}
 
-	if (this->mFontName != font->getName() || mpMaterial.isNull() || !mpFont) {
+	if (this->mFontName != font->getName() || !mpMaterial || !mpFont) {
 		mFontName = font->getName();
 
 		mpFont = font;
@@ -71,10 +71,10 @@ void yz::MovableText::setFont(yz::Font* font) {
 					"MovableText::setFontName");
 
 		mpFont->load();
-		if (!mpMaterial.isNull()) {
+		if (mpMaterial) {
 			Ogre::MaterialManager::getSingletonPtr()->remove(
 					mpMaterial->getName());
-			mpMaterial.setNull();
+			mpMaterial.reset();
 		}
 
 		mpMaterial = mpFont->getMaterial()->clone(materialName);
@@ -149,7 +149,7 @@ void yz::MovableText::setLocalTranslation(Ogre::Vector3 trans) {
 }
 
 void yz::MovableText::showOnTop(bool show) {
-	if (mOnTop != show && !mpMaterial.isNull()) {
+	if (mOnTop != show && mpMaterial) {
 		mOnTop = show;
 		mpMaterial->setDepthBias(1.0, 1.0);
 		mpMaterial->setDepthCheckEnabled(!mOnTop);
@@ -159,7 +159,7 @@ void yz::MovableText::showOnTop(bool show) {
 
 void yz::MovableText::_setupGeometry() {
 	assert(mpFont);
-	assert(!mpMaterial.isNull());
+	assert(mpMaterial);
 
 	unsigned int vertexCount = static_cast<unsigned int>(mCaption.size() * 6);
 
@@ -456,7 +456,7 @@ void yz::MovableText::_setupGeometry() {
 
 void yz::MovableText::_updateColors() {
 	assert(mpFont);
-	assert(!mpMaterial.isNull());
+	assert(mpMaterial);
 
 	// Convert to system-specific
 	Ogre::RGBA color;

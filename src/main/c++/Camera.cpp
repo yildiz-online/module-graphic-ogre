@@ -96,7 +96,7 @@ std::vector<yz::Id*> yz::Camera::throwPlaneRay(
     for (itr = queryResult.movables.begin(); itr != queryResult.movables.end(); ++itr) {
         Ogre::SceneNode* node = (*itr)->getParentSceneNode();
         Ogre::Any any = node->getUserObjectBindings().getUserAny();
-        if(!any.isEmpty()) {
+        if(any.has_value()) {
             result.push_back(Ogre::any_cast<yz::Id*>(any));
         }
     }
@@ -137,7 +137,7 @@ yz::Id* yz::Camera::throwRay(
         if (itr->movable) {
             Ogre::SceneNode* node = itr->movable->getParentSceneNode();
             Ogre::Any any = node->getUserObjectBindings().getUserAny();
-            if (!any.isEmpty()) {
+            if (any.has_value()) {
                 if (!poly) {
                     return Ogre::any_cast<yz::Id*>(any);
                 } else {/*else if (poly

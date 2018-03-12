@@ -42,7 +42,7 @@ public:
 
     virtual void cameraUpdated(const Ogre::Camera* camera) {
         LOG_FUNCTION
-        Ogre::Vector3 camPos = camera->getPosition();
+        Ogre::Vector3 camPos = camera->getParentSceneNode()->getPosition();
         node->setPosition(camPos.x, -1, camPos.z);
     }
 private:

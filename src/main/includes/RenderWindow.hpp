@@ -55,7 +55,7 @@ class RenderWindow {
 
 		inline float getFps() const{
 		    LOG_FUNCTION
-			return this->window->getLastFPS();
+			return this->window->getStatistics().lastFPS;
 		}
 
         inline void printScreen(const std::string& file) const{
