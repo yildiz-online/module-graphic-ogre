@@ -80,7 +80,7 @@ public:
 	void initShadows()
 	{
 		mSceneMgr->setShadowTextureSelfShadow(true);
-		mSceneMgr->setShadowTextureCasterMaterial("shadow_caster");
+		//mSceneMgr->setShadowTextureCasterMaterial("shadow_caster");
 		mSceneMgr->setShadowTextureCount(4);
 
 		mSceneMgr->setShadowTextureSize(256);

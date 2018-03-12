@@ -41,6 +41,14 @@ public class OgreNodeStatic extends OgreNodeBase {
         n.setDirection(pointerAddress.getPointerAddress(), direction.x, direction.y, direction.z);
     }
 
+    private OgreNodeStatic(NativePointer pointerAddress) {
+        super(pointerAddress, null);
+    }
+
+    public static OgreNodeStatic root(NativePointer pointerAddress) {
+        return new OgreNodeStatic(pointerAddress);
+    }
+
     @Override
     public void setPosition(final Point3D position) {
         // Static node does not change position.

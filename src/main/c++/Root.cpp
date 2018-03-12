@@ -36,7 +36,7 @@ yz::Root::Root() {
     LOG_FUNCTION
     this->root = OGRE_NEW Ogre::Root("", "", "ogre.log");
     this->os = OGRE_NEW Ogre::OverlaySystem();
-    Ogre::LogManager::getSingleton().logMessage("Initializing Ogre native version 1.1.6");
+    Ogre::LogManager::getSingleton().logMessage("Initializing Ogre native version 2.0.0");
 }
 
 yz::Root::~Root() {
@@ -71,7 +71,7 @@ void yz::Root::initialise(const std::string& renderer) {
 
 yz::SceneManager* yz::Root::createSceneManager(const std::string& name) {
     LOG_FUNCTION
-    Ogre::SceneManager* sm = this->root->createSceneManager(name);
+    Ogre::SceneManager* sm = this->root->createSceneManager();
     sm->addRenderQueueListener(this->os);
     return new yz::SceneManager(sm);
 }

@@ -27,6 +27,7 @@ package be.yildizgames.module.graphic.ogre.impl;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
@@ -61,6 +62,7 @@ import be.yildizgames.module.graphic.ogre.misc.OgreLine;
 import be.yildizgames.module.graphic.ogre.misc.OgreSkyX;
 import be.yildizgames.module.graphic.ogre.particle.OgreParticleSystem;
 import jni.JniSceneManager;
+import org.slf4j.Logger;
 
 /**
  * Java part of the yz::SceneManager.
@@ -68,6 +70,8 @@ import jni.JniSceneManager;
  * @author Grégory Van den Borre
  */
 public final class OgreSceneManager implements SceneManager, Native {
+
+    private final Logger logger = LogFactory.getInstance().getLogger(OgreSceneManager.class);
 
     /**
      * Value to scale the boxes to match Ogre and engine sizes.
@@ -126,8 +130,12 @@ public final class OgreSceneManager implements SceneManager, Native {
         this.window = renderWindow;
         this.resolutionX = screenSizeX;
         this.resolutionY = screenSizeY;
+        this.logger.debug("Initializing root node...");
+        this.rootNode = OgreNodeStatic.root(NativePointer.create(this.jni.getRootNode(this.pointer.getPointerAddress())));
+        this.logger.debug("Root node initialized.");
+        this.logger.debug("Creating default camera...");
         this.defaultCamera = this.createCamera("default");
-        this.rootNode = new OgreNodeStatic(NativePointer.create(this.jni.getRootNode(this.pointer.getPointerAddress())), null, Point3D.ZERO, Point3D.ZERO);
+        this.logger.debug("Default camera created.");
     }
 
     /**
