@@ -29,8 +29,13 @@
 
 yz::Id* yz::Camera::ID_WORLD(new yz::Id(0));
 
-yz::Camera::Camera(Ogre::Camera* cam, Ogre::RaySceneQuery* q, Ogre::PlaneBoundedVolumeListSceneQuery* pq) : camera(cam), query(q), planeQuery(pq) {
+yz::Camera::Camera(
+  Ogre::Camera* cam,
+  Ogre::RaySceneQuery* q,
+  Ogre::PlaneBoundedVolumeListSceneQuery* pq,
+  Ogre::SceneNode* n) : camera(cam), query(q), planeQuery(pq), node(n) {
     LOG_FUNCTION
+    n->attachObject(cam);
 }
 
 Ogre::Ray yz::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
@@ -40,13 +45,14 @@ Ogre::Ray yz::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
 
 Ogre::Vector3 yz::Camera::rotate(const Ogre::Real x, const Ogre::Real y) {
     LOG_FUNCTION
-    this->camera->yaw(Ogre::Radian(x));
-    const Ogre::Real pitch = this->camera->getOrientation().getPitch().valueDegrees();
+    //FIXME limits related to game? check
+    this->node->yaw(Ogre::Radian(x));
+    const Ogre::Real pitch = this->node->getOrientation().getPitch().valueDegrees();
     if((pitch < 50 && y < 0) || (pitch > -50 && y > 0)) {
-        this->camera->pitch(Ogre::Radian(y));
+        this->node->pitch(Ogre::Radian(y));
     }
     this->updateListeners();
-    return this->camera->getDirection();
+    return this->getDirection();
 }
 
 std::vector<yz::Id*> yz::Camera::throwPlaneRay(
@@ -87,8 +93,7 @@ std::vector<yz::Id*> yz::Camera::throwPlaneRay(
 
     Ogre::SceneQueryResultMovableList::iterator itr;
 
-    for (itr = queryResult.movables.begin(); itr != queryResult.movables.end();
-            ++itr) {
+    for (itr = queryResult.movables.begin(); itr != queryResult.movables.end(); ++itr) {
         Ogre::SceneNode* node = (*itr)->getParentSceneNode();
         Ogre::Any any = node->getUserObjectBindings().getUserAny();
         if(!any.isEmpty()) {
@@ -158,7 +163,7 @@ void yz::Camera::updateListeners() {
 
 Ogre::Vector3 yz::Camera::setPositionAxis(const Ogre::Real x, const Ogre::Real y, const int axis) {
     LOG_FUNCTION
-    Ogre::Vector3 pos = this->camera->getPosition();
+    Ogre::Vector3 pos = this->node->getPosition();
 
     Ogre::Real resultX = 0;
     Ogre::Real resultY = 0;
@@ -184,9 +189,9 @@ Ogre::Vector3 yz::Camera::setPositionAxis(const Ogre::Real x, const Ogre::Real y
         //EXCEPTION
         break;
     }
-    this->camera->setPosition(resultX, resultY, resultZ);
+    this->node->setPosition(resultX, resultY, resultZ);
     this->updateListeners();
-    return this->camera->getPosition();
+    return this->node->getPosition();
 }
 
 Ogre::Vector3 yz::Camera::getPoint(
@@ -194,7 +199,7 @@ Ogre::Vector3 yz::Camera::getPoint(
     const Ogre::Real x,
     const Ogre::Real y) {
     LOG_FUNCTION
-    Ogre::Vector3 camPos = this->camera->getPosition();
+    Ogre::Vector3 camPos = this->node->getPosition();
     Ogre::Real distance = pos.distance(camPos);
     Ogre::Ray ray = this->getRay(x, y);
     Ogre::Vector3 result = ray.getPoint(distance);

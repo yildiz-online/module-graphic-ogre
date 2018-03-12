@@ -94,8 +94,7 @@ public:
     inline void setDebugMode() {
         LOG_FUNCTION
         this->debug = true;
-        Ogre::SceneNode::ChildNodeIterator it =
-                this->sceneManager->getRootSceneNode()->getChildIterator();
+        Ogre::SceneNode::ChildNodeIterator it = this->sceneManager->getRootSceneNode()->getChildIterator();
         while (it.hasMoreElements()) {
             dynamic_cast<Ogre::SceneNode*>(it.getNext())->showBoundingBox(true);
         }
@@ -155,8 +154,7 @@ public:
 
     inline yz::ParticleSystem* createParticleSystem() {
         LOG_FUNCTION
-        return new yz::ParticleSystem(
-                this->sceneManager->createParticleSystem());
+        return new yz::ParticleSystem(this->sceneManager->createParticleSystem());
     }
 
     inline yz::BillboardSet* createBillboardSet(yz::Material* material) {
@@ -168,9 +166,7 @@ public:
 
     inline yz::Node* createNode(const std::string& name) {
         LOG_FUNCTION
-        yz::Node* node = new yz::Node(
-                this->sceneManager->getRootSceneNode()->createChildSceneNode(
-                        name));
+        yz::Node* node = new yz::Node(this->sceneManager->getRootSceneNode()->createChildSceneNode(name));
         if (this->debug) {
             node->showBoundingBox(true);
         }
@@ -182,9 +178,7 @@ public:
      */
     inline yz::Node* createNode(yz::Id* id, const std::string& name) {
         LOG_FUNCTION
-        yz::Node* node = new yz::Node(
-                this->sceneManager->getRootSceneNode()->createChildSceneNode(
-                        name), id);
+        yz::Node* node = new yz::Node(this->sceneManager->getRootSceneNode()->createChildSceneNode(name), id);
         if (this->debug) {
             node->showBoundingBox(true);
         }
@@ -207,14 +201,12 @@ public:
     		const Ogre::Real blue,
     		const Ogre::Real alpha) {
         LOG_FUNCTION
-        this->sceneManager->setAmbientLight(
-                Ogre::ColourValue(red, green, blue, alpha));
+        this->sceneManager->setAmbientLight(Ogre::ColourValue(red, green, blue, alpha));
     }
 
     inline yz::Entity* createCube(const std::string& name) {
         LOG_FUNCTION
-        Ogre::Entity* e = this->sceneManager->createEntity(name,
-                Ogre::SceneManager::PT_CUBE);
+        Ogre::Entity* e = this->sceneManager->createEntity(name, Ogre::SceneManager::PT_CUBE);
         e->setMaterialName("_internal_red_");
         return new yz::Entity(e);
     }
@@ -226,8 +218,7 @@ public:
 
     inline yz::Entity* createPlane(const std::string& name) {
         LOG_FUNCTION
-        return new yz::Entity(this->sceneManager->createEntity(name,
-                Ogre::SceneManager::PT_PLANE));
+        return new yz::Entity(this->sceneManager->createEntity(name, Ogre::SceneManager::PT_PLANE));
     }
 
     inline yz::Entity* createPlane() {
@@ -237,8 +228,7 @@ public:
 
     inline yz::Entity* createSphere(const std::string& name) {
         LOG_FUNCTION
-        return new yz::Entity(this->sceneManager->createEntity(name,
-                Ogre::SceneManager::PT_SPHERE));
+        return new yz::Entity(this->sceneManager->createEntity(name, Ogre::SceneManager::PT_SPHERE));
     }
 
     yz::Entity* createSphere(
@@ -258,15 +248,21 @@ public:
     }
 
     inline yz::ElectricArc* createElectricArc(
-        const std::string& name, const Ogre::Real x, const Ogre::Real y, const Ogre::Real z,
-        const Ogre::Real eX, const Ogre::Real eY, const Ogre::Real eZ, const Ogre::Real width) {
+          const std::string& name,
+          const Ogre::Real x,
+          const Ogre::Real y,
+          const Ogre::Real z,
+          const Ogre::Real eX,
+          const Ogre::Real eY,
+          const Ogre::Real eZ,
+          const Ogre::Real width) {
         LOG_FUNCTION
-    Node* start = this->createNode(name + "01");
-    start->setPosition(x, y, z);
-    Node* end = this->createNode(name + "02");
-    end->setPosition(eX, eY, eZ);
-    Node* base = this->createNode(name + "03");
-    return new yz::ElectricArc(start, end, base, name, width);
+        Node* start = this->createNode(name + "01");
+        start->setPosition(x, y, z);
+        Node* end = this->createNode(name + "02");
+        end->setPosition(eX, eY, eZ);
+        Node* base = this->createNode(name + "03");
+        return new yz::ElectricArc(start, end, base, name, width);
     }
 
     static inline yz::SceneManager* get(const POINTER pointer) {

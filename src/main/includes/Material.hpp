@@ -42,7 +42,7 @@ public:
 	 */
 	Material(const std::string& name) {
 	    LOG_FUNCTION
-		this->material = Ogre::MaterialManager::getSingleton().create(name, "General").getPointer();
+		this->material = Ogre::MaterialManager::getSingleton().create(name, "General").get();
 	}
 
     Material(Ogre::Material* m) : material(m){
@@ -56,7 +56,7 @@ public:
 
 	inline yz::Material* clone(const std::string& name) const {
 	    LOG_FUNCTION
-		return new yz::Material(this->material->clone(name).getPointer());
+		return new yz::Material(this->material->clone(name).get());
 	}
 
 	inline void compile() {

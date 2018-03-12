@@ -56,15 +56,13 @@ void yz::BillboardChain::setMaterial(yz::Material* material) {
 void yz::BillboardChain::addElement(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z, const Ogre::Real width) {
     LOG_FUNCTION
     this->chain->addChainElement(0,
-            Ogre::BillboardChain::Element(Ogre::Vector3(x, y, z), width, 0,
-                    Ogre::ColourValue::White, Ogre::Quaternion::IDENTITY));
+            Ogre::BillboardChain::Element(Ogre::Vector3(x, y, z), width, 0, Ogre::ColourValue::White, Ogre::Quaternion::IDENTITY));
 }
 
 void yz::BillboardChain::addElement(Ogre::Vector3& pos, const Ogre::Real width) {
     LOG_FUNCTION
     this->chain->addChainElement(0,
-            Ogre::BillboardChain::Element(pos, width, 0,
-                    Ogre::ColourValue::White, Ogre::Quaternion::IDENTITY));
+            Ogre::BillboardChain::Element(pos, width, 0, Ogre::ColourValue::White, Ogre::Quaternion::IDENTITY));
 }
 
 void yz::BillboardChain::setElementPosition(const int index, const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {

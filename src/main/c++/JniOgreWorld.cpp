@@ -114,11 +114,13 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createCamera(
         yz::SceneManager* sm = yz::SceneManager::get(pointer);
         yz::Camera* camera = sm->createCamera(name.getValue());
         yz::Entity* e = sm->createCube(camera->getName() + "cam_ground");
+        //FIXME not useful for all cameras, decouple.
         e->setQueryFlags(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
         yz::Node* node = sm->createNode(camera->getName() + "cam_ground_node");
         node->scale(200, 0.02, 200);
         node->attachObject(e);
         node->hide();
+        //FIXME attach to node instead
         yz::AbstractCameraListener* ls = new yz::DummyGroundCamListener(node);
         camera->addListener(ls);
         return reinterpret_cast<POINTER>(camera);

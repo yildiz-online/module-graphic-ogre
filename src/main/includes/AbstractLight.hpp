@@ -38,26 +38,27 @@ namespace yz {
 class AbstractLight {
 public:
     AbstractLight(Ogre::Light* ogreLight, Ogre::SceneManager* manager) :
-            light(ogreLight), creator(manager) {}
+            light(ogreLight), creator(manager) {
+                this->node = manager->getRootSceneNode()->createChildSceneNode(ogreLight->getName() + "_node");
+                this->node->attachObject(this->light);
+            }
 
     virtual ~AbstractLight() {
         LOG_FUNCTION
-        if (this->light->isAttached()) {
-            Ogre::SceneNode* node = this->light->getParentSceneNode();
-            node->detachObject(this->light);
-        }
+        this->node->detachObject(this->light);
+        //FIXME delete node?
         this->creator->destroyLight(this->light);
         this->light = NULL;
     }
 
     inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
         LOG_FUNCTION
-        this->light->setPosition(x, y, z);
+        this->node->setPosition(x, y, z);
     }
 
     inline void setPosition(const Ogre::Vector3& v) {
         LOG_FUNCTION
-        this->light->setPosition(v);
+        this->node->setPosition(v);
     }
 
     inline void setColor(const Ogre::ColourValue& v) {
@@ -95,6 +96,8 @@ protected:
 private:
 
     Ogre::SceneManager* creator;
+
+    Ogre::SceneNode* node;
 
 };
 

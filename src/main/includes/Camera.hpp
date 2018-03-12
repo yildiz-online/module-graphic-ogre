@@ -42,7 +42,7 @@ class Camera : public AbstractMovable {
 
 public:
 
-    Camera(Ogre::Camera* cam, Ogre::RaySceneQuery* query, Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery);
+    Camera(Ogre::Camera* cam, Ogre::RaySceneQuery* query, Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery, Ogre::SceneNode* node);
 
     Ogre::Vector3 getPoint(const Ogre::Vector3& pos, const Ogre::Real x, const Ogre::Real y);
 
@@ -87,9 +87,9 @@ public:
 
     inline Ogre::Vector3 move(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
         LOG_FUNCTION
-        this->camera->moveRelative(Ogre::Vector3(x, y, z));
+        this->node->translate(Ogre::Vector3(x, y, z), Ogre::Node::TS_LOCAL);
         this->updateListeners();
-        return this->camera->getPosition();
+        return this->node->getPosition();
     }
 
     Ogre::Vector3 setPositionAxis(const Ogre::Real x, const Ogre::Real y, const int axis);
@@ -101,20 +101,20 @@ public:
 
     inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
         LOG_FUNCTION
-        this->camera->setPosition(x, y, z);
+        this->node->setPosition(x, y, z);
         this->updateListeners();
     }
 
     inline Ogre::Vector3 lookAt(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
         LOG_FUNCTION
-        this->camera->lookAt(x, y, z);
+        this->node->lookAt(Ogre::Vector3(x, y, z), Ogre::Node::TS_WORLD);
         this->updateListeners();
-        return this->camera->getDirection();
+        return this->node->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
     }
 
     inline void setDirection(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
         LOG_FUNCTION
-        this->camera->setDirection(x, y, z);
+        this->node->setDirection(x, y, z);
         this->updateListeners();
     }
 
@@ -127,12 +127,12 @@ public:
 
     inline Ogre::Vector3 getDirection() const {
         LOG_FUNCTION
-        return this->camera->getDirection();
+        return this->node->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
     }
 
     inline Ogre::Vector3 getPosition() const {
         LOG_FUNCTION
-        return this->camera->getPosition();
+        return this->node->getPosition();
     }
 
     inline Ogre::Camera* getCamera() const{
@@ -142,12 +142,12 @@ public:
 
     inline void track(yz::Node* node) {
         LOG_FUNCTION
-        this->camera->setAutoTracking(true, node->getWrappedNode());
+        this->node->setAutoTracking(true, node->getWrappedNode());
     }
 
     inline void stopTrack() {
         LOG_FUNCTION
-        this->camera->setAutoTracking(false);
+        this->node->setAutoTracking(false);
     }
 
     inline void detachFromParent() {
@@ -182,6 +182,8 @@ private:
     Ogre::RaySceneQuery* query;
 
     Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery;
+
+    Ogre::SceneNode* node;
 };
 
 }

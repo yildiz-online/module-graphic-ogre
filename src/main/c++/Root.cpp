@@ -71,7 +71,7 @@ void yz::Root::initialise(const std::string& renderer) {
 
 yz::SceneManager* yz::Root::createSceneManager(const std::string& name) {
     LOG_FUNCTION
-    Ogre::SceneManager* sm = this->root->createSceneManager(Ogre::ST_GENERIC, name);
+    Ogre::SceneManager* sm = this->root->createSceneManager(name);
     sm->addRenderQueueListener(this->os);
     return new yz::SceneManager(sm);
 }
@@ -101,20 +101,21 @@ void yz::Root::close() {
 }
 
 void yz::Root::addResourcePath(const std::string& name, const std::string& path, const int type) {
+//FIXME move out from root
     LOG_FUNCTION
     switch (type) {
         case 0:
-            this->root->addResourceLocation(path, "FileSystem", name, false);
+            Ogre::ResourceGroupManager::getSingleton().addResourceLocation(path, "FileSystem", name, false);
             break;
         case 1:
-            this->root->addResourceLocation(path, "Zip", name, false);
+            Ogre::ResourceGroupManager::getSingleton().addResourceLocation(path, "Zip", name, false);
             break;
         case 2:
             PhysFS::addToSearchPath(path);
-            this->root->addResourceLocation("", "Package", name, false);
+            Ogre::ResourceGroupManager::getSingleton().addResourceLocation("", "Package", name, false);
             break;
         case 3:
-            this->root->addResourceLocation(path, "FileSystem", name, false);
+            Ogre::ResourceGroupManager::getSingleton().addResourceLocation(path, "FileSystem", name, false);
             break;
         default:
             throw std::exception();

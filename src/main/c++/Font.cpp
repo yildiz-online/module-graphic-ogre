@@ -29,7 +29,7 @@
 
 yz::Font::Font(const std::string& name, const std::string& path, const Ogre::Real size) {
     LOG_FUNCTION
-    this->font = Ogre::FontManager::getSingleton().create(name, "General").getPointer();
+    this->font = Ogre::FontManager::getSingleton().create(name, "General").get();
     this->font->setType(Ogre::FT_TRUETYPE);
     this->font->setSource(path);
     this->font->setTrueTypeSize(size);
