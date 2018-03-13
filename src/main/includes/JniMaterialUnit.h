@@ -34,19 +34,19 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTextureFilter(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTextureFilter(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
         jint filter);
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setCoordinateSet(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setCoordinateSet(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
         jint set);
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationExManual(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperationExManual(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationExManual(
         jfloat g,
         jfloat b);
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setAlphaOperation(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setAlphaOperation(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
@@ -65,13 +65,13 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setAlphaOperation(
         jint src,
         jint src2);
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTexture(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTexture(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
         jstring name);
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTextureAnimated(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTextureAnimated(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
@@ -79,20 +79,20 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTextureAnimated(
         jint,
         jint);
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setScale(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setScale(
         JNIEnv* env,
         jobject o,
         POINTER pointer,
         jfloat width,
         jfloat height);
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperation(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperation(
         JNIEnv* env,
         jobject o,
         POINTER unitPointer,
         jint operation);
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationEx(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperationEx(
         JNIEnv* env,
         jobject o,
         POINTER unitPointer,
@@ -100,7 +100,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationEx(
         jint src,
         jint src2);
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_scroll(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_scroll(
         JNIEnv* env,
         jobject o,
         POINTER unitPointer,

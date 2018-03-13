@@ -30,7 +30,7 @@
 #include "../includes/EnumConversion.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTextureAnimated(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTextureAnimated(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTextureAnimated(
     yz::TextureUnit::get(pointer)->setAnimatedTextureName(name.getValue(), frame, duration);
 }
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTextureFilter(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTextureFilter(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -51,7 +51,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTextureFilter(
     yz::TextureUnit::get(pointer)->setTextureFiltering(EnumConversion::getTextureFilter(filter));
 }
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setCoordinateSet(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setCoordinateSet(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -60,7 +60,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setCoordinateSet(
     yz::TextureUnit::get(pointer)->setTextureCoordSet (set);
 }
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperation(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperation(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperation(
     yz::TextureUnit::get(pointer)->setColourOperation(EnumConversion::getLayerBlendOperation(operation));
 }
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_scroll(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_scroll(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -79,7 +79,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_scroll(
     yz::TextureUnit::get(pointer)->setScrollAnimation(x, y);
 }
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setAlphaOperation(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setAlphaOperation(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -93,7 +93,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setAlphaOperation(
             EnumConversion::getLayerBlendSource(src2));
 }
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationEx(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperationEx(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -107,7 +107,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationEx(
             EnumConversion::getLayerBlendSource(src2));
 }
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationExManual(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperationExManual(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -125,7 +125,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setColorOperationExManual(
             Ogre::ColourValue(r, g, b));
 }
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTexture(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTexture(
     JNIEnv* env,
     jobject,
     POINTER pointer,
@@ -135,7 +135,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setTexture(
     yz::TextureUnit::get(pointer)->setTextureName(name.getValue());
 }
 
-JNIEXPORT void JNICALL Java_jni_JniMaterialUnit_setScale(
+JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setScale(
     JNIEnv*,
     jobject,
     POINTER pointer,
