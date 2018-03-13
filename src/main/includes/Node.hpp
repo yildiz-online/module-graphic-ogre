@@ -54,6 +54,7 @@ public:
 		this->node = wrappedNode;
 		this->listenerList = new yz::NodeListeners();
 		this->node->setListener(this->listenerList);
+		this->movable = new yz::NativeMovable();
 	}
 
 	Node(Ogre::SceneNode* wrappedNode, yz::Id* id) {
@@ -62,6 +63,7 @@ public:
 		this->listenerList = new yz::NodeListeners();
 		this->node->setListener(this->listenerList);
 		this->node->getUserObjectBindings().setUserAny(Ogre::Any(id));
+		this->movable = new yz::NativeMovable();
 	}
 
 	~Node(void) {

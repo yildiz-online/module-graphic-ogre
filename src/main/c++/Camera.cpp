@@ -35,7 +35,7 @@ yz::Camera::Camera(
   Ogre::PlaneBoundedVolumeListSceneQuery* pq,
   Ogre::SceneNode* n) : camera(cam), query(q), planeQuery(pq), node(n) {
     LOG_FUNCTION
-    n->attachObject(cam);
+    this->node->attachObject(this->camera);
 }
 
 Ogre::Ray yz::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
