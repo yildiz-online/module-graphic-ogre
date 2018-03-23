@@ -30,7 +30,7 @@
     <url>https://bitbucket.org/yildiz-engine-team/module-graphic-ogre</url>
 
     <artifactId>module-graphic-ogre</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>2.0.2-SNAPSHOT</version>
 
     <packaging>jar</packaging>
     <inceptionYear>2014</inceptionYear>
@@ -41,19 +41,15 @@
     </scm>
     <parent>
         <groupId>be.yildiz-games</groupId>
-        <artifactId>parent-native</artifactId>
-        <version>1.0.0</version>
+        <artifactId>parent</artifactId>
+        <version>2.1.0</version>
     </parent>
-
-    <properties>
-        <dependency.swt.version>3.105.3</dependency.swt.version>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>be.yildiz-games</groupId>
             <artifactId>module-graphic</artifactId>
-            <version>2.0.2</version>
+            <version>2.0.3</version>
         </dependency>
         <dependency>
             <groupId>be.yildiz-games</groupId>
@@ -64,10 +60,6 @@
             <groupId>be.yildiz-games</groupId>
             <artifactId>common-libloader</artifactId>
             <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>be.yildiz-games</groupId>
-            <artifactId>common-native</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -85,186 +77,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>linux64</id>
-            <activation>
-                <property>
-                    <name>env</name>
-                    <value>linux64</value>
-                </property>
-            </activation>
-            <properties>
-                <nativeEnv>linux64</nativeEnv>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.eclipse.platform</groupId>
-                    <artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
-                    <version>${dependency.swt.version}</version>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>org.eclipse.platform</groupId>
-                            <artifactId>org.eclipse.swt</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/assembly/linux64.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>make-assembly</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>win64</id>
-            <activation>
-                <property>
-                    <name>env</name>
-                    <value>win64</value>
-                </property>
-            </activation>
-            <properties>
-                <nativeEnv>win64</nativeEnv>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.eclipse.platform</groupId>
-                    <artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
-                    <version>${dependency.swt.version}</version>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>org.eclipse.platform</groupId>
-                            <artifactId>org.eclipse.swt</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/assembly/win64.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>make-assembly</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>native</id>
-            <dependencies>
-                <dependency>
-                    <groupId>be.yildiz-games</groupId>
-                    <artifactId>component-native-ogre3d</artifactId>
-                    <version>1.10.11.0-SNAPSHOT</version>
-                </dependency>
-                <dependency>
-                    <groupId>be.yildiz-games</groupId>
-                    <artifactId>component-native-physicsfs</artifactId>
-                    <version>2.0.3-SNAPSHOT</version>
-                </dependency>
-                <dependency>
-                    <groupId>be.yildiz-games</groupId>
-                    <artifactId>component-native-boost</artifactId>
-                    <version>1.66.0-SNAPSHOT</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>common-ogre-file-unpack-include</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>be.yildiz-games</groupId>
-                                            <artifactId>component-native-ogre3d</artifactId>
-                                            <outputDirectory>src/main/scripts/${nativeEnv}/ogre3d</outputDirectory>
-                                            <includes>${nativeEnv}/**/*.*</includes>
-                                        </artifactItem>
-                                        <artifactItem>
-                                            <groupId>be.yildiz-games</groupId>
-                                            <artifactId>component-native-physicsfs</artifactId>
-                                            <outputDirectory>src/main/scripts/${nativeEnv}/physicsfs</outputDirectory>
-                                            <includes>${nativeEnv}/**/*.*</includes>
-                                        </artifactItem>
-                                        <artifactItem>
-                                            <groupId>be.yildiz-games</groupId>
-                                            <artifactId>component-native-boost</artifactId>
-                                            <outputDirectory>src/main/scripts/${nativeEnv}/boost</outputDirectory>
-                                            <includes>${nativeEnv}/**/*.*</includes>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>noenv</id>
-            <activation>
-                <property>
-                    <name>env</name>
-                    <value>noenv</value>
-                </property>
-            </activation>
-            <properties>
-                <nativeEnv>none</nativeEnv>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.eclipse.platform</groupId>
-                    <artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
-                    <version>${dependency.swt.version}</version>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>org.eclipse.platform</groupId>
-                            <artifactId>org.eclipse.swt</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
 
 </project>

@@ -47,7 +47,6 @@ import be.yildizgames.module.graphic.shader.Shader.ShaderType;
 import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
 import be.yildizgames.module.window.WindowEngine;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
-import be.yildizgames.module.window.swt.SwtWindowEngine;
 import org.slf4j.Logger;
 
 import java.io.File;
@@ -92,11 +91,11 @@ public final class OgreGraphicEngine extends GraphicEngine {
      */
     //@Ensures this.size == windowEngine.size
     //@Ensures this.root != null
-    private OgreGraphicEngine(final WindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
+    OgreGraphicEngine(final WindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
         super();
         assert windowEngine != null;
         assert nativeResourceLoader != null;
-        this.size = windowEngine.getScreenSize();
+        this.size = new Size(windowEngine.getScreenSize().width, windowEngine.getScreenSize().height);
         LOGGER.info("Initializing Ogre graphic engine...");
         nativeResourceLoader.loadBaseLibrary();
         nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
@@ -128,15 +127,6 @@ public final class OgreGraphicEngine extends GraphicEngine {
         this.guiBuilder = new OgreGuiFactory(this.size);
         this.windowEngine = new DummyWindowEngine();
         LOGGER.info("Headless Ogre graphic engine initialized.");
-    }
-
-    /**
-     * Build an engine wrapped by a SWT window system
-     * @param loader Loader for the native libraries.
-     * @return An Ogre graphic engine based on a SWT window engine.
-     */
-    public static OgreGraphicEngine fromSwt(NativeResourceLoader loader) {
-        return new OgreGraphicEngine(new SwtWindowEngine(), loader);
     }
 
     /**

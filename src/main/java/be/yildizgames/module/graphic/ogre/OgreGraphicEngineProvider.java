@@ -28,11 +28,12 @@ package be.yildizgames.module.graphic.ogre;
 import be.yildizgames.common.libloader.NativeResourceLoader;
 import be.yildizgames.module.graphic.GraphicEngine;
 import be.yildizgames.module.graphic.GraphicEngineProvider;
+import be.yildizgames.module.window.WindowEngine;
 
 public class OgreGraphicEngineProvider implements GraphicEngineProvider {
 
     @Override
-    public GraphicEngine getEngine() {
-        return OgreGraphicEngine.fromSwt(NativeResourceLoader.inJar());
+    public GraphicEngine getEngine(WindowEngine engine) {
+        return new OgreGraphicEngine(engine, NativeResourceLoader.inJar());
     }
 }
