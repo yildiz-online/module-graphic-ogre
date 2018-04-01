@@ -41,10 +41,6 @@ import be.yildizgames.module.graphic.ogre.impl.DummyRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.ogre.impl.Root;
-import be.yildizgames.module.graphic.shader.Shader;
-import be.yildizgames.module.graphic.shader.Shader.FragmentProfileList;
-import be.yildizgames.module.graphic.shader.Shader.ShaderType;
-import be.yildizgames.module.graphic.shader.Shader.VertexProfileList;
 import be.yildizgames.module.window.WindowEngine;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
 import org.slf4j.Logger;
@@ -71,6 +67,8 @@ public final class OgreGraphicEngine extends GraphicEngine {
     private final OgreRenderWindow renderWindow;
 
     private final OgreGuiFactory guiBuilder;
+
+    private final OgreMaterialManager materialManager;
 
     /**
      * Screen size.
@@ -108,6 +106,7 @@ public final class OgreGraphicEngine extends GraphicEngine {
         } else {
             this.renderWindow = this.root.createWindow(this.size, windowEngine.getHandle());
         }
+        this.materialManager = new OgreMaterialManager();
         this.guiBuilder = new OgreGuiFactory(this.size);
         this.windowEngine = windowEngine;
         LOGGER.info("Ogre graphic engine initialized.");
@@ -124,6 +123,7 @@ public final class OgreGraphicEngine extends GraphicEngine {
         this.loadPlugins();
         this.loadRenderer();
         this.renderWindow = new DummyRenderWindow();
+        this.materialManager = new OgreMaterialManager();
         this.guiBuilder = new OgreGuiFactory(this.size);
         this.windowEngine = new DummyWindowEngine();
         LOGGER.info("Headless Ogre graphic engine initialized.");
@@ -136,6 +136,10 @@ public final class OgreGraphicEngine extends GraphicEngine {
      */
     public static OgreGraphicEngine headless(NativeResourceLoader loader) {
         return new OgreGraphicEngine(loader);
+    }
+
+    public OgreMaterialManager getMaterialManager() {
+        return this.materialManager;
     }
 
     private void loadPlugins() {
@@ -203,11 +207,6 @@ public final class OgreGraphicEngine extends GraphicEngine {
     }
 
     @Override
-    public Material createMaterial(final String name) {
-        return new OgreMaterial(name);
-    }
-
-    @Override
     public OgreSkybox createSkybox(final String name, final String path) {
         return new OgreSkybox(name, path);
     }
@@ -226,16 +225,6 @@ public final class OgreGraphicEngine extends GraphicEngine {
     @Override
     public float getFPS() {
         return this.renderWindow.getFramerate();
-    }
-
-    @Override
-    public Shader createFragmentShader(final String name, final String file, final String entry, final FragmentProfileList profile) {
-        return new OgreShader(name, file, entry, ShaderType.FRAGMENT, profile);
-    }
-
-    @Override
-    public Shader createVertexShader(final String name, final String file, final String entry, final VertexProfileList profile) {
-        return new OgreShader(name, file, entry, ShaderType.VERTEX, profile);
     }
 
     @Override
