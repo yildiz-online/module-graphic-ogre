@@ -95,6 +95,7 @@ public final class OgreCamera extends Camera implements Native {
         //FIXME LOW hardcoded
         this.jni.setFarClip(this.pointer.getPointerAddress(), 200000);
         this.jni.setNearClip(this.pointer.getPointerAddress(), 10);
+        this.jni.setAspectRatio(this.resolutionX / this.resolutionY);
     }
 
     /**
@@ -164,6 +165,11 @@ public final class OgreCamera extends Camera implements Native {
     public void autoTrackImpl(final Node e) {
         OgreNode nodeToTrack = (OgreNode) e;
         this.jni.setAutotrack(this.pointer.getPointerAddress(), nodeToTrack.getPointer().getPointerAddress());
+    }
+
+    @Override
+    public void setAspectRatio(float ratio) {
+        this.jni.setAspectRatio(ratio);
     }
 
     @Override

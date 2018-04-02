@@ -48,6 +48,15 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_setNearClip(
     yz::Camera::get(pointer)->setNearClipDistance(distance);
 }
 
+JNIEXPORT void JNICALL Java_jni_JniCamera_setAspectRatio(
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
+    jfloat ratio) {
+    LOG_FUNCTION
+    yz::Camera::get(pointer)->setAspectRatio(ratio);
+    }
+
 JNIEXPORT void JNICALL Java_jni_JniCamera_enableRenderingDistance(
     JNIEnv* env,
     jobject o,

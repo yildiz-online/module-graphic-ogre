@@ -40,6 +40,13 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_setFarClip(
     POINTER pointer,
     jint distance);
 
+JNIEXPORT void JNICALL Java_jni_JniCamera_setAspectRatio(
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
+    jfloat ratio);
+
+
 JNIEXPORT void JNICALL Java_jni_JniCamera_setNearClip(
     JNIEnv* env,
     jobject o,

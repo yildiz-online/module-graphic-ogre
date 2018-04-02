@@ -48,6 +48,12 @@ public:
 
     Ogre::Ray getRay(const Ogre::Real x, const Ogre::Real y);
 
+    inline void setAspectRatio(const Ogre::Real ratio) {
+        LOG_FUNCTION
+        this->camera->setAspectRatio(ratio);
+
+    }
+
     inline void setNearClipDistance(const Ogre::Real dist) {
         LOG_FUNCTION
         this->camera->setNearClipDistance(dist);
