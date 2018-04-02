@@ -91,11 +91,28 @@ public final class OgreCamera extends Camera implements Native {
         this.node = node;
         this.resolutionX = resX;
         this.resolutionY = resY;
-        this.jni.enableRenderingDistance(pointer.getPointerAddress());
-        //FIXME LOW hardcoded
-        this.jni.setFarClip(this.pointer.getPointerAddress(), 200000);
-        this.jni.setNearClip(this.pointer.getPointerAddress(), 10);
-        this.jni.setAspectRatio(this.resolutionX / this.resolutionY);
+    }
+
+    public void adaptToScreenRatio() {
+        this.jni.setAspectRatio(this.pointer.getPointerAddress(), this.getScreenRatio());
+    }
+
+    public float getScreenRatio() {
+        return this.resolutionX / this.resolutionY;
+    }
+
+    @Override
+    public OgreCamera setFarClip(int far) {
+        this.jni.enableRenderingDistance(this.pointer.getPointerAddress());
+        this.jni.setFarClip(this.pointer.getPointerAddress(), far);
+        return this;
+    }
+
+    @Override
+    public OgreCamera setNearClip(int near) {
+        this.jni.enableRenderingDistance(this.pointer.getPointerAddress());
+        this.jni.setNearClip(this.pointer.getPointerAddress(), near);
+        return this;
     }
 
     /**
@@ -169,7 +186,7 @@ public final class OgreCamera extends Camera implements Native {
 
     @Override
     public void setAspectRatio(float ratio) {
-        this.jni.setAspectRatio(ratio);
+        this.jni.setAspectRatio(this.pointer.getPointerAddress(), ratio);
     }
 
     @Override

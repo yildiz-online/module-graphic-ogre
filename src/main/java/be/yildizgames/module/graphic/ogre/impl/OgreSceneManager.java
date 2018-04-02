@@ -305,6 +305,7 @@ public final class OgreSceneManager implements SceneManager, Native {
 
         this.window.createViewport(cam);
         this.cameras.register(cam);
+        cam.adaptToScreenRatio();
         return cam;
     }
 

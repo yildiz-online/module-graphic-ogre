@@ -37,7 +37,7 @@ public class JniCamera {
      */
     public native void delete(final long address);
 
-    public native void setAspectRatio(final float ratio);
+    public native void setAspectRatio(final long pointer, final float ratio);
 
     /**
      * Rotate the camera in native code.
