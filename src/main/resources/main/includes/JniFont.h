@@ -40,7 +40,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniFont_createFont
 JNIEXPORT jfloatArray JNICALL Java_jni_JniFont_computeCharSize
   (JNIEnv* env, jobject o, POINTER pointer);
 
-JNIEXPORT jfloatArray JNICALL Java_jni_JniFont_delete
+JNIEXPORT void JNICALL Java_jni_JniFont_delete
   (JNIEnv* env, jobject o, POINTER pointer);
 
 #ifdef __cplusplus
