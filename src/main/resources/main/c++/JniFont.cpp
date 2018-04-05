@@ -29,7 +29,7 @@
 #include "../includes/Font.hpp"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT POINTER JNICALL Java_jni_OgreFontNative_createFont(
+JNIEXPORT POINTER JNICALL Java_jni_JniFont_createFont(
     JNIEnv* env,
     jobject,
     jstring jname,
@@ -47,7 +47,7 @@ JNIEXPORT POINTER JNICALL Java_jni_OgreFontNative_createFont(
     return INVALID_POINTER;
 }
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreFontNative_computeCharSize(JNIEnv* env, jobject, POINTER pointer) {
+JNIEXPORT jfloatArray JNICALL Java_jni_JniFont_computeCharSize(JNIEnv* env, jobject, POINTER pointer) {
 
     LOG_FUNCTION
     yz::Font* font = yz::Font::get(pointer);
@@ -60,4 +60,13 @@ JNIEXPORT jfloatArray JNICALL Java_jni_OgreFontNative_computeCharSize(JNIEnv* en
     jfloatArray result = env->NewFloatArray(256);
     env->SetFloatArrayRegion(result, 0, 256, buf);
     return result;
+}
+
+JNIEXPORT void JNICALL Java_jni_JniFont_delete(
+    JNIEnv* env,
+    jobject,
+    POINTER pointer) {
+    LOG_FUNCTION
+    yz::Font* font = yz::Font::get(pointer);
+    delete font;
 }

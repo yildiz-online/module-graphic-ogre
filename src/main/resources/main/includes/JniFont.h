@@ -34,10 +34,13 @@
 extern "C" {
 #endif
 
-JNIEXPORT POINTER JNICALL Java_jni_OgreFontNative_createFont
+JNIEXPORT POINTER JNICALL Java_jni_JniFont_createFont
   (JNIEnv* env, jobject o, jstring name, jstring file, jfloat size);
 
-JNIEXPORT jfloatArray JNICALL Java_jni_OgreFontNative_computeCharSize
+JNIEXPORT jfloatArray JNICALL Java_jni_JniFont_computeCharSize
+  (JNIEnv* env, jobject o, POINTER pointer);
+
+JNIEXPORT jfloatArray JNICALL Java_jni_JniFont_delete
   (JNIEnv* env, jobject o, POINTER pointer);
 
 #ifdef __cplusplus
