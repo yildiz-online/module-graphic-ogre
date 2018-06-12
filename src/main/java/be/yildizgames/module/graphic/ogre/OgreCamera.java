@@ -174,25 +174,8 @@ public final class OgreCamera extends Camera implements Native {
     }
 
     @Override
-    public void stopAutoTrackImpl() {
-        this.jni.stopAutotrack(this.pointer.getPointerAddress());
-    }
-
-    @Override
-    public void autoTrackImpl(final Node e) {
-        OgreNode nodeToTrack = (OgreNode) e;
-        this.jni.setAutotrack(this.pointer.getPointerAddress(), nodeToTrack.getPointer().getPointerAddress());
-    }
-
-    @Override
     public void setAspectRatio(float ratio) {
         this.jni.setAspectRatio(this.pointer.getPointerAddress(), ratio);
-    }
-
-    @Override
-    public void autoTrack(final Point3D pos) {
-        this.node.setPosition(pos);
-        this.jni.setAutotrack(this.pointer.getPointerAddress(), this.node.getPointer().getPointerAddress());
     }
 
     @Override
@@ -229,7 +212,6 @@ public final class OgreCamera extends Camera implements Native {
         return Point3D.valueOf(x, y, z);
     }
 
-    @Override
     protected Point3D lookAtImpl(final Point3D target) {
         float[] l = this.jni.lookAt(this.pointer.getPointerAddress(), target.x, target.y, target.z);
         return Point3D.valueOf(l[0], l[1], l[2]);
@@ -245,7 +227,6 @@ public final class OgreCamera extends Camera implements Native {
         return this.jni.isVisible(this.pointer.getPointerAddress(), position.x, position.y, position.z);
     }
 
-    @Override
     protected Point3D getDirectionImpl() {
         float[] v = this.jni.getDirection(this.pointer.getPointerAddress());
         return Point3D.valueOf(v[0], v[1], v[2]);
