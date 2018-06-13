@@ -33,7 +33,7 @@ public class OgreCameraTest {
 
     @Test
     void getScreenRatio() {
-        OgreCamera c = new OgreCamera(NativePointer.create(0), "test", null, 1600, 900);
+        OgreCamera c = new OgreCamera(NativePointer.create(0), "test", null,null, 1600, 900);
         Assertions.assertEquals(1.77777777f, c.getScreenRatio(),0.01f);
     }
 }

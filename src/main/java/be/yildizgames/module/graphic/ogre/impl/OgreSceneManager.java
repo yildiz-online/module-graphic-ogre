@@ -301,7 +301,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      */
     public OgreCamera createCamera(final String name) {
         final long address = this.jni.createCamera(this.pointer.getPointerAddress(), name);
-        final OgreCamera cam = new OgreCamera(NativePointer.create(address), name, this.createMovableNode(), this.resolutionX, this.resolutionY);
+        final OgreCamera cam = new OgreCamera(NativePointer.create(address), name, this.createMovableNode(), this.createMovableNode(), this.resolutionX, this.resolutionY);
 
         this.window.createViewport(cam);
         this.cameras.register(cam);

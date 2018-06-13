@@ -32,13 +32,11 @@ import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.light.LensFlare;
-import be.yildizgames.module.graphic.movable.Node;
 import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
-import jni.JniCamera;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import jni.JniCamera;
 
 /**
  * Ogre implementation for the Camera.
@@ -67,7 +65,9 @@ public final class OgreCamera extends Camera implements Native {
     /**
      * Node to auto track a specific position.
      */
-    private final OgreNode node;
+    private final OgreNodeBase node;
+
+    private final OgreNodeBase targetNode;
 
     private final JniCamera jni = new JniCamera();
 
@@ -83,12 +83,14 @@ public final class OgreCamera extends Camera implements Native {
     public OgreCamera(
             final NativePointer pointer,
             final String name,
-            final OgreNode node,
+            final OgreNodeBase node,
+            final OgreNodeBase targetNode,
             final float resX,
             final float resY) {
-        super(name);
+        super(name, node, targetNode);
         this.pointer = pointer;
         this.node = node;
+        this.targetNode = targetNode;
         this.resolutionX = resX;
         this.resolutionY = resY;
     }
@@ -189,7 +191,6 @@ public final class OgreCamera extends Camera implements Native {
         this.jni.rotate(this.pointer.getPointerAddress(), yaw * OgreCamera.ROTATION_SPEED, 0);
     }
 
-    @Override
     protected Point3D moveImpl(final float xTranslation, final float yTranslation, final float zTranslation) {
         float[] v = this.jni.move(this.pointer.getPointerAddress(), xTranslation, yTranslation, zTranslation);
         return Point3D.valueOf(v[0], v[1], v[2]);
@@ -206,7 +207,6 @@ public final class OgreCamera extends Camera implements Native {
         this.jni.setPosition(this.pointer.getPointerAddress(), xPosition, yPosition, zPosition);
     }
 
-    @Override
     protected Point3D setOrientationImpl(final float x, final float y, final float z) {
         this.jni.setOrientation(this.pointer.getPointerAddress(), x, y, z);
         return Point3D.valueOf(x, y, z);
