@@ -83,11 +83,12 @@ public final class OgreCamera extends Camera implements Native {
     public OgreCamera(
             final NativePointer pointer,
             final String name,
+            final OgreNodeBase master,
             final OgreNodeBase node,
             final OgreNodeBase targetNode,
             final float resX,
             final float resY) {
-        super(name, node, targetNode);
+        super(name, master, node, targetNode);
         this.pointer = pointer;
         this.node = node;
         this.targetNode = targetNode;
@@ -181,22 +182,6 @@ public final class OgreCamera extends Camera implements Native {
     }
 
     @Override
-    protected Point3D rotateImpl(final float yaw, final float pitch) {
-        float[] v = this.jni.rotate(this.pointer.getPointerAddress(), yaw * OgreCamera.ROTATION_SPEED, pitch * OgreCamera.ROTATION_SPEED);
-        return Point3D.valueOf(v[0], v[1], v[2]);
-    }
-
-    @Override
-    protected void yaw(final float yaw) {
-        this.jni.rotate(this.pointer.getPointerAddress(), yaw * OgreCamera.ROTATION_SPEED, 0);
-    }
-
-    protected Point3D moveImpl(final float xTranslation, final float yTranslation, final float zTranslation) {
-        float[] v = this.jni.move(this.pointer.getPointerAddress(), xTranslation, yTranslation, zTranslation);
-        return Point3D.valueOf(v[0], v[1], v[2]);
-    }
-
-    @Override
     protected Point3D setPositionImpl(final int x, final int y, final Axis axis) {
         float[] v = this.jni.setPositionAxis(this.pointer.getPointerAddress(), x, y, axis.ordinal());
         return Point3D.valueOf(v[0], v[1], v[2]);
@@ -205,16 +190,6 @@ public final class OgreCamera extends Camera implements Native {
     @Override
     protected void setPositionImpl(final float xPosition, final float yPosition, final float zPosition) {
         this.jni.setPosition(this.pointer.getPointerAddress(), xPosition, yPosition, zPosition);
-    }
-
-    protected Point3D setOrientationImpl(final float x, final float y, final float z) {
-        this.jni.setOrientation(this.pointer.getPointerAddress(), x, y, z);
-        return Point3D.valueOf(x, y, z);
-    }
-
-    protected Point3D lookAtImpl(final Point3D target) {
-        float[] l = this.jni.lookAt(this.pointer.getPointerAddress(), target.x, target.y, target.z);
-        return Point3D.valueOf(l[0], l[1], l[2]);
     }
 
     /**
