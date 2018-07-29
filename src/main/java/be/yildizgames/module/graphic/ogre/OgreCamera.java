@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.graphic.ogre;
 
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Axis;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Rectangle;
@@ -33,10 +34,11 @@ import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.light.LensFlare;
 import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
+import jni.JniCamera;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import jni.JniCamera;
 
 /**
  * Ogre implementation for the Camera.
@@ -217,7 +219,8 @@ public final class OgreCamera extends Camera implements Native {
     /**
      * Detach the camera from its parent node.
      */
-    void detachFromParent() {
+    @Override
+    public void detachFromParent() {
         this.jni.detachFromParent(this.pointer.getPointerAddress());
     }
 
