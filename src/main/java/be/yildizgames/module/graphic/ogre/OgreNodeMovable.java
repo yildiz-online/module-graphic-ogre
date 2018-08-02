@@ -41,6 +41,7 @@ public class OgreNodeMovable extends OgreNodeBase {
     private final NativePointer pointer;
 
     private final JniNode nodeNative = new JniNode();
+    private Movable parent;
 
     /**
      * Full constructor.

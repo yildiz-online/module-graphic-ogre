@@ -82,27 +82,6 @@ public class JniCamera {
     public native boolean isVisible(final long pointer, final float xPosition, final float yPosition, final float zPosition);
 
     /**
-     * Set the camera position in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param posX    Camera new position X value.
-     * @param posY    Camera new position Y value.
-     * @param posZ    Camera new position Z value.
-     */
-    public native void setPosition(final long pointer, final float posX, final float posY, final float posZ);
-
-    /**
-     * Set the camera position in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param posX    Camera new position X value.
-     * @param posY    Camera new position Y value.
-     * @param ordinal Axis to assign X and Y.
-     * @return The camera new position in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    public native float[] setPositionAxis(final long pointer, final float posX, final float posY, final int ordinal);
-
-    /**
      * Move the camera in native code.
      *
      * @param pointer      Address to the native object.

@@ -25,7 +25,6 @@
 package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.gameobject.Movable;
-import be.yildizgames.common.geometry.Axis;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.jni.Native;
@@ -90,7 +89,7 @@ public final class OgreCamera extends Camera implements Native {
             final OgreNodeBase targetNode,
             final float resX,
             final float resY) {
-        super(name, master, node, targetNode);
+        super(name);
         this.pointer = pointer;
         this.node = node;
         this.targetNode = targetNode;
@@ -118,6 +117,21 @@ public final class OgreCamera extends Camera implements Native {
         this.jni.enableRenderingDistance(this.pointer.getPointerAddress());
         this.jni.setNearClip(this.pointer.getPointerAddress(), near);
         return this;
+    }
+
+    @Override
+    public void setTargetPosition(Point3D target) {
+        this.targetNode.setPosition(target);
+    }
+
+    @Override
+    public void rotateTarget(float yaw, float pitch) {
+        this.targetNode.rotate(yaw, pitch);
+    }
+
+    @Override
+    public void rotate(float yaw, float pitch) {
+        this.jni.rotate(this.pointer.getPointerAddress(), yaw, pitch);
     }
 
     /**
@@ -184,14 +198,18 @@ public final class OgreCamera extends Camera implements Native {
     }
 
     @Override
-    protected Point3D setPositionImpl(final int x, final int y, final Axis axis) {
-        float[] v = this.jni.setPositionAxis(this.pointer.getPointerAddress(), x, y, axis.ordinal());
-        return Point3D.valueOf(v[0], v[1], v[2]);
+    public Point3D getTargetPosition() {
+        return null;
     }
 
     @Override
-    protected void setPositionImpl(final float xPosition, final float yPosition, final float zPosition) {
-        this.jni.setPosition(this.pointer.getPointerAddress(), xPosition, yPosition, zPosition);
+    public void initOrigin() {
+
+    }
+
+    @Override
+    public void initTarget() {
+
     }
 
     /**
@@ -233,5 +251,65 @@ public final class OgreCamera extends Camera implements Native {
     @Override
     public NativePointer getPointer() {
         return pointer;
+    }
+
+    @Override
+    public final void attachTo(final Movable other) {
+        this.node.attachTo(other);
+    }
+
+    @Override
+    public final void attachToOptional(final Movable other) {
+        this.node.attachToOptional(other);
+    }
+
+    @Override
+    public final Point3D getPosition() {
+        return this.node.getPosition();
+    }
+
+    @Override
+    public final void setPosition(final Point3D position) {
+        this.node.setPosition(position);
+    }
+
+    @Override
+    public final Point3D getAbsolutePosition() {
+        return this.node.getAbsolutePosition();
+    }
+
+    @Override
+    public final Point3D getDirection() {
+        return this.node.getDirection();
+    }
+
+    @Override
+    public final Point3D getAbsoluteDirection() {
+        return this.node.getAbsoluteDirection();
+    }
+
+    @Override
+    public void setPosition(float v, float v1, float v2) {
+        this.node.setPosition(v, v1, v2);
+    }
+
+    @Override
+    public void setDirection(float v, float v1, float v2) {
+        this.node.setDirection(v, v1, v2);
+    }
+
+    @Override
+    public void addOptionalChild(Movable movable) {
+
+    }
+
+    @Override
+    public void addChild(Movable movable) {
+
+    }
+
+    @Override
+    public void removeChild(Movable movable) {
+
     }
 }

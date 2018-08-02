@@ -31,7 +31,6 @@ import be.yildizgames.common.geometry.Quaternion;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
-import be.yildizgames.module.graphic.movable.Node;
 import jni.JniNode;
 
 import java.util.HashSet;
@@ -40,7 +39,14 @@ import java.util.Set;
 /**
  * @author Grégory Van den Borre
  */
-public abstract class OgreNodeBase extends Node implements OgreNode {
+public abstract class OgreNodeBase implements OgreNode {
+
+    /**
+     * Node unique Id, optional.
+     */
+    private final EntityId id;
+
+    private Movable parent;
 
     /**
      * Pointer address to the associated yz::Node.
@@ -54,8 +60,6 @@ public abstract class OgreNodeBase extends Node implements OgreNode {
      */
     private final String name;
 
-    protected Movable parent;
-
     private final Set<Movable> childrenList = new HashSet<>();
 
     private final Set<Movable> optionalList = new HashSet<>();
@@ -67,7 +71,8 @@ public abstract class OgreNodeBase extends Node implements OgreNode {
      * @param parent Parent object.
      */
     protected OgreNodeBase(final NativePointer pointerAddress, final Movable parent) {
-        super(parent);
+        super();
+        this.id = null;
         this.pointer = pointerAddress;
         this.name = this.nodeNative.getName(this.pointer.getPointerAddress());
         this.parent = parent;
@@ -81,7 +86,8 @@ public abstract class OgreNodeBase extends Node implements OgreNode {
      * @param parent Parent object.
      */
     protected OgreNodeBase(final NativePointer pointerAddress, final EntityId id, final Movable parent) {
-        super(id, parent);
+        super();
+        this.id = id;
         this.pointer = pointerAddress;
         this.name = this.nodeNative.getName(this.pointer.getPointerAddress());
         this.parent = parent;
@@ -102,21 +108,52 @@ public abstract class OgreNodeBase extends Node implements OgreNode {
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
+    @Override
+    public final Point3D getAbsolutePosition() {
+        float[] v = this.nodeNative.getAbsolutePosition(this.pointer.getPointerAddress());
+        return Point3D.valueOf(v[0], v[1], v[2]);
+    }
+
+    @Override
+    public final Point3D getAbsoluteDirection() {
+        float[] v = this.nodeNative.getAbsoluteDirection(this.pointer.getPointerAddress());
+        return Point3D.valueOf(v[0], v[1], v[2]);
+    }
+
     public final String getName() {
         return name;
     }
 
-    @Override
     public final void show() {
         this.nodeNative.show(this.pointer.getPointerAddress());
     }
 
-    @Override
     public final void hide() {
         this.nodeNative.hide(this.pointer.getPointerAddress());
     }
 
-    @Override
+    /**
+     * Scale the node.
+     *
+     * @param scale Scale factor.
+     */
+    public final void scale(float scale) {
+        this.scale(scale, scale, scale);
+    }
+
+    public void scale(float x, float y, float z) {
+        this.nodeNative.scale(this.pointer.getPointerAddress(), x, y, z);
+    }
+
+    /**
+     * Set the node direction.
+     *
+     * @param direction Node new direction.
+     */
+    public final void setDirection(final Point3D direction) {
+        this.setDirection(direction.x, direction.y, direction.z);
+    }
+
     public final Quaternion getOrientation() {
         float[] v = this.nodeNative.getOrientation(this.pointer.getPointerAddress());
         return new Quaternion(v[0], v[1], v[2], v[3]);
@@ -171,6 +208,17 @@ public abstract class OgreNodeBase extends Node implements OgreNode {
         return this.pointer;
     }
 
+
+    public abstract void rotate(float x, float y, float z, float w);
+
+    public abstract Point3D rotate(float yaw, float pitch);
+
+    public abstract Point3D translate(float moveX, float moveY, float moveZ);
+
+    @Override
+    public final void delete() {
+        this.nodeNative.delete(this.pointer.getPointerAddress());
+    }
 
     @Override
     public String toString() {

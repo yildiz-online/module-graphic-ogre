@@ -25,6 +25,7 @@
 package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.gameobject.Movable;
+import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.billboard.Billboard;
@@ -50,6 +51,8 @@ public final class OgreBillboardSet extends BillboardSet implements Native {
 
     private final JniBillboardSet jni = new JniBillboardSet();
 
+    private boolean visible;
+
     /**
      * Full constructor.
      *
@@ -57,8 +60,9 @@ public final class OgreBillboardSet extends BillboardSet implements Native {
      * @param node    Associated node.
      */
     public OgreBillboardSet(final NativePointer pointer, final OgreNodeBase node) {
-        super(node);
+        super();
         this.pointer = pointer;
+        this.visible = true;
         this.node = node;
         this.jni.attachToNode(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress());
     }
@@ -76,16 +80,6 @@ public final class OgreBillboardSet extends BillboardSet implements Native {
     @Override
     public void setSize(final float width, final float height) {
         this.jni.setSize(this.pointer.getPointerAddress(), width, height);
-    }
-
-    @Override
-    protected void hideImpl() {
-        this.jni.hide(this.pointer.getPointerAddress());
-    }
-
-    @Override
-    protected void showImpl() {
-        this.jni.show(this.pointer.getPointerAddress());
     }
 
     @Override
@@ -126,5 +120,81 @@ public final class OgreBillboardSet extends BillboardSet implements Native {
     @Override
     public Movable getInternal() {
         return this.node;
+    }
+
+    @Override
+    public final void attachTo(final Movable other) {
+        this.node.attachTo(other);
+    }
+
+    @Override
+    public final void attachToOptional(final Movable other) {
+        this.node.attachToOptional(other);
+    }
+
+    @Override
+    public final Point3D getPosition() {
+        return this.node.getPosition();
+    }
+
+    @Override
+    public final void setPosition(final Point3D position) {
+        this.node.setPosition(position);
+    }
+
+    @Override
+    public final Point3D getAbsolutePosition() {
+        return this.node.getAbsolutePosition();
+    }
+
+    @Override
+    public final Point3D getDirection() {
+        return this.node.getDirection();
+    }
+
+    @Override
+    public final void setDirection(final Point3D direction) {
+        this.node.setDirection(direction);
+    }
+
+    @Override
+    public final Point3D getAbsoluteDirection() {
+        return this.node.getAbsoluteDirection();
+    }
+
+    @Override
+    public final void delete() {
+        this.node.delete();
+    }
+
+    //public final Node getNode() {
+    //    return node;
+    //}
+
+    /**
+     * Set the object visible.
+     */
+    public final void show() {
+        if (!this.visible) {
+            this.jni.show(this.pointer.getPointerAddress());
+            this.visible = true;
+        }
+    }
+
+    /**
+     * Set the object invisible.
+     */
+    public final void hide() {
+        if (this.visible) {
+            this.jni.hide(this.pointer.getPointerAddress());
+            this.visible = false;
+        }
+    }
+
+    /**
+     * @return <code>true</code> if object is currently visible.
+     */
+    public final boolean isVisible() {
+        return this.visible;
     }
 }

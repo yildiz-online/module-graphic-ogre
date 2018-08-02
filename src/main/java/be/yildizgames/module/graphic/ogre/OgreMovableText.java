@@ -50,6 +50,7 @@ public final class OgreMovableText extends MovableText {
     private final OgreNodeBase node;
 
     private final JniMovableText jni = new JniMovableText();
+    private boolean visible;
 
     /**
      * Full constructor.
@@ -60,7 +61,8 @@ public final class OgreMovableText extends MovableText {
      * @param font Font to use.
      */
     public OgreMovableText(final OgreNodeBase node, final String name, final String text, final Font font) {
-        super(node);
+        super();
+        this.visible = true;
         this.node = node;
         long address = this.jni.constructor(this.node.getPointer().getPointerAddress(), name, text, OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
         this.pointer = NativePointer.create(address);
@@ -94,16 +96,6 @@ public final class OgreMovableText extends MovableText {
     }
 
     @Override
-    public void showImpl() {
-        this.node.show();
-    }
-
-    @Override
-    public void hideImpl() {
-        this.node.hide();
-    }
-
-    @Override
     public void detachFromParent() {
         this.node.detachFromParent();
     }
@@ -126,5 +118,81 @@ public final class OgreMovableText extends MovableText {
     @Override
     public Movable getInternal() {
         return this.node;
+    }
+
+    @Override
+    public final void attachTo(final Movable other) {
+        this.node.attachTo(other);
+    }
+
+    @Override
+    public final void attachToOptional(final Movable other) {
+        this.node.attachToOptional(other);
+    }
+
+    @Override
+    public final Point3D getPosition() {
+        return this.node.getPosition();
+    }
+
+    @Override
+    public final void setPosition(final Point3D position) {
+        this.node.setPosition(position);
+    }
+
+    @Override
+    public final Point3D getAbsolutePosition() {
+        return this.node.getAbsolutePosition();
+    }
+
+    @Override
+    public final Point3D getDirection() {
+        return this.node.getDirection();
+    }
+
+    @Override
+    public final void setDirection(final Point3D direction) {
+        this.node.setDirection(direction);
+    }
+
+    @Override
+    public final Point3D getAbsoluteDirection() {
+        return this.node.getAbsoluteDirection();
+    }
+
+    @Override
+    public final void delete() {
+        this.node.delete();
+    }
+
+    //public final Node getNode() {
+    //    return node;
+    //}
+
+    /**
+     * Set the object visible.
+     */
+    public final void show() {
+        if (!this.visible) {
+            this.node.show();
+            this.visible = true;
+        }
+    }
+
+    /**
+     * Set the object invisible.
+     */
+    public final void hide() {
+        if (this.visible) {
+            this.node.hide();
+            this.visible = false;
+        }
+    }
+
+    /**
+     * @return <code>true</code> if object is currently visible.
+     */
+    public final boolean isVisible() {
+        return this.visible;
     }
 }

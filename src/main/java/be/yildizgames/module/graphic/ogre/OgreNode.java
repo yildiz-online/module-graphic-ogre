@@ -35,4 +35,8 @@ import be.yildizgames.common.jni.Native;
 public interface OgreNode extends Native, Movable {
 
     String getName();
+
+    void show();
+
+    void hide();
 }

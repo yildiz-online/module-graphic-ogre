@@ -88,20 +88,6 @@ public class JniParticleSystem {
     public native void setQuota(final long pointer, final int quota);
 
     /**
-     * Show the particle in native code.
-     *
-     * @param pointer Address to the native object.
-     */
-    public native void show(final long pointer);
-
-    /**
-     * Hide the particle system in native code.
-     *
-     * @param pointer Address to the native object.
-     */
-    public native void hide(final long pointer);
-
-    /**
      * Set the particle billboard orientation in native code.
      *
      * @param pointer         Address to the native object.

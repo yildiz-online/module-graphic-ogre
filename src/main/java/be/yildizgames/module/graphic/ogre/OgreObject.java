@@ -24,19 +24,18 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.graphic.movable.GraphicMovable;
-import be.yildizgames.module.graphic.GraphicObject;
-import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.model.EntityId;
+import be.yildizgames.module.graphic.GraphicObject;
+import be.yildizgames.module.graphic.material.Material;
 
 /**
  * Common code for all Ogre Bullet objects.
  *
  * @author Grégory Van den Borre
  */
-class OgreObject extends GraphicObject implements GraphicMovable {
+class OgreObject extends GraphicObject {
 
     /**
      * Object id.
@@ -226,11 +225,6 @@ class OgreObject extends GraphicObject implements GraphicMovable {
 
     public final EntityId getId() {
         return this.id;
-    }
-
-    @Override
-    public final OgreNodeBase getNode() {
-        return this.node;
     }
 
     @Override

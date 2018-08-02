@@ -24,6 +24,8 @@
 
 package jni;
 
+import be.yildizgames.common.geometry.Point3D;
+
 /**
  * @author Grégory Van den Borre
  */
@@ -153,4 +155,8 @@ public class JniNode {
      * @param pointerAddress Address to the native yz::Node.
      */
     public native void delete(final long pointerAddress);
+
+    public native float[] getAbsoluteDirection(long pointerAddress);
+
+    public native float[] getAbsolutePosition(long pointerAddress);
 }
