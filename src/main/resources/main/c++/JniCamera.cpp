@@ -30,6 +30,11 @@
 #include "../includes/JniUtil.h"
 #include "../includes/Lensflare.hpp"
 
+JNIEXPORT void JNICALL Java_jni_JniCamera_attachToNode(JNIEnv* env, jobject o, POINTER pointer, long nodePointer) {
+    LOG_FUNCTION
+    yz::Node::get(nodePointer)->attachObject(yz::Camera::get(pointer));
+}
+
 JNIEXPORT void JNICALL Java_jni_JniCamera_setFarClip(
     JNIEnv* env,
     jobject,

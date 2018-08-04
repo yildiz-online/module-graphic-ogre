@@ -24,8 +24,6 @@
 
 package jni;
 
-import be.yildizgames.common.geometry.Point3D;
-
 /**
  * @author Grégory Van den Borre
  */

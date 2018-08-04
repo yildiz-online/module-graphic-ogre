@@ -34,6 +34,12 @@
 extern "C" {
 #endif
 
+JNIEXPORT void JNICALL Java_jni_JniCamera_attachToNode(
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
+    long nodePointer);
+
 JNIEXPORT void JNICALL Java_jni_JniCamera_setFarClip(
     JNIEnv* env,
     jobject o,

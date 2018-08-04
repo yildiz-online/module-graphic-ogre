@@ -66,11 +66,12 @@ public final class OgreCamera extends Camera implements Native {
     /**
      * Node to auto track a specific position.
      */
-    private final OgreNodeBase node;
+    private final OgreNode node;
 
-    private final OgreNodeBase targetNode;
+    private final OgreNode targetNode;
 
     private final JniCamera jni = new JniCamera();
+    private final OgreNode master;
 
     /**
      * Full constructor.
@@ -84,17 +85,19 @@ public final class OgreCamera extends Camera implements Native {
     public OgreCamera(
             final NativePointer pointer,
             final String name,
-            final OgreNodeBase master,
-            final OgreNodeBase node,
-            final OgreNodeBase targetNode,
+            final OgreNode master,
+            final OgreNode node,
+            final OgreNode targetNode,
             final float resX,
             final float resY) {
         super(name);
         this.pointer = pointer;
+        this.master = master;
         this.node = node;
         this.targetNode = targetNode;
         this.resolutionX = resX;
         this.resolutionY = resY;
+        this.node.addChild(this);
     }
 
     public void adaptToScreenRatio() {
@@ -131,7 +134,8 @@ public final class OgreCamera extends Camera implements Native {
 
     @Override
     public void rotate(float yaw, float pitch) {
-        this.jni.rotate(this.pointer.getPointerAddress(), yaw, pitch);
+        this.node.rotate(yaw, pitch);
+        //this.jni.rotate(this.pointer.getPointerAddress(), yaw, pitch);
     }
 
     /**
@@ -255,7 +259,7 @@ public final class OgreCamera extends Camera implements Native {
 
     @Override
     public final void attachTo(final Movable other) {
-        this.node.attachTo(other);
+        this.jni.attachToNode(this.getPointer().getPointerAddress(), this.node.getPointer().getPointerAddress());
     }
 
     @Override
@@ -300,16 +304,16 @@ public final class OgreCamera extends Camera implements Native {
 
     @Override
     public void addOptionalChild(Movable movable) {
-
+        this.node.addOptionalChild(movable);
     }
 
     @Override
     public void addChild(Movable movable) {
-
+        this.node.addChild(movable);
     }
 
     @Override
     public void removeChild(Movable movable) {
-
+        this.node.removeChild(movable);
     }
 }

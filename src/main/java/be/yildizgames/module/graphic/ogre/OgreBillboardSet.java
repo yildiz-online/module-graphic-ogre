@@ -37,7 +37,7 @@ import jni.JniBillboardSet;
  *
  * @author Grégory Van den Borre
  */
-public final class OgreBillboardSet extends BillboardSet implements Native {
+public final class OgreBillboardSet implements BillboardSet, Native {
 
     /**
      * Pointer address to the native code object.
@@ -47,7 +47,7 @@ public final class OgreBillboardSet extends BillboardSet implements Native {
     /**
      * Associated node.
      */
-    private final OgreNodeBase node;
+    private final OgreNode node;
 
     private final JniBillboardSet jni = new JniBillboardSet();
 
@@ -59,7 +59,7 @@ public final class OgreBillboardSet extends BillboardSet implements Native {
      * @param pointer Pointer address to the associated native object.
      * @param node    Associated node.
      */
-    public OgreBillboardSet(final NativePointer pointer, final OgreNodeBase node) {
+    public OgreBillboardSet(final NativePointer pointer, final OgreNode node) {
         super();
         this.pointer = pointer;
         this.visible = true;

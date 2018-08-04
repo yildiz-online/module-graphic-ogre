@@ -25,7 +25,9 @@
 package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.gameobject.Movable;
+import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
+
 
 /**
  * Java part for the yz::Node.
@@ -39,4 +41,7 @@ public interface OgreNode extends Native, Movable {
     void show();
 
     void hide();
+
+    Point3D rotate(float yaw, float pitch);
+
 }

@@ -26,6 +26,7 @@ package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.Font;
@@ -37,7 +38,7 @@ import jni.JniMovableText;
  *
  * @author Grégory Van den Borre
  */
-public final class OgreMovableText extends MovableText {
+public final class OgreMovableText implements MovableText, Native {
 
     /**
      * Pointer for the native object.
@@ -158,6 +159,11 @@ public final class OgreMovableText extends MovableText {
     @Override
     public final Point3D getAbsoluteDirection() {
         return this.node.getAbsoluteDirection();
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return this.pointer;
     }
 
     @Override
