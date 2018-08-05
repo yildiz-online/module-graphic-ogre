@@ -38,7 +38,7 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_attachToNode(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
-    long nodePointer);
+    POINTER nodePointer);
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_setFarClip(
     JNIEnv* env,

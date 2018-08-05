@@ -97,7 +97,7 @@ public final class OgreCamera extends Camera implements Native {
         this.targetNode = targetNode;
         this.resolutionX = resX;
         this.resolutionY = resY;
-        this.node.addChild(this);
+        this.jni.attachToNode(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress());
     }
 
     public void adaptToScreenRatio() {

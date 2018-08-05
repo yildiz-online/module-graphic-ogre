@@ -193,5 +193,5 @@ public class JniCamera {
      */
     public native float[] computeMoveDestinationGroundIntersect(final long pointerAddress, final float screenX, final float screenY);
 
-    public native void attachToNode(long pointerAddress, long pointerAddress1);
+    public native void attachToNode(final long pointerAddress, final long nodeAddress);
 }
