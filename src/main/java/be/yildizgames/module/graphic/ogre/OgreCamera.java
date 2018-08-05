@@ -47,10 +47,6 @@ import java.util.Optional;
 public final class OgreCamera extends Camera implements Native {
 
     /**
-     * Rotation camera speed.
-     */
-    private static final float ROTATION_SPEED = 0.05f;
-    /**
      * Screen size Y value.
      */
     private final float resolutionY;
@@ -71,6 +67,7 @@ public final class OgreCamera extends Camera implements Native {
     private final OgreNode targetNode;
 
     private final JniCamera jni = new JniCamera();
+
     private final OgreNode master;
 
     /**
@@ -223,11 +220,6 @@ public final class OgreCamera extends Camera implements Native {
      */
     boolean see(final Point3D position) {
         return this.jni.isVisible(this.pointer.getPointerAddress(), position.x, position.y, position.z);
-    }
-
-    protected Point3D getDirectionImpl() {
-        float[] v = this.jni.getDirection(this.pointer.getPointerAddress());
-        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     /**
