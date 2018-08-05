@@ -89,8 +89,6 @@ public:
         return this->camera->getName();
     }
 
-    Ogre::Vector3 rotate(const Ogre::Real x, const Ogre::Real y);
-
     inline Ogre::Vector3 move(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
         LOG_FUNCTION
         this->node->translate(Ogre::Vector3(x, y, z), Ogre::Node::TS_LOCAL);

@@ -74,12 +74,7 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_forceListenersUpdate(
     JNIEnv* env,
     jobject o,
     POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_rotate(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y);
+
 JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_move(
     JNIEnv* env,
     jobject o,

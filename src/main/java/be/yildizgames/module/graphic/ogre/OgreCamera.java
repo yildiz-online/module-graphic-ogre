@@ -135,7 +135,6 @@ public final class OgreCamera extends Camera implements Native {
     @Override
     public void rotate(float yaw, float pitch) {
         this.node.rotate(yaw, pitch);
-        //this.jni.rotate(this.pointer.getPointerAddress(), yaw, pitch);
     }
 
     /**

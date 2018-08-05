@@ -40,16 +40,6 @@ public class JniCamera {
     public native void setAspectRatio(final long pointer, final float ratio);
 
     /**
-     * Rotate the camera in native code.
-     *
-     * @param pointer Address to the native object.
-     * @param yaw     Rotation X axis.
-     * @param pitch   Rotation Y axis.
-     * @return The new camera direction in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    public native float[] rotate(final long pointer, final float yaw, final float pitch);
-
-    /**
      * Set the camera look to a position.
      *
      * @param pointer Address to the native object.

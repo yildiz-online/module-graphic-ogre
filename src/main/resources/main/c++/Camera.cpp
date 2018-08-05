@@ -41,18 +41,6 @@ Ogre::Ray yz::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
     return this->camera->getCameraToViewportRay(x, y);
 }
 
-Ogre::Vector3 yz::Camera::rotate(const Ogre::Real x, const Ogre::Real y) {
-    LOG_FUNCTION
-    //FIXME limits related to game? check
-    this->node->yaw(Ogre::Radian(x));
-    const Ogre::Real pitch = this->node->getOrientation().getPitch().valueDegrees();
-    if((pitch < 50 && y < 0) || (pitch > -50 && y > 0)) {
-        this->node->pitch(Ogre::Radian(y));
-    }
-    this->updateListeners();
-    return this->getDirection();
-}
-
 std::vector<yz::Id*> yz::Camera::throwPlaneRay(
     Ogre::Real x1,
     Ogre::Real x2,
