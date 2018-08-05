@@ -42,7 +42,7 @@ class Camera : public AbstractMovable {
 
 public:
 
-    Camera(Ogre::Camera* cam, Ogre::RaySceneQuery* query, Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery, Ogre::SceneNode* node);
+    Camera(Ogre::Camera* cam, Ogre::RaySceneQuery* query, Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery);
 
     Ogre::Vector3 getPoint(const Ogre::Vector3& pos, const Ogre::Real x, const Ogre::Real y);
 

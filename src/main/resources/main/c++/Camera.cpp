@@ -32,10 +32,8 @@ yz::Id* yz::Camera::ID_WORLD(new yz::Id(0));
 yz::Camera::Camera(
   Ogre::Camera* cam,
   Ogre::RaySceneQuery* q,
-  Ogre::PlaneBoundedVolumeListSceneQuery* pq,
-  Ogre::SceneNode* n) : camera(cam), query(q), planeQuery(pq), node(n) {
+  Ogre::PlaneBoundedVolumeListSceneQuery* pq) : camera(cam), query(q), planeQuery(pq), node(n) {
     LOG_FUNCTION
-    this->node->attachObject(this->camera);
 }
 
 Ogre::Ray yz::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
