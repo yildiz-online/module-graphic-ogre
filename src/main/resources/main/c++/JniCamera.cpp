@@ -35,6 +35,7 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_attachToNode(JNIEnv* env, jobject o, P
     yz::Camera* camera = yz::Camera::get(pointer);
     yz::Node* node = yz::Node::get(nodePointer);
     node->attachObject(camera);
+    camera->attachGround(node);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_setFarClip(
@@ -94,36 +95,6 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_forceListenersUpdate(
     yz::Camera::get(pointer)->forceListenersUpdate();
 }
 
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_move(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z) {
-    LOG_FUNCTION
-    return vectorToArray(env, yz::Camera::get(pointer)->move(x, y, z));
-}
-
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_getDirection(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer) {
-    LOG_FUNCTION
-    return vectorToArray(env, yz::Camera::get(pointer)->getDirection());
-}
-
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_setPositionAxis(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jint axis) {
-    LOG_FUNCTION
-    return vectorToArray(env, yz::Camera::get(pointer)->setPositionAxis(x, y, axis));
-}
-
 JNIEXPORT jboolean JNICALL Java_jni_JniCamera_isVisible(
     JNIEnv* env,
     jobject o,
@@ -135,62 +106,12 @@ JNIEXPORT jboolean JNICALL Java_jni_JniCamera_isVisible(
     return yz::Camera::get(pointer)->isVisible(x, y, z);
 }
 
-JNIEXPORT void JNICALL Java_jni_JniCamera_setPosition(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z) {
-    LOG_FUNCTION
-    yz::Camera::get(pointer)->setPosition(x, y, z);
-}
-
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_lookAt(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z) {
-    LOG_FUNCTION
-    return vectorToArray(env, yz::Camera::get(pointer)->lookAt(x, y, z));
-}
-
-JNIEXPORT void JNICALL Java_jni_JniCamera_setOrientation(
-    JNIEnv*,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z) {
-    LOG_FUNCTION
-    yz::Camera::get(pointer)->setDirection(x, y, z);
-}
-
 JNIEXPORT void JNICALL Java_jni_JniCamera_detachFromParent(
     JNIEnv*,
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
     yz::Camera::get(pointer)->detachFromParent();
-}
-
-JNIEXPORT void JNICALL Java_jni_JniCamera_setAutotrack(
-    JNIEnv *,
-    jobject,
-    POINTER pointer,
-    POINTER nodePointer) {
-    LOG_FUNCTION
-    yz::Camera::get(pointer)->track(yz::Node::get(nodePointer));
-}
-
-JNIEXPORT void JNICALL Java_jni_JniCamera_stopAutotrack(
-    JNIEnv *,
-    jobject,
-    POINTER pointer) {
-    LOG_FUNCTION
-    yz::Camera::get(pointer)->stopTrack();
 }
 
 JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_computeMoveDestinationGroundIntersect(

@@ -40,27 +40,6 @@ public class JniCamera {
     public native void setAspectRatio(final long pointer, final float ratio);
 
     /**
-     * Set the camera look to a position.
-     *
-     * @param pointer Address to the native object.
-     * @param targetX Target position X value.
-     * @param targetY Target position Y value.
-     * @param targetZ Target position Z value.
-     * @return The new camera direction in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    public native float[] lookAt(final long pointer, final float targetX, final float targetY, final float targetZ);
-
-    /**
-     * Set the camera direction.
-     *
-     * @param pointer Address to the native object.
-     * @param dirX    Direction X value.
-     * @param dirY    Direction Y value.
-     * @param dirZ    Direction Z value.
-     */
-    public native void setOrientation(final long pointer, final float dirX, final float dirY, final float dirZ);
-
-    /**
      * Check if a position in visible by the camera.
      *
      * @param pointer   Address to the native object.
@@ -70,25 +49,6 @@ public class JniCamera {
      * @return <code>true</code> if visible, <code>false</code> otherwise.
      */
     public native boolean isVisible(final long pointer, final float xPosition, final float yPosition, final float zPosition);
-
-    /**
-     * Move the camera in native code.
-     *
-     * @param pointer      Address to the native object.
-     * @param translationX Translation X value.
-     * @param translationY Translation Y value.
-     * @param translationZ Translation Z value.
-     * @return The camera new position in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    public native float[] move(final long pointer, final float translationX, final float translationY, final float translationZ);
-
-    /**
-     * Retrieve the camera direction in native code.
-     *
-     * @param pointer Address to the native object.
-     * @return The camera direction in an array(0 = X, 1 = Y, 2 = Z);
-     */
-    public native float[] getDirection(final long pointer);
 
     /**
      * Detach from the parent node in native code.
@@ -111,21 +71,6 @@ public class JniCamera {
      * @param ls      Address of the listener to remove.
      */
     public native void unregisterListener(final long pointer, final long ls);
-
-    /**
-     * Activate auto tracking for a node in native code.
-     *
-     * @param pointer     Address of this yz::Camera.
-     * @param nodePointer Address of the yz::Node to track.
-     */
-    public native void setAutotrack(final long pointer, final long nodePointer);
-
-    /**
-     * Deactivate auto tracking in native code.
-     *
-     * @param pointer Address of this yz::Camera.
-     */
-    public native void stopAutotrack(final long pointer);
 
     /**
      * Enable the rendering distance.

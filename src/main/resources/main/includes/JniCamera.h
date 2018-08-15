@@ -75,20 +75,6 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_forceListenersUpdate(
     jobject o,
     POINTER pointer);
 
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_move(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z);
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_lookAt(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z);
 JNIEXPORT jboolean JNICALL Java_jni_JniCamera_isVisible(
     JNIEnv* env,
     jobject o,
@@ -96,46 +82,8 @@ JNIEXPORT jboolean JNICALL Java_jni_JniCamera_isVisible(
     jfloat x,
     jfloat y,
     jfloat z);
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_getDirection(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer);
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_setPositionAxis(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jint axis);
-
-JNIEXPORT void JNICALL Java_jni_JniCamera_setPosition(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jfloat z);
-
-JNIEXPORT void JNICALL Java_jni_JniCamera_setOrientation(
-    JNIEnv *,
-    jobject,
-    POINTER,
-    jfloat,
-    jfloat,
-    jfloat);
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_detachFromParent(
-    JNIEnv *,
-    jobject,
-    POINTER);
-
-JNIEXPORT void JNICALL Java_jni_JniCamera_setAutotrack(
-    JNIEnv *,
-    jobject,
-    POINTER,
-    POINTER);
-
-JNIEXPORT void JNICALL Java_jni_JniCamera_stopAutotrack(
     JNIEnv *,
     jobject,
     POINTER);

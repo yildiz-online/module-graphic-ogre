@@ -48,6 +48,10 @@ public:
 
     Ogre::Ray getRay(const Ogre::Real x, const Ogre::Real y);
 
+    void attachGround(YZ::Node* node) {
+        node->attachObject(this.planeQuery);
+    }
+
     inline void setAspectRatio(const Ogre::Real ratio) {
         LOG_FUNCTION
         this->camera->setAspectRatio(ratio);
@@ -89,37 +93,9 @@ public:
         return this->camera->getName();
     }
 
-    inline Ogre::Vector3 move(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
-        LOG_FUNCTION
-        this->node->translate(Ogre::Vector3(x, y, z), Ogre::Node::TS_LOCAL);
-        this->updateListeners();
-        return this->node->getPosition();
-    }
-
-    Ogre::Vector3 setPositionAxis(const Ogre::Real x, const Ogre::Real y, const int axis);
-
     inline bool isVisible(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
         LOG_FUNCTION
         return this->camera->isVisible(Ogre::Vector3(x, y, z));
-    }
-
-    inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
-        LOG_FUNCTION
-        this->node->setPosition(x, y, z);
-        this->updateListeners();
-    }
-
-    inline Ogre::Vector3 lookAt(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
-        LOG_FUNCTION
-        this->node->lookAt(Ogre::Vector3(x, y, z), Ogre::Node::TS_WORLD);
-        this->updateListeners();
-        return this->node->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
-    }
-
-    inline void setDirection(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {
-        LOG_FUNCTION
-        this->node->setDirection(x, y, z);
-        this->updateListeners();
     }
 
     inline void forceListenersUpdate() {
@@ -129,29 +105,9 @@ public:
 
     void updateListeners();
 
-    inline Ogre::Vector3 getDirection() const {
-        LOG_FUNCTION
-        return this->node->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
-    }
-
-    inline Ogre::Vector3 getPosition() const {
-        LOG_FUNCTION
-        return this->node->getPosition();
-    }
-
     inline Ogre::Camera* getCamera() const{
         LOG_FUNCTION
         return this->camera;
-    }
-
-    inline void track(yz::Node* node) {
-        LOG_FUNCTION
-        this->node->setAutoTracking(true, node->getWrappedNode());
-    }
-
-    inline void stopTrack() {
-        LOG_FUNCTION
-        this->node->setAutoTracking(false);
     }
 
     inline void detachFromParent() {
@@ -187,7 +143,6 @@ private:
 
     Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery;
 
-    Ogre::SceneNode* node;
 };
 
 }
