@@ -95,38 +95,5 @@ public class JniCamera {
      */
     public native void setNearClip(final long pointer, final int distance);
 
-    /**
-     * Throw a plane ray in native code to retrieve the movable in the plane.
-     *
-     * @param pointerAddress Address to the native yz::Camera*.
-     * @param left           Plane left value.
-     * @param top            Plane top value.
-     * @param right          Plane right value.
-     * @param bottom         Plane bottom value.
-     * @return An array with the movable pointer addresses.
-     */
-    public native long[] throwPlaneRay(final long pointerAddress, final float left, final float top, final float right, final float bottom);
-
-    /**
-     * Throw a ray to retrieve an entity in native code.
-     *
-     * @param pointerAddress Address to the native yz::Camera*.
-     * @param screenX        Screen X position to throw the ray.
-     * @param screenY        Screen Y position to throw the ray.
-     * @param poly           <code>true</code> to make selection with polygon precision, false to use bounding box.
-     * @return The pointer value of the found movable object, if none, 0.
-     */
-    public native long throwRay(final long pointerAddress, final float screenX, final float screenY, final boolean poly);
-
-    /**
-     * Compute the intersection point between the mouse position and the invisible ground associated to the camera.
-     *
-     * @param pointerAddress Address to the native yz::Camera*.
-     * @param screenX        Mouse x position.
-     * @param screenY        Mouse y position.
-     * @return The intersection point.
-     */
-    public native float[] computeMoveDestinationGroundIntersect(final long pointerAddress, final float screenX, final float screenY);
-
     public native void attachToNode(final long pointerAddress, final long nodeAddress);
 }

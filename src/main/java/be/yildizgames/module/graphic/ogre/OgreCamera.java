@@ -146,7 +146,7 @@ public final class OgreCamera extends Camera implements Native {
         final float top = rectangle.getTop() / this.resolutionY;
         final float right = rectangle.getRight() / this.resolutionX;
         final float bottom = rectangle.getBottom() / this.resolutionY;
-        final long[] tab = this.jni.throwPlaneRay(this.pointer.getPointerAddress(), left, top, right, bottom);
+        final long[] tab = {};//this.jni.throwPlaneRay(this.pointer.getPointerAddress(), left, top, right, bottom);
         final List<EntityId> ids = new ArrayList<>(tab.length);
         for (long i : tab) {
             ids.add(EntityId.valueOf(i));
@@ -165,7 +165,7 @@ public final class OgreCamera extends Camera implements Native {
     public Optional<EntityId> throwRay(final int x, final int y) {
         final float screenX = x / this.resolutionX;
         final float screenY = y / this.resolutionY;
-        EntityId id = EntityId.valueOf(this.jni.throwRay(this.pointer.getPointerAddress(), screenX, screenY, false));
+        EntityId id = EntityId.WORLD;// EntityId.valueOf(this.jni.throwRay(this.pointer.getPointerAddress(), screenX, screenY, false));
         if (id.equals(EntityId.WORLD)) {
             return Optional.empty();
         }
@@ -182,7 +182,7 @@ public final class OgreCamera extends Camera implements Native {
     public Point3D computeMoveDestination(final int x, int y) {
         final float screenX = (float) x / this.resolutionX;
         final float screenY = (float) y / this.resolutionY;
-        final float[] destination = this.jni.computeMoveDestinationGroundIntersect(this.pointer.getPointerAddress(), screenX, screenY);
+        final float[] destination = {0,0,0};//his.jni.computeMoveDestinationGroundIntersect(this.pointer.getPointerAddress(), screenX, screenY);
         return Point3D.valueOf(destination[0], destination[1], destination[2]);
     }
 
