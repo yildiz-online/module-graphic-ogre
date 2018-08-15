@@ -49,7 +49,7 @@ public:
     Ogre::Ray getRay(const Ogre::Real x, const Ogre::Real y);
 
     void attachGround(yz::Node* node) {
-        node->attachObject(this.planeQuery);
+        node->attachObject(this->planeQuery);
     }
 
     inline void setAspectRatio(const Ogre::Real ratio) {
