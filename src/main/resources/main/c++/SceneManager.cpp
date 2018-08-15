@@ -52,7 +52,7 @@ yz::Camera* yz::SceneManager::createCamera(const std::string& name) {
     return cam;
 }
 
-yz::Query* createQuery(yz::RayProvider* provider) {
+yz::Query* yz::SceneManager::createQuery(yz::RayProvider* provider) {
    LOG_FUNCTION
    Ogre::RaySceneQuery* query = this->sceneManager->createRayQuery(Ogre::Ray());
    Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery = this->sceneManager->createPlaneBoundedVolumeQuery(Ogre::PlaneBoundedVolumeList());
