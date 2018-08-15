@@ -27,6 +27,7 @@
 
 #include "../includes/Query.hpp"
 #include "../includes/JniQuery.h"
+#include "../includes/JniUtil.h"
 
 JNIEXPORT jfloatArray JNICALL Java_jni_JniQuery_computeMoveDestinationGroundIntersect(
     JNIEnv* env,
