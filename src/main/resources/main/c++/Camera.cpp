@@ -27,8 +27,6 @@
 
 #include "../includes/Camera.hpp"
 
-yz::Id* yz::Camera::ID_WORLD(new yz::Id(0));
-
 yz::Camera::Camera(
   Ogre::Camera* cam) : camera(cam) {
     LOG_FUNCTION

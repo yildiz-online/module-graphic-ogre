@@ -132,6 +132,6 @@ yz::Id* yz::Query::throwRay(
             }
         }
     }
-    return yz::Camera::ID_WORLD;
+    return yz::Query::ID_WORLD;
 }
 
