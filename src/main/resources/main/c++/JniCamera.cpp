@@ -35,7 +35,6 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_attachToNode(JNIEnv* env, jobject o, P
     yz::Camera* camera = yz::Camera::get(pointer);
     yz::Node* node = yz::Node::get(nodePointer);
     node->attachObject(camera);
-    node->attachObject(camera->getPlaneQuery());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_setFarClip(
