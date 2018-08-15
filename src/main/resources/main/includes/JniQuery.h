@@ -21,28 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
+#include <jni.h>
+#include "stdafx.h"
+
+#ifndef JNI_QUERY_H
+#define JNI_QUERY_H
+
 /**
-*@author Grégory Van den Borre
+* @author Grégory Van den Borre
 */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#include "../includes/Camera.hpp"
+JNIEXPORT POINTER JNICALL Java_jni_JniCamera_throwRay(
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
+    jfloat x,
+    jfloat y,
+    jboolean poly);
 
-yz::Id* yz::Camera::ID_WORLD(new yz::Id(0));
+JNIEXPORT jlongArray JNICALL Java_jni_JniCamera_throwPlaneRay(
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
+    jfloat left,
+    jfloat top,
+    jfloat right,
+    jfloat bottom);
 
-yz::Camera::Camera(
-  Ogre::Camera* cam) : camera(cam) {
-    LOG_FUNCTION
+JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_computeMoveDestinationGroundIntersect(
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer,
+    jfloat x,
+    jfloat y);
+
+#ifdef __cplusplus
 }
-
-Ogre::Ray yz::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
-    LOG_FUNCTION
-    return this->camera->getCameraToViewportRay(x, y);
-}
-
-void yz::Camera::updateListeners() {
-    LOG_FUNCTION
-    for(unsigned int i = 0; i < listenerList.size(); i++) {
-        listenerList[i]->cameraUpdated(this->camera);
-    }
-}
-
+#endif
+#endif

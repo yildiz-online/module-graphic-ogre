@@ -21,28 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
+#ifndef RAYPROVIDER_H
+#define RAYPROVIDER_H
+
+#include <vector>
+#include <Ogre.h>
+#include "stdafx.h"
+#include "AbstractCameraListener.hpp"
+#include "HelperLogics.hpp"
+#include "Node.hpp"
+#include "AbstractMovable.hpp"
+
+
+namespace yz {
+
 /**
 *@author Grégory Van den Borre
 */
+class RayProvider {
 
-#include "../includes/Camera.hpp"
+public:
 
-yz::Id* yz::Camera::ID_WORLD(new yz::Id(0));
+    virtual Ogre::Ray getRay(const Ogre::Real x, const Ogre::Real y) = 0;
 
-yz::Camera::Camera(
-  Ogre::Camera* cam) : camera(cam) {
-    LOG_FUNCTION
+};
+
 }
 
-Ogre::Ray yz::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
-    LOG_FUNCTION
-    return this->camera->getCameraToViewportRay(x, y);
-}
-
-void yz::Camera::updateListeners() {
-    LOG_FUNCTION
-    for(unsigned int i = 0; i < listenerList.size(); i++) {
-        listenerList[i]->cameraUpdated(this->camera);
-    }
-}
-
+#endif

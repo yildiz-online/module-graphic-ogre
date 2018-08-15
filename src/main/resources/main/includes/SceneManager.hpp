@@ -38,6 +38,8 @@
 #include "BillboardSet.hpp"
 #include "ElectricArc.hpp"
 #include "Entity.hpp"
+#include "Query.hpp"
+#include "RayProvider.hpp"
 
 namespace yz {
 
@@ -101,6 +103,8 @@ public:
     }
 
     yz::Camera* createCamera(const std::string& name);
+
+    yz::Query* createQuery(const yz::RayProvider* provider);
 
     //FIXME use java sky object and retrieve name from native.
     inline void setSkyBox(const std::string& file) {

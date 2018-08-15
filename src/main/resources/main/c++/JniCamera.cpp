@@ -35,7 +35,7 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_attachToNode(JNIEnv* env, jobject o, P
     yz::Camera* camera = yz::Camera::get(pointer);
     yz::Node* node = yz::Node::get(nodePointer);
     node->attachObject(camera);
-    camera->attachGround(node);
+    node->attachObject(camera->getPlaneQuery());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_setFarClip(
@@ -114,58 +114,3 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_detachFromParent(
     yz::Camera::get(pointer)->detachFromParent();
 }
 
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_computeMoveDestinationGroundIntersect(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y) {
-    LOG_FUNCTION
-    return vectorToArray(env, yz::Camera::get(pointer)->throwRayPos(x, y));
-}
-
-JNIEXPORT POINTER JNICALL Java_jni_JniCamera_throwRay(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y,
-    jboolean poly) {
-    LOG_FUNCTION
-    return yz::Camera::get(pointer)->throwRay(x, y, poly)->value();
-}
-
-JNIEXPORT jlongArray JNICALL Java_jni_JniCamera_throwPlaneRay(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer,
-    jfloat left,
-    jfloat top,
-    jfloat right,
-    jfloat bottom) {
-    LOG_FUNCTION
-    yz::Camera* cam = yz::Camera::get(pointer);
-    try {
-        std::vector<yz::Id*> list = cam->throwPlaneRay(left, right, top, bottom);
-
-        if (list.empty()) {
-            jlong buf[1];
-            jlongArray result = env->NewLongArray(0);
-            env->SetLongArrayRegion(result, 0, 0, buf);
-            return result;
-        }
-        const int size = list.size();
-
-        jlong* buf;
-        buf = new jlong[size];
-        for (int i = 0; i < size; i++) {
-            buf[i] = list[i]->value();
-        }
-        jlongArray result = env->NewLongArray(size);
-        env->SetLongArrayRegion(result, 0, size, buf);
-        return result;
-    } catch (std::exception& e) {
-        throwException(env, e.what());
-    }
-    return env->NewLongArray(1);
-}

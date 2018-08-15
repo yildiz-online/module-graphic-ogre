@@ -28,6 +28,7 @@
 #include <Ogre.h>
 #include "stdafx.h"
 #include "AbstractCameraListener.hpp"
+#include "RayProvider.hpp"
 #include "HelperLogics.hpp"
 #include "Node.hpp"
 #include "AbstractMovable.hpp"
@@ -38,19 +39,15 @@ namespace yz {
 /**
 *@author Grégory Van den Borre
 */
-class Camera : public AbstractMovable {
+class Camera : public AbstractMovable, RayProvider {
 
 public:
 
-    Camera(Ogre::Camera* cam, Ogre::RaySceneQuery* query, Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery);
+    Camera(Ogre::Camera* cam);
 
     Ogre::Vector3 getPoint(const Ogre::Vector3& pos, const Ogre::Real x, const Ogre::Real y);
 
     Ogre::Ray getRay(const Ogre::Real x, const Ogre::Real y);
-
-    void attachGround(yz::Node* node) {
-        node->attachObject(this->planeQuery);
-    }
 
     inline void setAspectRatio(const Ogre::Real ratio) {
         LOG_FUNCTION
@@ -120,12 +117,6 @@ public:
         return this->camera;
     }
 
-    yz::Id* throwRay(const Ogre::Real x, const Ogre::Real y, const bool poly);
-
-    Ogre::Vector3 throwRayPos(const Ogre::Real x, const Ogre::Real y);
-
-    std::vector<yz::Id*> throwPlaneRay(Ogre::Real x1, Ogre::Real x2, Ogre::Real y1, Ogre::Real y2);
-
     inline static yz::Camera* get(const POINTER pointer) {
         LOG_FUNCTION
         return reinterpret_cast<yz::Camera*>(pointer);
@@ -138,10 +129,6 @@ private:
     std::vector<yz::AbstractCameraListener*> listenerList;
 
     Ogre::Camera* camera;
-
-    Ogre::RaySceneQuery* query;
-
-    Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery;
 
 };
 

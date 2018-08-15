@@ -47,10 +47,16 @@ yz::SceneManager::SceneManager(Ogre::SceneManager* manager) : sceneManager(manag
 
 yz::Camera* yz::SceneManager::createCamera(const std::string& name) {
     LOG_FUNCTION
-    Ogre::RaySceneQuery* query = this->sceneManager->createRayQuery(Ogre::Ray());
-    Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery = this->sceneManager->createPlaneBoundedVolumeQuery(Ogre::PlaneBoundedVolumeList());
-    yz::Camera* cam = new yz::Camera(this->sceneManager->createCamera(name), query, planeQuery);
+    yz::Camera* cam = new yz::Camera(this->sceneManager->createCamera(name));
+
     return cam;
+}
+
+yz::Query* createQuery(const yz::RayProvider* provider) {
+   LOG_FUNCTION
+   Ogre::RaySceneQuery* query = this->sceneManager->createRayQuery(Ogre::Ray());
+   Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery = this->sceneManager->createPlaneBoundedVolumeQuery(Ogre::PlaneBoundedVolumeList());
+   return new yz::Query(provider, query, planeQuery);
 }
 
 Ogre::Entity* yz::SceneManager::createUnpickableEntity(

@@ -21,28 +21,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
+#ifndef QUERY_H
+#define QUERY_H
+
+#include <vector>
+#include <Ogre.h>
+#include "stdafx.h"
+#include "HelperLogics.hpp"
+#include "Node.hpp"
+#include "RayProvider.hpp"
+
+namespace yz {
+
 /**
 *@author Grégory Van den Borre
 */
+class Query {
 
-#include "../includes/Camera.hpp"
+public:
 
-yz::Id* yz::Camera::ID_WORLD(new yz::Id(0));
+    Query(yz::RayProvider* provider, Ogre::RaySceneQuery* query, Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery);
 
-yz::Camera::Camera(
-  Ogre::Camera* cam) : camera(cam) {
-    LOG_FUNCTION
-}
+    Ogre::Vector3 getPoint(const Ogre::Vector3& pos, const Ogre::Real x, const Ogre::Real y);
 
-Ogre::Ray yz::Camera::getRay(const Ogre::Real x, const Ogre::Real y) {
-    LOG_FUNCTION
-    return this->camera->getCameraToViewportRay(x, y);
-}
+    yz::Id* throwRay(const Ogre::Real x, const Ogre::Real y, const bool poly);
 
-void yz::Camera::updateListeners() {
-    LOG_FUNCTION
-    for(unsigned int i = 0; i < listenerList.size(); i++) {
-        listenerList[i]->cameraUpdated(this->camera);
+    Ogre::Vector3 throwRayPos(const Ogre::Real x, const Ogre::Real y);
+
+    std::vector<yz::Id*> throwPlaneRay(Ogre::Real x1, Ogre::Real x2, Ogre::Real y1, Ogre::Real y2);
+
+    inline static yz::Query* get(const POINTER pointer) {
+        LOG_FUNCTION
+        return reinterpret_cast<yz::Query*>(pointer);
     }
+
+private:
+
+    static yz::Id* ID_WORLD;
+
+    yz::RayProvider* provider;
+
+    Ogre::RaySceneQuery* query;
+
+    Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery;
+
+};
+
 }
 
+#endif
