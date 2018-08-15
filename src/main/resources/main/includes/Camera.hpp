@@ -48,7 +48,7 @@ public:
 
     Ogre::Ray getRay(const Ogre::Real x, const Ogre::Real y);
 
-    void attachGround(YZ::Node* node) {
+    void attachGround(yz::Node* node) {
         node->attachObject(this.planeQuery);
     }
 
