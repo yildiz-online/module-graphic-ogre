@@ -126,7 +126,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createQuery(
     POINTER rayProvider) {
     LOG_FUNCTION
     yz::SceneManager* sm = yz::SceneManager::get(pointer);
-    yz::Query* query = sm->createQuery(yz::RayProvider::get(rayPointer);
+    yz::Query* query = sm->createQuery(yz::RayProvider::get(rayPointer));
     return reinterpret_cast<POINTER>(query);
 }
 
@@ -137,13 +137,14 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGroundQuery(
     POINTER rayProvider) {
     LOG_FUNCTION
     yz::SceneManager* sm = yz::SceneManager::get(pointer);
-    yz::Entity* e = sm->createCube(camera->getName() + "cam_ground");
+    yz::RayProvider* provider = yz::RayProvider::get(rayPointer);
+    yz::Entity* e = sm->createCube(provider->getName() + "cam_ground");
     e->setQueryFlags(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-    yz::Node* node = sm->createNode(camera->getName() + "cam_ground_node");
+    yz::Node* node = sm->createNode(provider->getName() + "cam_ground_node");
     node->scale(200, 0.02, 200);
     node->attachObject(e);
     node->hide();
-    yz::GroundQuery* query = sm->createGroundQuery(yz::RayProvider::get(rayPointer, e);
+    yz::GroundQuery* query = sm->createGroundQuery(provider, e);
     return reinterpret_cast<POINTER>(query);
 }
 

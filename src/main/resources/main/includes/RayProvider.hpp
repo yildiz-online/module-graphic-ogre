@@ -24,7 +24,6 @@
 #ifndef RAYPROVIDER_H
 #define RAYPROVIDER_H
 
-#include <vector>
 #include <Ogre.h>
 #include "stdafx.h"
 
@@ -40,6 +39,8 @@ public:
     virtual Ogre::Ray getRay(const Ogre::Real x, const Ogre::Real y) = 0;
 
     virtual Ogre::Vector3 getPosition() const = 0;
+
+    virtual std::string getName() const = 0;
 
 };
 
