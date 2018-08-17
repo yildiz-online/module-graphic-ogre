@@ -32,6 +32,8 @@
 #include "../includes/JniUtil.h"
 #include "../includes/Node.hpp"
 #include "../includes/RenderWindow.hpp"
+#include "../includes/Query.hpp"
+#include "../includes/GroundQuery.hpp"
 
 JNIEXPORT void JNICALL Java_jni_JniSceneManager_setSkybox(
     JNIEnv* env,
@@ -123,10 +125,10 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createQuery(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
-    POINTER rayProvider) {
+    POINTER rayPointer) {
     LOG_FUNCTION
     yz::SceneManager* sm = yz::SceneManager::get(pointer);
-    yz::Query* query = sm->createQuery(yz::RayProvider::get(rayPointer));
+    yz::Query* query = sm->createQuery(reinterpret_cast<yz::RayProvider*>(rayPointer));
     return reinterpret_cast<POINTER>(query);
 }
 
@@ -134,10 +136,10 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGroundQuery(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
-    POINTER rayProvider) {
+    POINTER rayPointer) {
     LOG_FUNCTION
     yz::SceneManager* sm = yz::SceneManager::get(pointer);
-    yz::RayProvider* provider = yz::RayProvider::get(rayPointer);
+    yz::RayProvider* provider = reinterpret_cast<yz::RayProvider*>(rayPointer);
     yz::Entity* e = sm->createCube(provider->getName() + "cam_ground");
     e->setQueryFlags(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
     yz::Node* node = sm->createNode(provider->getName() + "cam_ground_node");
