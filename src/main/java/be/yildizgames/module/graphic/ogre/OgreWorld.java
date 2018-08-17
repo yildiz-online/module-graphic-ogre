@@ -31,12 +31,15 @@ import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.RayProvider;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicMesh;
 import be.yildizgames.module.graphic.GraphicObject;
 import be.yildizgames.module.graphic.GraphicWorld;
 import be.yildizgames.module.graphic.billboard.BillboardSet;
 import be.yildizgames.module.graphic.camera.Camera;
+import be.yildizgames.module.graphic.query.Query;
+import be.yildizgames.module.graphic.query.GroundQuery;
 import be.yildizgames.module.graphic.light.DirectionalLight;
 import be.yildizgames.module.graphic.light.LensFlare;
 import be.yildizgames.module.graphic.light.Light;
@@ -252,6 +255,16 @@ final class OgreWorld implements GraphicWorld {
     @Override
     public final Camera createCamera(final String name) {
         return this.sceneManager.createCamera(name);
+    }
+
+    @Override
+    public final Query createQuery(final RayProvider provider) {
+        return this.sceneManager.createQuery(provider);
+    }
+
+    @Override
+    public final GroundQuery createGroundQuery(final RayProvider provider) {
+        return this.sceneManager.createGroundQuery(provider);
     }
 
     @Override

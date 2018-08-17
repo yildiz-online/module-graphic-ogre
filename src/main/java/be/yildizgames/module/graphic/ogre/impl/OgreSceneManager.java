@@ -39,12 +39,15 @@ import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicEngine.ShadowType;
 import be.yildizgames.module.graphic.GraphicMesh;
 import be.yildizgames.module.graphic.SceneManager;
+import be.yildizgames.module.graphic.RayProvider;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.graphic.ogre.OgreBillboardChain;
 import be.yildizgames.module.graphic.ogre.OgreBillboardSet;
 import be.yildizgames.module.graphic.ogre.OgreCamera;
+import be.yildizgames.module.graphic.ogre.OgreQuery;
+import be.yildizgames.module.graphic.ogre.OgreGroundQuery;
 import be.yildizgames.module.graphic.ogre.OgreEntity;
 import be.yildizgames.module.graphic.ogre.OgreMaterial;
 import be.yildizgames.module.graphic.ogre.OgreMovableText;
@@ -307,6 +310,16 @@ public final class OgreSceneManager implements SceneManager, Native {
         this.cameras.register(cam);
         cam.adaptToScreenRatio();
         return cam;
+    }
+
+    public OgreQuery createQuery(RayProvider provider) {
+       final long address = this.jni.createQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
+       return new OgreQuery(NativePointer.create(address));
+    }
+
+    public OgreGroundQuery createGroundQuery(RayProvider provider) {
+       final long address = this.jni.createGroundQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
+       return new OgreGroundQuery(NativePointer.create(address));
     }
 
     /**

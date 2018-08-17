@@ -34,7 +34,7 @@
 extern "C" {
 #endif
 
-JNIEXPORT POINTER JNICALL Java_jni_JniCamera_throwRay(
+JNIEXPORT POINTER JNICALL Java_jni_JniQuery_throwRay(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -42,7 +42,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniCamera_throwRay(
     jfloat y,
     jboolean poly);
 
-JNIEXPORT jlongArray JNICALL Java_jni_JniCamera_throwPlaneRay(
+JNIEXPORT jlongArray JNICALL Java_jni_JniQuery_throwPlaneRay(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
@@ -50,13 +50,6 @@ JNIEXPORT jlongArray JNICALL Java_jni_JniCamera_throwPlaneRay(
     jfloat top,
     jfloat right,
     jfloat bottom);
-
-JNIEXPORT jfloatArray JNICALL Java_jni_JniCamera_computeMoveDestinationGroundIntersect(
-    JNIEnv* env,
-    jobject o,
-    POINTER pointer,
-    jfloat x,
-    jfloat y);
 
 #ifdef __cplusplus
 }

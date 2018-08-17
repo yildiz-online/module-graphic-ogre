@@ -84,21 +84,6 @@ std::vector<yz::Id*> yz::Query::throwPlaneRay(
     return result;
 }
 
-Ogre::Vector3 yz::Query::throwRayPos(const Ogre::Real x, const Ogre::Real y) {
-    LOG_FUNCTION
-    const Ogre::Ray ray = this->provider->getRay(x, y);
-    this->query->clearResults();
-    this->query->setQueryMask(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-    this->query->setSortByDistance(true, 1);
-    this->query->setRay(ray);
-    Ogre::RaySceneQueryResult& results = query->execute();
-    Ogre::RaySceneQueryResult::iterator itr = results.begin();
-    for (; itr != results.end(); ++itr) {
-        return ray.getPoint(itr->distance);
-    }
-    return Ogre::Vector3::ZERO;
-}
-
 yz::Id* yz::Query::throwRay(
     const Ogre::Real x,
     const Ogre::Real y,

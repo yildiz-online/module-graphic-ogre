@@ -29,16 +29,6 @@
 #include "../includes/JniQuery.h"
 #include "../includes/JniUtil.h"
 
-JNIEXPORT jfloatArray JNICALL Java_jni_JniQuery_computeMoveDestinationGroundIntersect(
-    JNIEnv* env,
-    jobject,
-    POINTER pointer,
-    jfloat x,
-    jfloat y) {
-    LOG_FUNCTION
-    return vectorToArray(env, reinterpret_cast<yz::Query*>(pointer)->throwRayPos(x, y));
-}
-
 JNIEXPORT POINTER JNICALL Java_jni_JniQuery_throwRay(
     JNIEnv* env,
     jobject,
@@ -47,7 +37,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniQuery_throwRay(
     jfloat y,
     jboolean poly) {
     LOG_FUNCTION
-    return reinterpret_cast<yz::Query*>(pointer)->throwRay(x, y, poly)->value();
+    return yz::Query::get(pointer)->throwRay(x, y, poly)->value();
 }
 
 JNIEXPORT jlongArray JNICALL Java_jni_JniQuery_throwPlaneRay(
@@ -60,7 +50,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_JniQuery_throwPlaneRay(
     jfloat bottom) {
     LOG_FUNCTION
     try {
-        std::vector<yz::Id*> list = reinterpret_cast<yz::Query*>(pointer)->throwPlaneRay(left, right, top, bottom);
+        std::vector<yz::Id*> list = yz::Query::get(pointer)->throwPlaneRay(left, right, top, bottom);
 
         if (list.empty()) {
             jlong buf[1];

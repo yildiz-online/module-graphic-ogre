@@ -42,11 +42,7 @@ public:
 
     Query(yz::RayProvider* provider, Ogre::RaySceneQuery* query, Ogre::PlaneBoundedVolumeListSceneQuery* planeQuery);
 
-    Ogre::Vector3 getPoint(const Ogre::Vector3& pos, const Ogre::Real x, const Ogre::Real y);
-
     yz::Id* throwRay(const Ogre::Real x, const Ogre::Real y, const bool poly);
-
-    Ogre::Vector3 throwRayPos(const Ogre::Real x, const Ogre::Real y);
 
     std::vector<yz::Id*> throwPlaneRay(Ogre::Real x1, Ogre::Real x2, Ogre::Real y1, Ogre::Real y2);
 

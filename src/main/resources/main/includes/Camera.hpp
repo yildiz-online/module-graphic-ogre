@@ -107,6 +107,10 @@ public:
         return this->camera;
     }
 
+    Ogre::Vector3 getPosition() const {
+        return this->camera->getParentSceneNode()->getPosition();
+    }
+
     inline void detachFromParent() {
         LOG_FUNCTION
         this->camera->detachFromParent();

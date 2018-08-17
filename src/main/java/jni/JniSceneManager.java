@@ -148,6 +148,10 @@ public class JniSceneManager {
      */
     public native long createCamera(final long pointerAddress, final String name);
 
+    public native long createQuery(final long pointerAddress, final long providerPointerAddress);
+
+    public native long createGroundQuery(final long pointerAddress, final long providerPointerAddress);
+
     /**
      * Create an electric arc in native code.
      *

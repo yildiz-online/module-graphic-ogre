@@ -27,11 +27,6 @@
 #include <vector>
 #include <Ogre.h>
 #include "stdafx.h"
-#include "AbstractCameraListener.hpp"
-#include "HelperLogics.hpp"
-#include "Node.hpp"
-#include "AbstractMovable.hpp"
-
 
 namespace yz {
 
@@ -43,6 +38,8 @@ class RayProvider {
 public:
 
     virtual Ogre::Ray getRay(const Ogre::Real x, const Ogre::Real y) = 0;
+
+    virtual Ogre::Vector3 getPosition() const = 0;
 
 };
 
