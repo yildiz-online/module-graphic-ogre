@@ -31,7 +31,6 @@
 #include "../includes/Planet.hpp"
 #include "../includes/JniUtil.h"
 #include "../includes/Node.hpp"
-#include "../includes/DummyGroundCamListener.hpp"
 #include "../includes/RenderWindow.hpp"
 
 JNIEXPORT void JNICALL Java_jni_JniSceneManager_setSkybox(
