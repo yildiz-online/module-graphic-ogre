@@ -59,6 +59,12 @@ yz::Query* yz::SceneManager::createQuery(yz::RayProvider* provider) {
    return new yz::Query(provider, query, planeQuery);
 }
 
+yz::GroundQuery* yz::SceneManager::createGroundQuery(yz::RayProvider* provider, yz::Node* e) {
+   LOG_FUNCTION
+   Ogre::RaySceneQuery* query = this->sceneManager->createRayQuery(Ogre::Ray());
+   return new yz::GroundQuery(provider, query, e);
+}
+
 Ogre::Entity* yz::SceneManager::createUnpickableEntity(
     const std::string& mesh) {
     LOG_FUNCTION

@@ -27,13 +27,9 @@
 
 #include "../includes/JniOgreWorld.h"
 #include "../includes/SceneManager.hpp"
-#include "../includes/ElectricArc.hpp"
 #include "../includes/Planet.hpp"
 #include "../includes/JniUtil.h"
-#include "../includes/Node.hpp"
 #include "../includes/RenderWindow.hpp"
-#include "../includes/Query.hpp"
-#include "../includes/GroundQuery.hpp"
 
 JNIEXPORT void JNICALL Java_jni_JniSceneManager_setSkybox(
     JNIEnv* env,
