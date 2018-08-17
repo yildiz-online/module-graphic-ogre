@@ -142,7 +142,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGroundQuery(
     node->scale(200, 0.02, 200);
     node->attachObject(e);
     node->hide();
-    yz::GroundQuery* query = sm->createGroundQuery(provider, e);
+    yz::GroundQuery* query = sm->createGroundQuery(provider, node);
     return reinterpret_cast<POINTER>(query);
 }
 
