@@ -28,6 +28,7 @@ import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.query.GroundQuery;
+import jni.JniGroundQuery;
 
 /**
  * Ogre implementation for a GroundQuery.
@@ -56,7 +57,6 @@ public final class OgreGroundQuery implements GroundQuery, Native {
 
     @Override
     public void delete() {
-        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 

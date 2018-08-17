@@ -24,10 +24,16 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.graphic.query.Query;
+import jni.JniQuery;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Ogre implementation for a Query.
@@ -56,14 +62,13 @@ public final class OgreQuery implements Query, Native {
     @Override
     public List<EntityId> getEntities(final Rectangle rectangle) {
         long[] result = this.jni.throwPlaneRay(this.pointer.getPointerAddress(), rectangle.getLeft(), rectangle.getTop(), rectangle.getRight(), rectangle.getBottom());
-        Arrays.stream(result)
-              .map(EntityId::valueOf)
-              .collect(Collectors.toList());
+        return Arrays.stream(result)
+                .mapToObj(EntityId::valueOf)
+                .collect(Collectors.toList());
     }
 
     @Override
     public void delete() {
-        this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
     }
 
