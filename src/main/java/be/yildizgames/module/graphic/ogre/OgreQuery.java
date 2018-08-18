@@ -33,6 +33,7 @@ import jni.JniQuery;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -48,21 +49,37 @@ public final class OgreQuery implements Query, Native {
     private final NativePointer pointer;
 
     private final JniQuery jni = new JniQuery();
+    private final float resolutionX;
+    private final float resolutionY;
 
-    public OgreQuery(NativePointer pointer) {
+    public OgreQuery(NativePointer pointer, float resolutionX, float resolutionY) {
         super();
         this.pointer = pointer;
+        this.resolutionX = resolutionX;
+        this.resolutionY = resolutionY;
     }
 
     @Override
-    public EntityId getEntity(final float x, final float y) {
-        return EntityId.valueOf(this.jni.throwRay(this.pointer.getPointerAddress(), x, y, false));
+    public Optional<EntityId> getEntity(final float x, final float y) {
+        final float screenX = x / this.resolutionX;
+        final float screenY = y / this.resolutionY;
+        System.out.println("<<IN>>");
+        EntityId id =  EntityId.valueOf(this.jni.throwRay(this.pointer.getPointerAddress(), screenX, screenY, false));
+        System.out.println("<<ID>>" + id);
+        if (id.equals(EntityId.WORLD)) {
+            return Optional.empty();
+        }
+        return Optional.of(id);
     }
 
     @Override
     public List<EntityId> getEntities(final Rectangle rectangle) {
-        long[] result = this.jni.throwPlaneRay(this.pointer.getPointerAddress(), rectangle.getLeft(), rectangle.getTop(), rectangle.getRight(), rectangle.getBottom());
-        return Arrays.stream(result)
+        final float left = rectangle.getLeft() / this.resolutionX;
+        final float top = rectangle.getTop() / this.resolutionY;
+        final float right = rectangle.getRight() / this.resolutionX;
+        final float bottom = rectangle.getBottom() / this.resolutionY;
+        final long[] tab = this.jni.throwPlaneRay(this.pointer.getPointerAddress(), left, top, right, bottom);
+        return Arrays.stream(tab)
                 .mapToObj(EntityId::valueOf)
                 .collect(Collectors.toList());
     }

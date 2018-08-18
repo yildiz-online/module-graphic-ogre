@@ -150,7 +150,7 @@ public class JniSceneManager {
 
     public native long createQuery(final long pointerAddress, final long providerPointerAddress);
 
-    public native long createGroundQuery(final long pointerAddress, final long providerPointerAddress);
+    public native long createDummyGroundQuery(final long pointerAddress, final long providerPointerAddress);
 
     /**
      * Create an electric arc in native code.

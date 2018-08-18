@@ -43,15 +43,21 @@ public final class OgreGroundQuery implements GroundQuery, Native {
     private final NativePointer pointer;
 
     private final JniGroundQuery jni = new JniGroundQuery();
+    private final float resolutionX;
+    private final float resolutionY;
 
-    public OgreGroundQuery(NativePointer pointer) {
+    public OgreGroundQuery(NativePointer pointer, float resolutionX, float resolutionY) {
         super();
         this.pointer = pointer;
+        this.resolutionX = resolutionX;
+        this.resolutionY = resolutionY;
     }
 
     @Override
     public Point3D getPoint(final float x, final float y) {
-	float[] p = this.jni.computeIntersect(this.pointer.getPointerAddress(), x, y);
+        final float screenX = x / this.resolutionX;
+        final float screenY = y / this.resolutionY;
+	    float[] p = this.jni.computeIntersect(this.pointer.getPointerAddress(), screenX, screenY);
         return Point3D.valueOf(p[0], p[1], p[2]);
     }
 

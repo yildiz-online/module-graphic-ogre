@@ -26,18 +26,12 @@ package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
-import be.yildizgames.common.geometry.Rectangle;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.light.LensFlare;
 import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
 import jni.JniCamera;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Ogre implementation for the Camera.
@@ -132,58 +126,6 @@ public final class OgreCamera extends Camera implements Native {
     @Override
     public void rotate(float yaw, float pitch) {
         this.node.rotate(yaw, pitch);
-    }
-
-    /**
-     * Create a plane on the screen and return all objects contained in it.
-     *
-     * @param rectangle Plane to use.
-     * @return The list of id of the found objects.
-     */
-    public List<EntityId> throwPlaneRay(final Rectangle rectangle) {
-        // FIXME set the resolution in camera and compute this there
-        final float left = rectangle.getLeft() / this.resolutionX;
-        final float top = rectangle.getTop() / this.resolutionY;
-        final float right = rectangle.getRight() / this.resolutionX;
-        final float bottom = rectangle.getBottom() / this.resolutionY;
-        final long[] tab = {};//this.jni.throwPlaneRay(this.pointer.getPointerAddress(), left, top, right, bottom);
-        final List<EntityId> ids = new ArrayList<>(tab.length);
-        for (long i : tab) {
-            ids.add(EntityId.valueOf(i));
-        }
-        return ids;
-    }
-
-    /**
-     * Throw a ray from the camera to a position from mouse coordinates.
-     *
-     * @param x Mouse X coordinates to compute the ray.
-     * @param y Mouse Y coordinates to compute the ray.
-     * @return The Id of the closest object hit by the ray, if none, Id.WORLD will be returned.
-     */
-    @Override
-    public Optional<EntityId> throwRay(final int x, final int y) {
-        final float screenX = x / this.resolutionX;
-        final float screenY = y / this.resolutionY;
-        EntityId id = EntityId.WORLD;// EntityId.valueOf(this.jni.throwRay(this.pointer.getPointerAddress(), screenX, screenY, false));
-        if (id.equals(EntityId.WORLD)) {
-            return Optional.empty();
-        }
-        return Optional.of(id);
-    }
-
-    /**
-     * Compute the destination from 2D coordinates to 3D coordinates, collision ground is considered at Y = 0.
-     *
-     * @param x X screen coordinates.
-     * @param y Y screen coordinates.
-     * @return A point representing a destination.
-     */
-    public Point3D computeMoveDestination(final int x, int y) {
-        final float screenX = (float) x / this.resolutionX;
-        final float screenY = (float) y / this.resolutionY;
-        final float[] destination = {0,0,0};//his.jni.computeMoveDestinationGroundIntersect(this.pointer.getPointerAddress(), screenX, screenY);
-        return Point3D.valueOf(destination[0], destination[1], destination[2]);
     }
 
     @Override

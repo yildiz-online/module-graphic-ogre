@@ -38,23 +38,23 @@ import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicEngine.ShadowType;
 import be.yildizgames.module.graphic.GraphicMesh;
-import be.yildizgames.module.graphic.SceneManager;
 import be.yildizgames.module.graphic.RayProvider;
+import be.yildizgames.module.graphic.SceneManager;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.graphic.ogre.OgreBillboardChain;
 import be.yildizgames.module.graphic.ogre.OgreBillboardSet;
 import be.yildizgames.module.graphic.ogre.OgreCamera;
-import be.yildizgames.module.graphic.ogre.OgreQuery;
-import be.yildizgames.module.graphic.ogre.OgreGroundQuery;
 import be.yildizgames.module.graphic.ogre.OgreEntity;
+import be.yildizgames.module.graphic.ogre.OgreGroundQuery;
 import be.yildizgames.module.graphic.ogre.OgreMaterial;
 import be.yildizgames.module.graphic.ogre.OgreMovableText;
 import be.yildizgames.module.graphic.ogre.OgreNode;
 import be.yildizgames.module.graphic.ogre.OgreNodeBase;
 import be.yildizgames.module.graphic.ogre.OgreNodeMovable;
 import be.yildizgames.module.graphic.ogre.OgreNodeStatic;
+import be.yildizgames.module.graphic.ogre.OgreQuery;
 import be.yildizgames.module.graphic.ogre.light.OgreDirectionalLight;
 import be.yildizgames.module.graphic.ogre.light.OgreLensFlare;
 import be.yildizgames.module.graphic.ogre.light.OgrePointLight;
@@ -314,12 +314,12 @@ public final class OgreSceneManager implements SceneManager, Native {
 
     public OgreQuery createQuery(RayProvider provider) {
        final long address = this.jni.createQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
-       return new OgreQuery(NativePointer.create(address));
+       return new OgreQuery(NativePointer.create(address), resolutionX, resolutionY);
     }
 
     public OgreGroundQuery createGroundQuery(RayProvider provider) {
-       final long address = this.jni.createGroundQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
-       return new OgreGroundQuery(NativePointer.create(address));
+       final long address = this.jni.createDummyGroundQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
+       return new OgreGroundQuery(NativePointer.create(address), resolutionX, resolutionY);
     }
 
     /**

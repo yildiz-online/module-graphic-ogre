@@ -122,10 +122,15 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createQuery(
     jobject o,
     POINTER pointer,
     POINTER rayPointer) {
+    try {
     LOG_FUNCTION
     yz::SceneManager* sm = yz::SceneManager::get(pointer);
     yz::Query* query = sm->createQuery(reinterpret_cast<yz::RayProvider*>(rayPointer));
     return reinterpret_cast<POINTER>(query);
+    } catch (const std::exception& e) {
+        throwException(env, e.what());
+    }
+    return INVALID_POINTER;
 }
 
 JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGroundQuery(
@@ -133,17 +138,23 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGroundQuery(
     jobject o,
     POINTER pointer,
     POINTER rayPointer) {
-    LOG_FUNCTION
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
-    yz::RayProvider* provider = reinterpret_cast<yz::RayProvider*>(rayPointer);
-    yz::Entity* e = sm->createCube(provider->getName() + "cam_ground");
-    e->setQueryFlags(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-    yz::Node* node = sm->createNode(provider->getName() + "cam_ground_node");
-    node->scale(200, 0.02, 200);
-    node->attachObject(e);
-    node->hide();
-    yz::GroundQuery* query = sm->createGroundQuery(provider, node);
-    return reinterpret_cast<POINTER>(query);
+    try {
+        LOG_FUNCTION
+        yz::SceneManager* sm = yz::SceneManager::get(pointer);
+        yz::RayProvider* provider = reinterpret_cast<yz::RayProvider*>(rayPointer);
+        yz::Entity* e = sm->createCube(provider->getName() + "cam_ground");
+        e->setQueryFlags(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+        yz::Node* node = sm->createNode(provider->getName() + "cam_ground_node");
+        node->scale(200, 0.02, 200);
+        node->attachObject(e);
+        node->hide();
+        yz::GroundQuery* query = sm->createGroundQuery(provider, node);
+        return reinterpret_cast<POINTER>(query);
+    } catch (const std::exception& e) {
+        throwException(env, e.what());
+    }
+    return INVALID_POINTER;
+
 }
 
 JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createMeshEntity(
