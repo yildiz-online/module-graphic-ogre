@@ -108,6 +108,7 @@ public:
     }
 
     Ogre::Vector3 getPosition() const {
+        LOG_FUNCTION
         return this->camera->getParentSceneNode()->getPosition();
     }
 
