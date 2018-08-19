@@ -32,7 +32,7 @@ namespace yz {
 /**
 *@author Grégory Van den Borre
 */
-class RayProvider {
+class RayProvider : public AbstractMovable {
 
 public:
 

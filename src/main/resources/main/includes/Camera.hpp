@@ -39,7 +39,7 @@ namespace yz {
 /**
 *@author Grégory Van den Borre
 */
-class Camera : public AbstractMovable, public RayProvider {
+class Camera: public RayProvider {
 
 public:
 
