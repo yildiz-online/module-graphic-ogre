@@ -26,6 +26,7 @@
 
 #include <Ogre.h>
 #include "stdafx.h"
+#include "AbstractMovable.hpp"
 
 namespace yz {
 
