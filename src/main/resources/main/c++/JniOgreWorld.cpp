@@ -145,9 +145,9 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGroundQuery(
         yz::Entity* e = sm->createCube(provider->getName() + "cam_ground");
         e->setQueryFlags(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
         yz::Node* node = sm->createNode(provider->getName() + "cam_ground_node");
-        node->scale(200, 0.02, 200);
+        node->scale(2000, 0.02, 2000);
         node->attachObject(e);
-        node->hide();
+        //node->hide();
         yz::GroundQuery* query = sm->createGroundQuery(provider, node);
         return reinterpret_cast<POINTER>(query);
     } catch (const std::exception& e) {
