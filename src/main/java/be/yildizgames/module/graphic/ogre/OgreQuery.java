@@ -63,9 +63,7 @@ public final class OgreQuery implements Query, Native {
     public Optional<EntityId> getEntity(final float x, final float y) {
         final float screenX = x / this.resolutionX;
         final float screenY = y / this.resolutionY;
-        System.out.println("<<IN>>");
         EntityId id =  EntityId.valueOf(this.jni.throwRay(this.pointer.getPointerAddress(), screenX, screenY, false));
-        System.out.println("<<ID>>" + id);
         if (id.equals(EntityId.WORLD)) {
             return Optional.empty();
         }

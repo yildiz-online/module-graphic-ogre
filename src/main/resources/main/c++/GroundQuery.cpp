@@ -39,7 +39,6 @@ Ogre::Vector3 yz::GroundQuery::throwRayPos(const Ogre::Real x, const Ogre::Real 
     LOG_FUNCTION
     if(this->dummyGround != NULL) {
         Ogre::Vector3 v = this->provider->getPosition();
-        this->dummyGround->show();
         this->dummyGround->setPosition(v.x, -1, v.z);
     }
     const Ogre::Ray ray = this->provider->getRay(x, y);
