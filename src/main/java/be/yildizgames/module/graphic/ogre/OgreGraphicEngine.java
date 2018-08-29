@@ -35,6 +35,7 @@ import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicEngine;
 import be.yildizgames.module.graphic.GraphicWorld;
+import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
 import be.yildizgames.module.graphic.ogre.impl.DummyRenderWindow;
@@ -89,7 +90,7 @@ public final class OgreGraphicEngine extends GraphicEngine {
      */
     //@Ensures this.size == windowEngine.size
     //@Ensures this.root != null
-    OgreGraphicEngine(final WindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
+    public OgreGraphicEngine(final WindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
         super();
         assert windowEngine != null;
         assert nativeResourceLoader != null;
@@ -244,7 +245,7 @@ public final class OgreGraphicEngine extends GraphicEngine {
     }
 
     @Override
-    public OgreGuiFactory getGuiBuilder() {
+    public GuiFactory getGuiBuilder() {
         return guiBuilder;
     }
 }
