@@ -129,6 +129,10 @@ public final class OgreParticleSystem extends ParticleSystem implements Native {
         this.node.setDirection(dirX, dirY, dirZ);
     }
 
+    public void rotate(float yaw, float pitch) {
+        this.node.rotate(yaw, pitch);
+    }
+
     @Override
     public NativePointer getPointer() {
         return this.pointer;
