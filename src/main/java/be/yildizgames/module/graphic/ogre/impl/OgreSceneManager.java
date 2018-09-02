@@ -118,6 +118,8 @@ public final class OgreSceneManager implements SceneManager, Native {
 
     private final JniSceneManager jni = new JniSceneManager();
 
+    private final String name;
+
     /**
      * Full constructor.
      *
@@ -126,8 +128,9 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param screenSizeX  Screen width.
      * @param screenSizeY  Screen height.
      */
-    public OgreSceneManager(final NativePointer pointer, final OgreRenderWindow renderWindow, final int screenSizeX, final int screenSizeY) {
+    public OgreSceneManager(String name, final NativePointer pointer, final OgreRenderWindow renderWindow, final int screenSizeX, final int screenSizeY) {
         super();
+        this.name = name;
         this.cameras = Registerer.newRegisterer();
         this.pointer = pointer;
         this.window = renderWindow;
@@ -455,5 +458,9 @@ public final class OgreSceneManager implements SceneManager, Native {
     @Override
     public NativePointer getPointer() {
         return pointer;
+    }
+
+    public String getName() {
+        return name;
     }
 }

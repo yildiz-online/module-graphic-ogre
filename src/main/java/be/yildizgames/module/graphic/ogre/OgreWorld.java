@@ -143,6 +143,11 @@ final class OgreWorld implements GraphicWorld {
     }
 
     @Override
+    public String getName() {
+        return this.sceneManager.getName();
+    }
+
+    @Override
     public final OgreObject createMovableDoodad(final Box box, final Material material) {
         final OgreNodeBase node = this.sceneManager.createMovableNode();
         final OgreEntity entity = this.sceneManager.createEntity(box, node);

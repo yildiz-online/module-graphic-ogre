@@ -167,7 +167,7 @@ public final class OgreGraphicEngine extends GraphicEngine {
     @Override
     public OgreSceneManager createGraphicWorld(final String name, final ShadowType shadowType) {
         LOGGER.debug("Creating Ogre SceneManager...");
-        OgreSceneManager sm = new OgreSceneManager(this.root.createScene(name), this.renderWindow, this.size.width, this.size.height);
+        OgreSceneManager sm = new OgreSceneManager(name, this.root.createScene(name), this.renderWindow, this.size.width, this.size.height);
         LOGGER.debug("Ogre SceneManager created.");
         //sm.setShadowType(shadowType);
         return sm;
