@@ -156,7 +156,7 @@ public abstract class OgreNodeBase implements OgreNode {
 
     public final Quaternion getOrientation() {
         float[] v = this.nodeNative.getOrientation(this.pointer.getPointerAddress());
-        return new Quaternion(v[0], v[1], v[2], v[3]);
+        return Quaternion.valueOf(v[0], v[1], v[2], v[3]);
     }
 
 
