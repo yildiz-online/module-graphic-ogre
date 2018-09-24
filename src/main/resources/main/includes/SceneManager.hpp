@@ -215,12 +215,16 @@ public:
         LOG_FUNCTION
         Ogre::Entity* e = this->sceneManager->createEntity(name, Ogre::SceneManager::PT_CUBE);
         e->setMaterialName("_internal_red_");
+        e->setQueryFlags(Ogre::SceneManager::ENTITY_TYPE_MASK);
         return new yz::Entity(e);
     }
 
     inline yz::Entity* createCube() {
         LOG_FUNCTION
-        return new yz::Entity(this->sceneManager->createEntity(Ogre::SceneManager::PT_CUBE));
+        Ogre::Entity* e = this->sceneManager->createEntity(Ogre::SceneManager::PT_CUBE));
+        e->setMaterialName("_internal_red_");
+        e->setQueryFlags(Ogre::SceneManager::ENTITY_TYPE_MASK);
+        return new yz::Entity(e);
     }
 
     inline yz::Entity* createPlane(const std::string& name) {
@@ -235,7 +239,10 @@ public:
 
     inline yz::Entity* createSphere(const std::string& name) {
         LOG_FUNCTION
-        return new yz::Entity(this->sceneManager->createEntity(name, Ogre::SceneManager::PT_SPHERE));
+        Ogre::Entity* e = this->sceneManager->createEntity(name, Ogre::SceneManager::PT_SPHERE);
+        e->setMaterialName("_internal_red_");
+        e->setQueryFlags(Ogre::SceneManager::ENTITY_TYPE_MASK);
+        return new yz::Entity(e);
     }
 
     yz::Entity* createSphere(
@@ -246,7 +253,10 @@ public:
 
     inline yz::Entity* createSphere() {
         LOG_FUNCTION
-        return new yz::Entity(this->sceneManager->createEntity(Ogre::SceneManager::PT_SPHERE));
+         Ogre::Entity* e = this->sceneManager->createEntity(Ogre::SceneManager::PT_SPHERE);
+         e->setMaterialName("_internal_red_");
+         e->setQueryFlags(Ogre::SceneManager::ENTITY_TYPE_MASK);
+         return new yz::Entity(e);
     }
 
     inline Ogre::SceneManager* getSceneManager() {
