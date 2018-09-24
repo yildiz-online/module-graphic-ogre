@@ -213,7 +213,7 @@ public:
 
     inline yz::Entity* createCube(const std::string& name) {
         LOG_FUNCTION
-        return this->createEntity(Ogre::Entity* e = this->sceneManager->createEntity(name, Ogre::SceneManager::PT_CUBE));
+        return this->createEntity(this->sceneManager->createEntity(name, Ogre::SceneManager::PT_CUBE));
     }
 
     inline yz::Entity* createCube() {
