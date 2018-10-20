@@ -25,7 +25,6 @@
 package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.module.coordinate.BaseCoordinate;
-import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
@@ -33,6 +32,7 @@ import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
+import be.yildizgames.module.window.ScreenSize;
 
 /**
  * Ogre implementation for the GuiBuilder.
@@ -49,7 +49,7 @@ final class OgreGuiFactory extends SimpleGuiFactory {
      *
      * @param screenSize Contains the screen size data.
      */
-    OgreGuiFactory(final Size screenSize) {
+    OgreGuiFactory(final ScreenSize screenSize) {
         super(screenSize);
     }
 

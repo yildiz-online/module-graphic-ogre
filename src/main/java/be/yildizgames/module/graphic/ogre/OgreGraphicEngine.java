@@ -31,7 +31,6 @@ import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.common.os.SystemUtil;
 import be.yildizgames.common.util.Checker;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.Size;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicEngine;
 import be.yildizgames.module.graphic.GraphicWorld;
@@ -42,6 +41,7 @@ import be.yildizgames.module.graphic.ogre.impl.DummyRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.ogre.impl.Root;
+import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.WindowEngine;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
 import org.slf4j.Logger;
@@ -71,10 +71,6 @@ public final class OgreGraphicEngine extends GraphicEngine {
 
     private final OgreMaterialManager materialManager;
 
-    /**
-     * Screen size.
-     */
-    private final Size size;
     private final NativeResourceLoader nativeResourceLoader;
     private final WindowEngine windowEngine;
     /**
@@ -94,7 +90,6 @@ public final class OgreGraphicEngine extends GraphicEngine {
         super();
         assert windowEngine != null;
         assert nativeResourceLoader != null;
-        this.size = new Size(windowEngine.getScreenSize().width, windowEngine.getScreenSize().height);
         LOGGER.info("Initializing Ogre graphic engine...");
         nativeResourceLoader.loadBaseLibrary();
         nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
@@ -103,19 +98,18 @@ public final class OgreGraphicEngine extends GraphicEngine {
         this.loadPlugins();
         this.loadRenderer();
         if (SystemUtil.isLinux()) {
-            this.renderWindow = this.root.createWindow(this.size);
+            this.renderWindow = this.root.createWindow(windowEngine.getScreenSize());
         } else {
-            this.renderWindow = this.root.createWindow(this.size, windowEngine.getHandle());
+            this.renderWindow = this.root.createWindow(windowEngine.getScreenSize(), windowEngine.getHandle());
         }
         this.materialManager = new OgreMaterialManager();
-        this.guiBuilder = new OgreGuiFactory(this.size);
+        this.guiBuilder = new OgreGuiFactory(windowEngine.getScreenSize());
         this.windowEngine = windowEngine;
         LOGGER.info("Ogre graphic engine initialized.");
     }
 
     private OgreGraphicEngine(NativeResourceLoader loader) {
         super();
-        this.size = new Size(0);
         this.nativeResourceLoader = loader;
         LOGGER.info("Initializing Headless Ogre graphic engine...");
         nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
@@ -125,7 +119,7 @@ public final class OgreGraphicEngine extends GraphicEngine {
         this.loadRenderer();
         this.renderWindow = new DummyRenderWindow();
         this.materialManager = new OgreMaterialManager();
-        this.guiBuilder = new OgreGuiFactory(this.size);
+        this.guiBuilder = new OgreGuiFactory(new ScreenSize(0,0));
         this.windowEngine = new DummyWindowEngine();
         LOGGER.info("Headless Ogre graphic engine initialized.");
     }
@@ -167,7 +161,7 @@ public final class OgreGraphicEngine extends GraphicEngine {
     @Override
     public OgreSceneManager createGraphicWorld(final String name, final ShadowType shadowType) {
         LOGGER.debug("Creating Ogre SceneManager...");
-        OgreSceneManager sm = new OgreSceneManager(name, this.root.createScene(name), this.renderWindow, this.size.width, this.size.height);
+        OgreSceneManager sm = new OgreSceneManager(name, this.root.createScene(name), this.renderWindow, this.windowEngine.getScreenSize().width, this.windowEngine.getScreenSize().height);
         LOGGER.debug("Ogre SceneManager created.");
         //sm.setShadowType(shadowType);
         return sm;
@@ -235,8 +229,8 @@ public final class OgreGraphicEngine extends GraphicEngine {
     }
 
     @Override
-    public Size getScreenSize() {
-        return this.size;
+    public ScreenSize getScreenSize() {
+        return this.windowEngine.getScreenSize();
     }
 
     @Override

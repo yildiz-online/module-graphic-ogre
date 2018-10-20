@@ -27,7 +27,7 @@ package be.yildizgames.module.graphic.ogre.impl;
 import be.yildizgames.common.file.FileResource;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.logging.LogFactory;
-import be.yildizgames.module.coordinate.Size;
+import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.WindowHandle;
 import jni.JniRoot;
 import org.slf4j.Logger;
@@ -109,7 +109,7 @@ public final class Root {
      *               unused.
      * @return The built render window.
      */
-    public RenderWindow createWindow(final Size res, final WindowHandle handle) {
+    public RenderWindow createWindow(final ScreenSize res, final WindowHandle handle) {
         this.jni.createRenderWindow(res.width, res.height, handle.value);
         return new RenderWindow();
     }
@@ -120,7 +120,7 @@ public final class Root {
      * @param res Resolution to use.
      * @return The built render window.
      */
-    public RenderWindow createWindow(final Size res) {
+    public RenderWindow createWindow(final ScreenSize res) {
         this.jni.createRenderWindowGlContext(res.width, res.height);
         return new RenderWindow();
     }
