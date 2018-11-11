@@ -31,9 +31,10 @@ import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.common.os.SystemUtil;
 import be.yildizgames.common.util.Checker;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.graphic.BaseGraphicEngine;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.GraphicEngine;
 import be.yildizgames.module.graphic.GraphicWorld;
+import be.yildizgames.module.graphic.ShadowType;
 import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
@@ -41,8 +42,8 @@ import be.yildizgames.module.graphic.ogre.impl.DummyRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.ogre.impl.Root;
+import be.yildizgames.module.window.BaseWindowEngine;
 import be.yildizgames.module.window.ScreenSize;
-import be.yildizgames.module.window.WindowEngine;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
 import org.slf4j.Logger;
 
@@ -53,7 +54,7 @@ import java.io.File;
  *
  * @author Grégory Van Den Borre
  */
-public final class OgreGraphicEngine extends GraphicEngine {
+public final class OgreGraphicEngine extends BaseGraphicEngine {
 
     private static final Logger LOGGER = LogFactory.getInstance().getLogger(OgreGraphicEngine.class);
 
@@ -72,7 +73,7 @@ public final class OgreGraphicEngine extends GraphicEngine {
     private final OgreMaterialManager materialManager;
 
     private final NativeResourceLoader nativeResourceLoader;
-    private final WindowEngine windowEngine;
+    private final BaseWindowEngine windowEngine;
     /**
      * Only one can be created at a time.
      */
@@ -81,12 +82,12 @@ public final class OgreGraphicEngine extends GraphicEngine {
     /**
      * Build a windows engine.
      *
-     * @param windowEngine WindowEngine wrapping this graphic context.
+     * @param windowEngine BaseWindowEngine wrapping this graphic context.
      * @throws AssertionError If any parameter is null.
      */
     //@Ensures this.size == windowEngine.size
     //@Ensures this.root != null
-    public OgreGraphicEngine(final WindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
+    public OgreGraphicEngine(final BaseWindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
         super();
         assert windowEngine != null;
         assert nativeResourceLoader != null;
@@ -234,12 +235,12 @@ public final class OgreGraphicEngine extends GraphicEngine {
     }
 
     @Override
-    public WindowEngine getWindowEngine() {
+    public BaseWindowEngine getWindowEngine() {
         return this.windowEngine;
     }
 
     @Override
-    public GuiFactory getGuiBuilder() {
+    public GuiFactory getGuiFactory() {
         return guiBuilder;
     }
 }

@@ -26,14 +26,14 @@
 package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.libloader.GlobalNativeResourceLoader;
-import be.yildizgames.module.graphic.GraphicEngine;
+import be.yildizgames.module.graphic.BaseGraphicEngine;
 import be.yildizgames.module.graphic.GraphicEngineProvider;
-import be.yildizgames.module.window.WindowEngine;
+import be.yildizgames.module.window.BaseWindowEngine;
 
 public class OgreGraphicEngineProvider implements GraphicEngineProvider {
 
     @Override
-    public GraphicEngine getEngine(WindowEngine engine) {
+    public BaseGraphicEngine getEngine(BaseWindowEngine engine) {
         return new OgreGraphicEngine(engine, GlobalNativeResourceLoader.getInstance().getLoader());
     }
 }
