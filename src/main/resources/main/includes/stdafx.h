@@ -31,7 +31,7 @@
 #ifdef DEBUG
 #define LOG_FUNCTION std::cout<<__PRETTY_FUNCTION__<<std::endl;
 #else
-#define LOG_FUNCTION std::cout<<__PRETTY_FUNCTION__<<std::endl;
+#define LOG_FUNCTION //std::cout<<__PRETTY_FUNCTION__<<std::endl;
 #endif
 
 #include <jni.h>
