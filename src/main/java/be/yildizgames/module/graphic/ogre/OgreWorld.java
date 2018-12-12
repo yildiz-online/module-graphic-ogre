@@ -25,21 +25,20 @@
 package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.graphic.RayProvider;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicMesh;
 import be.yildizgames.module.graphic.GraphicObject;
 import be.yildizgames.module.graphic.GraphicWorld;
+import be.yildizgames.module.graphic.RayProvider;
 import be.yildizgames.module.graphic.billboard.BillboardSet;
 import be.yildizgames.module.graphic.camera.Camera;
-import be.yildizgames.module.graphic.query.Query;
-import be.yildizgames.module.graphic.query.GroundQuery;
 import be.yildizgames.module.graphic.light.DirectionalLight;
 import be.yildizgames.module.graphic.light.LensFlare;
 import be.yildizgames.module.graphic.light.Light;
@@ -55,8 +54,9 @@ import be.yildizgames.module.graphic.misc.Sky;
 import be.yildizgames.module.graphic.misc.Skybox;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.particle.ParticleSystem;
+import be.yildizgames.module.graphic.query.GroundQuery;
+import be.yildizgames.module.graphic.query.Query;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.security.InvalidParameterException;
 
@@ -67,7 +67,7 @@ import java.security.InvalidParameterException;
  */
 final class OgreWorld implements GraphicWorld {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OgreWorld.class);
+    private static final Logger LOGGER = LogFactory.getInstance().getLogger(OgreWorld.class);
 
     /**
      * The scene manager manage the graphic part of this world.
