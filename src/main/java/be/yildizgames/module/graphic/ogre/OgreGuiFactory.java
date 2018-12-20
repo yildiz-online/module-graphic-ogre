@@ -30,7 +30,7 @@ import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
 import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleGuiFactory;
+import be.yildizgames.module.graphic.gui.internal.impl.StandardGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.window.ScreenSize;
 
@@ -39,7 +39,7 @@ import be.yildizgames.module.window.ScreenSize;
  *
  * @author Grégory Van den Borre
  */
-final class OgreGuiFactory extends SimpleGuiFactory {
+final class OgreGuiFactory extends StandardGuiFactory {
 
 
     /**
