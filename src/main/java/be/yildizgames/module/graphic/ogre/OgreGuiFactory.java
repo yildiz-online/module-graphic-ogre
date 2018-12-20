@@ -27,9 +27,6 @@ package be.yildizgames.module.graphic.ogre;
 import be.yildizgames.module.coordinate.BaseCoordinate;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
-import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
-import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
-import be.yildizgames.module.graphic.gui.internal.impl.SimpleContainer;
 import be.yildizgames.module.graphic.gui.internal.impl.StandardGuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.window.ScreenSize;
@@ -62,7 +59,7 @@ final class OgreGuiFactory extends StandardGuiFactory {
      * @return The newly built container.
      */
     @Override
-    public SimpleContainer buildContainerElement(final String name,
+    public OgreGuiContainer buildContainerElement(final String name,
                                                  final BaseCoordinate coordinates, final Material background) {
         return new OgreGuiContainer(name, background, coordinates,
                 this.screenSize.width, this.screenSize.height, false);
@@ -80,7 +77,7 @@ final class OgreGuiFactory extends StandardGuiFactory {
      * @return The newly built container.
      */
     @Override
-    public SimpleContainer buildContainerElement(final String name,
+    public OgreGuiContainer buildContainerElement(final String name,
                                                  final BaseCoordinate coordinates, final Material background,
                                                  final Container parent, final boolean widget) {
         return new OgreGuiContainer(name, background, coordinates, parent,
@@ -97,7 +94,7 @@ final class OgreGuiFactory extends StandardGuiFactory {
      * @return The newly built icon element.
      */
     @Override
-    protected AbstractIconElement buildIconElement(final String name,
+    protected OgreIcon buildIconElement(final String name,
                                                    final BaseCoordinate coordinates, final Material background,
                                                    final Container container) {
         return new OgreIcon(name, coordinates, background, container);
@@ -112,7 +109,7 @@ final class OgreGuiFactory extends StandardGuiFactory {
      * @return The newly built text element.
      */
     @Override
-    protected AbstractTextElement buildTextElement(
+    protected OgreText buildTextElement(
             final BaseCoordinate coordinates, final Font font,
             final Container container) {
         return new OgreText(coordinates, font, container);
