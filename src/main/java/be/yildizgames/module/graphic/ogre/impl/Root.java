@@ -26,11 +26,11 @@ package be.yildizgames.module.graphic.ogre.impl;
 
 import be.yildizgames.common.file.FileResource;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.WindowHandle;
 import jni.JniRoot;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.InvalidParameterException;
 
@@ -41,7 +41,7 @@ import java.security.InvalidParameterException;
  */
 public final class Root {
 
-    private static final Logger LOGGER = LogFactory.getInstance().getLogger(Root.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Root.class);
 
     private final JniRoot jni = new JniRoot();
 

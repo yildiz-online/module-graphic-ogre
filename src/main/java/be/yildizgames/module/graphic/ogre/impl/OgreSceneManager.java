@@ -27,7 +27,6 @@ package be.yildizgames.module.graphic.ogre.impl;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
@@ -66,6 +65,7 @@ import be.yildizgames.module.graphic.ogre.misc.OgreSkyX;
 import be.yildizgames.module.graphic.ogre.particle.OgreParticleSystem;
 import jni.JniSceneManager;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Java part of the yz::SceneManager.
@@ -74,7 +74,7 @@ import org.slf4j.Logger;
  */
 public final class OgreSceneManager implements SceneManager, Native {
 
-    private final Logger logger = LogFactory.getInstance().getLogger(OgreSceneManager.class);
+    private final Logger logger = LoggerFactory.getLogger(OgreSceneManager.class);
 
     /**
      * Value to scale the boxes to match Ogre and engine sizes.
