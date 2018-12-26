@@ -32,11 +32,8 @@ import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.ogre.OgreMaterial;
 import be.yildizgames.module.graphic.ogre.OgreNode;
 import be.yildizgames.module.graphic.ogre.OgreNodeBase;
-import be.yildizgames.module.graphic.particle.ParticleColorAffector;
-import be.yildizgames.module.graphic.particle.ParticleEmitter;
 import be.yildizgames.module.graphic.particle.ParticleEmitter.EmitterType;
 import be.yildizgames.module.graphic.particle.ParticleForceAffector;
-import be.yildizgames.module.graphic.particle.ParticleScaleAffector;
 import be.yildizgames.module.graphic.particle.ParticleSystem;
 import jni.JniParticleSystem;
 
@@ -76,13 +73,13 @@ public final class OgreParticleSystem extends ParticleSystem implements Native {
     }
 
     @Override
-    protected ParticleEmitter createEmitter(final EmitterType type) {
+    protected OgreParticleEmitter createEmitter(final EmitterType type) {
         final long address = this.jni.createEmitter(this.pointer.getPointerAddress());
         return new OgreParticleEmitter(NativePointer.create(address));
     }
 
     @Override
-    protected ParticleColorAffector createColorAffector() {
+    protected OgreParticleColorAffector createColorAffector() {
         final long address = this.jni.createColorAffector(this.pointer.getPointerAddress());
         return new OgreParticleColorAffector(NativePointer.create(address));
     }
@@ -94,7 +91,7 @@ public final class OgreParticleSystem extends ParticleSystem implements Native {
     }
 
     @Override
-    protected ParticleScaleAffector createScaleAffector() {
+    protected OgreParticleScaleAffector createScaleAffector() {
         final long address = this.jni.createScaleAffector(this.pointer.getPointerAddress());
         return new OgreParticleScaleAffector(NativePointer.create(address));
     }

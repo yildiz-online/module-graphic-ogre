@@ -27,7 +27,6 @@ package be.yildizgames.module.graphic.ogre;
 import be.yildizgames.common.exception.technical.NativeException;
 import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.common.libloader.NativeResourceLoader;
-import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.common.os.SystemUtil;
 import be.yildizgames.common.util.Checker;
 import be.yildizgames.module.color.Color;
@@ -46,6 +45,7 @@ import be.yildizgames.module.window.BaseWindowEngine;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
@@ -56,7 +56,7 @@ import java.io.File;
  */
 public final class OgreGraphicEngine extends BaseGraphicEngine {
 
-    private static final Logger LOGGER = LogFactory.getInstance().getLogger(OgreGraphicEngine.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OgreGraphicEngine.class);
 
     /**
      * Local part of the native Ogre::Root object, mainly used to build renderer, scene manager,....
