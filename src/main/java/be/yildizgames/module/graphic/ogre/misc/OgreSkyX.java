@@ -29,7 +29,6 @@ import be.yildizgames.module.graphic.misc.Sky;
 import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import jni.JniSkyX;
-import jni.JniSkybox;
 
 /**
  * Ogre implementation for a Sky.
