@@ -35,17 +35,13 @@ extern "C" {
 #endif
 
 
-JNIEXPORT jlong JNICALL Java_jni_JniShader_createVertexShader(
-    JNIEnv* env, jobject o, jstring name, jstring path);
+JNIEXPORT jlong JNICALL Java_jni_JniShader_createVertexShader(JNIEnv* env, jobject o, jstring name, jstring path);
 
-JNIEXPORT jlong JNICALL Java_jni_JniShader_createFragmentShader(
-    JNIEnv* env, jobject o, jstring name, jstring path);
+JNIEXPORT jlong JNICALL Java_jni_JniShader_createFragmentShader(JNIEnv* env, jobject o, jstring name, jstring path);
 
-JNIEXPORT void JNICALL Java_jni_JniShader_setParameter(
-    JNIEnv* env, jobject o, jlong pointer, jstring name, jstring value);
+JNIEXPORT void JNICALL Java_jni_JniShader_setParameter(JNIEnv* env, jobject o, jlong pointer, jstring name, jstring value);
 
-JNIEXPORT void JNICALL Java_jni_JniShader_load(
-    JNIEnv* env, jobject o, jlong pointer);
+JNIEXPORT void JNICALL Java_jni_JniShader_load(JNIEnv* env, jobject o, jlong pointer);
 
 #ifdef __cplusplus
 }

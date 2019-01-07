@@ -91,8 +91,6 @@ public class JniGuiIcon {
      */
     public native long constructor(final long container, final String name, final long material, final float width, final float height, final float left, final float top);
 
-    // FIXME use int and check for other method using floats.
-
     /**
      * Retrieve the Z value from native code.
      *
