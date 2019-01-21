@@ -104,4 +104,64 @@ final class OgreParticleEmitter extends ParticleEmitter {
         this.jni.setRepeatDelay(this.pointer.getPointerAddress(), repeatDelay);
     }
 
+    //FIXME get correct value.
+    @Override
+    protected float getInitialAngle() {
+        return 0;
+    }
+
+    //FIXME get correct value.
+    @Override
+    protected float getInitialRate() {
+        return 0;
+    }
+
+    //FIXME get correct value.
+    @Override
+    protected float getInitialDuration() {
+        return 0;
+    }
+
+    //FIXME get correct value.
+    @Override
+    protected float getInitialLifeTime() {
+        return 0;
+    }
+
+    //FIXME get correct value.
+    @Override
+    protected Point3D getInitialDirection() {
+        return Point3D.BASE_DIRECTION;
+    }
+
+    //FIXME get correct value.
+    @Override
+    protected float getInitialMinSpeed() {
+        return 0;
+    }
+
+    //FIXME get correct value.
+    @Override
+    protected float getInitialMaxSpeed() {
+        return 0;
+    }
+
+    //FIXME get correct value.
+    @Override
+    protected  Color getInitialStartColor() {
+        return Color.BLACK;
+    }
+
+    //FIXME get correct value.
+    @Override
+    protected  Color getInitialEndColor() {
+        return Color.BLACK;
+    }
+
+    //FIXME get correct value.
+    @Override
+    protected  float getInitialRepeatDelay() {
+        return 0;
+    }
+
 }

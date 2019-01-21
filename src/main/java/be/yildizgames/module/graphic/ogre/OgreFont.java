@@ -70,7 +70,7 @@ final class OgreFont extends Font implements Native {
     public void delete() {
         this.jni.delete(this.pointer.getPointerAddress());
         this.pointer.delete();
-        // FIXME remove from registerer
+        this.unregister();
     }
 
     @Override
