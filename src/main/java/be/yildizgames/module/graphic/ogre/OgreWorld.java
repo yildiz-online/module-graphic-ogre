@@ -34,6 +34,7 @@ import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.GraphicMesh;
 import be.yildizgames.module.graphic.GraphicObject;
+import be.yildizgames.module.graphic.GraphicObjectBuilder;
 import be.yildizgames.module.graphic.GraphicWorld;
 import be.yildizgames.module.graphic.RayProvider;
 import be.yildizgames.module.graphic.billboard.BillboardSet;
@@ -188,6 +189,11 @@ final class OgreWorld implements GraphicWorld {
         entity.setMaterial(mesh.getMaterial());
         node.setPosition(position);
         return new OgreObject(id, entity);
+    }
+
+    @Override
+    public GraphicObjectBuilder createObject() {
+        return new OgreGraphicObjectBuilder(this.sceneManager);
     }
 
     @Override
