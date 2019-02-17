@@ -179,7 +179,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     }
 
     @Override
-    public void update() {
+    public void updateImpl() {
         this.root.render();
     }
 
