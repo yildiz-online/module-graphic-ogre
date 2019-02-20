@@ -30,18 +30,19 @@ import be.yildizgames.module.graphic.ogre.OgreCamera;
  * @author Grégory Van den Borre
  */
 public class DummyRenderWindow implements OgreRenderWindow {
+
     @Override
-    public OgreViewport createViewport(OgreCamera camera) {
+    public final OgreViewport createViewport(OgreCamera camera) {
         return new DummyViewport();
     }
 
     @Override
-    public void getPrintScreen() {
-
+    public final void getPrintScreen() {
+        //Does nothing
     }
 
     @Override
-    public float getFramerate() {
+    public final float getFramerate() {
         return 0f;
     }
 }

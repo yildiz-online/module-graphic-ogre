@@ -146,12 +146,12 @@ public final class OgreCamera extends Camera implements Native {
 
     @Override
     public void initOrigin() {
-
+        //FIXME implements
     }
 
     @Override
     public void initTarget() {
-
+        //FIXME implements
     }
 
     /**
