@@ -142,6 +142,7 @@ public final class OgreSceneManager implements SceneManager, Native {
         this.logger.debug("Creating default camera...");
         this.defaultCamera = this.createCamera("default");
         this.logger.debug("Default camera created.");
+        this.dummyGround = this.jni.createDummyGroundQuery()
     }
 
     /**
@@ -318,6 +319,11 @@ public final class OgreSceneManager implements SceneManager, Native {
     public OgreQuery createQuery(RayProvider provider) {
        final long address = this.jni.createQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
        return new OgreQuery(NativePointer.create(address), resolutionX, resolutionY);
+    }
+
+    public void createGroundQuery() {
+        final long address = this.jni.createDummyGroundQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
+        return new Dummy(NativePointer.create(address), resolutionX, resolutionY);
     }
 
     public OgreGroundQuery createGroundQuery(RayProvider provider) {
