@@ -82,6 +82,11 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGroundQuery(
     POINTER pointer,
     POINTER rayProvider);
 
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGround(
+    JNIEnv* env,
+    jobject o,
+    POINTER pointer);
+
 JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createMeshEntity(
     JNIEnv* env,
     jobject o,
