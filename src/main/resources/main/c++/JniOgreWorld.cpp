@@ -151,11 +151,13 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createGroundQuery(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
-    POINTER rayPointer) {
+    POINTER rayPointer,
+    POINTER nodePointer) {
     try {
         LOG_FUNCTION
         yz::SceneManager* sm = yz::SceneManager::get(pointer);
         yz::RayProvider* provider = reinterpret_cast<yz::RayProvider*>(rayPointer);
+        yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
         yz::GroundQuery* query = sm->createGroundQuery(provider, node);
         return reinterpret_cast<POINTER>(query);
     } catch (const std::exception& e) {

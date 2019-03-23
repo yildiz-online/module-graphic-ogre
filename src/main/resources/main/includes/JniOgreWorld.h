@@ -80,7 +80,8 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGroundQuery(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
-    POINTER rayProvider);
+    POINTER rayProvider,
+    POINTER nodePointer);
 
 JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGround(
     JNIEnv* env,
