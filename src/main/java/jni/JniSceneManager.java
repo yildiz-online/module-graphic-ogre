@@ -150,7 +150,7 @@ public class JniSceneManager {
 
     public native long createQuery(final long pointerAddress, final long providerPointerAddress);
 
-    public native long createGroundQuery(final long pointerAddress, final long providerPointerAddress);
+    public native long createGroundQuery(final long pointerAddress, final long providerPointerAddress, final long groundNodePointerAddress);
 
     public native long createDummyGround(final long pointerAddress);
 
