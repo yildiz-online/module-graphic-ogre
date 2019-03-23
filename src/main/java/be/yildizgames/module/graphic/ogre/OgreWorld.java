@@ -279,6 +279,12 @@ final class OgreWorld implements GraphicWorld {
     }
 
     @Override
+    public void createDummyGround() {
+
+        this.sceneManager.createDummyGround();
+    }
+
+    @Override
     public final void setAmbientLight(final Color color) {
         this.sceneManager.setAmbientLight(color);
     }
