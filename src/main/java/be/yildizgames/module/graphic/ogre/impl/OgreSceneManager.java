@@ -142,7 +142,7 @@ public final class OgreSceneManager implements SceneManager, Native {
         this.logger.debug("Creating default camera...");
         this.defaultCamera = this.createCamera("default");
         this.logger.debug("Default camera created.");
-        this.dummyGround = this.jni.createDummyGroundQuery()
+        this.createDummyGround();
     }
 
     /**
@@ -321,13 +321,15 @@ public final class OgreSceneManager implements SceneManager, Native {
        return new OgreQuery(NativePointer.create(address), resolutionX, resolutionY);
     }
 
-    public void createGroundQuery() {
-        final long address = this.jni.createDummyGroundQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
-        return new Dummy(NativePointer.create(address), resolutionX, resolutionY);
+    public void createDummyGround() {
+        final long address = this.jni.createDummyGround(this.pointer.getPointerAddress());
+        OgreNode node = new OgreNodeMovable(NativePointer.create(address), this.rootNode);
+        //FIXME only attached to default cam, cannot handle multiple cameras.
+        node.attachTo(this.defaultCamera);
     }
 
     public OgreGroundQuery createGroundQuery(RayProvider provider) {
-       final long address = this.jni.createDummyGroundQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
+       final long address = this.jni.createGroundQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
        return new OgreGroundQuery(NativePointer.create(address), resolutionX, resolutionY);
     }
 
