@@ -76,7 +76,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createQuery(
     POINTER pointer,
     POINTER rayProvider);
 
-JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGroundQuery(
+JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createGroundQuery(
     JNIEnv* env,
     jobject o,
     POINTER pointer,
