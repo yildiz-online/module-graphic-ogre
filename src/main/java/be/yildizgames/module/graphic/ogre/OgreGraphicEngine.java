@@ -93,7 +93,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
         assert nativeResourceLoader != null;
         LOGGER.info("Initializing Ogre graphic engine...");
         nativeResourceLoader.loadBaseLibrary();
-        nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        nativeResourceLoader.loadLibrary("libyildizphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
         this.nativeResourceLoader = nativeResourceLoader;
         this.root = new Root();
         this.loadPlugins();
