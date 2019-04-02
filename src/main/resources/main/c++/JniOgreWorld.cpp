@@ -22,8 +22,8 @@
  */
 
 /**
-*@author Grégory Van den Borre
-*/
+ * @author Grégory Van den Borre
+ */
 
 #include "../includes/JniOgreWorld.h"
 #include "../includes/SceneManager.hpp"

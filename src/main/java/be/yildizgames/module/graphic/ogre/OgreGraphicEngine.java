@@ -208,7 +208,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     }
 
     @Override
-    public Font createFont(String name, String path, int size, Color color) {
+    public final Font createFont(String name, String path, int size, Color color) {
         Checker.exceptionNotGreaterThanZero(size);
         assert name != null;
         assert path != null;
@@ -219,28 +219,28 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     }
 
     @Override
-    public float getFPS() {
+    public final float getFPS() {
         return this.renderWindow.getFramerate();
     }
 
     @Override
-    public GraphicWorld createWorld() {
+    public final createWorld() {
         OgreSceneManager graphic = this.createGraphicWorld("sc", ShadowType.NONE);
         return new OgreWorld(graphic);
     }
 
     @Override
-    public ScreenSize getScreenSize() {
+    public final ScreenSize getScreenSize() {
         return this.windowEngine.getScreenSize();
     }
 
     @Override
-    public BaseWindowEngine getWindowEngine() {
+    public final BaseWindowEngine getWindowEngine() {
         return this.windowEngine;
     }
 
     @Override
-    public GuiFactory getGuiFactory() {
+    public final GuiFactory getGuiFactory() {
         return guiBuilder;
     }
 }

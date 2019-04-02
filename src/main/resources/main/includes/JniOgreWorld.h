@@ -28,11 +28,13 @@
 #define JNI_OGRE_WORLD_H
 
 /**
-*@author Grégory Van den Borre
-*/
+ *@author Grégory Van den Borre
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createLensFlare(
     JNIEnv* env,
     jobject o,

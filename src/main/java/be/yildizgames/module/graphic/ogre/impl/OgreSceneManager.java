@@ -153,7 +153,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      *
      * @param color World ambient light color.
      */
-    public void setAmbientLight(final Color color) {
+    public final void setAmbientLight(final Color color) {
         this.jni.setAmbientLight(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
     }
 
@@ -162,7 +162,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      *
      * @return The created billboard chain.
      */
-    public OgreBillboardChain createBillboardChain() {
+    public final OgreBillboardChain createBillboardChain() {
         OgreNode node = this.createMovableNode();
         return new OgreBillboardChain(node);
     }
@@ -174,7 +174,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param position Light position.
      * @return The created point light.
      */
-    public OgrePointLight createPointLight(final String name, final Point3D position) {
+    public final OgrePointLight createPointLight(final String name, final Point3D position) {
         final long lightPointer = this.jni.createPointLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z);
         return new OgrePointLight(NativePointer.create(lightPointer), name, position);
     }
@@ -187,7 +187,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param direction Spot direction.
      * @return The created spot light.
      */
-    public OgreSpotLight createSpotLight(final String name, final Point3D position, final Point3D direction) {
+    public final OgreSpotLight createSpotLight(final String name, final Point3D position, final Point3D direction) {
         final long lightPointer = this.jni.createSpotLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
         return new OgreSpotLight(NativePointer.create(lightPointer), name, position, direction);
     }
@@ -200,7 +200,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param direction Light direction.
      * @return The created directional light.
      */
-    public OgreDirectionalLight createDirectionalLight(final String name, final Point3D position, final Point3D direction) {
+    public final OgreDirectionalLight createDirectionalLight(final String name, final Point3D position, final Point3D direction) {
         final long lightPointer = this.jni.createDirectionalLight(this.pointer.getPointerAddress(), name, position.x, position.y, position.z, direction.x, direction.y, direction.z);
         return new OgreDirectionalLight(NativePointer.create(lightPointer), name, direction);
     }
@@ -208,7 +208,7 @@ public final class OgreSceneManager implements SceneManager, Native {
     /**
      * @return The Camera created at same time as this manager.
      */
-    public Camera getDefaultCamera() {
+    public final Camera getDefaultCamera() {
         return this.defaultCamera;
     }
 
@@ -220,7 +220,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param width Element width.
      * @return An Ogre implementation for ElectricArc.
      */
-    public OgreElectricArc createElectricArc(final Point3D start, final Point3D end, final float width) {
+    public final OgreElectricArc createElectricArc(final Point3D start, final Point3D end, final float width) {
         final long arcPointer = this.jni.createElectricArc(this.pointer.getPointerAddress(), StringUtil.buildRandomString("earc"), start.x, start.y, start.z, end.x, end.y, end.z, width);
         return new OgreElectricArc(NativePointer.create(arcPointer), start, end);
     }
@@ -230,7 +230,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      *
      * @return An Ogre implementation for Ocean.
      */
-    public OgreHydrax createOcean() {
+    public final OgreHydrax createOcean() {
         return new OgreHydrax(this.pointer, this.defaultCamera);
     }
 

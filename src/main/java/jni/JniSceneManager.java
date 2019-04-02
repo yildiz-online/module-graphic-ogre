@@ -260,4 +260,5 @@ public class JniSceneManager {
      * @param distance Maximum distance to display shadows..
      */
     public native void setShadowFarDistance(final long pointer, final int distance);
+
 }
