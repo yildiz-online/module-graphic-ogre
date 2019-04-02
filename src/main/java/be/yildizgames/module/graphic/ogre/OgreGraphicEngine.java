@@ -224,7 +224,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     }
 
     @Override
-    public final createWorld() {
+    public final OgreWorld createWorld() {
         OgreSceneManager graphic = this.createGraphicWorld("sc", ShadowType.NONE);
         return new OgreWorld(graphic);
     }
