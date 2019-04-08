@@ -46,11 +46,6 @@ class ParticleForceAffector {
 				+ " " + Ogre::StringConverter::toString(z));
 		}
 
-
-		static inline yz::ParticleForceAffector* get(const POINTER pointer) {
-		    LOG_FUNCTION
-		    return reinterpret_cast<yz::ParticleForceAffector*>(pointer);
-		}
 private:
 	Ogre::ParticleAffector* affector;
 };

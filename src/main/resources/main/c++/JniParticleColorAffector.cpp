@@ -34,5 +34,5 @@ JNIEXPORT void JNICALL Java_jni_JniParticleColorAffector_setAlpha(
     POINTER pointer,
     jfloat alpha) {
     LOG_FUNCTION
-    yz::ParticleColorAffector::get(pointer)->setAlpha(alpha);
+    reinterpret_cast<yz::ParticleColorAffector*>(pointer)->setAlpha(alpha);
 }

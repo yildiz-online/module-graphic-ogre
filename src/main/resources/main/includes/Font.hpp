@@ -39,11 +39,6 @@ public:
 
     Font(const std::string& name, const std::string& path, const Ogre::Real size);
 
-    inline static yz::Font* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::Font*>(pointer);
-    }
-
     void load();
 
     inline std::string getName() const {

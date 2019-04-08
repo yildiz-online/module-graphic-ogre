@@ -44,10 +44,6 @@ public:
 
     Ogre::Vector3 throwRayPos(const Ogre::Real x, const Ogre::Real y);
 
-    inline static yz::GroundQuery* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::GroundQuery*>(pointer);
-    }
 
 private:
 

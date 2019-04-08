@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_jni_JniLensFlare_setPosition(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    yz::LensFlare::get(pointer)->setPosition(x, y, z);
+    reinterpret_cast<yz::LensFlare*>(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniLensFlare_setLightSize(
@@ -46,7 +46,7 @@ JNIEXPORT void JNICALL Java_jni_JniLensFlare_setLightSize(
     jfloat w,
     jfloat h) {
     LOG_FUNCTION
-    yz::LensFlare::get(pointer)->setLightSize(w, h);
+    reinterpret_cast<yz::LensFlare*>(pointer)->setLightSize(w, h);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniLensFlare_setStreakSize(
@@ -56,5 +56,5 @@ JNIEXPORT void JNICALL Java_jni_JniLensFlare_setStreakSize(
     jfloat w,
     jfloat h) {
     LOG_FUNCTION
-    yz::LensFlare::get(pointer)->setStreakSize(w, h);
+    reinterpret_cast<yz::LensFlare*>(pointer)->setStreakSize(w, h);
 }

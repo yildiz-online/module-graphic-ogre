@@ -36,5 +36,5 @@ JNIEXPORT jfloatArray JNICALL Java_jni_JniGroundQuery_computeIntersect(
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    return vectorToArray(env, yz::GroundQuery::get(pointer)->throwRayPos(x, y));
+    return vectorToArray(env, reinterpret_cast<yz::GroundQuery*>(pointer)->throwRayPos(x, y));
 }

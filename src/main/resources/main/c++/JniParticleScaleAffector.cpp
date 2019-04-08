@@ -31,5 +31,5 @@
 JNIEXPORT void JNICALL Java_jni_JniParticleScaleAffector_setScale
   (JNIEnv*, jobject, POINTER pointer, jfloat width, jfloat height) {
     LOG_FUNCTION
-    yz::ParticleScaleAffector::get(pointer)->setScale(width, height);
+    reinterpret_cast<yz::ParticleScaleAffector*>(pointer)->setScale(width, height);
   }

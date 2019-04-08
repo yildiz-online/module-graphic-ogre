@@ -47,12 +47,6 @@ inline void setDirection(
     this->light->setDirection(dirX, dirY, dirZ);
 }
 
-/**
- * Convert a pointer in a native Directionallight
- */
-static inline yz::DirectionalLight* get(const POINTER pointer) {
-    return reinterpret_cast<yz::DirectionalLight*>(pointer);
-}
 };
 }
 

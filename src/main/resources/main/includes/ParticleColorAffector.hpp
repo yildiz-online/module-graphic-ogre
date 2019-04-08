@@ -42,11 +42,6 @@ public:
                 Ogre::StringConverter::toString(alpha));
     }
 
-    static inline yz::ParticleColorAffector* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::ParticleColorAffector*>(pointer);
-    }
-
 private:
     Ogre::ParticleAffector* affector;
 };

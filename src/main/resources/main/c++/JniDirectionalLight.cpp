@@ -33,7 +33,7 @@ JNIEXPORT void JNICALL Java_jni_JniDirectionalLight_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete yz::DirectionalLight::get(pointer);
+    delete reinterpret_cast<yz::DirectionalLight*>(pointer);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniDirectionalLight_setPosition(
@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_jni_JniDirectionalLight_setPosition(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    yz::DirectionalLight::get(pointer)->setPosition(x, y, z);
+    reinterpret_cast<yz::DirectionalLight*>(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniDirectionalLight_setDirection(
@@ -55,5 +55,5 @@ JNIEXPORT void JNICALL Java_jni_JniDirectionalLight_setDirection(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    yz::DirectionalLight::get(pointer)->setDirection(x, y, z);
+    reinterpret_cast<yz::DirectionalLight*>(pointer)->setDirection(x, y, z);
 }

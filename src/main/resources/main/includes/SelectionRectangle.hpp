@@ -42,10 +42,6 @@ class SelectionRectangle {
         void hide();
         void update(const Ogre::Real x1, const Ogre::Real y1, const Ogre::Real x2, const Ogre::Real y2);
 
-        static inline yz::SelectionRectangle* get(const POINTER pointer) {
-            LOG_FUNCTION
-            return reinterpret_cast<yz::SelectionRectangle*>(pointer);
-        }
 
     private:
         Ogre::OverlayElement* top;

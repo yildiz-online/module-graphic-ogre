@@ -76,11 +76,6 @@ public:
       //  this->setMaterialName(material->getName());
     }
 
-    static inline DynamicLines* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<DynamicLines*>(pointer);
-    }
-
 
 protected:
 

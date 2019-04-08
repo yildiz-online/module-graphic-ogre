@@ -39,7 +39,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboard_setPosition(
     jfloat z) {
     LOG_FUNCTION
     try {
-        yz::Billboard::get(pointer)->setPosition(x, y, z);
+        reinterpret_cast<yz::Billboard*>(pointer)->setPosition(x, y, z);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -53,7 +53,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboard_setSize(
     jfloat height) {
     LOG_FUNCTION
     try {
-    	yz::Billboard::get(pointer)->setDimensions(width, height);
+    	reinterpret_cast<yz::Billboard*>(pointer)->setDimensions(width, height);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -68,5 +68,5 @@ JNIEXPORT void JNICALL Java_jni_JniBillboard_setColor(
     jfloat blue,
     jfloat alpha) {
     LOG_FUNCTION
-    yz::Billboard::get(pointer)->setColor(red, green, blue, alpha);
+    reinterpret_cast<yz::Billboard*>(pointer)->setColor(red, green, blue, alpha);
 }

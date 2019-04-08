@@ -31,5 +31,5 @@
 JNIEXPORT void JNICALL Java_jni_JniParticleForceAffector_setForce
   (JNIEnv*, jobject, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
-    yz::ParticleForceAffector::get(pointer)->setForce(x, y, z);
+    reinterpret_cast<yz::ParticleForceAffector*>(pointer)->setForce(x, y, z);
   }

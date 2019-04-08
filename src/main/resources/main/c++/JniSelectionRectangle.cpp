@@ -34,8 +34,8 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSelectionRectangle_constructor(
     POINTER matPointer,
     POINTER contentMatPointer) {
     LOG_FUNCTION
-    yz::Material* mat = yz::Material::get(matPointer);
-    yz::Material* cmat = yz::Material::get(contentMatPointer);
+    yz::Material* mat = reinterpret_cast<yz::Material*>(matPointer);
+    yz::Material* cmat = reinterpret_cast<yz::Material*>(contentMatPointer);
     return reinterpret_cast<POINTER>(new yz::SelectionRectangle(mat, cmat));
 }
 
@@ -48,5 +48,5 @@ JNIEXPORT void JNICALL Java_jni_JniSelectionRectangle_update(
     jfloat x2,
     jfloat y2) {
     LOG_FUNCTION
-    yz::SelectionRectangle::get(pointer)->update(x1, y1, x2, y2);
+    reinterpret_cast<yz::SelectionRectangle*>(pointer)->update(x1, y1, x2, y2);
 }

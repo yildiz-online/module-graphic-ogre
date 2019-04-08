@@ -43,11 +43,6 @@ public:
 						+ Ogre::StringConverter::toString(height));
 	}
 
-    static inline yz::ParticleScaleAffector* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::ParticleScaleAffector*>(pointer);
-    }
-
 private:
 	Ogre::ParticleAffector* affector;
 };

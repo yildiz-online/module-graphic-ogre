@@ -34,7 +34,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniDynamicLine_constructor(
     jobject,
     POINTER nodePointer) {
     LOG_FUNCTION
-    yz::Node* node = yz::Node::get(nodePointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
     DynamicLines* line  = new DynamicLines(node);
     return reinterpret_cast<POINTER>(line);
 }
@@ -45,8 +45,8 @@ JNIEXPORT void JNICALL Java_jni_JniDynamicLine_setMaterial(
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    DynamicLines* line = DynamicLines::get(pointer);
-    yz::Material* material = yz::Material::get(matPointer);
+    DynamicLines* line = reinterpret_cast<DynamicLines*>(pointer);
+    yz::Material* material = reinterpret_cast<Material*>(matPointer);
     line->setMaterial(material);
 }
 
@@ -55,7 +55,7 @@ JNIEXPORT void JNICALL Java_jni_JniDynamicLine_show(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    DynamicLines::get(pointer)->show();
+    reinterpret_cast<DynamicLines*>(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniDynamicLine_hide(
@@ -63,7 +63,7 @@ JNIEXPORT void JNICALL Java_jni_JniDynamicLine_hide(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    DynamicLines::get(pointer)->hide();
+    reinterpret_cast<DynamicLines*>(pointer)->hide();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniDynamicLine_update(
@@ -77,7 +77,7 @@ JNIEXPORT void JNICALL Java_jni_JniDynamicLine_update(
     jfloat endY,
     jfloat endZ) {
     LOG_FUNCTION
-    DynamicLines* line = DynamicLines::get(pointer);
+    DynamicLines* line = reinterpret_cast<DynamicLines*>(pointer);
     line->setPoint(0, beginX, beginY, beginZ);
     line->setPoint(1, endX, endY, endZ);
     line->update();

@@ -50,7 +50,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniFont_createFont(
 JNIEXPORT jfloatArray JNICALL Java_jni_JniFont_computeCharSize(JNIEnv* env, jobject, POINTER pointer) {
 
     LOG_FUNCTION
-    yz::Font* font = yz::Font::get(pointer);
+    yz::Font* font = reinterpret_cast<yz::Font*>(pointer);
     font->load();
     Ogre::Real size = font->getTrueTypeSize();
     jfloat buf[256];
@@ -67,6 +67,6 @@ JNIEXPORT void JNICALL Java_jni_JniFont_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::Font* font = yz::Font::get(pointer);
+    yz::Font* font = reinterpret_cast<yz::Font*>(pointer);
     delete font;
 }
