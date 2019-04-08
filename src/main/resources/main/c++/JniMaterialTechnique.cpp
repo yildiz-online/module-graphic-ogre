@@ -35,7 +35,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_JniMaterialTechnique_getPassList(
     jclass,
     POINTER pointer) {
     LOG_FUNCTION
-    Ogre::Technique* technique = yz::MaterialTechnique::get(pointer);
+    Ogre::Technique* technique = reinterpret_cast<Ogre::Technique*>(pointer);
     int size = technique->getNumPasses();
     jlong* buf;
     buf = new jlong[size];
@@ -52,7 +52,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniMaterialTechnique_createPass(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    Ogre::Technique* technique = yz::MaterialTechnique::get(pointer);
+    Ogre::Technique* technique = reinterpret_cast<Ogre::Technique*>(pointer);
     return reinterpret_cast<POINTER>(technique->createPass());
 }
 
@@ -62,8 +62,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniMaterialTechnique_getPass(
     POINTER pointer,
     jint index) {
     LOG_FUNCTION
-    return reinterpret_cast<jlong>(yz::MaterialTechnique::get(pointer)->getPass(
-            index));
+    return reinterpret_cast<jlong>(reinterpret_cast<Ogre::Technique*>(pointer)->getPass(index));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialTechnique_setGlow(
@@ -71,6 +70,6 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialTechnique_setGlow(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::MaterialTechnique::get(pointer)->setSchemeName("glow");
+    reinterpret_cast<Ogre::Technique*>(pointer)->setSchemeName("glow");
 }
 

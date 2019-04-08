@@ -32,7 +32,7 @@ JNIEXPORT void JNICALL Java_jni_JniViewPort_enableCompositor (
     JNIEnv* env, jobject current, POINTER pointer, jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::Viewport* vp = yz::Viewport::get(pointer);
+    yz::Viewport* vp = reinterpret_cast<yz::Viewport*>(pointer);
     vp->addCompositor(name.getValue());
 }
 
@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_jni_JniViewPort_setCamera(
     POINTER pointer,
     POINTER camPointer) {
     LOG_FUNCTION
-    yz::Viewport* vp = yz::Viewport::get(pointer);
-    yz::Camera* cam = yz::Camera::get(camPointer);
+    yz::Viewport* vp = reinterpret_cast<yz::Viewport*>(pointer);
+    yz::Camera* cam = reinterpret_cast<yz::Camera*>(camPointer);
     vp->setCamera(cam);
 }

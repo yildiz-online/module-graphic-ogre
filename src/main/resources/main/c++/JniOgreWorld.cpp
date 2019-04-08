@@ -38,7 +38,7 @@ JNIEXPORT void JNICALL Java_jni_JniSceneManager_setSkybox(
     jstring jfile) {
     LOG_FUNCTION
     JniStringWrapper file = JniStringWrapper(env, jfile);
-    yz::SceneManager::get(pointer)->setSkyBox(file.getValue());
+    reinterpret_cast<yz::SceneManager*>(pointer)->setSkyBox(file.getValue());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowTechnique(
@@ -47,7 +47,7 @@ JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowTechnique(
     POINTER pointer,
     jint tec) {
     LOG_FUNCTION
-    yz::SceneManager::get(pointer)->setShadowType(tec);
+    reinterpret_cast<yz::SceneManager*>(pointer)->setShadowType(tec);
 }
 
 
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowTextureSize(
     POINTER pointer,
     jint size) {
     LOG_FUNCTION
-    yz::SceneManager::get(pointer)->setShadowTextureSize(size);
+    reinterpret_cast<yz::SceneManager*>(pointer)->setShadowTextureSize(size);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowFarDistance(
@@ -66,7 +66,7 @@ JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowFarDistance(
     POINTER pointer,
     jint distance) {
     LOG_FUNCTION
-    yz::SceneManager::get(pointer)->setShadowFarDistance(distance);
+    reinterpret_cast<yz::SceneManager*>(pointer)->setShadowFarDistance(distance);
 }
 
 JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createLensFlare(
@@ -85,12 +85,12 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createLensFlare(
     LOG_FUNCTION
     try {
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::SceneManager* sm = yz::SceneManager::get(pointer);
-        yz::Camera* cam = yz::Camera::get(camPointer);
-        yz::Material* light = yz::Material::get(lightPointer);
-        yz::Material* streak = yz::Material::get(streakPointer);
-        yz::Material* halo = yz::Material::get(haloPointer);
-        yz::Material* burst = yz::Material::get(burstPointer);
+        yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
+        yz::Camera* cam = reinterpret_cast<yz::Camera*>(camPointer);
+        yz::Material* light = reinterpret_cast<yz::Material*>(lightPointer);
+        yz::Material* streak = reinterpret_cast<yz::Material*>(streakPointer);
+        yz::Material* halo = reinterpret_cast<yz::Material*>(haloPointer);
+        yz::Material* burst = reinterpret_cast<yz::Material*>(burstPointer);
         yz::LensFlare* lens = sm->createLensFlare(name.getValue(), light, streak, halo, burst, x, y, z);
         cam->addListener(lens);
         return reinterpret_cast<POINTER>(lens);
@@ -124,7 +124,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createQuery(
     POINTER rayPointer) {
     try {
     LOG_FUNCTION
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     yz::Query* query = sm->createQuery(reinterpret_cast<yz::RayProvider*>(rayPointer));
     return reinterpret_cast<POINTER>(query);
     } catch (const std::exception& e) {
@@ -137,7 +137,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDummyGround(
     JNIEnv* env,
     jobject o,
     POINTER pointer) {
-        yz::SceneManager* sm = yz::SceneManager::get(pointer);
+        yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
         yz::Entity* e = sm->createCube("cam_ground");
         e->setQueryFlags(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
         yz::Node* node = sm->createNode("cam_ground_node");
@@ -155,7 +155,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createGroundQuery(
     POINTER nodePointer) {
     try {
         LOG_FUNCTION
-        yz::SceneManager* sm = yz::SceneManager::get(pointer);
+        yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
         yz::RayProvider* provider = reinterpret_cast<yz::RayProvider*>(rayPointer);
         yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
         yz::GroundQuery* query = sm->createGroundQuery(provider, node);
@@ -175,9 +175,9 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createMeshEntity(
     POINTER nodePointer) {
     LOG_FUNCTION
     JniStringWrapper mesh = JniStringWrapper(env, jmesh);
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     yz::Entity* entity = sm->createEntity(mesh.getValue());
-    yz::Node* node = yz::Node::get(nodePointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
     node->attachObject(entity);
     return reinterpret_cast<POINTER>(entity);
 }
@@ -188,9 +188,9 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createBoxEntity(
     POINTER pointer,
     POINTER nodePointer) {
     LOG_FUNCTION
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     yz::Entity* entity = sm->createCube();
-    yz::Node* node = yz::Node::get(nodePointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
     node->attachObject(entity);
     return reinterpret_cast<POINTER>(entity);
 }
@@ -201,9 +201,9 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createPlaneEntity(
     POINTER pointer,
     POINTER nodePointer) {
     LOG_FUNCTION
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     yz::Entity* entity = sm->createPlane();
-    yz::Node* node = yz::Node::get(nodePointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
     node->attachObject(entity);
     return reinterpret_cast<POINTER>(entity);
 }
@@ -216,8 +216,8 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createSphereEntity(
     jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
-    yz::Node* node = yz::Node::get(nodePointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
     yz::Entity* entity = sm->createSphere(name.getValue(), 64, 64, 100); //sm->createSphere();
     node->attachObject(entity);
     return reinterpret_cast<POINTER>(entity);
@@ -230,7 +230,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createNode(
     jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     try {
         yz::Node* node = sm->createNode(name.getValue());
         return reinterpret_cast<POINTER>(node);
@@ -267,7 +267,7 @@ JNIEXPORT void JNICALL Java_jni_JniSceneManager_setAmbientLight(
     jfloat blue,
     jfloat alpha) {
     LOG_FUNCTION
-    yz::SceneManager::get(pointer)->setAmbientLight(red, green, blue, alpha);
+    reinterpret_cast<yz::SceneManager*>(pointer)->setAmbientLight(red, green, blue, alpha);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowType(
@@ -276,7 +276,7 @@ JNIEXPORT void JNICALL Java_jni_JniSceneManager_setShadowType(
     POINTER pointer,
     jint type) {
     LOG_FUNCTION
-    yz::SceneManager::get(pointer)->setShadowType(type);
+    reinterpret_cast<yz::SceneManager*>(pointer)->setShadowType(type);
 }
 
 JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createPointLight(
@@ -289,7 +289,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createPointLight(
     jfloat z) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     try {
         yz::PointLight* light = sm->createPointLight(name.getValue(), x, y, z);
         return reinterpret_cast<POINTER>(light);
@@ -312,7 +312,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createSpotLight(
     jfloat tgtZ) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     try {
         yz::SpotLight* light = sm->createSpotLight(name.getValue(), x, y, z, tgtX, tgtY, tgtZ);
         return reinterpret_cast<POINTER>(light);
@@ -335,7 +335,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createDirectionalLight(
     jfloat tgtZ) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     try {
         yz::DirectionalLight* light = sm->createDirectionalLight(name.getValue(), x, y, z, tgtX, tgtY, tgtZ);
         return reinterpret_cast<POINTER>(light);
@@ -359,7 +359,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createElectricArc(
     jfloat width) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     yz::ElectricArc* arc = sm->createElectricArc(name.getValue(), x, y, z, eX, eY, eZ, width);
     return reinterpret_cast<POINTER>(arc);
 }
@@ -369,7 +369,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createParticleSystem(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     yz::ParticleSystem* system = sm->createParticleSystem();
     return reinterpret_cast<POINTER>(system);
 }
@@ -380,8 +380,8 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createBillboardSet(
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
-    yz::Material* material = yz::Material::get(matPointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
+    yz::Material* material = reinterpret_cast<yz::Material*>(matPointer);
     yz::BillboardSet* set = sm->createBillboardSet(material);
     return reinterpret_cast<POINTER>(set);
 }
@@ -389,6 +389,6 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createBillboardSet(
 JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_getRootNode(
     JNIEnv* env, jobject, POINTER pointer) {
     LOG_FUNCTION
-    return reinterpret_cast<POINTER>(yz::SceneManager::get(pointer)->getRootNode());
+    return reinterpret_cast<POINTER>(reinterpret_cast<yz::SceneManager*>(pointer)->getRootNode());
 }
 

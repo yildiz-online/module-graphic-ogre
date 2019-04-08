@@ -271,11 +271,6 @@ public:
         return new yz::ElectricArc(start, end, base, name, width);
     }
 
-    static inline yz::SceneManager* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::SceneManager*>(pointer);
-    }
-
 private:
     Ogre::SceneManager* sceneManager;
     bool debug;

@@ -39,11 +39,6 @@ class MaterialTechnique{
 
 public:
 
-	static inline Ogre::Technique* get(const POINTER pointer) {
-	    LOG_FUNCTION
-        return reinterpret_cast<Ogre::Technique*>(pointer);
-    }
-
 private:
 
 

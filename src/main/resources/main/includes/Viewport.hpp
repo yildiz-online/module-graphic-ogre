@@ -47,10 +47,6 @@ class Viewport {
         void setCamera(yz::Camera* cam);
         
         void addCompositor(const std::string& name);
-        
-        static inline yz::Viewport* get(const POINTER pointer) {
-            return reinterpret_cast<yz::Viewport*>(pointer);
-        }
 
     private:
 
