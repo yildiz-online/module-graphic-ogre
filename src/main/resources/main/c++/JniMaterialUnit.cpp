@@ -39,7 +39,7 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTextureAnimated(
     jint duration) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::TextureUnit::get(pointer)->setAnimatedTextureName(name.getValue(), frame, duration);
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setAnimatedTextureName(name.getValue(), frame, duration);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTextureFilter(
@@ -48,7 +48,7 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTextureFilter(
     POINTER pointer,
     jint filter) {
     LOG_FUNCTION
-    yz::TextureUnit::get(pointer)->setTextureFiltering(EnumConversion::getTextureFilter(filter));
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setTextureFiltering(EnumConversion::getTextureFilter(filter));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setCoordinateSet(
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setCoordinateSet(
     POINTER pointer,
     jint set) {
     LOG_FUNCTION
-    yz::TextureUnit::get(pointer)->setTextureCoordSet (set);
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setTextureCoordSet (set);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperation(
@@ -66,7 +66,7 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperation(
     POINTER pointer,
     jint operation) {
     LOG_FUNCTION
-    yz::TextureUnit::get(pointer)->setColourOperation(EnumConversion::getLayerBlendOperation(operation));
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setColourOperation(EnumConversion::getLayerBlendOperation(operation));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniTextureUnit_scroll(
@@ -76,7 +76,7 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_scroll(
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    yz::TextureUnit::get(pointer)->setScrollAnimation(x, y);
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setScrollAnimation(x, y);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setAlphaOperation(
@@ -87,7 +87,7 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setAlphaOperation(
     jint src,
     jint src2) {
     LOG_FUNCTION
-    yz::TextureUnit::get(pointer)->setAlphaOperation(
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setAlphaOperation(
             EnumConversion::getLayerBlendOperationEx(operation),
             EnumConversion::getLayerBlendSource(src),
             EnumConversion::getLayerBlendSource(src2));
@@ -101,7 +101,7 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperationEx(
     jint src,
     jint src2) {
     LOG_FUNCTION
-    yz::TextureUnit::get(pointer)->setColourOperationEx(
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setColourOperationEx(
             EnumConversion::getLayerBlendOperationEx(operation),
             EnumConversion::getLayerBlendSource(src),
             EnumConversion::getLayerBlendSource(src2));
@@ -118,7 +118,7 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setColorOperationExManual(
     jfloat g,
     jfloat b) {
     LOG_FUNCTION
-    yz::TextureUnit::get(pointer)->setColourOperationEx(
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setColourOperationEx(
             EnumConversion::getLayerBlendOperationEx(operation),
             EnumConversion::getLayerBlendSource(src),
             EnumConversion::getLayerBlendSource(src2),
@@ -132,7 +132,7 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTexture(
     jstring materialName) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, materialName);
-    yz::TextureUnit::get(pointer)->setTextureName(name.getValue());
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setTextureName(name.getValue());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setScale(
@@ -142,5 +142,5 @@ JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setScale(
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    yz::TextureUnit::get(pointer)->setTextureScale(x, y);
+    reinterpret_cast<Ogre::TextureUnitState*>(pointer)->setTextureScale(x, y);
 }

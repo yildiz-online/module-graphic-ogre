@@ -39,11 +39,6 @@ class TextureUnit{
 
 public:
 
-	static inline Ogre::TextureUnitState* get(const POINTER pointer) {
-	    LOG_FUNCTION
-        return reinterpret_cast<Ogre::TextureUnitState*>(pointer);
-    }
-
 private:
 
 

@@ -39,11 +39,6 @@ class MaterialPass {
 
 public:
 
-	static inline Ogre::Pass* get(const POINTER pointer) {
-	    LOG_FUNCTION
-        return reinterpret_cast<Ogre::Pass*>(pointer);
-    }
-
 private:
 
 

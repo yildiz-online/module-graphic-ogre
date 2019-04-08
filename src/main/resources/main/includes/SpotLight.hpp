@@ -50,13 +50,6 @@ LOG_FUNCTION
 this->light->setDirection(dirX, dirY, dirZ);
 }
 
-/**
- * Convert a pointer in a native spotlight
- */
-static inline yz::SpotLight* get(const POINTER pointer) {
-return reinterpret_cast<yz::SpotLight*>(pointer);
-}
-
 };
 }
 

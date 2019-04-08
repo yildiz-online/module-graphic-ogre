@@ -33,7 +33,7 @@ JNIEXPORT void JNICALL Java_jni_JniSpotLight_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete yz::SpotLight::get(pointer);
+    delete reinterpret_cast<yz::SpotLight*>(pointer);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniSpotLight_setPosition(
@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_jni_JniSpotLight_setPosition(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    yz::SpotLight::get(pointer)->setPosition(x, y, z);
+    reinterpret_cast<yz::SpotLight*>(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniSpotLight_setDirection(
@@ -55,5 +55,5 @@ JNIEXPORT void JNICALL Java_jni_JniSpotLight_setDirection(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    yz::SpotLight::get(pointer)->setDirection(x, y, z);
+    reinterpret_cast<yz::SpotLight*>(pointer)->setDirection(x, y, z);
 }

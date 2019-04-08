@@ -34,7 +34,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_JniMaterialPass_getUnitList(
 		JNIEnv* env, jclass,
 		POINTER pointer) {
 	LOG_FUNCTION
-	Ogre::Pass* pass = yz::MaterialPass::get(pointer);
+	Ogre::Pass* pass = reinterpret_cast<Ogre::Pass*>(pointer)(pointer);
 	int size = pass->getNumTextureUnitStates();
 	jlong* buf;
 	buf = new jlong[size];
@@ -51,8 +51,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniMaterialPass_getUnit(
 		POINTER pointer, jint index) {
 	LOG_FUNCTION
 	try {
-		return reinterpret_cast<POINTER>(yz::MaterialPass::get(pointer)->getTextureUnitState(
-				index));
+		return reinterpret_cast<POINTER>(reinterpret_cast<Ogre::Pass*>(pointer)->getTextureUnitState(index));
 	} catch (const std::exception& e) {
 		throwException(env, e.what());
 	}
@@ -62,36 +61,35 @@ JNIEXPORT POINTER JNICALL Java_jni_JniMaterialPass_getUnit(
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setAlphaTransparency(
     JNIEnv*, jobject, POINTER pointer) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setSceneBlending(
-			Ogre::SBT_TRANSPARENT_ALPHA);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setColorTransparency(
 		JNIEnv*, jobject,
 		POINTER pointer) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setSceneBlending(Ogre::SBT_ADD);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setSceneBlending(Ogre::SBT_ADD);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setEmissive(
 		JNIEnv*, jobject,
 		POINTER pointer, jfloat red, jfloat green, jfloat blue) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setSelfIllumination(red, green, blue);
+	reinterpret_cast<Ogre::Pass*>(pointer))->setSelfIllumination(red, green, blue);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_disableLight(
 		JNIEnv*, jobject,
 		POINTER pointer) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setLightingEnabled(false);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setLightingEnabled(false);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_blend(
 		JNIEnv*, jobject,
 		POINTER pointer, jint blendOp) {
 	LOG_FUNCTION
-	Ogre::Pass* pass = yz::MaterialPass::get(pointer);
+	Ogre::Pass* pass = reinterpret_cast<Ogre::Pass*>(pointer);
 	pass->setDepthWriteEnabled(false);
 	pass->setSceneBlendingOperation(
 			EnumConversion::getSceneBlendOperation(blendOp));
@@ -101,7 +99,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_complexBlend(
 		JNIEnv*, jobject,
 		POINTER pointer, jint blend, jint blend2) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setSceneBlending(
+	reinterpret_cast<Ogre::Pass*>(pointer)->setSceneBlending(
 			EnumConversion::getSceneBlendFactor(blend),
 			EnumConversion::getSceneBlendFactor(blend2));
 }
@@ -110,33 +108,33 @@ JNIEXPORT POINTER JNICALL Java_jni_JniMaterialPass_createUnit(
 		JNIEnv*, jobject,
 		POINTER pointer) {
 	LOG_FUNCTION
-	return reinterpret_cast<POINTER>(yz::MaterialPass::get(pointer)->createTextureUnitState());
+	return reinterpret_cast<POINTER>(reinterpret_cast<Ogre::Pass*>(pointer)->createTextureUnitState());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setDiffuse(
 		JNIEnv*, jobject,
 		POINTER pointer, jfloat r, jfloat g, jfloat b, jfloat a) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setDiffuse(r, g, b, a);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setDiffuse(r, g, b, a);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setAmbient(
 		JNIEnv*, jobject,
 		POINTER pointer, jfloat r, jfloat g, jfloat b) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setAmbient(r, g, b);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setAmbient(r, g, b);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_enableColor(
     JNIEnv*, jobject, POINTER pointer) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setColourWriteEnabled(true);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setColourWriteEnabled(true);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_disableColor(
     JNIEnv*, jobject, POINTER pointer) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setColourWriteEnabled(false);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setColourWriteEnabled(false);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgram(
@@ -144,7 +142,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgram(
     try {
 	    LOG_FUNCTION
 	    JniStringWrapper name = JniStringWrapper(env, jname);
-	    yz::MaterialPass::get(pointer)->setVertexProgram(name.getValue());
+	    reinterpret_cast<Ogre::Pass*>(pointer)->setVertexProgram(name.getValue());
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -155,7 +153,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgram(
     try {
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::MaterialPass::get(pointer)->setFragmentProgram(name.getValue());
+        reinterpret_cast<Ogre::Pass*>(pointer)->setFragmentProgram(name.getValue());
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -167,7 +165,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterFloat
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
         Ogre::Vector4 vector = Ogre::Vector4(v1, v2, v3, v4);
-        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), vector);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), vector);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -179,7 +177,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterFloat
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
         Ogre::Vector3 vector = Ogre::Vector3(v1, v2, v3);
-        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), vector);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), vector);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -191,7 +189,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterFloat
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
         Ogre::Vector2 vector = Ogre::Vector2(v1, v2);
-        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), vector);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), vector);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -202,7 +200,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterFloat
     try {
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), value);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), value);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -214,7 +212,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterColor
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
         Ogre::ColourValue color = Ogre::ColourValue(r, g, b, a);
-        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), color);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getFragmentProgramParameters()->setNamedConstant(name.getValue(), color);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -226,7 +224,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterFloat4(
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
         Ogre::Vector4 vector = Ogre::Vector4(v1, v2, v3, v4);
-        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), vector);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), vector);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -238,7 +236,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterFloat3(
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
         Ogre::Vector3 vector = Ogre::Vector3(v1, v2, v3);
-        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), vector);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), vector);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -250,7 +248,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterFloat2(
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
         Ogre::Vector2 vector = Ogre::Vector2(v1, v2);
-        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), vector);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), vector);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -261,7 +259,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterFloat(
     try {
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), value);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), value);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -273,7 +271,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterColor(
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
         Ogre::ColourValue color = Ogre::ColourValue(r, g, b, a);
-        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), color);
+        reinterpret_cast<Ogre::Pass*>(pointer)->getVertexProgramParameters()->setNamedConstant(name.getValue(), color);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -284,7 +282,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterAuto(
     try {
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedAutoConstant(
+        reinterpret_cast<Ogre::Pass*>(pointer)->getFragmentProgramParameters()->setNamedAutoConstant(
             name.getValue(), EnumConversion::getGpuProgramParameterAuto(autov));
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -296,7 +294,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setFragmentProgramParameterAutoP
     try {
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::MaterialPass::get(pointer)->getFragmentProgramParameters()->setNamedAutoConstant(
+        reinterpret_cast<Ogre::Pass*>(pointer)->getFragmentProgramParameters()->setNamedAutoConstant(
             name.getValue(), EnumConversion::getGpuProgramParameterAuto(autov), autop);
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -308,7 +306,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterAuto(
     try {
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedAutoConstant(
+        reinterpret_cast<Ogre::Pass*>(pointer)->getVertexProgramParameters()->setNamedAutoConstant(
             name.getValue(), EnumConversion::getGpuProgramParameterAuto(autov));
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -320,7 +318,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setVertexProgramParameterAutoP(
     try {
         LOG_FUNCTION
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::MaterialPass::get(pointer)->getVertexProgramParameters()->setNamedAutoConstant(
+        reinterpret_cast<Ogre::Pass*>(pointer)->getVertexProgramParameters()->setNamedAutoConstant(
             name.getValue(), EnumConversion::getGpuProgramParameterAuto(autov), autop);
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -331,12 +329,12 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setAlphaRejection(
 		JNIEnv *, jobject,
 		POINTER pointer, jint value) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setAlphaRejectValue(value);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setAlphaRejectValue(value);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setDepthWrite(
 		JNIEnv* env, jobject,
 		POINTER pointer, jboolean enabled) {
 	LOG_FUNCTION
-	yz::MaterialPass::get(pointer)->setDepthWriteEnabled(enabled);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setDepthWriteEnabled(enabled);
 }

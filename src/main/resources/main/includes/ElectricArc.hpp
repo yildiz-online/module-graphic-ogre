@@ -73,11 +73,6 @@ public:
 
     bool frameStarted(const Ogre::FrameEvent& evt);
 
-    static inline yz::ElectricArc* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::ElectricArc*>(pointer);
-    }
-
 	private:
 		static const int MAX_STEP = 20;
 		yz::BillboardChain* chain;
