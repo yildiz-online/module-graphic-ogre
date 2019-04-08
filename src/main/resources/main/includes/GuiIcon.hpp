@@ -179,11 +179,6 @@ public:
 		return this->icon->getParent()->getName();
 	}
 
-    inline static yz::GuiIcon* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::GuiIcon*>(pointer);
-    }
-
 private:
 
 	/**

@@ -66,11 +66,6 @@ public:
         return this->entity;
     }
 
-	inline static yz::Entity* get(const POINTER pointer) {
-	    LOG_FUNCTION
-	    return reinterpret_cast<yz::Entity*>(pointer);
-	}
-
 private:
 	Ogre::Entity* entity;
 };

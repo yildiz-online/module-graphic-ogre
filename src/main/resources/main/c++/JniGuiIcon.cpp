@@ -43,8 +43,8 @@ JNIEXPORT POINTER JNICALL Java_jni_JniGuiIcon_constructor(
     jfloat y) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::Material* material = yz::Material::get(matPointer);
-    yz::GuiContainer* container = yz::GuiContainer::get(containerPointer);
+    yz::Material* material = reinterpret_cast<yz::Material*>(matPointer);
+    yz::GuiContainer* container = reinterpret_cast<yz::GuiContainer*>(containerPointer);
     yz::GuiIcon* icon = new yz::GuiIcon(container, name.getValue(), material, w, h);
     icon->setPosition(x, y);
     return reinterpret_cast<POINTER>(icon);
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiIcon_setTexture(
     POINTER matPointer) {
     LOG_FUNCTION
     try {
-        yz::GuiIcon::get(pointer)->setMaterial(yz::Material::get(matPointer));
+        reinterpret_cast<yz::GuiIcon*>(pointer)->setMaterial(reinterpret_cast<yz::Material*>(matPointer));
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -70,7 +70,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiIcon_setPosition(
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    yz::GuiIcon::get(pointer)->setPosition(x, y);
+    reinterpret_cast<yz::GuiIcon*>(pointer)->setPosition(x, y);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiIcon_hide(
@@ -78,7 +78,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiIcon_hide(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::GuiIcon::get(pointer)->hide();
+    reinterpret_cast<yz::GuiIcon*>(pointer)->hide();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiIcon_show(
@@ -86,7 +86,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiIcon_show(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::GuiIcon::get(pointer)->show();
+    reinterpret_cast<yz::GuiIcon*>(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiIcon_delete(
@@ -94,7 +94,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiIcon_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete yz::GuiIcon::get(pointer);
+    delete reinterpret_cast<yz::GuiIcon*>(pointer);
 }
 
 JNIEXPORT jint JNICALL Java_jni_JniGuiIcon_getZ(
@@ -102,7 +102,7 @@ JNIEXPORT jint JNICALL Java_jni_JniGuiIcon_getZ(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return yz::GuiIcon::get(pointer)->getZ();
+    return reinterpret_cast<yz::GuiIcon*>(pointer)->getZ();
 }
 
 JNIEXPORT jstring JNICALL Java_jni_JniGuiIcon_getParentName(
@@ -110,7 +110,7 @@ JNIEXPORT jstring JNICALL Java_jni_JniGuiIcon_getParentName(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return env->NewStringUTF(yz::GuiIcon::get(pointer)->getParent().c_str());
+    return env->NewStringUTF(reinterpret_cast<yz::GuiIcon*>(pointer)->getParent().c_str());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiIcon_setSize(
@@ -120,5 +120,5 @@ JNIEXPORT void JNICALL Java_jni_JniGuiIcon_setSize(
     jfloat w,
     jfloat h) {
     LOG_FUNCTION
-    yz::GuiIcon::get(pointer)->setSize(w, h);
+    reinterpret_cast<yz::GuiIcon*>(pointer)->setSize(w, h);
 }

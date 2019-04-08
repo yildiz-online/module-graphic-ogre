@@ -32,50 +32,50 @@
 
 JNIEXPORT jstring JNICALL Java_jni_JniNode_getName(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
-    return env->NewStringUTF(yz::Node::get(pointer)->getName().c_str());
+    return env->NewStringUTF(reinterpret_cast<yz::Node*>(pointer)->getName().c_str());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniNode_show(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
-    yz::Node::get(pointer)->show();
+    reinterpret_cast<yz::Node*>(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniNode_hide(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
-    yz::Node::get(pointer)->hide();
+    reinterpret_cast<yz::Node*>(pointer)->hide();
 }
 
 JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_getPosition(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
-    return vectorToArray(env, yz::Node::get(pointer)->getPosition());
+    return vectorToArray(env, reinterpret_cast<yz::Node*>(pointer)->getPosition());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniNode_setPosition(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
-    yz::Node::get(pointer)->setPosition(x, y, z);
+    reinterpret_cast<yz::Node*>(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_getDirection(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
-    return vectorToArray(env, yz::Node::get(pointer)->getDirection());
+    return vectorToArray(env, reinterpret_cast<yz::Node*>(pointer)->getDirection());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniNode_setDirection(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
-    yz::Node::get(pointer)->setDirection(x, y, z);
+    reinterpret_cast<yz::Node*>(pointer)->setDirection(x, y, z);
 }
 
 JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_getOrientation(JNIEnv* env, jobject o, POINTER pointer) {
     LOG_FUNCTION
-    return quaternionToArray(env, yz::Node::get(pointer)->getOrientation());
+    return quaternionToArray(env, reinterpret_cast<yz::Node*>(pointer)->getOrientation());
 }
 
 JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_translate(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z) {
     LOG_FUNCTION
-    yz::Node* node = yz::Node::get(pointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(pointer);
     node->translate(x, y, z);
     return vectorToArray(env, node->getPosition());
 }
@@ -83,25 +83,25 @@ JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_translate(
 JNIEXPORT jfloatArray JNICALL Java_jni_JniNode_rotate(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y) {
     LOG_FUNCTION
-    return vectorToArray(env, yz::Node::get(pointer)->rotate(x, y));
+    return vectorToArray(env, reinterpret_cast<yz::Node*>(pointer)->rotate(x, y));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniNode_rotateQuaternion(
     JNIEnv* env, jobject o, POINTER pointer, jfloat x, jfloat y, jfloat z, jfloat w) {
     LOG_FUNCTION
-    yz::Node::get(pointer)->rotate(w, x, y, z);
+    reinterpret_cast<yz::Node*>(pointer)->rotate(w, x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniNode_scale(
     JNIEnv* env, jobject o, POINTER pointer, jfloat scaleX, jfloat scaleY, jfloat scaleZ) {
     LOG_FUNCTION
-    yz::Node::get(pointer)->scale(scaleX, scaleY, scaleZ);
+    reinterpret_cast<yz::Node*>(pointer)->scale(scaleX, scaleY, scaleZ);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniNode_attachTo(
     JNIEnv* env, jobject o, POINTER pointer, POINTER otherPointer) {
     LOG_FUNCTION
-    yz::Node* node = yz::Node::get(pointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(pointer);
     yz::NativeMovableComponent* other = reinterpret_cast<yz::NativeMovableComponent*>(otherPointer);
     try {
         other->addMovableComponent(node);
@@ -113,8 +113,8 @@ JNIEXPORT void JNICALL Java_jni_JniNode_attachTo(
 JNIEXPORT void JNICALL Java_jni_JniNode_attachToNode(
     JNIEnv* env, jobject o, POINTER pointer, POINTER otherPointer) {
     LOG_FUNCTION
-    yz::Node* node = yz::Node::get(pointer);
-    yz::Node* other = yz::Node::get(otherPointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(pointer);
+    yz::Node* other = reinterpret_cast<yz::Node*>(otherPointer);
     try {
         node->attachToNode(other);
     } catch (std::exception& e) {
@@ -127,7 +127,7 @@ JNIEXPORT void JNICALL Java_jni_JniNode_detachFromParentNode(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::Node* node = yz::Node::get(pointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(pointer);
     try {
         node->detachFromParent();
     } catch (std::exception& e) {
@@ -142,7 +142,7 @@ JNIEXPORT void JNICALL Java_jni_JniNode_detachFromParent(
     POINTER parentPointer
     ) {
     LOG_FUNCTION
-    yz::Node* node = yz::Node::get(pointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(pointer);
     yz::NativeMovableComponent* parent = reinterpret_cast<yz::NativeMovableComponent*>(parentPointer);
     try {
         parent->removeMovableComponent(node);
@@ -156,6 +156,6 @@ JNIEXPORT void JNICALL Java_jni_JniNode_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::Node::get(pointer)->destroy();
+    reinterpret_cast<yz::Node*>(pointer)->destroy();
 }
 

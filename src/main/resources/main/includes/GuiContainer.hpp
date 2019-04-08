@@ -208,11 +208,6 @@ public:
 		}
 	}
 
-    inline static yz::GuiContainer* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::GuiContainer*>(pointer);
-    }
-
 private:
 
 	/**

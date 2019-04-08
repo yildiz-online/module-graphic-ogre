@@ -295,11 +295,6 @@ public:
 		this->manualList.push_back(manual);
 	}
 
-	inline static yz::Node* get(const POINTER pointer) {
-	    LOG_FUNCTION
-		return reinterpret_cast<yz::Node*>(pointer);
-	}
-
 	inline virtual void addMovableComponent(NativeMovableComponent* c) {
 	    this->movable->addComponent(c);
 	}

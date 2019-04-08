@@ -102,11 +102,6 @@ public:
 		this->emitter->setParticleVelocity(this->minSpeed, this->maxSpeed);
 	}
 
-	inline static yz::ParticleEmitter* get(const POINTER pointer) {
-	    LOG_FUNCTION
-	    return reinterpret_cast<yz::ParticleEmitter*>(pointer);
-	}
-
 private:
 	Ogre::ParticleEmitter* emitter;
 	Ogre::Real minSpeed;

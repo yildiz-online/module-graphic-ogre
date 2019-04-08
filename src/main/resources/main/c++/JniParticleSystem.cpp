@@ -35,8 +35,8 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_attachToNode(
     POINTER pointer,
     POINTER nodePointer) {
     LOG_FUNCTION
-    yz::ParticleSystem* system = yz::ParticleSystem::get(pointer);
-    yz::Node* node = yz::Node::get(nodePointer);
+    yz::ParticleSystem* system = reinterpret_cast<yz::ParticleSystem*>(pointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(pointer)(nodePointer);
     node->attachObject(system);
 }
 
@@ -46,7 +46,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_keepInLocalSpace(
     POINTER pointer,
     jboolean keep) {
     LOG_FUNCTION
-    yz::ParticleSystem::get(pointer)->keepInLocalSpace(keep);
+    reinterpret_cast<yz::ParticleSystem*>(pointer)->keepInLocalSpace(keep);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setParticleOrientation(
@@ -55,7 +55,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setParticleOrientation(
     POINTER pointer,
     jint type) {
     LOG_FUNCTION
-    yz::ParticleSystem::get(pointer)->setParticleOrientation(EnumConversion::getBillboardType(type));
+    reinterpret_cast<yz::ParticleSystem*>(pointer)->setParticleOrientation(EnumConversion::getBillboardType(type));
 }
 
 JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createEmitter(
@@ -63,7 +63,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createEmitter(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return reinterpret_cast<POINTER>(yz::ParticleSystem::get(pointer)->createEmitter());
+    return reinterpret_cast<POINTER>(reinterpret_cast<yz::ParticleSystem*>(pointer)->createEmitter());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setBillboardOrigin(
@@ -72,7 +72,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setBillboardOrigin(
     POINTER pointer,
     jint origin) {
     LOG_FUNCTION
-    yz::ParticleSystem::get(pointer)->setParticleBillboardOrigin(EnumConversion::getBillboardOrigin(origin));
+    reinterpret_cast<yz::ParticleSystem*>(pointer)->setParticleBillboardOrigin(EnumConversion::getBillboardOrigin(origin));
 }
 
 
@@ -81,7 +81,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createColorAffector(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return reinterpret_cast<POINTER>(yz::ParticleSystem::get(pointer)->createColorAffector());
+    return reinterpret_cast<POINTER>(reinterpret_cast<yz::ParticleSystem*>(pointer)->createColorAffector());
 }
 
 JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createForceAffector(
@@ -89,7 +89,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createForceAffector(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return reinterpret_cast<POINTER>(yz::ParticleSystem::get(pointer)->createForceAffector());
+    return reinterpret_cast<POINTER>(reinterpret_cast<yz::ParticleSystem*>(pointer)->createForceAffector());
 }
 
 JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createScaleAffector(
@@ -97,7 +97,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniParticleSystem_createScaleAffector(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    return reinterpret_cast<POINTER>(yz::ParticleSystem::get(pointer)->createScaleAffector());
+    return reinterpret_cast<POINTER>(reinterpret_cast<yz::ParticleSystem*>(pointer)->createScaleAffector());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setSize(
@@ -107,7 +107,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setSize(
     jfloat width,
     jfloat height) {
     LOG_FUNCTION
-    yz::ParticleSystem::get(pointer)->setDefaultDimensions(width, height);
+    reinterpret_cast<yz::ParticleSystem*>(pointer)->setDefaultDimensions(width, height);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setMaterial(
@@ -116,8 +116,8 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setMaterial(
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    PARTICLESYSTEM* system = yz::ParticleSystem::get(pointer);
-    yz::Material* material = yz::Material::get(matPointer);
+    PARTICLESYSTEM* system = reinterpret_cast<yz::ParticleSystem*>(pointer);
+    yz::Material* material = reinterpret_cast<yz::Material*>(matPointer);
     system->setMaterial(material);
 }
 
@@ -127,7 +127,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setQuota(
     POINTER pointer,
     jint quota) {
     LOG_FUNCTION
-    yz::ParticleSystem::get(pointer)->setParticleQuota(quota);
+    reinterpret_cast<yz::ParticleSystem*>(pointer)->setParticleQuota(quota);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleSystem_show(
@@ -135,7 +135,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_show(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::ParticleSystem::get(pointer)->show();
+    reinterpret_cast<yz::ParticleSystem*>(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleSystem_hide(
@@ -143,5 +143,5 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_hide(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::ParticleSystem::get(pointer)->hide();
+    reinterpret_cast<yz::ParticleSystem*>(pointer)->hide();
 }

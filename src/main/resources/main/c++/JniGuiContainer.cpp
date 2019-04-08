@@ -64,7 +64,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setPosition(
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    yz::GuiContainer::get(pointer)->setPosition(x, y);
+    reinterpret_cast<yz::GuiContainer*>(pointer)->setPosition(x, y);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiContainer_show(
@@ -72,7 +72,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiContainer_show(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::GuiContainer::get(pointer)->show();
+    reinterpret_cast<yz::GuiContainer*>(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiContainer_hide(
@@ -80,7 +80,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiContainer_hide(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::GuiContainer::get(pointer)->hide();
+    reinterpret_cast<yz::GuiContainer*>(pointer)->hide();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setSize(
@@ -90,7 +90,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setSize(
     jfloat width,
     jfloat height) {
     LOG_FUNCTION
-    yz::GuiContainer::get(pointer)->setSize(width, height);
+    reinterpret_cast<yz::GuiContainer*>(pointer)->setSize(width, height);
 }
 
 JNIEXPORT jstring JNICALL Java_jni_JniGuiContainer_getElement(
@@ -102,7 +102,7 @@ JNIEXPORT jstring JNICALL Java_jni_JniGuiContainer_getElement(
     LOG_FUNCTION
     try {
         return env->NewStringUTF(
-        		yz::GuiContainer::get(pointer)->getElementAt(x, y).c_str());
+        		reinterpret_cast<yz::GuiContainer*>(pointer)->getElementAt(x, y).c_str());
     } catch (const std::exception& e) {
         return env->NewStringUTF("world");
         //FIXME do something.
@@ -116,7 +116,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiContainer_zoom(
     POINTER pointer,
     jfloat factor) {
     LOG_FUNCTION
-    yz::GuiContainer::get(pointer)->zoom(factor);
+    reinterpret_cast<yz::GuiContainer*>(pointer)->zoom(factor);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setZ(
@@ -125,7 +125,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setZ(
     POINTER pointer,
     jshort z) {
     LOG_FUNCTION
-    yz::GuiContainer::get(pointer)->setZ(z);
+    reinterpret_cast<yz::GuiContainer*>(pointer)->setZ(z);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setMaterial(
@@ -134,7 +134,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiContainer_setMaterial(
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    yz::GuiContainer::get(pointer)->setMaterial(yz::Material::get(matPointer));
+    reinterpret_cast<yz::GuiContainer*>(pointer)->setMaterial(reinterpret_cast<yz::Material*>(matPointer));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiContainer_addChildrenPosition(
@@ -144,5 +144,5 @@ JNIEXPORT void JNICALL Java_jni_JniGuiContainer_addChildrenPosition(
     jint left,
     jint top) {
     LOG_FUNCTION
-    yz::GuiContainer::get(pointer)->addToChildren(left, top);
+    reinterpret_cast<yz::GuiContainer*>(pointer)->addToChildren(left, top);
 }

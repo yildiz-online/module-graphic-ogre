@@ -132,11 +132,6 @@ public:
 		return this->system;
 	}
 
-    static inline yz::ParticleSystem* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::ParticleSystem*>(pointer);
-    }
-
 private:
 	Ogre::ParticleSystem* system;
 };

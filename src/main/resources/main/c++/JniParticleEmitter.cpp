@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setMinSpeed(
     POINTER pointer,
     jfloat speed) {
     LOG_FUNCTION
-    yz::ParticleEmitter::get(pointer)->setMinSpeed(speed);
+    reinterpret_cast<yz::ParticleEmitter*>(pointer)->setMinSpeed(speed);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setMaxSpeed(
@@ -43,7 +43,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setMaxSpeed(
     POINTER pointer,
     jfloat speed) {
     LOG_FUNCTION
-    yz::ParticleEmitter::get(pointer)->setMaxSpeed(speed);
+    reinterpret_cast<yz::ParticleEmitter*>(pointer)->setMaxSpeed(speed);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setStartColor(
@@ -55,7 +55,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setStartColor(
     jfloat b,
     jfloat a) {
     LOG_FUNCTION
-    yz::ParticleEmitter::get(pointer)->setStartColor(r, g, b, a);
+    reinterpret_cast<yz::ParticleEmitter*>(pointer)->setStartColor(r, g, b, a);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setEndColor(
@@ -67,7 +67,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setEndColor(
     jfloat b,
     jfloat a) {
     LOG_FUNCTION
-    yz::ParticleEmitter::get(pointer)->setEndColor(r, g, b, a);
+    reinterpret_cast<yz::ParticleEmitter*>(pointer)->setEndColor(r, g, b, a);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setAngle(
@@ -76,7 +76,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setAngle(
     POINTER pointer,
     jfloat angle) {
     LOG_FUNCTION
-    yz::ParticleEmitter::get(pointer)->setAngle(angle);
+    reinterpret_cast<yz::ParticleEmitter*>(pointer)->setAngle(angle);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setRate(
@@ -85,7 +85,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setRate(
     POINTER pointer,
     jfloat rate) {
     LOG_FUNCTION
-    yz::ParticleEmitter::get(pointer)->setRate(rate);
+    reinterpret_cast<yz::ParticleEmitter*>(pointer)->setRate(rate);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setLifeTime(
@@ -94,7 +94,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setLifeTime(
     POINTER pointer,
     jfloat life) {
     LOG_FUNCTION
-    yz::ParticleEmitter::get(pointer)->setLifeTime(life);
+    reinterpret_cast<yz::ParticleEmitter*>(pointer)->setLifeTime(life);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setDuration(
@@ -112,7 +112,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setRepeatDelay(
     POINTER pointer,
     jfloat delay) {
     LOG_FUNCTION
-    yz::ParticleEmitter::get(pointer)->setRepeatDelay(delay);
+    reinterpret_cast<yz::ParticleEmitter*>(pointer)->setRepeatDelay(delay);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setDirection(
@@ -123,6 +123,6 @@ JNIEXPORT void JNICALL Java_jni_JniParticleEmitter_setDirection(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    yz::ParticleEmitter::get(pointer)->setDirection(x, y, z);
+    reinterpret_cast<yz::ParticleEmitter*>(pointer)->setDirection(x, y, z);
 }
 

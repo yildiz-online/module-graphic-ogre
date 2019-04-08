@@ -134,11 +134,6 @@ public:
 		this->text->setColour(Ogre::ColourValue(red, green, blue, alpha));
 	}
 
-    inline static yz::GuiText* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::GuiText*>(pointer);
-    }
-
 private:
 
 	/**

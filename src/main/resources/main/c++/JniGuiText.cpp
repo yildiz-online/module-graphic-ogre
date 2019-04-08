@@ -64,7 +64,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiText_setText(
     LOG_FUNCTION
     JniStringWrapper text = JniStringWrapper(env, jtext);
     try {
-        yz::GuiText::get(pointer)->setText(text.getValue());
+        reinterpret_cast<yz::GuiText*>(pointer)->setText(text.getValue());
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -75,7 +75,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiText_hide(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::GuiText::get(pointer)->hide();
+    reinterpret_cast<yz::GuiText*>(pointer)->hide();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiText_delete(
@@ -83,7 +83,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiText_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete yz::GuiText::get(pointer);
+    delete reinterpret_cast<yz::GuiText*>(pointer);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiText_show(
@@ -91,7 +91,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiText_show(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::GuiText::get(pointer)->show();
+    reinterpret_cast<yz::GuiText*>(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiText_setPosition(
@@ -101,7 +101,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiText_setPosition(
     jfloat x,
     jfloat y) {
     LOG_FUNCTION
-    yz::GuiText::get(pointer)->setPosition(x, y);
+    reinterpret_cast<yz::GuiText*>(pointer)->setPosition(x, y);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniGuiText_setFont(
@@ -113,7 +113,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiText_setFont(
     LOG_FUNCTION
     try {
         yz::Font* font = yz::Font::get(fontPointer);
-        yz::GuiText::get(pointer)->setFont(font, size);
+        reinterpret_cast<yz::GuiText*>(pointer)->setFont(font, size);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -128,5 +128,5 @@ JNIEXPORT void JNICALL Java_jni_JniGuiText_setColor(
     jfloat blue,
     jfloat alpha) {
     LOG_FUNCTION
-    yz::GuiText::get(pointer)->setColor(red, green, blue, alpha);
+    reinterpret_cast<yz::GuiText*>(pointer)->setColor(red, green, blue, alpha);
 }
