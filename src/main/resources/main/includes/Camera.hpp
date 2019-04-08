@@ -121,11 +121,6 @@ public:
         return this->camera;
     }
 
-    inline static yz::Camera* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::Camera*>(pointer);
-    }
-
 private:
 
     static yz::Id* ID_WORLD;

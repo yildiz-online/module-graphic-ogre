@@ -108,7 +108,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createCamera(
     LOG_FUNCTION
     try {
         JniStringWrapper name = JniStringWrapper(env, jname);
-        yz::SceneManager* sm = yz::SceneManager::get(pointer);
+        yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
         yz::Camera* camera = sm->createCamera(name.getValue());
         return reinterpret_cast<POINTER>(camera);
     } catch (std::exception& e) {
@@ -248,7 +248,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniSceneManager_createNodeId(
     jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::SceneManager* sm = yz::SceneManager::get(pointer);
+    yz::SceneManager* sm = reinterpret_cast<yz::SceneManager*>(pointer);
     try {
         yz::Node* node = sm->createNode(new yz::Id(id), name.getValue());
         return reinterpret_cast<POINTER>(node);

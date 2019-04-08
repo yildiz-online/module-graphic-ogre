@@ -32,8 +32,8 @@
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_attachToNode(JNIEnv* env, jobject o, POINTER pointer, POINTER nodePointer) {
     LOG_FUNCTION
-    yz::Camera* camera = yz::Camera::get(pointer);
-    yz::Node* node = yz::Node::get(nodePointer);
+    yz::Camera* camera = reinterpret_cast<yz::Camera*>(pointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
     node->attachObject(camera);
 }
 
@@ -43,7 +43,7 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_setFarClip(
     POINTER pointer,
     jint distance) {
     LOG_FUNCTION
-    yz::Camera::get(pointer)->setFarClipDistance(distance);
+    reinterpret_cast<yz::Camera*>(pointer)->setFarClipDistance(distance);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_setNearClip(
@@ -52,7 +52,7 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_setNearClip(
     POINTER pointer,
     jint distance) {
     LOG_FUNCTION
-    yz::Camera::get(pointer)->setNearClipDistance(distance);
+    reinterpret_cast<yz::Camera*>(pointer)->setNearClipDistance(distance);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_setAspectRatio(
@@ -61,7 +61,7 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_setAspectRatio(
     POINTER pointer,
     jfloat ratio) {
     LOG_FUNCTION
-    yz::Camera::get(pointer)->setAspectRatio(ratio);
+    reinterpret_cast<yz::Camera*>(pointer)->setAspectRatio(ratio);
     }
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_enableRenderingDistance(
@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_enableRenderingDistance(
     jobject o,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::Camera::get(pointer)->enableRenderingDistance();
+    reinterpret_cast<yz::Camera*>(pointer)->enableRenderingDistance();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_unregisterListener(
@@ -79,8 +79,8 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_unregisterListener(
     POINTER lsPointer) {
     LOG_FUNCTION
     try {
-        yz::LensFlare* ls = yz::LensFlare::get(lsPointer);
-        yz::Camera::get(pointer)->removeListener(ls);
+        yz::LensFlare* ls = reinterpret_cast<yz::LensFlare*>(lsPointer);
+        reinterpret_cast<yz::Camera*>(pointer)->removeListener(ls);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -91,7 +91,7 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_forceListenersUpdate(
     jobject o,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::Camera::get(pointer)->forceListenersUpdate();
+    reinterpret_cast<yz::Camera*>(pointer)->forceListenersUpdate();
 }
 
 JNIEXPORT jboolean JNICALL Java_jni_JniCamera_isVisible(
@@ -102,7 +102,7 @@ JNIEXPORT jboolean JNICALL Java_jni_JniCamera_isVisible(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    return yz::Camera::get(pointer)->isVisible(x, y, z);
+    return reinterpret_cast<yz::Camera*>(pointer)->isVisible(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_detachFromParent(
@@ -110,6 +110,6 @@ JNIEXPORT void JNICALL Java_jni_JniCamera_detachFromParent(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::Camera::get(pointer)->detachFromParent();
+    reinterpret_cast<yz::Camera*>(pointer)->detachFromParent();
 }
 

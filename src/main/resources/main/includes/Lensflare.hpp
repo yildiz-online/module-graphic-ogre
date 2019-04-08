@@ -82,11 +82,6 @@ public:
 		this->streakSet->getBillboard(0)->resetDimensions();
 	}
 
-    static inline yz::LensFlare* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::LensFlare*>(pointer);
-    }
-
 private:
 
 	yz::Node* node;
