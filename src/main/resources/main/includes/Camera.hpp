@@ -31,6 +31,7 @@
 #include "RayProvider.hpp"
 #include "HelperLogics.hpp"
 #include "Node.hpp"
+#include "Id.hpp"
 
 
 namespace yz {
