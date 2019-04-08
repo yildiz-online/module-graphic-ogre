@@ -36,9 +36,9 @@ JNIEXPORT POINTER JNICALL Java_jni_JniFont_createFont(
     jstring jpath,
     jfloat size) {
     LOG_FUNCTION
-    JniStringWrapper name = JniStringWrapper(env, jname);
-    JniStringWrapper path = JniStringWrapper(env, jpath);
     try {
+        JniStringWrapper name = JniStringWrapper(env, jname);
+        JniStringWrapper path = JniStringWrapper(env, jpath);
         yz::Font* font =  new yz::Font(name.getValue(), path.getValue(), size);
         return reinterpret_cast<POINTER>(font);
     } catch (std::exception& e) {
