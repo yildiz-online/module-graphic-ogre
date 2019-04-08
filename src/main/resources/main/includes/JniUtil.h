@@ -27,6 +27,10 @@
 #include "stdafx.h"
 #include <string>
 #include <Ogre.h>
+#include <jni.h>
+
+#define POINTER jlong
+#define INVALID_POINTER -1L
 
 /**
 *@author Grégory Van den Borre

@@ -34,7 +34,4 @@
 #define LOG_FUNCTION //std::cout<<__PRETTY_FUNCTION__<<std::endl;
 #endif
 
-#define POINTER jlong
-#define INVALID_POINTER -1L
-
 #endif
