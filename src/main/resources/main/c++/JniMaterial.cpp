@@ -44,7 +44,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_copy(
     JNIEnv* env, jobject, POINTER pointer, jstring jname) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::Material* material = yz::Material::get(pointer);
+    yz::Material* material = reinterpret_cast<yz::Material*>(pointer);
     yz::Material* copy = material->clone(name.getValue());
     return reinterpret_cast<POINTER>(copy);
 }
@@ -54,7 +54,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterial_loadTexture(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::Material* material =  yz::Material::get(pointer);
+    yz::Material* material =  reinterpret_cast<yz::Material*>(pointer);
     material->compile();
     material->load();
 }
@@ -64,7 +64,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_JniMaterial_getTechniqueList(
     jclass,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::Material* material = yz::Material::get(pointer);
+    yz::Material* material = reinterpret_cast<yz::Material*>(pointer);
     int size = material->getNumTechniques();
     POINTER* buf;
     buf = new jlong[size];
@@ -80,7 +80,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_getTechnique(
     JNIEnv* env, jobject, POINTER pointer, jint index) {
     LOG_FUNCTION
     try {
-        yz::Material* mat =  yz::Material::get(pointer);
+        yz::Material* mat = reinterpret_cast<yz::Material*>(pointer);
         return reinterpret_cast<POINTER>(mat->getTechnique(index));
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -91,7 +91,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_getTechnique(
 JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_createTechnique(
     JNIEnv*, jobject, POINTER pointer) {
     LOG_FUNCTION
-    return reinterpret_cast<POINTER>(yz::Material::get(pointer)->createTechnique());
+    return reinterpret_cast<POINTER>(reinterpret_cast<yz::Material*>(pointer)->createTechnique());
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterial_receiveShadow(
@@ -100,5 +100,5 @@ JNIEXPORT void JNICALL Java_jni_JniMaterial_receiveShadow(
     POINTER pointer,
     jboolean receive) {
     LOG_FUNCTION
-    yz::Material::get(pointer)->setReceiveShadows(receive);
+    reinterpret_cast<yz::Material*>(pointer)->setReceiveShadows(receive);
 }

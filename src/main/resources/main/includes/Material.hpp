@@ -89,11 +89,6 @@ public:
 		return this->material->getNumTechniques();
 	}
 
-	inline static yz::Material* get(const POINTER pointer) {
-	    LOG_FUNCTION
-		return reinterpret_cast<yz::Material*>(pointer);
-	}
-
 private:
 
 	/**
