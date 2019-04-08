@@ -56,11 +56,6 @@ public:
 
     void updateChainElement(const int index, Ogre::BillboardChain::Element& element);
 
-    static inline yz::BillboardChain* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::BillboardChain*>(pointer);
-    }
-
 
 private :
     static std::list<BillboardChain*> instanceList;

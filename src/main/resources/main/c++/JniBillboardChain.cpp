@@ -48,7 +48,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardChain_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete yz::BillboardChain::get(pointer);
+    delete reinterpret_cast<yz::BillboardChain*>(pointer);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniBillboardChain_setMaterial(
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardChain_setMaterial(
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    yz::BillboardChain::get(pointer)->setMaterial(yz::Material::get(matPointer));
+    reinterpret_cast<yz::BillboardChain*>(pointer)->setMaterial(yz::Material::get(matPointer));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniBillboardChain_ddElement(
@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardChain_ddElement(
     jfloat z,
     jfloat width) {
     LOG_FUNCTION
-    yz::BillboardChain::get(pointer)->addElement(x, y, z, width);
+    reinterpret_cast<yz::BillboardChain*>(pointer)->addElement(x, y, z, width);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniBillboardChain_setElementPosition(
@@ -81,5 +81,5 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardChain_setElementPosition(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    yz::BillboardChain::get(pointer)->setElementPosition(element, x, y, z);
+    reinterpret_cast<yz::BillboardChain*>(pointer)->setElementPosition(element, x, y, z);
 }
