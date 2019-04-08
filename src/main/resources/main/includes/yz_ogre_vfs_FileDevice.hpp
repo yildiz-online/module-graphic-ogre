@@ -21,30 +21,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#ifndef PHYSFS_OGRE_H
-#define PHYSFS_OGRE_H
+namespace yz {
 
-/**
-*@author Grégory Van den Borre
-*/
-namespace PhysFS
-{
+namespace ogre {
+
+namespace vfs {
+
+class FileDevice {
+
+public:
+    typedef char char_type;
+
+    struct category : boost::iostreams::seekable, boost::iostreams::device_tag, boost::iostreams::closable_tag, boost::iostreams::flushable_tag {};
+
+    FileDevice(const std::string& path) {
+        this->file = new yz::physfs::File(path);
+    }
+
+    FileDevice(const yz::physfs::File* file) {
+        this->file = file;
+    }
+
+    void close() {
+        this->file->close();
+    }
+
+    bool flush() {
+        this->file->flush();
+        return true;
+    }
+
+    std::streamsize read(char* s, std::streamsize n) {
+        return std::streamsize(this->file->readBytes(n));
+    }
+
+    std::streamsize write(const char* s, std::streamsize n) {
+        return std::streamsize(0);
+    }
+
+    std::streampos seek(std::streamoff off, std::ios_base::seekdir way);
+
+  private:
+      yz::physfs::File* file;
+  };
   /**
-   * Register the PhysFS system to Ogre's archive manager.
-   * This allows you to use the PhysFS system for your resources, just
-   * pass "PhysFS" as the location type when adding PhysFS locations
-   * to Ogre's resource group manager.
-   *
-   * Note that this function instantiates a singleton inheriting from
-   * Ogre::ArchiveFactory. The singleton will live until the application
-   * is shut down. By then, you should have destroyed the Ogre system.
-   * Also note that, naturally, you must have PhysFS initialised in order
-   * to successfully access any resources with it.
-   * I suggest that you initialise PhysFS before Ogre and shut it down after
-   * Ogre. This way, you should be fine. Call this function only after
-   * Ogre has been initialised!
+   * FileStream is a standard C++ stream.
+   * At construction or when calling FileStream::open, use these parameters:
+   * @param path  The file to open
+   * @param om    The mode to open the file in (read/write/append)
    */
-  void registerPhysFSToOgre();
-}
+  typedef boost::iostreams::stream<FileDevice> FileStream;
 
-#endif
+}}}

@@ -21,20 +21,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
+#include <OgreDataStream.h>
+#include <OgreString.h>
+#include <yz_physfs_File.hpp>
+
+namespace yz {
+
+namespace ogre {
+
+namespace vfs {
+
 /**
+* Ogre DataStream implementation for a VFS.
 *@author Grégory Van den Borre
 */
+class DataStream: public Ogre::DataStream {
 
-#ifndef STDAFX_H
-#define STDAFX_H
+public:
 
-#ifdef DEBUG
-#define LOG_FUNCTION std::cout<<__PRETTY_FUNCTION__<<std::endl;
-#else
-#define LOG_FUNCTION //std::cout<<__PRETTY_FUNCTION__<<std::endl;
-#endif
+    /**
+     * Constructor from a VFS file.
+     * @param file VFS file pointer.
+     */
+    DataStream(const yz::physfs::File* file);
 
-#define POINTER jlong
-#define INVALID_POINTER -1L
+    DataStream(const Ogre::String& name, const yz::physfs::File* file);
 
-#endif
+    ~DataStream();
+
+     size_t read(void* buf, size_t count);
+
+     void skip(long count);
+
+     void seek(size_t pos);
+
+     size_t tell() const;
+
+     bool eof() const;
+
+     void close();
+
+ private:
+
+     /**
+      * Embedded VFS file.
+      */
+     yz::physfs::File* vfsFile;
+ };
+ }}}

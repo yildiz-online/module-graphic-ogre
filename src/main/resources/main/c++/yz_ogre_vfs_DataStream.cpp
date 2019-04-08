@@ -21,20 +21,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-/**
-*@author Grégory Van den Borre
-*/
+yz::ogre::vfs::DataStream::DataStream(const yz::physfs::File* file) {
+    LOG_FUNCTION
+    vfsFile = file;
+    mSize = (size_t) this->vfsFile->getSize();
+}
 
-#ifndef STDAFX_H
-#define STDAFX_H
+yz::ogre::vfs::DataStream::DataStream(const Ogre::String& name, const yz::physfs::File* file) : Ogre::DataStream(name) {
+    LOG_FUNCTION
+    vfsFile = file;
+    mSize = (size_t) this->vfsFile->getSize();
+}
 
-#ifdef DEBUG
-#define LOG_FUNCTION std::cout<<__PRETTY_FUNCTION__<<std::endl;
-#else
-#define LOG_FUNCTION //std::cout<<__PRETTY_FUNCTION__<<std::endl;
-#endif
+yz::ogre::vfs::DataStream::~DataStream() {
+    LOG_FUNCTION
+    close();
+}
 
-#define POINTER jlong
-#define INVALID_POINTER -1L
+size_t yz::ogre::vfs::DataStream::read(void* buf, size_t count) {
+    LOG_FUNCTION
+    return this->vfsFile->readBytes(buf, count);
+}
 
-#endif
+void yz::ogre::vfs::DataStream::seek(size_t pos) {
+    LOG_FUNCTION
+    this->vfsFile->seek(pos);
+}
+
+size_t yz::ogre::vfs::DataStream::tell() const {
+    LOG_FUNCTION
+    return (size_t) this->vfsFile->tell(file);
+}
+
+void yz::ogre::vfs::DataStream::skip(long count) {
+    LOG_FUNCTION
+    size_t pos = this->tell() + count;
+    this->seek(pos);
+}
+
+bool yz::ogre::vfs::DataStream::eof() const {
+    LOG_FUNCTION
+    return this->vfsFile->isEof();
+}
+
+void yz::ogre::vfs::DataStream::close() {
+    LOG_FUNCTION
+    this->vfsFile->close();
+}

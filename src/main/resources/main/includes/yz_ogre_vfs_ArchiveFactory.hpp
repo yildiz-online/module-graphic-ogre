@@ -21,20 +21,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-/**
-*@author Grégory Van den Borre
-*/
+#include <OgreArchiveManager.h>
+#include <OgreArchiveFactory.h>
+#include <OgreArchive.h>
+#include <OgreString.h>
+#include <yz_physfs_Wrapper.hpp>
+#include "yz_ogre_vfs_Archive.hpp"
 
-#ifndef STDAFX_H
-#define STDAFX_H
+namespace yz {
 
-#ifdef DEBUG
-#define LOG_FUNCTION std::cout<<__PRETTY_FUNCTION__<<std::endl;
-#else
-#define LOG_FUNCTION //std::cout<<__PRETTY_FUNCTION__<<std::endl;
-#endif
+namespace ogre {
 
-#define POINTER jlong
-#define INVALID_POINTER -1L
+namespace vfs {
 
-#endif
+class ArchiveFactory: public Ogre::ArchiveFactory {
+public:
+
+    ArchiveFactory(yz::physfs::Wrapper* vfs): this->vfs(vfs) {
+        LOG_FUNCTION
+    }
+
+    const Ogre::String& getType() const {
+        LOG_FUNCTION
+        static const Ogre::String type = "Package";
+        return type;
+    }
+
+    Ogre::Archive* createInstance(const Ogre::String& name, bool readOnly) {
+        LOG_FUNCTION
+        return new yz::ogre::vfs::Archive(this->vfs, name, getType());
+    }
+
+    void destroyInstance(Ogre::Archive* instance) {
+        LOG_FUNCTION
+        delete instance;
+    }
+
+private:
+
+    ArchiveFactory(const ArchiveFactory& o);
+
+    ArchiveFactory& operator=(const ArchiveFactory& o);
+
+    yz::physfs::Wrapper* vfs;
+};
+
+void registerPhysFSToOgre(yz::physfs::Wrapper* vfs) {
+    LOG_FUNCTION
+    Ogre::ArchiveManager::getSingleton().addArchiveFactory(new ArchiveFactory(vfs));
+}
+
+}}}

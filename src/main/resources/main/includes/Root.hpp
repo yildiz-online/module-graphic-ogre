@@ -86,11 +86,12 @@ public:
 
 private:
 
+
+    static yz::Root* instance;
+
     /**
      * Wrapped Ogre::Root.
      */
-    static yz::Root* instance;
-
     Ogre::Root* root;
 
     Ogre::OverlaySystem* os;
