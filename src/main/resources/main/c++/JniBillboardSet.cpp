@@ -37,7 +37,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniBillboardSet_createBillboard(
     POINTER pointer) {
     LOG_FUNCTION
     try {
-        yz::BillboardSet* set = yz::BillboardSet::get(pointer);
+        yz::BillboardSet* set = reinterpret_cast<yz::BillboardSet*>(pointer);
         return reinterpret_cast<POINTER>(set->createBillboard());
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardSet_show(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::BillboardSet::get(pointer)->show();
+    reinterpret_cast<yz::BillboardSet*>(pointer)->show();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniBillboardSet_hide(
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardSet_hide(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::BillboardSet::get(pointer)->hide();
+    reinterpret_cast<yz::BillboardSet*>(pointer)->hide();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniBillboardSet_setSize(
@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardSet_setSize(
     jfloat height) {
     LOG_FUNCTION
     try {
-        yz::BillboardSet::get(pointer)->setSize(width, height);
+        reinterpret_cast<yz::BillboardSet*>(pointer)->setSize(width, height);
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -81,8 +81,8 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardSet_attachToNode(
     POINTER pointer,
     POINTER nodePointer) {
     LOG_FUNCTION
-    yz::BillboardSet* set = yz::BillboardSet::get(pointer);
-    yz::Node* node = yz::Node::get(nodePointer);
+    yz::BillboardSet* set = reinterpret_cast<yz::BillboardSet*>(pointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
     node->attachObject(set);
 }
 
@@ -93,7 +93,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardSet_remove(
     POINTER billboardPointer) {
     LOG_FUNCTION
     try {
-        yz::BillboardSet::get(pointer)->removeBillboard(yz::Billboard::get(billboardPointer));
+        reinterpret_cast<yz::BillboardSet*>(pointer)->removeBillboard(reinterpret_cast<yz::Billboard*>(billboardPointer));
     } catch (std::exception& e) {
         throwException(env, e.what());
     }

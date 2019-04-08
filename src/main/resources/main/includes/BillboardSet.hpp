@@ -91,11 +91,6 @@ public:
         return this->set;
     }
 
-    inline static yz::BillboardSet* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::BillboardSet*>(pointer);
-    }
-
 
 private :
     Ogre::BillboardSet* set;

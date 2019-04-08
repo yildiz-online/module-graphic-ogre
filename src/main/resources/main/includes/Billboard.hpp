@@ -59,11 +59,6 @@ public:
         return this->billboard;
     }
 
-    static inline yz::Billboard* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::Billboard*>(pointer);
-    }
-
 private :
     Ogre::Billboard* billboard;
 };

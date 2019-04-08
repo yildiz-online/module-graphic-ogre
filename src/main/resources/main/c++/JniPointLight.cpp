@@ -33,7 +33,7 @@ JNIEXPORT void JNICALL Java_jni_JniPointLight_setDebug(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    yz::PointLight::get(pointer)->setDebug();
+    reinterpret_cast<yz::PointLight*>(pointer)->setDebug();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniPointLight_setPosition(
@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_jni_JniPointLight_setPosition(
     jfloat y,
     jfloat z) {
     LOG_FUNCTION
-    yz::PointLight::get(pointer)->setPosition(x, y, z);
+    reinterpret_cast<yz::PointLight*>(pointer)->setPosition(x, y, z);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniPointLight_setColor(
@@ -55,7 +55,7 @@ JNIEXPORT void JNICALL Java_jni_JniPointLight_setColor(
     jfloat g,
     jfloat b) {
     LOG_FUNCTION
-    yz::PointLight::get(pointer)->setColor(r,g,b);
+    reinterpret_cast<yz::PointLight*>(pointer)->setColor(r,g,b);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniPointLight_setAttenuation(
@@ -67,7 +67,7 @@ JNIEXPORT void JNICALL Java_jni_JniPointLight_setAttenuation(
     jfloat linear,
     jfloat quadratic) {
     LOG_FUNCTION
-    yz::PointLight::get(pointer)->setAttenuation(range, constant, linear, quadratic);
+    reinterpret_cast<yz::PointLight*>(pointer)->setAttenuation(range, constant, linear, quadratic);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniPointLight_delete(
@@ -75,5 +75,5 @@ JNIEXPORT void JNICALL Java_jni_JniPointLight_delete(
     jobject,
     POINTER pointer) {
     LOG_FUNCTION
-    delete yz::PointLight::get(pointer);
+    delete reinterpret_cast<yz::PointLight*>(pointer);
 }

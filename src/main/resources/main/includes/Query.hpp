@@ -46,11 +46,6 @@ public:
 
     std::vector<yz::Id*> throwPlaneRay(Ogre::Real x1, Ogre::Real x2, Ogre::Real y1, Ogre::Real y2);
 
-    inline static yz::Query* get(const POINTER pointer) {
-        LOG_FUNCTION
-        return reinterpret_cast<yz::Query*>(pointer);
-    }
-
 private:
 
     static yz::Id* ID_WORLD;

@@ -43,11 +43,6 @@ namespace yz {
             this->light->setAttenuation(range, constant, linear, quadratic);
         }
 
-        static inline yz::PointLight* get(const POINTER pointer) {
-            LOG_FUNCTION
-            return reinterpret_cast<yz::PointLight*>(pointer);
-        }
-
     };
 }
 
