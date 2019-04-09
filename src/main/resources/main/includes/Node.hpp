@@ -33,6 +33,7 @@
 #include "AbstractMovable.hpp"
 #include "NativeMovable.hpp"
 #include <OgreSceneManager.h>
+#include "Id.hpp"
 
 namespace yz {
 
