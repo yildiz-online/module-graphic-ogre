@@ -25,6 +25,7 @@
 #define DYNAMIC_RENDERABLE_H
 
 #include "stdafx.h"
+#include <Ogre.h>
 
 /**
 *@author Grégory Van den Borre
