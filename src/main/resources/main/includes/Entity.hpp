@@ -24,7 +24,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-//FIXME do no include everything
+#include "Ogre.h"
 #include "stdafx.h"
 #include "AbstractMovable.hpp"
 #include "Material.hpp"
