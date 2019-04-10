@@ -36,7 +36,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniRenderWindow_createViewport(
     POINTER camPointer) {
     LOG_FUNCTION
     yz::RenderWindow* rw = yz::RenderWindow::get();
-    yz::Camera* cam = yz::Camera::get(camPointer);
+    yz::Camera* cam = reinterpret_cast<yz::Camera*>(camPointer);
     yz::Viewport* vp = rw->addViewport(cam);
     return reinterpret_cast<POINTER> (vp);
 }

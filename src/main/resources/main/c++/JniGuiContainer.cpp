@@ -37,7 +37,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniGuiContainer_constructor(
     jfloat height) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::Material* material = yz::Material::get(matPointer);
+    yz::Material* material = reinterpret_cast<yz::Material*>(matPointer);
     return reinterpret_cast<POINTER>(new yz::GuiContainer(name.getValue(), material, width, height));
 }
 
@@ -51,8 +51,8 @@ JNIEXPORT POINTER JNICALL Java_jni_JniGuiContainer_constructorParent(
     POINTER parentPointer) {
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
-    yz::GuiContainer* parent = yz::GuiContainer::get(parentPointer);
-    yz::Material* material = yz::Material::get(matPointer);
+    yz::GuiContainer* parent = reinterpret_cast<yz::GuiContainer*>(parentPointer);
+    yz::Material* material = reinterpret_cast<yz::Material*>(matPointer);
     return reinterpret_cast<POINTER>(new yz::GuiContainer(name.getValue(), material, width, height, parent));
 }
 

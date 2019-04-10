@@ -42,8 +42,8 @@ JNIEXPORT POINTER JNICALL Java_jni_JniGuiText_constructor(
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
     try { 
-        yz::GuiText* text = new yz::GuiText(yz::GuiContainer::get(containerPointer), name.getValue());
-        yz::Font* font = yz::Font::get(fontPointer);
+        yz::GuiText* text = new yz::GuiText(reinterpret_cast<yz::GuiContainer*>(containerPointer), name.getValue());
+        yz::Font* font = reinterpret_cast<yz::Font*>(fontPointer);
         text->setSize(w, h);
         text->setPosition(x, y);
         text->hide();
@@ -111,7 +111,7 @@ JNIEXPORT void JNICALL Java_jni_JniGuiText_setFont(
     jfloat size) {
     LOG_FUNCTION
     try {
-        yz::Font* font = yz::Font::get(fontPointer);
+        yz::Font* font = reinterpret_cast<yz::Font*>(fontPointer);
         reinterpret_cast<yz::GuiText*>(pointer)->setFont(font, size);
     } catch (std::exception& e) {
         throwException(env, e.what());

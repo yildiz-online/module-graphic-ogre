@@ -41,8 +41,8 @@ JNIEXPORT POINTER JNICALL Java_jni_JniMovableText_constructor(
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
     JniStringWrapper text = JniStringWrapper(env, jtext);
-    yz::Node* node = yz::Node::get(nodePointer);
-    yz::Font* font = yz::Font::get(fontPointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
+    yz::Font* font = reinterpret_cast<yz::Font*>(fontPointer);
     MOVABLETEXT* movableText = new MOVABLETEXT(name.getValue(), text.getValue(), font, size);
     node->addManualMovable(movableText);
     return reinterpret_cast<POINTER>(movableText);
