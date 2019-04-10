@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL Java_jni_JniElectricArc_addLight(
     POINTER pointer,
     POINTER lightPointer) {
 	LOG_FUNCTION
-    reinterpret_cast<yz::ElectricArc*>(pointer)->addLight(yz::PointLight::get(lightPointer));
+    reinterpret_cast<yz::ElectricArc*>(pointer)->addLight(reinterpret_cast<yz::PointLight*>(lightPointer));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniElectricArc_setMaterial(
@@ -53,5 +53,5 @@ JNIEXPORT void JNICALL Java_jni_JniElectricArc_setMaterial(
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    reinterpret_cast<yz::ElectricArc*>(pointer)->setMaterial(yz::Material::get(matPointer));
+    reinterpret_cast<yz::ElectricArc*>(pointer)->setMaterial(reinterpret_cast<yz::Material*>(matPointer));
 }
