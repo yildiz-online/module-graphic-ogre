@@ -37,7 +37,7 @@ JNIEXPORT POINTER JNICALL Java_jni_JniBillboardChain_constructor(
     LOG_FUNCTION
     JniStringWrapper name = JniStringWrapper(env, jname);
     yz::BillboardChain* chain = new yz::BillboardChain(name.getValue());
-    yz::Node* node = yz::Node::get(nodePointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
     node->attachObject(chain);
     return reinterpret_cast<POINTER>(chain);
 }
@@ -56,7 +56,7 @@ JNIEXPORT void JNICALL Java_jni_JniBillboardChain_setMaterial(
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    reinterpret_cast<yz::BillboardChain*>(pointer)->setMaterial(yz::Material::get(matPointer));
+    reinterpret_cast<yz::BillboardChain*>(pointer)->setMaterial(reinterpret_cast<yz::Material*>(matPointer));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniBillboardChain_ddElement(
