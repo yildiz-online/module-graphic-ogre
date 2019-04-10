@@ -33,7 +33,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_JniMaterialPass_getUnitList(
 		JNIEnv* env, jclass,
 		POINTER pointer) {
 	LOG_FUNCTION
-	Ogre::Pass* pass = reinterpret_cast<Ogre::Pass*>(pointer)(pointer);
+	Ogre::Pass* pass = reinterpret_cast<Ogre::Pass*>(pointer);
 	int size = pass->getNumTextureUnitStates();
 	jlong* buf;
 	buf = new jlong[size];
