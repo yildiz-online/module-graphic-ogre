@@ -24,6 +24,7 @@
 #ifndef GUI_CONTAINER_H
 #define GUI_CONTAINER_H
 
+#include <Ogre.h>
 #include "stdafx.h"
 #include "Material.hpp"
 #include <Overlay/OgreOverlayContainer.h>

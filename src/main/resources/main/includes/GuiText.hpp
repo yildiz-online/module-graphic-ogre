@@ -24,6 +24,7 @@
 #ifndef YZ_GUI_TEXT_H
 #define YZ_GUI_TEXT_H
 
+#include <Ogre.h>
 #include "stdafx.h"
 #include "GuiContainer.hpp"
 #include "Font.hpp"

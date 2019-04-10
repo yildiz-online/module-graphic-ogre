@@ -24,6 +24,7 @@
 #ifndef GUI_3D_H
 #define GUI_3D_H
 
+#include <Ogre.h>
 #include "stdafx.h"
 
 namespace yz {

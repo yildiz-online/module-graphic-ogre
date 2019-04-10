@@ -26,6 +26,7 @@
 
 #define GUIICON yz::GuiIcon
 
+#include <Ogre.h>
 #include "stdafx.h"
 #include "GuiContainer.hpp"
 #include "Material.hpp"
