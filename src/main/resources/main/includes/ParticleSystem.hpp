@@ -26,6 +26,8 @@
 
 #define PARTICLESYSTEM yz::ParticleSystem
 
+#include <Ogre.h>
+#include <OgreBillboardParticleRenderer.h>
 #include "stdafx.h"
 #include "Node.hpp"
 #include "ParticleEmitter.hpp"
