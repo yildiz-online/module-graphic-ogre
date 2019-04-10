@@ -74,7 +74,7 @@ JNIEXPORT void JNICALL Java_jni_JniMaterialPass_setEmissive(
 		JNIEnv*, jobject,
 		POINTER pointer, jfloat red, jfloat green, jfloat blue) {
 	LOG_FUNCTION
-	reinterpret_cast<Ogre::Pass*>(pointer))->setSelfIllumination(red, green, blue);
+	reinterpret_cast<Ogre::Pass*>(pointer)->setSelfIllumination(red, green, blue);
 }
 
 JNIEXPORT void JNICALL Java_jni_JniMaterialPass_disableLight(
