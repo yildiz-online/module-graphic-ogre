@@ -24,6 +24,7 @@
 #ifndef STENCIL_GLOW_H
 #define STENCIL_GLOW_H
 
+#include <Ogre.h>
 #include "stdafx.h"
 
 // render queues

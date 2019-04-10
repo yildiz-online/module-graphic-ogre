@@ -26,6 +26,7 @@
 
 #define PARTICLEEMITTER yz::ParticleEmitter
 
+#include <Ogre.h>
 #include "stdafx.h"
 
 namespace yz {

@@ -25,6 +25,7 @@
 #define YZ_MATERIAL_EFFECT_H
 
 #include "stdafx.h"
+#include <Ogre.h>
 
 namespace yz {
 

@@ -24,6 +24,7 @@
 #ifndef OGRE_LOGGER_H
 #define OGRE_LOGGER_H
 
+#include <Ogre.h>
 #include "stdafx.h"
 #include <jni.h>
 

@@ -26,6 +26,7 @@
 
 #define ROOT yz::Root
 
+#include <Ogre.h>
 #include "RenderWindow.hpp"
 #include "SceneManager.hpp"
 

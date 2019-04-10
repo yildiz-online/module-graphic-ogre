@@ -22,6 +22,7 @@
  */
 
 #include "stdafx.h"
+#include <Ogre.h>
 
 /**
 *@author Grégory Van den Borre

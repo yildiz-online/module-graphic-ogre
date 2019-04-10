@@ -24,6 +24,7 @@
 #ifndef YZ_SPOT_LIGHT_H
 #define YZ_SPOT_LIGHT_H
 
+#include <Ogre.h>
 #include "AbstractLight.hpp"
 
 namespace yz {

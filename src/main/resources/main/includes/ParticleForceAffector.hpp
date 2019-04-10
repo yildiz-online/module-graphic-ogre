@@ -26,6 +26,7 @@
 
 #define PARTICLEFORCEAFFECTOR yz::ParticleForceAffector
 
+#include <Ogre.h>
 #include "stdafx.h"
 
 namespace yz {

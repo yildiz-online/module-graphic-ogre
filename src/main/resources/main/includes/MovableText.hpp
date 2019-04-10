@@ -14,6 +14,7 @@
 
 #define MOVABLETEXT yz::MovableText
 
+#include <Ogre.h>
 #include "stdafx.h"
 #include "Font.hpp"
 

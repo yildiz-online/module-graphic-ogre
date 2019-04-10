@@ -26,6 +26,7 @@
 
 #define SCENEMANAGER yz::SceneManager
 
+#include <Ogre.h>
 #include "CollisionTools.h"
 #include "PointLight.hpp"
 #include "SpotLight.hpp"

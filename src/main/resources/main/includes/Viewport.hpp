@@ -27,6 +27,7 @@
 #define VIEWPORT yz::Viewport
 
 #include "Camera.hpp"
+#include <Ogre.h>
 
 namespace yz {
 

@@ -25,6 +25,7 @@
 #define YZ_MATERIAL_H
 
 #include "stdafx.h"
+#include <Ogre.h>
 #include <OgreMaterialManager.h>
 
 namespace yz {

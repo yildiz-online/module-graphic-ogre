@@ -26,6 +26,7 @@
 
 #define RENDERWINDOW yz::RenderWindow
 
+#include <Ogre.h>
 #include "Camera.hpp"
 #include "Viewport.hpp"
 

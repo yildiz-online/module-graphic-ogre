@@ -24,6 +24,7 @@
 #ifndef YZ_PLANET_H
 #define YZ_PLANET_H
 
+#include <Ogre.h>
 #include "stdafx.h"
 
 namespace yz {

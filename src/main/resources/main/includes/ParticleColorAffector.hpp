@@ -26,6 +26,7 @@
 
 #define PARTICLECOLORAFFECTOR yz::ParticleColorAffector
 
+#include <Ogre.h>
 #include "stdafx.h"
 
 namespace yz {
