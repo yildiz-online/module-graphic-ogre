@@ -45,7 +45,7 @@ JNIEXPORT void JNICALL Java_jni_JniDynamicLine_setMaterial(
     POINTER matPointer) {
     LOG_FUNCTION
     DynamicLines* line = reinterpret_cast<DynamicLines*>(pointer);
-    yz::Material* material = reinterpret_cast<Material*>(matPointer);
+    yz::Material* material = reinterpret_cast<yz::Material*>(matPointer);
     line->setMaterial(material);
 }
 
