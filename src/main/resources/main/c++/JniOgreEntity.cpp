@@ -35,7 +35,7 @@ JNIEXPORT void JNICALL Java_jni_JniEntity_setMaterial(
     POINTER matPointer) {
     LOG_FUNCTION
     yz::Entity* entity = reinterpret_cast<yz::Entity*>(pointer);
-    yz::Material* material = reinterpret_cast<yz::Material*>((matPointer);
+    yz::Material* material = reinterpret_cast<yz::Material*>(matPointer);
     entity->setMaterial(material);
 }
 
