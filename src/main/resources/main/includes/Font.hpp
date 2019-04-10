@@ -26,7 +26,8 @@
 
 #include "stdafx.h"
 #include <Ogre.h>
-#include <Overlay/OgreFont.h>
+#include <OgreFontManager.h>
+#include <OgreFont.h>
 
 namespace yz {
 
