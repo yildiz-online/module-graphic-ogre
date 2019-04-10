@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_attachToNode(
     POINTER nodePointer) {
     LOG_FUNCTION
     yz::ParticleSystem* system = reinterpret_cast<yz::ParticleSystem*>(pointer);
-    yz::Node* node = reinterpret_cast<yz::Node*>(pointer)(nodePointer);
+    yz::Node* node = reinterpret_cast<yz::Node*>(nodePointer);
     node->attachObject(system);
 }
 
@@ -116,7 +116,7 @@ JNIEXPORT void JNICALL Java_jni_JniParticleSystem_setMaterial(
     POINTER pointer,
     POINTER matPointer) {
     LOG_FUNCTION
-    PARTICLESYSTEM* system = reinterpret_cast<yz::ParticleSystem*>(pointer);
+    yz::ParticleSystem* system = reinterpret_cast<yz::ParticleSystem*>(pointer);
     yz::Material* material = reinterpret_cast<yz::Material*>(matPointer);
     system->setMaterial(material);
 }
