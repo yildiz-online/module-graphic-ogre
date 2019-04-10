@@ -27,7 +27,6 @@
 
 #include "../includes/GroundQuery.hpp"
 #include "../includes/JniGroundQuery.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT jfloatArray JNICALL Java_jni_JniGroundQuery_computeIntersect(
     JNIEnv* env,

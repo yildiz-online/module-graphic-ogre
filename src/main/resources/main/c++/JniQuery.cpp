@@ -27,7 +27,6 @@
 
 #include "../includes/Query.hpp"
 #include "../includes/JniQuery.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT POINTER JNICALL Java_jni_JniQuery_throwRay(
     JNIEnv* env,

@@ -27,7 +27,6 @@
 
 #include "../includes/JniGuiContainer.h"
 #include "../includes/GuiContainer.hpp"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT POINTER JNICALL Java_jni_JniGuiContainer_constructor(
     JNIEnv* env,

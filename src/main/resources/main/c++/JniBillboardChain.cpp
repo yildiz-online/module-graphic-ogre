@@ -28,7 +28,6 @@
 #include "../includes/JniBillboardChain.h"
 #include "../includes/Node.hpp"
 #include "../includes/BillboardChain.hpp"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT POINTER JNICALL Java_jni_JniBillboardChain_constructor(
     JNIEnv* env,

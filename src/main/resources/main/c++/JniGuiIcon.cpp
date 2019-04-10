@@ -25,11 +25,9 @@
 *@author Grégory Van den Borre
 */
 
-#include "../includes/stdafx.h"
 #include "../includes/GuiContainer.hpp"
 #include "../includes/GuiIcon.hpp"
 #include "../includes/JniGuiIcon.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT POINTER JNICALL Java_jni_JniGuiIcon_constructor(
     JNIEnv* env,

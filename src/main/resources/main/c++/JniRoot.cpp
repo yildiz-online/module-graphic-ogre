@@ -28,7 +28,6 @@
 #include "../includes/Root.hpp"
 #include "../includes/EnumConversion.h"
 #include "../includes/JniRoot.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT void JNICALL Java_jni_JniRoot_constructor(
     JNIEnv *env,

@@ -26,7 +26,6 @@
 */
 
 #include "../includes/JniRenderWindow.h"
-#include "../includes/JniUtil.h"
 #include "../includes/RenderWindow.hpp"
 #include "../includes/Camera.hpp"
 #include "../includes/PFXSSAO.h"

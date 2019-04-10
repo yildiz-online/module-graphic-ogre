@@ -28,7 +28,6 @@
 #include "../includes/JniMaterialTechnique.h"
 #include "../includes/MaterialTechnique.hpp"
 #include "../includes/EnumConversion.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT jlongArray JNICALL Java_jni_JniMaterialTechnique_getPassList(
     JNIEnv* env,

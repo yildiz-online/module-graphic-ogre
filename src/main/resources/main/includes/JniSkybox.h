@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#include <jni.h>
+#include "JniUtil.h"
 
 #ifndef JNI_SKYBOX_H
 #define JNI_SKYBOX_H

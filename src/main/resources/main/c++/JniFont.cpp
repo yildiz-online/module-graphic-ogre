@@ -27,7 +27,6 @@
 
 #include "../includes/JniFont.h"
 #include "../includes/Font.hpp"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT POINTER JNICALL Java_jni_JniFont_createFont(
     JNIEnv* env,

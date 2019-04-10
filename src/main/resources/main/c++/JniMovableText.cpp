@@ -29,7 +29,6 @@
 #include "../includes/MovableText.hpp"
 #include "../includes/Font.hpp"
 #include "../includes/Node.hpp"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT POINTER JNICALL Java_jni_JniMovableText_constructor(
     JNIEnv* env,

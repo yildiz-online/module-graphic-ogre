@@ -26,7 +26,6 @@
 
 #include "../includes/Viewport.hpp"
 #include "../includes/JniViewport.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT void JNICALL Java_jni_JniViewPort_enableCompositor (
     JNIEnv* env, jobject current, POINTER pointer, jstring jname) {

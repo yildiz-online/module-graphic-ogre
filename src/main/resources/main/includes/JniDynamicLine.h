@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#include <jni.h>
+#include "JniUtil.h"
 
 #ifndef JNI_DYNAMIC_LINE_H
 #define JNI_DYNAMIC_LINE_H

@@ -28,7 +28,6 @@
 #include "../includes/JniMaterialUnit.h"
 #include "../includes/MaterialUnit.hpp"
 #include "../includes/EnumConversion.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT void JNICALL Java_jni_JniTextureUnit_setTextureAnimated(
     JNIEnv* env,

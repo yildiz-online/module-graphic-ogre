@@ -27,7 +27,6 @@
 
 #include "../includes/Camera.hpp"
 #include "../includes/JniCamera.h"
-#include "../includes/JniUtil.h"
 #include "../includes/Lensflare.hpp"
 
 JNIEXPORT void JNICALL Java_jni_JniCamera_attachToNode(JNIEnv* env, jobject o, POINTER pointer, POINTER nodePointer) {

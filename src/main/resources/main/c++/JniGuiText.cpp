@@ -26,7 +26,6 @@
 */
 
 #include "../includes/JniGuiText.h"
-#include "../includes/JniUtil.h"
 #include "../includes/GuiText.hpp"
 
 JNIEXPORT POINTER JNICALL Java_jni_JniGuiText_constructor(

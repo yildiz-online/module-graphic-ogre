@@ -28,7 +28,6 @@
 #include "../includes/JniMaterial.h"
 #include "../includes/Material.hpp"
 #include "../includes/EnumConversion.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT POINTER JNICALL Java_jni_JniMaterial_createTexture(
     JNIEnv* env,

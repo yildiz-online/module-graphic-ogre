@@ -21,8 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#include <jni.h>
-#include "stdafx.h"
+#include "JniUtil.h"
 
 #ifndef JNI_POINT_LIGHT_H
 #define JNI_POINT_LIGHT_H

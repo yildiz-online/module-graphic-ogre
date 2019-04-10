@@ -26,7 +26,6 @@
 */
 
 #include "../includes/JniShader.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT jlong JNICALL Java_jni_JniShader_createFragmentShader(
     JNIEnv* env, jobject o, jstring jname, jstring jpath) {

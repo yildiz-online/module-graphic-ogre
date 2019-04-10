@@ -27,7 +27,6 @@
 
 #include "../includes/Billboard.hpp"
 #include "../includes/JniBillboard.h"
-#include "../includes/JniUtil.h"
 
 
 JNIEXPORT void JNICALL Java_jni_JniBillboard_setPosition(

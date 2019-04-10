@@ -28,6 +28,7 @@
 #include "../includes/JniElectricArc.h"
 #include "../includes/ElectricArc.hpp"
 
+
 JNIEXPORT void JNICALL Java_jni_JniElectricArc_setCeil(
     JNIEnv *env,
     jobject o,

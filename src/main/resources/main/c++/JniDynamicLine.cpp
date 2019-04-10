@@ -25,7 +25,6 @@
 *@author Grégory Van den Borre
 */
 
-#include "../includes/stdafx.h"
 #include "../includes/JniDynamicLine.h"
 #include "../includes/DynamicLine.hpp"
 

@@ -27,7 +27,6 @@
 
 #include "../includes/SceneManager.hpp"
 #include "../includes/JniOgreEntity.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT void JNICALL Java_jni_JniEntity_setMaterial(
     JNIEnv* env,

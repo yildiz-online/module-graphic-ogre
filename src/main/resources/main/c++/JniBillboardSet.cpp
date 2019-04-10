@@ -25,11 +25,9 @@
 *@author Grégory Van den Borre
 */
 
-#include "../includes/stdafx.h"
 #include "../includes/BillboardSet.hpp"
 #include "../includes/JniBillboardSet.h"
 #include "../includes/Node.hpp"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT POINTER JNICALL Java_jni_JniBillboardSet_createBillboard(
     JNIEnv* env,

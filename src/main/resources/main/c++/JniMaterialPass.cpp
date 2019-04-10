@@ -28,7 +28,6 @@
 #include "../includes/JniMaterialPass.h"
 #include "../includes/MaterialPass.hpp"
 #include "../includes/EnumConversion.h"
-#include "../includes/JniUtil.h"
 
 JNIEXPORT jlongArray JNICALL Java_jni_JniMaterialPass_getUnitList(
 		JNIEnv* env, jclass,

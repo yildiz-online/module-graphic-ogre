@@ -25,9 +25,7 @@
 *@author Grégory Van den Borre
 */
 
-#include "../includes/stdafx.h"
 #include "../includes/JniNode.h"
-#include "../includes/JniUtil.h"
 #include "../includes/Node.hpp"
 
 JNIEXPORT jstring JNICALL Java_jni_JniNode_getName(JNIEnv* env, jobject o, POINTER pointer) {

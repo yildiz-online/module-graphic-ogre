@@ -24,7 +24,6 @@
 /**
 *@author Grégory Van den Borre
 */
-
 #include "../includes/JniDirectionalLight.h"
 #include "../includes/DirectionalLight.hpp"
 

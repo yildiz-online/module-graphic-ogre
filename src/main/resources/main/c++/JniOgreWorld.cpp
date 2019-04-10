@@ -28,7 +28,6 @@
 #include "../includes/JniOgreWorld.h"
 #include "../includes/SceneManager.hpp"
 #include "../includes/Planet.hpp"
-#include "../includes/JniUtil.h"
 #include "../includes/RenderWindow.hpp"
 
 JNIEXPORT void JNICALL Java_jni_JniSceneManager_setSkybox(
