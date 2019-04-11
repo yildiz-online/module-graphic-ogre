@@ -21,6 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
+#include "../includes/yz_ogre_vfs_DataStream.hpp"
+
 yz::ogre::vfs::DataStream::DataStream(const yz::physfs::File* file) {
     LOG_FUNCTION
     vfsFile = file;
