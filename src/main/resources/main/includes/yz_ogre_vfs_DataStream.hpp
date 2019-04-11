@@ -21,9 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
+#include <Ogre.h>
 #include <OgreDataStream.h>
 #include <OgreString.h>
 #include <yz_physfs_File.hpp>
+#include "stdafx.h"
 
 namespace yz {
 
