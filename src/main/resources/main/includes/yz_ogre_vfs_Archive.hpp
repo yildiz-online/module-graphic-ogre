@@ -24,6 +24,7 @@
 #include <OgreArchive.h>
 #include <OgreString.h>
 #include <yz_physfs_File.hpp>
+#include <yz_physfs_Wrapper.hpp>
 
 namespace yz {
 
