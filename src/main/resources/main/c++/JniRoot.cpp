@@ -25,6 +25,7 @@
 *@author Grégory Van den Borre
 */
 
+#include <OgreArchiveManager.h>
 #include "../includes/Root.hpp"
 #include "../includes/EnumConversion.h"
 #include "../includes/JniRoot.h"
@@ -45,7 +46,7 @@ JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(
     jobject,
     POINTER vfsPointer) {
     LOG_FUNCTION
-    yz::ogre::vfs::registerPhysFSToOgre(reinterpret_cast<yz::physfs::Wrapper*>(vfsPointer));
+    Ogre::ArchiveManager::getSingleton().addArchiveFactory(new ArchiveFactory(reinterpret_cast<yz::physfs::Wrapper*>(vfsPointer)));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniRoot_loadPlugin(
