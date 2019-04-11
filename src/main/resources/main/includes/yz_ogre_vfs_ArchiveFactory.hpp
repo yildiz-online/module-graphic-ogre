@@ -37,7 +37,7 @@ namespace vfs {
 class ArchiveFactory: public Ogre::ArchiveFactory {
 public:
 
-    ArchiveFactory(const yz::physfs::Wrapper* vfs): this->vfs(vfs) {
+    ArchiveFactory(const yz::physfs::Wrapper* vfs): vfs(vfs) {
         LOG_FUNCTION
     }
 
