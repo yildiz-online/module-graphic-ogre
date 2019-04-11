@@ -86,6 +86,6 @@ private:
 
     void listRecursive(const Ogre::String& base, bool recursive, bool dirs, Ogre::StringVectorPtr fileList) const;
 
-    yz::physfs::Wrapper* vfs;
+    const yz::physfs::Wrapper* vfs;
 };
 }}}
