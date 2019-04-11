@@ -45,9 +45,9 @@ public:
      * Constructor from a VFS file.
      * @param file VFS file pointer.
      */
-    DataStream(const yz::physfs::File* file);
+    DataStream(yz::physfs::File* file);
 
-    DataStream(const Ogre::String& name, const yz::physfs::File* file);
+    DataStream(const Ogre::String& name, yz::physfs::File* file);
 
     ~DataStream();
 
@@ -68,6 +68,6 @@ public:
      /**
       * Embedded VFS file.
       */
-     const yz::physfs::File* vfsFile;
+     yz::physfs::File* vfsFile;
  };
  }}}
