@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
+#include <Ogre.h>
 #include <OgreArchive.h>
 #include <OgreString.h>
 #include <yz_physfs_File.hpp>
