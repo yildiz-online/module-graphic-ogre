@@ -39,7 +39,7 @@ class Archive: public Ogre::Archive {
 
 public:
 
-    Archive(yz::physfs::Wrapper* vfs, const Ogre::String& name, const Ogre::String& type) : Ogre::Archive(name, type), vfs(vfs) {
+    Archive(const yz::physfs::Wrapper* vfs, const Ogre::String& name, const Ogre::String& type) : Ogre::Archive(name, type), vfs(vfs) {
         LOG_FUNCTION
     }
 
