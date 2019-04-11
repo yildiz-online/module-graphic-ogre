@@ -29,6 +29,7 @@
 #include <Ogre.h>
 #include <OgreOverlayManager.h>
 #include <OgreOverlayElement.h>
+#include <OgreOverlayContainer.h>
 #include <OgreOverlay.h>
 
 #include "Material.hpp"
