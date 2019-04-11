@@ -42,9 +42,10 @@ JNIEXPORT void JNICALL Java_jni_JniRoot_constructor(
 
 JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(
     JNIEnv *env,
-    jobject) {
+    jobject,
+    POINTER vfsPointer) {
     LOG_FUNCTION
-    yz::Root::get()->initPhysFS();
+    yz::Root::get()->initPhysFS(reinterpret_cast<yz::physfs::Wrapper*>(vfsPointer));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniRoot_loadPlugin(

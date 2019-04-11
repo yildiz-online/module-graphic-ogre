@@ -57,7 +57,7 @@ public final class Root {
     public Root() {
         super();
         this.jni.constructor();
-        this.jni.initPhysFS();
+        this.jni.initPhysFS(0);
     }
 
     /**
