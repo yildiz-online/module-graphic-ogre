@@ -63,7 +63,7 @@ private:
 
     ArchiveFactory& operator=(const ArchiveFactory& o);
 
-    yz::physfs::Wrapper* vfs;
+    const yz::physfs::Wrapper* vfs;
 };
 
 void registerPhysFSToOgre(const yz::physfs::Wrapper* vfs) {
