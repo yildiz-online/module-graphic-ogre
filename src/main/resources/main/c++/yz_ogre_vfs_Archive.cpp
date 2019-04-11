@@ -31,7 +31,7 @@ bool yz::ogre::vfs::Archive::exists(const Ogre::String& filename) const {
 Ogre::DataStreamPtr yz::ogre::vfs::Archive::open(const Ogre::String& filename, bool append) const {
     LOG_FUNCTION
     Ogre::String fullName = mName + '/' + filename;
-    return Ogre::DataStreamPtr(new DataStream(filename, fullName));
+    return Ogre::DataStreamPtr(new yz::ogre::vfs::DataStream(filename, fullName));
 }
 
 void yz::ogre::vfs::Archive::listInfoRecursive(const Ogre::String& base, bool recursive, bool dirs, Ogre::FileInfoListPtr fileInfoList) const {
