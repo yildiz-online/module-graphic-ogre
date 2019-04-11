@@ -52,7 +52,7 @@ void yz::ogre::vfs::DataStream::seek(size_t pos) {
 
 size_t yz::ogre::vfs::DataStream::tell() const {
     LOG_FUNCTION
-    return (size_t) this->vfsFile->tell(file);
+    return (size_t) this->vfsFile->tell();
 }
 
 void yz::ogre::vfs::DataStream::skip(long count) {
