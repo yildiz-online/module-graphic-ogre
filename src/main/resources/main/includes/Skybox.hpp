@@ -25,6 +25,7 @@
 #define SKYBOX_H
 
 #include "stdafx.h"
+#include <string>
 
 namespace yz {
 	/**
