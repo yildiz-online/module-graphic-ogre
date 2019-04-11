@@ -23,6 +23,8 @@
 
 #include <Ogre.h>
 #include <OgreArchive.h>
+#include <OgreDataStream.h>
+#include <OgreStringVector.h>
 #include <OgreString.h>
 #include <yz_physfs_File.hpp>
 #include <yz_physfs_Wrapper.hpp>
