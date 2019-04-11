@@ -42,11 +42,6 @@ yz::Root::~Root() {
     OGRE_DELETE this->root;
 }
 
-void yz::Root::initPhysFS(const yz::physfs::Wrapper* vfs) {
-    LOG_FUNCTION
-    yz::ogre::vfs::registerPhysFSToOgre(vfs);
-}
-
 void yz::Root::loadPlugin(const std::string& name) {
     LOG_FUNCTION
     //FIXME use enumeration instead of Strings.
