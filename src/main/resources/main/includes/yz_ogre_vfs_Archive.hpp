@@ -29,6 +29,7 @@
 #include <yz_physfs_File.hpp>
 #include <yz_physfs_Wrapper.hpp>
 #include "stdafx.h"
+#include "yz_ogre_vfs_DataStream.hpp"
 
 namespace yz {
 
