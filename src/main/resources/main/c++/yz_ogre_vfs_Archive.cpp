@@ -37,7 +37,7 @@ Ogre::DataStreamPtr yz::ogre::vfs::Archive::open(const Ogre::String& filename, b
 void yz::ogre::vfs::Archive::listInfoRecursive(const Ogre::String& base, bool recursive, bool dirs, Ogre::FileInfoListPtr fileInfoList) const {
     LOG_FUNCTION
     Ogre::String baseDir = mName + '/' + base;
-    StringVector files = this->vfs->enumerateFiles(baseDir);
+    Ogre::StringVector files = this->vfs->enumerateFiles(baseDir);
 
     Ogre::FileInfo fileInfo;
     fileInfo.archive = this;
@@ -45,7 +45,7 @@ void yz::ogre::vfs::Archive::listInfoRecursive(const Ogre::String& base, bool re
     fileInfo.compressedSize = 0;
 
     // iterate over all files and directories in the given directory
-    for (StringVector::iterator it = files.begin(); it != files.end(); ++it) {
+    for (Ogre::StringVector::iterator it = files.begin(); it != files.end(); ++it) {
          fileInfo.basename = *it;
          fileInfo.filename = base + *it;
          if (this->vfs->isDirectory(*it)) {
@@ -73,10 +73,10 @@ void yz::ogre::vfs::Archive::listRecursive(const Ogre::String& base, bool recurs
      LOG_FUNCTION
 
      Ogre::String baseDir = mName + '/' + base;
-     StringVector files = this->vfs->enumerateFiles(baseDir);
+     Ogre::StringVector files = this->vfs->enumerateFiles(baseDir);
 
      // iterate over all files and directories in the given directory
-     for (StringVector::iterator it = files.begin(); it != files.end(); ++it) {
+     for (Ogre::StringVector::iterator it = files.begin(); it != files.end(); ++it) {
          if (this->vfs->isDirectory(*it)) {
              if (dirs) {
                  fileList->push_back(base + *it);
