@@ -68,6 +68,6 @@ public:
      /**
       * Embedded VFS file.
       */
-     yz::physfs::File* vfsFile;
+     const yz::physfs::File* vfsFile;
  };
  }}}
