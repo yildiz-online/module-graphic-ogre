@@ -23,13 +23,13 @@
 
 #include "../includes/yz_ogre_vfs_DataStream.hpp"
 
-yz::ogre::vfs::DataStream::DataStream(const yz::physfs::File* file) {
+yz::ogre::vfs::DataStream::DataStream(yz::physfs::File* file) {
     LOG_FUNCTION
     vfsFile = file;
     mSize = (size_t) this->vfsFile->getSize();
 }
 
-yz::ogre::vfs::DataStream::DataStream(const Ogre::String& name, const yz::physfs::File* file) : Ogre::DataStream(name) {
+yz::ogre::vfs::DataStream::DataStream(const Ogre::String& name, yz::physfs::File* file) : Ogre::DataStream(name) {
     LOG_FUNCTION
     vfsFile = file;
     mSize = (size_t) this->vfsFile->getSize();
