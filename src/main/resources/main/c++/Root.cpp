@@ -26,7 +26,6 @@
 */
 
 #include "../includes/Root.hpp"
-#include "../includes/yz_ogre_vfs_ArchiveFactory.hpp"
 
 yz::Root* yz::Root::instance = NULL;
 
@@ -43,9 +42,9 @@ yz::Root::~Root() {
     OGRE_DELETE this->root;
 }
 
-void yz::Root::initPhysFS() {
+void yz::Root::initPhysFS(const yz::physfs::Wrapper* vfs) {
     LOG_FUNCTION
-    yz::ogre::vfs::registerPhysFSToOgre();
+    yz::ogre::vfs::registerPhysFSToOgre(vfs);
 }
 
 void yz::Root::loadPlugin(const std::string& name) {

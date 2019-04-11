@@ -30,6 +30,7 @@
 #include <OgreOverlaySystem.h>
 #include "RenderWindow.hpp"
 #include "SceneManager.hpp"
+#include "yz_ogre_vfs_ArchiveFactory.hpp"
 
 namespace yz {
 
@@ -65,7 +66,7 @@ public:
 
     virtual ~Root();
 
-    void initPhysFS();
+    void initPhysFS(const yz::physfs::Wrapper* vfs);
 
     void loadPlugin(const std::string& name);
 
