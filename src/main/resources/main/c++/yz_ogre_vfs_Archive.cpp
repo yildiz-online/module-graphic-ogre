@@ -21,6 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
+#include "../includes/yz_ogre_vfs_Archive.hpp"
+
 bool yz::ogre::vfs::Archive::exists(const Ogre::String& filename) const {
     LOG_FUNCTION
     return PhysFS::exists(mName + '/' + filename);
