@@ -45,7 +45,7 @@ JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(
     jobject,
     POINTER vfsPointer) {
     LOG_FUNCTION
-    yz::Root::get()->initPhysFS(reinterpret_cast<yz::physfs::Wrapper*>(vfsPointer));
+    yz::ogre::vfs::registerPhysFSToOgre(reinterpret_cast<yz::physfs::Wrapper*>(vfsPointer));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniRoot_loadPlugin(
