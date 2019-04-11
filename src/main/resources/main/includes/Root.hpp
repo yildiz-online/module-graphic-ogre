@@ -66,8 +66,6 @@ public:
 
     virtual ~Root();
 
-    void initPhysFS(const yz::physfs::Wrapper* vfs);
-
     void loadPlugin(const std::string& name);
 
     void initialise(const std::string& renderer);
