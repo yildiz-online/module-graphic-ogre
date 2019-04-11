@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#include <OgreArchiveManager.h>
 #include <OgreArchiveFactory.h>
 #include <OgreArchive.h>
 #include <OgreString.h>
@@ -65,10 +64,5 @@ private:
 
     const yz::physfs::Wrapper* vfs;
 };
-
-void registerPhysFSToOgre(const yz::physfs::Wrapper* vfs) {
-    LOG_FUNCTION
-    Ogre::ArchiveManager::getSingleton().addArchiveFactory(new ArchiveFactory(vfs));
-}
 
 }}}
