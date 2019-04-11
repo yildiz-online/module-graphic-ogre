@@ -25,7 +25,7 @@
 
 bool yz::ogre::vfs::Archive::exists(const Ogre::String& filename) const {
     LOG_FUNCTION
-    return PhysFS::exists(mName + '/' + filename);
+    return this->vfs->exists(mName + '/' + filename);
 }
 
 Ogre::DataStreamPtr yz::ogre::vfs::Archive::open(const Ogre::String& filename, bool append) const {
