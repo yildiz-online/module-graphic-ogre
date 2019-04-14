@@ -32,7 +32,6 @@ import be.yildizgames.common.util.Checker;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.BaseGraphicEngine;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.GraphicWorld;
 import be.yildizgames.module.graphic.ShadowType;
 import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
@@ -77,6 +76,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     /**
      * Only one can be created at a time.
      */
+    //FIXME replace by a simple rectangle object
     private SelectionRectangle selection;
 
     /**
