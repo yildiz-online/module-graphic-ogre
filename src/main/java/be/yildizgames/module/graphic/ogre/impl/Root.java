@@ -54,10 +54,10 @@ public final class Root {
      * Simple constructor, call the native constructor to get the pointer to the
      * native object.
      */
-    public Root() {
+    public Root(PhysFsWrapper vfs) {
         super();
         this.jni.constructor();
-        this.jni.initPhysFS(0);
+        this.jni.initPhysFS(vfs.getPointer().getPointerAddress());
     }
 
     /**
