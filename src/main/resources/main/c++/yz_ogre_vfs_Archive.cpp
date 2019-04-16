@@ -75,8 +75,12 @@ void yz::ogre::vfs::Archive::listInfoRecursive(const Ogre::String& base, bool re
 void yz::ogre::vfs::Archive::listRecursive(const Ogre::String& base, bool recursive, bool dirs, Ogre::StringVectorPtr fileList) const {
      LOG_FUNCTION
 
-     Ogre::String baseDir = mName + '/' + base;
-     Ogre::StringVector files = this->vfs->enumerateFiles(baseDir);
+     std::cout << "in:" << std::endl;
+    std::cout << "mname:" << mName << std::endl;
+    Ogre::String baseDir = mName + '/' + base;
+    std::cout << "ENUMERATE FILES" << std::endl;
+    Ogre::StringVector files = this->vfs->enumerateFiles(baseDir);
+    std::cout << "ENUMERATED FILES" << std::endl;
 
      // iterate over all files and directories in the given directory
      for (Ogre::StringVector::iterator it = files.begin(); it != files.end(); ++it) {
