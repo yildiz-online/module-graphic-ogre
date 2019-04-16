@@ -40,6 +40,7 @@ import be.yildizgames.module.graphic.ogre.impl.DummyRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.ogre.impl.Root;
+import be.yildizgames.module.vfs.physfs.VfsFactory;
 import be.yildizgames.module.window.BaseWindowEngine;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
@@ -47,6 +48,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
  * Implementation of the graphic engine based on Ogre.
@@ -72,6 +74,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     private final OgreMaterialManager materialManager;
 
     private final NativeResourceLoader nativeResourceLoader;
+
     private final BaseWindowEngine windowEngine;
     /**
      * Only one can be created at a time.
@@ -89,13 +92,14 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     //@Ensures this.root != null
     public OgreGraphicEngine(final BaseWindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
         super();
-        assert windowEngine != null;
-        assert nativeResourceLoader != null;
         LOGGER.info("Initializing Ogre graphic engine...");
-        nativeResourceLoader.loadBaseLibrary();
-        nativeResourceLoader.loadLibrary("libyildizphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        Objects.requireNonNull(windowEngine);
+        Objects.requireNonNull(nativeResourceLoader);
         this.nativeResourceLoader = nativeResourceLoader;
-        this.root = new Root();
+
+        this.nativeResourceLoader.loadBaseLibrary();
+        this.nativeResourceLoader.loadLibrary("libyildizphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        this.root = new Root(VfsFactory.getVfs(this.nativeResourceLoader));
         this.loadPlugins();
         this.loadRenderer();
         if (SystemUtil.isLinux()) {
@@ -104,24 +108,26 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
             this.renderWindow = this.root.createWindow(windowEngine.getScreenSize(), windowEngine.getHandle());
         }
         this.materialManager = new OgreMaterialManager();
-        this.guiBuilder = new OgreGuiFactory(windowEngine.getScreenSize());
         this.windowEngine = windowEngine;
+        this.guiBuilder = new OgreGuiFactory(this.windowEngine.getScreenSize());
         LOGGER.info("Ogre graphic engine initialized.");
     }
 
-    private OgreGraphicEngine(NativeResourceLoader loader) {
+    private OgreGraphicEngine(NativeResourceLoader nativeResourceLoader) {
         super();
-        this.nativeResourceLoader = loader;
         LOGGER.info("Initializing Headless Ogre graphic engine...");
-        nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
-        nativeResourceLoader.loadLibrary("libphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
-        this.root = new Root();
+        Objects.requireNonNull(nativeResourceLoader);
+        this.nativeResourceLoader = nativeResourceLoader;
+
+        this.nativeResourceLoader.loadBaseLibrary();
+        this.nativeResourceLoader.loadLibrary("libyildizphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        this.root = new Root(VfsFactory.getVfs(this.nativeResourceLoader));
         this.loadPlugins();
         this.loadRenderer();
         this.renderWindow = new DummyRenderWindow();
         this.materialManager = new OgreMaterialManager();
-        this.guiBuilder = new OgreGuiFactory(new ScreenSize(0,0));
         this.windowEngine = new DummyWindowEngine();
+        this.guiBuilder = new OgreGuiFactory(this.windowEngine.getScreenSize());
         LOGGER.info("Headless Ogre graphic engine initialized.");
     }
 

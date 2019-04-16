@@ -26,6 +26,7 @@ package be.yildizgames.module.graphic.ogre.impl;
 
 import be.yildizgames.common.file.FileResource;
 import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.vfs.physfs.PhysFsWrapper;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.WindowHandle;
 import jni.JniRoot;
