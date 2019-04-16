@@ -36,6 +36,7 @@ Ogre::DataStreamPtr yz::ogre::vfs::Archive::open(const Ogre::String& filename, b
 
 void yz::ogre::vfs::Archive::listInfoRecursive(const Ogre::String& base, bool recursive, bool dirs, Ogre::FileInfoListPtr fileInfoList) const {
     LOG_FUNCTION
+    std::cout << "mname:" << mName << std::endl;
     Ogre::String baseDir = mName + '/' + base;
     std::cout << "ENUMERATE FILES" << std::endl;
     Ogre::StringVector files = this->vfs->enumerateFiles(baseDir);
