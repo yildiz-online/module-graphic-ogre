@@ -58,6 +58,7 @@ public final class Root {
     public Root(PhysFsWrapper vfs) {
         super();
         this.jni.constructor();
+        System.out.println(vfs.getPointer().getPointerAddress());
         this.jni.initPhysFS(vfs.getPointer().getPointerAddress());
     }
 

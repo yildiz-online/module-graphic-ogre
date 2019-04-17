@@ -78,7 +78,7 @@ void yz::ogre::vfs::Archive::listRecursive(const Ogre::String& base, bool recurs
      std::cout << "in www:" << std::endl;
     std::cout << "mname:" << mName << std::endl;
     Ogre::String baseDir = mName + '/' + base;
-    std::cout << this->vfs->exists(baseDir) << std::endl;
+    std::cout << this->vfs << std::endl;
     std::cout << "ENUMERATE FILES: " << baseDir << std::endl;
     Ogre::StringVector files = this->vfs->enumerateFiles(baseDir);
     std::cout << "ENUMERATED FILES" << std::endl;
