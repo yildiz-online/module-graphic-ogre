@@ -47,6 +47,7 @@ public:
 
     Archive(const yz::physfs::Wrapper* vfs, const Ogre::String& name, const Ogre::String& type) : Ogre::Archive(name, type), vfs(vfs) {
         LOG_FUNCTION
+        std::cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << this->vfs << std::endl;
     }
 
     /** PhysFS is case sensitive in general */
