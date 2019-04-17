@@ -75,7 +75,7 @@ void yz::ogre::vfs::Archive::listInfoRecursive(const Ogre::String& base, bool re
 void yz::ogre::vfs::Archive::listRecursive(const Ogre::String& base, bool recursive, bool dirs, Ogre::StringVectorPtr fileList) const {
      LOG_FUNCTION
 
-     std::cout << "in:" << std::endl;
+     std::cout << "in www:" << std::endl;
     std::cout << "mname:" << mName << std::endl;
     Ogre::String baseDir = mName + '/' + base;
     std::cout << this->vfs->exists(baseDir) << std::endl;
