@@ -33,6 +33,7 @@ import jni.JniRoot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.file.Paths;
 import java.security.InvalidParameterException;
 
 /**
@@ -45,6 +46,7 @@ public final class Root {
     private static final Logger LOGGER = LoggerFactory.getLogger(Root.class);
 
     private final JniRoot jni = new JniRoot();
+    private final PhysFsWrapper vfs;
 
     /**
      * Flag to check if initialized or not.
@@ -58,8 +60,8 @@ public final class Root {
     public Root(PhysFsWrapper vfs) {
         super();
         this.jni.constructor();
-        System.out.println(vfs.getPointer().getPointerAddress());
         this.jni.initPhysFS(vfs.getPointer().getPointerAddress());
+        this.vfs = vfs;
     }
 
     /**
@@ -135,6 +137,9 @@ public final class Root {
     }
 
     public void addResourcePath(final String name, final String resourcePath, final FileResource.FileType type) {
+        if(type == FileResource.FileType.VFS) {
+            this.vfs.registerContainer(Paths.get(resourcePath));
+        }
         this.jni.addResourcePath(name, resourcePath, type.value);
     }
 }

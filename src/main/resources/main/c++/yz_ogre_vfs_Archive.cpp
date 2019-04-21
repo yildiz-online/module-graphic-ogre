@@ -36,11 +36,8 @@ Ogre::DataStreamPtr yz::ogre::vfs::Archive::open(const Ogre::String& filename, b
 
 void yz::ogre::vfs::Archive::listInfoRecursive(const Ogre::String& base, bool recursive, bool dirs, Ogre::FileInfoListPtr fileInfoList) const {
     LOG_FUNCTION
-    std::cout << "mname:" << mName << std::endl;
     Ogre::String baseDir = mName + '/' + base;
-    std::cout << "ENUMERATE FILES" << std::endl;
     Ogre::StringVector files = this->vfs->enumerateFiles(baseDir);
-    std::cout << "ENUMERATED FILES" << std::endl;
 
     Ogre::FileInfo fileInfo;
     fileInfo.archive = this;
@@ -75,13 +72,8 @@ void yz::ogre::vfs::Archive::listInfoRecursive(const Ogre::String& base, bool re
 void yz::ogre::vfs::Archive::listRecursive(const Ogre::String& base, bool recursive, bool dirs, Ogre::StringVectorPtr fileList) const {
      LOG_FUNCTION
 
-     std::cout << "in www:" << std::endl;
-    std::cout << "mname:" << mName << std::endl;
     Ogre::String baseDir = mName + '/' + base;
-    std::cout << this->vfs << std::endl;
-    std::cout << "ENUMERATE FILES: " << baseDir << std::endl;
     Ogre::StringVector files = this->vfs->enumerateFiles(baseDir);
-    std::cout << "ENUMERATED FILES" << std::endl;
 
      // iterate over all files and directories in the given directory
      for (Ogre::StringVector::iterator it = files.begin(); it != files.end(); ++it) {
@@ -116,14 +108,15 @@ Ogre::StringVectorPtr yz::ogre::vfs::Archive::list(bool recursive, bool dirs) co
 
 Ogre::StringVectorPtr yz::ogre::vfs::Archive::find(const Ogre::String& pattern, bool recursive, bool dirs) const {
      LOG_FUNCTION
-     Ogre::StringVectorPtr fileList = list(recursive, dirs);
+    /* Ogre::StringVectorPtr fileList = list(recursive, dirs);
      Ogre::StringVectorPtr ret(new Ogre::StringVector());
 
      for (Ogre::StringVector::iterator it = fileList->begin(); it != fileList->end(); ++it) {
          if (Ogre::StringUtil::match(*it, pattern))
              ret->push_back(*it);
      }
-     return ret;
+     return ret;*/
+     return this->fileList;
  }
 
 Ogre::FileInfoListPtr yz::ogre::vfs::Archive::findFileInfo(const Ogre::String& pattern, bool recursive, bool dirs) const {
