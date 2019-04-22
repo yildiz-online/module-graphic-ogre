@@ -45,7 +45,7 @@ JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(
     JNIEnv *env,
     jobject) {
     LOG_FUNCTION
-    yz::Root::get()->initiasePhysFS();
+    yz::Root::get()->initialisePhysFS();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniRoot_loadPlugin(
