@@ -108,7 +108,7 @@ Ogre::StringVectorPtr yz::ogre::vfs::Archive::list(bool recursive, bool dirs) co
 
 Ogre::StringVectorPtr yz::ogre::vfs::Archive::find(const Ogre::String& pattern, bool recursive, bool dirs) const {
      LOG_FUNCTION
-     Ogre::StringVectorPtr fileList = this->list(recursive, dirs);
+     Ogre::StringVectorPtr fileList = list(recursive, dirs);
      Ogre::StringVectorPtr ret(new Ogre::StringVector());
 
      for (Ogre::StringVector::iterator it = fileList->begin(); it != fileList->end(); ++it) {
@@ -117,7 +117,6 @@ Ogre::StringVectorPtr yz::ogre::vfs::Archive::find(const Ogre::String& pattern, 
          }
      }
      return ret;
-     return this->fileList;
  }
 
 Ogre::FileInfoListPtr yz::ogre::vfs::Archive::findFileInfo(const Ogre::String& pattern, bool recursive, bool dirs) const {
