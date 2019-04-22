@@ -96,5 +96,5 @@ public class JniRoot {
     /**
      * Initialize the physFS virtual file system capabilities.
      */
-    public native void initPhysFS(long vfsPointer);
+    public native void initPhysFS();
 }

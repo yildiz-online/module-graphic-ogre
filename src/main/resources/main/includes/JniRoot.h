@@ -40,7 +40,7 @@ extern "C" {
  */
 JNIEXPORT void JNICALL Java_jni_JniRoot_constructor(JNIEnv* env, jobject object);
 
-JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(JNIEnv* env,jobject object, POINTER vfsPointer);
+JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(JNIEnv* env,jobject object);
 
 JNIEXPORT void JNICALL Java_jni_JniRoot_loadPlugin(JNIEnv* env, jobject object, jstring plugin);
 

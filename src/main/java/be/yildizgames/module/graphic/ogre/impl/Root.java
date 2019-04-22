@@ -26,7 +26,7 @@ package be.yildizgames.module.graphic.ogre.impl;
 
 import be.yildizgames.common.file.FileResource;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.module.vfs.physfs.PhysFsWrapper;
+import be.yildizgames.module.vfs.Vfs;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.WindowHandle;
 import jni.JniRoot;
@@ -34,7 +34,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.file.Paths;
-import java.security.InvalidParameterException;
 
 /**
  * Access to the Ogre::Root object in native code.
@@ -46,7 +45,7 @@ public final class Root {
     private static final Logger LOGGER = LoggerFactory.getLogger(Root.class);
 
     private final JniRoot jni = new JniRoot();
-    private final PhysFsWrapper vfs;
+    private final Vfs vfs;
 
     /**
      * Flag to check if initialized or not.
@@ -57,10 +56,10 @@ public final class Root {
      * Simple constructor, call the native constructor to get the pointer to the
      * native object.
      */
-    public Root(PhysFsWrapper vfs) {
+    public Root(Vfs vfs) {
         super();
         this.jni.constructor();
-        this.jni.initPhysFS(vfs.getPointer().getPointerAddress());
+        this.jni.initPhysFS();
         this.vfs = vfs;
     }
 
@@ -71,7 +70,7 @@ public final class Root {
      */
     public void setPlugin(final String plugin) {
         if (this.initialized) {
-            throw new InvalidParameterException("You cannot load plug ins once root is initialized.");
+            throw new IllegalStateException("You cannot load plug ins once root is initialized.");
         }
         LOGGER.info("Loading ogre plugin: " + plugin);
         this.jni.loadPlugin(plugin);

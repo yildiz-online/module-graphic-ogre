@@ -25,6 +25,7 @@
 
 bool yz::ogre::vfs::Archive::exists(const Ogre::String& filename) const {
     LOG_FUNCTION
+    std::cout << "exists:" << mName + '/' + filename << std::endl;
     return this->vfs->exists(mName + '/' + filename);
 }
 
