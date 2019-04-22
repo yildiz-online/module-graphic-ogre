@@ -102,7 +102,7 @@ void yz::Root::addResourcePath(const std::string& name, const std::string& path,
             Ogre::ResourceGroupManager::getSingleton().addResourceLocation(path, "Zip", name, false);
             break;
         case 2:
-            //PhysFS::addToSearchPath(path);
+            this->vfs->registerContainer(name);
             Ogre::ResourceGroupManager::getSingleton().addResourceLocation("", "Package", name, false);
             break;
         case 3:

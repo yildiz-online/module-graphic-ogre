@@ -45,7 +45,7 @@ JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(
     JNIEnv *env,
     jobject) {
     LOG_FUNCTION
-    Ogre::ArchiveManager::getSingleton().addArchiveFactory(new yz::ogre::vfs::ArchiveFactory(new yz::physfs::Wrapper()));
+    yz::Root::get()->initiasePhysFS();
 }
 
 JNIEXPORT void JNICALL Java_jni_JniRoot_loadPlugin(

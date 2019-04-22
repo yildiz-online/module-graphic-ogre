@@ -66,6 +66,11 @@ public:
 
     virtual ~Root();
 
+    void initialisePhysFS() {
+        this->vfs = new yz::physfs::Wrapper();
+        Ogre::ArchiveManager::getSingleton().addArchiveFactory(new yz::ogre::vfs::ArchiveFactory(this->vfs));
+    }
+
     void loadPlugin(const std::string& name);
 
     void initialise(const std::string& renderer);
@@ -96,6 +101,8 @@ private:
     Ogre::Root* root;
 
     Ogre::OverlaySystem* os;
+
+    yz::physfs::Wrapper* vfs;
 
     /**
     * Flag to check if the root is initialized or not.
