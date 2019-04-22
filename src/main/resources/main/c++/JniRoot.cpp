@@ -48,7 +48,7 @@ JNIEXPORT void JNICALL Java_jni_JniRoot_initPhysFS(
     LOG_FUNCTION
     yz::physfs::Wrapper* wrapper = new yz::physfs::Wrapper();
     std::cout << wrapper->getSupportedArchiveType().size() << std::endl;
-    Ogre::ArchiveManager::getSingleton().addArchiveFactory(new yz::ogre::vfs::ArchiveFactory(reinterpret_cast<yz::physfs::Wrapper*>(vfsPointer)));
+    Ogre::ArchiveManager::getSingleton().addArchiveFactory(new yz::ogre::vfs::ArchiveFactory(wrapper));
 }
 
 JNIEXPORT void JNICALL Java_jni_JniRoot_loadPlugin(
