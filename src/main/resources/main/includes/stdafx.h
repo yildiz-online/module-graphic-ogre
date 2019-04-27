@@ -31,8 +31,8 @@
 #ifdef DEBUG
 #define LOG_FUNCTION std::cout<<__PRETTY_FUNCTION__<<std::endl;
 #else
-#include <iostream>
-#define LOG_FUNCTION std::cout<<__PRETTY_FUNCTION__<<std::endl;
+//#include <iostream>
+#define LOG_FUNCTION //std::cout<<__PRETTY_FUNCTION__<<std::endl;
 #endif
 
 #endif

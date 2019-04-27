@@ -138,6 +138,7 @@ public final class Root {
     public void addResourcePath(final String name, final String resourcePath, final FileResource.FileType type) {
         if(type == FileResource.FileType.VFS) {
             this.vfs.registerContainer(Paths.get(resourcePath));
+
         }
         this.jni.addResourcePath(name, resourcePath, type.value);
     }

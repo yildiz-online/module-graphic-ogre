@@ -73,6 +73,7 @@ void yz::Root::createRenderWindow(const Ogre::Real width, const Ogre::Real heigh
     params["externalWindowHandle"] = Ogre::StringConverter::toString((unsigned int) (handle));
     params["FSAA"] = Ogre::String("4");
     params["vsync"] = Ogre::String("true");
+    //FIXME provide name to avoid crash if multiple render window
     Ogre::RenderWindow* rw = this->root->createRenderWindow("default", width, height, false, &params);
     yz::RenderWindow::create(rw);
 }
