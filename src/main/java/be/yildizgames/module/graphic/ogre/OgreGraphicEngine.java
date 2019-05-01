@@ -40,7 +40,6 @@ import be.yildizgames.module.graphic.ogre.impl.DummyRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.ogre.impl.Root;
-import be.yildizgames.module.vfs.physfs.VfsFactory;
 import be.yildizgames.module.window.BaseWindowEngine;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
@@ -99,7 +98,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
 
         this.nativeResourceLoader.loadBaseLibrary();
         this.nativeResourceLoader.loadLibrary("OgreMain", "OgreOverlay", "libyildizogre");
-        this.root = new Root(VfsFactory.getVfs(this.nativeResourceLoader));
+        this.root = new Root();
         this.loadPlugins();
         this.loadRenderer();
         if (SystemUtil.isLinux()) {
@@ -120,8 +119,8 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
         this.nativeResourceLoader = nativeResourceLoader;
 
         this.nativeResourceLoader.loadBaseLibrary();
-        this.nativeResourceLoader.loadLibrary("OgreMain", "OgreOverlay", "libyildizogre");
-        this.root = new Root(VfsFactory.getVfs(this.nativeResourceLoader));
+        this.nativeResourceLoader.loadLibrary("libyildizphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
+        this.root = new Root();
         this.loadPlugins();
         this.loadRenderer();
         this.renderWindow = new DummyRenderWindow();

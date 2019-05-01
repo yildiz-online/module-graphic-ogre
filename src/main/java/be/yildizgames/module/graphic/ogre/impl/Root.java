@@ -26,14 +26,11 @@ package be.yildizgames.module.graphic.ogre.impl;
 
 import be.yildizgames.common.file.FileResource;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.module.vfs.Vfs;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.WindowHandle;
 import jni.JniRoot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.nio.file.Paths;
 
 /**
  * Access to the Ogre::Root object in native code.
@@ -45,7 +42,6 @@ public final class Root {
     private static final Logger LOGGER = LoggerFactory.getLogger(Root.class);
 
     private final JniRoot jni = new JniRoot();
-    private final Vfs vfs;
 
     /**
      * Flag to check if initialized or not.
@@ -56,11 +52,10 @@ public final class Root {
      * Simple constructor, call the native constructor to get the pointer to the
      * native object.
      */
-    public Root(Vfs vfs) {
+    public Root() {
         super();
         this.jni.constructor();
         this.jni.initPhysFS();
-        this.vfs = vfs;
     }
 
     /**
@@ -136,10 +131,6 @@ public final class Root {
     }
 
     public void addResourcePath(final String name, final String resourcePath, final FileResource.FileType type) {
-        if(type == FileResource.FileType.VFS) {
-            this.vfs.registerContainer(Paths.get(resourcePath));
-
-        }
         this.jni.addResourcePath(name, resourcePath, type.value);
     }
 }
