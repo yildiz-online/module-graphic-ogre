@@ -43,8 +43,6 @@ import be.yildizgames.module.graphic.ogre.impl.Root;
 import be.yildizgames.module.window.BaseWindowEngine;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.dummy.DummyWindowEngine;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Objects;
@@ -56,7 +54,7 @@ import java.util.Objects;
  */
 public final class OgreGraphicEngine extends BaseGraphicEngine {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OgreGraphicEngine.class);
+    private static final System.Logger LOGGER = System.getLogger(OgreGraphicEngine.class.getName());
 
     /**
      * Local part of the native Ogre::Root object, mainly used to build renderer, scene manager,....
@@ -91,7 +89,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     //@Ensures this.root != null
     public OgreGraphicEngine(final BaseWindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
         super();
-        LOGGER.info("Initializing Ogre graphic engine...");
+        LOGGER.log(System.Logger.Level.INFO, "Initializing Ogre graphic engine...");
         Objects.requireNonNull(windowEngine);
         Objects.requireNonNull(nativeResourceLoader);
         this.nativeResourceLoader = nativeResourceLoader;
@@ -109,12 +107,12 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
         this.materialManager = new OgreMaterialManager();
         this.windowEngine = windowEngine;
         this.guiBuilder = new OgreGuiFactory(this.windowEngine.getScreenSize());
-        LOGGER.info("Ogre graphic engine initialized.");
+        LOGGER.log(System.Logger.Level.INFO, "Initializing Ogre graphic engine complete.");
     }
 
     private OgreGraphicEngine(NativeResourceLoader nativeResourceLoader) {
         super();
-        LOGGER.info("Initializing Headless Ogre graphic engine...");
+        LOGGER.log(System.Logger.Level.INFO, "Initializing Headless Ogre graphic engine...");
         Objects.requireNonNull(nativeResourceLoader);
         this.nativeResourceLoader = nativeResourceLoader;
 
@@ -127,7 +125,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
         this.materialManager = new OgreMaterialManager();
         this.windowEngine = new DummyWindowEngine();
         this.guiBuilder = new OgreGuiFactory(this.windowEngine.getScreenSize());
-        LOGGER.info("Headless Ogre graphic engine initialized.");
+        LOGGER.log(System.Logger.Level.INFO, "Initializing Headless Ogre graphic engine complete.");
     }
 
     /**
@@ -152,7 +150,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
         try {
             this.root.setRenderer(this.nativeResourceLoader.getLibPath("RenderSystem_GL"));
         } catch (NativeException e) {
-            LOGGER.error("Error setting renderer", e);
+            LOGGER.log(System.Logger.Level.ERROR,"Error setting renderer", e);
         }
     }
 
@@ -166,9 +164,9 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
 
     @Override
     public OgreSceneManager createGraphicWorld(final String name, final ShadowType shadowType) {
-        LOGGER.debug("Creating Ogre SceneManager...");
+        LOGGER.log(System.Logger.Level.DEBUG,"Creating Ogre SceneManager...");
         OgreSceneManager sm = new OgreSceneManager(name, this.root.createScene(name), this.renderWindow, this.windowEngine.getScreenSize().width, this.windowEngine.getScreenSize().height);
-        LOGGER.debug("Ogre SceneManager created.");
+        LOGGER.log(System.Logger.Level.DEBUG,"Creating Ogre SceneManager complete.");
         //sm.setShadowType(shadowType);
         return sm;
     }

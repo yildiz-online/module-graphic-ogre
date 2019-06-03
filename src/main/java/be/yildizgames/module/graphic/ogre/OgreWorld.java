@@ -56,8 +56,6 @@ import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.particle.ParticleSystem;
 import be.yildizgames.module.graphic.query.GroundQuery;
 import be.yildizgames.module.graphic.query.Query;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.security.InvalidParameterException;
 
@@ -68,7 +66,7 @@ import java.security.InvalidParameterException;
  */
 final class OgreWorld implements GraphicWorld {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OgreWorld.class);
+    private static final System.Logger LOGGER = System.getLogger(OgreWorld.class.getName());
 
     /**
      * The scene manager manage the graphic part of this world.
@@ -305,7 +303,7 @@ final class OgreWorld implements GraphicWorld {
 
     @Override
     public final void setSkybox(final Skybox sky) {
-        LOGGER.info("Set skybox.");
+        LOGGER.log(System.Logger.Level.DEBUG, "Set skybox.");
         this.sceneManager.setSkybox(sky);
     }
 

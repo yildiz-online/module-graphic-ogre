@@ -29,8 +29,6 @@ import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.window.ScreenSize;
 import be.yildizgames.module.window.WindowHandle;
 import jni.JniRoot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Access to the Ogre::Root object in native code.
@@ -39,7 +37,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Root {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Root.class);
+    private static final System.Logger LOGGER = System.getLogger(Root.class.getName());
 
     private final JniRoot jni = new JniRoot();
 
@@ -67,7 +65,7 @@ public final class Root {
         if (this.initialized) {
             throw new IllegalStateException("You cannot load plug ins once root is initialized.");
         }
-        LOGGER.info("Loading ogre plugin: " + plugin);
+        LOGGER.log(System.Logger.Level.INFO,"Loading ogre plugin: {}", plugin);
         this.jni.loadPlugin(plugin);
     }
 
