@@ -71,7 +71,7 @@ final class OgreGuiContainer extends SimpleContainer implements Native {
         super(name, coordinate, material, widget);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
-        this.pointer = NativePointer.create(this.jni.constructor(OgreMaterial.class.cast(material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height));
+        this.pointer = NativePointer.create(this.jni.constructor(((OgreMaterial) material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height));
         this.setPosition(coordinate.left, coordinate.top);
     }
 
@@ -86,11 +86,11 @@ final class OgreGuiContainer extends SimpleContainer implements Native {
      * @param screenHeight Screen height in pixels.
      */
     OgreGuiContainer(final String name, final Material material, final BaseCoordinate coordinate, final Container parent, final int screenWidth, final int screenHeight, final boolean widget) {
-        super(name, coordinate, material, OgreGuiContainer.class.cast(parent), widget);
+        super(name, coordinate, material, (OgreGuiContainer) parent, widget);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
-        this.pointer = NativePointer.create(this.jni.constructorParent(OgreMaterial.class.cast(material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height,
-                OgreGuiContainer.class.cast(parent).getPointer().getPointerAddress()));
+        this.pointer = NativePointer.create(this.jni.constructorParent(((OgreMaterial) material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height,
+                ((OgreGuiContainer) parent).getPointer().getPointerAddress()));
         this.setPosition(coordinate.left, coordinate.top);
         this.show();
         if (!widget) {
@@ -149,7 +149,7 @@ final class OgreGuiContainer extends SimpleContainer implements Native {
 
     @Override
     protected void setMaterialImpl(final Material material) {
-        this.jni.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setMaterial(this.pointer.getPointerAddress(), ((OgreMaterial) material).getPointer().getPointerAddress());
     }
 
     @Override

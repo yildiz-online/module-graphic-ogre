@@ -24,7 +24,7 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.graphic.misc.SkyBox;
 import be.yildizgames.common.jni.NativePointer;
 import jni.JniSkybox;
 
@@ -33,7 +33,7 @@ import jni.JniSkybox;
  *
  * @author Grégory Van Den Borre
  */
-final class OgreSkybox extends Skybox {
+final class OgreSkybox extends SkyBox {
 
     /**
      * Pointer address to the native object.

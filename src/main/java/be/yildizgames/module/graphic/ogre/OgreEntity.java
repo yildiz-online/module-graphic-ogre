@@ -60,7 +60,7 @@ public final class OgreEntity implements Native {
      * @param material New material to use.
      */
     public void setMaterial(final Material material) {
-        this.jni.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setMaterial(this.pointer.getPointerAddress(), ((OgreMaterial) material).getPointer().getPointerAddress());
     }
 
     /**

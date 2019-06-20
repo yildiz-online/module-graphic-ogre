@@ -41,7 +41,7 @@ import be.yildizgames.module.graphic.SceneManager;
 import be.yildizgames.module.graphic.ShadowType;
 import be.yildizgames.module.graphic.camera.Camera;
 import be.yildizgames.module.graphic.material.Material;
-import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.graphic.misc.SkyBox;
 import be.yildizgames.module.graphic.ogre.OgreBillboardChain;
 import be.yildizgames.module.graphic.ogre.OgreBillboardSet;
 import be.yildizgames.module.graphic.ogre.OgreCamera;
@@ -247,7 +247,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      *
      * @param sky Sky box to use.
      */
-    public void setSkybox(final Skybox sky) {
+    public void setSkybox(final SkyBox sky) {
         this.jni.setSkybox(this.pointer.getPointerAddress(), sky.getName());
     }
 
@@ -297,7 +297,7 @@ public final class OgreSceneManager implements SceneManager, Native {
     public OgreLensFlare createLensFlare(final Material light, final Material streak, final Material halo, final Material burst, final Point3D pos) {
         // FIXME linked to camera, does not support switching cam
         return new OgreLensFlare(NativePointer.create(this.jni.createLensFlare(StringUtil.buildRandomString("lf_"), this.pointer.getPointerAddress(), this.defaultCamera.getPointer().getPointerAddress(),
-                OgreMaterial.class.cast(light).getPointer().getPointerAddress(), OgreMaterial.class.cast(streak).getPointer().getPointerAddress(), OgreMaterial.class.cast(halo).getPointer().getPointerAddress(), OgreMaterial.class.cast(burst).getPointer().getPointerAddress(),
+                ((OgreMaterial) light).getPointer().getPointerAddress(), ((OgreMaterial) streak).getPointer().getPointerAddress(), ((OgreMaterial) halo).getPointer().getPointerAddress(), ((OgreMaterial) burst).getPointer().getPointerAddress(),
                 pos.x, pos.y, pos.z)), Point3D.valueOf(pos.x, pos.y, pos.z));
     }
 
@@ -318,12 +318,12 @@ public final class OgreSceneManager implements SceneManager, Native {
     }
 
     public OgreQuery createQuery(RayProvider provider) {
-       final long address = this.jni.createQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress());
+       final long address = this.jni.createQuery(this.pointer.getPointerAddress(), ((Native) provider).getPointer().getPointerAddress());
        return new OgreQuery(NativePointer.create(address), resolutionX, resolutionY);
     }
 
     public OgreGroundQuery createGroundQuery(RayProvider provider) {
-       final long address = this.jni.createGroundQuery(this.pointer.getPointerAddress(), Native.class.cast(provider).getPointer().getPointerAddress(), this.dummyGroundNode.getPointer().getPointerAddress());
+       final long address = this.jni.createGroundQuery(this.pointer.getPointerAddress(), ((Native) provider).getPointer().getPointerAddress(), this.dummyGroundNode.getPointer().getPointerAddress());
        return new OgreGroundQuery(NativePointer.create(address), resolutionX, resolutionY);
     }
 
@@ -419,7 +419,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @return A new OgreBillboardSet attached to the root scene node.
      */
     public OgreBillboardSet createBillboardSet(final Material material) {
-        NativePointer setPointer = NativePointer.create(this.jni.createBillboardSet(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress()));
+        NativePointer setPointer = NativePointer.create(this.jni.createBillboardSet(this.pointer.getPointerAddress(), ((OgreMaterial) material).getPointer().getPointerAddress()));
         return new OgreBillboardSet(setPointer, this.rootNode);
     }
 

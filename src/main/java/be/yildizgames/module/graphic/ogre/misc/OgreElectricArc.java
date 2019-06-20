@@ -62,13 +62,13 @@ public final class OgreElectricArc extends ElectricArc implements Native {
 
     @Override
     public ElectricArc setMaterial(final Material material) {
-        this.jni.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setMaterial(this.pointer.getPointerAddress(), ((OgreMaterial) material).getPointer().getPointerAddress());
         return this;
     }
 
     @Override
     public ElectricArc addLight(final PointLight light) {
-        this.jni.addLight(this.pointer.getPointerAddress(), OgrePointLight.class.cast(light).getPointer().getPointerAddress());
+        this.jni.addLight(this.pointer.getPointerAddress(), ((OgrePointLight) light).getPointer().getPointerAddress());
         return this;
     }
 

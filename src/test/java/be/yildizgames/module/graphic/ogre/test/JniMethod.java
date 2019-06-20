@@ -61,7 +61,9 @@ public final class JniMethod {
     public String toString() {
         StringBuilder sb = new StringBuilder("(");
         for (Type s : parameters) {
-            sb.append(s.name + ", ");
+            sb
+                    .append(s.name)
+                    .append(", ");
         }
         sb.append(")");
         String result = sb.toString().replace(", )", ")");

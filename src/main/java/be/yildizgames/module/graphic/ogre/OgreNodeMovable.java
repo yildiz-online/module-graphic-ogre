@@ -91,7 +91,7 @@ public class OgreNodeMovable extends OgreNodeBase {
     public final void attachToOptional(final Movable other) {
         if(!other.equals(this.parent)) {
             this.detachFromParent();
-            this.nodeNative.attachTo(this.pointer.getPointerAddress(), Native.class.cast(other.getInternal()).getPointer().getPointerAddress());
+            this.nodeNative.attachTo(this.pointer.getPointerAddress(), ((Native) other.getInternal()).getPointer().getPointerAddress());
             this.parent = other;
             this.parent.addOptionalChild(this);
         }
@@ -101,7 +101,7 @@ public class OgreNodeMovable extends OgreNodeBase {
     public final void attachTo(final Movable other) {
         if(!other.equals(this.parent)) {
             this.detachFromParent();
-            this.nodeNative.attachTo(this.pointer.getPointerAddress(), Native.class.cast(other.getInternal()).getPointer().getPointerAddress());
+            this.nodeNative.attachTo(this.pointer.getPointerAddress(), ((Native) other.getInternal()).getPointer().getPointerAddress());
             this.parent = other;
             this.parent.addChild(this);
         }

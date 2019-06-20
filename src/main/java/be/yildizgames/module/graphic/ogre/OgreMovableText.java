@@ -65,7 +65,7 @@ public final class OgreMovableText implements MovableText, Native {
         super();
         this.visible = true;
         this.node = node;
-        long address = this.jni.constructor(this.node.getPointer().getPointerAddress(), name, text, OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
+        long address = this.jni.constructor(this.node.getPointer().getPointerAddress(), name, text, ((OgreFont) font).getPointer().getPointerAddress(), font.size);
         this.pointer = NativePointer.create(address);
     }
 

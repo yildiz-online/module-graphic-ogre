@@ -57,7 +57,7 @@ final class OgreIcon extends AbstractIconElement implements Native {
      */
     OgreIcon(final String name, final BaseCoordinate coordinates, final Material material, final Container container) {
         super(name, coordinates, material);
-        this.pointer = NativePointer.create(this.jni.constructor(OgreGuiContainer.class.cast(container).getPointer().getPointerAddress(), name, ((OgreMaterial) material).getPointer().getPointerAddress(), coordinates.width,
+        this.pointer = NativePointer.create(this.jni.constructor(((OgreGuiContainer) container).getPointer().getPointerAddress(), name, ((OgreMaterial) material).getPointer().getPointerAddress(), coordinates.width,
                 coordinates.height, coordinates.left, coordinates.top));
     }
 
@@ -107,7 +107,7 @@ final class OgreIcon extends AbstractIconElement implements Native {
 
     @Override
     protected void setMaterialImpl(final Material material) {
-        this.jni.setTexture(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setTexture(this.pointer.getPointerAddress(), ((OgreMaterial) material).getPointer().getPointerAddress());
     }
 
     @Override

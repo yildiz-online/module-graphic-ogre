@@ -52,8 +52,8 @@ final class OgreSelectionRectangle extends SelectionRectangle {
      */
     OgreSelectionRectangle(final Material material, final Material material2) {
         super();
-        this.pointer = NativePointer.create(this.jni.constructor(OgreMaterial.class.cast(material).getPointer().getPointerAddress(),
-                OgreMaterial.class.cast(material2).getPointer().getPointerAddress()));
+        this.pointer = NativePointer.create(this.jni.constructor(((OgreMaterial) material).getPointer().getPointerAddress(),
+                ((OgreMaterial) material2).getPointer().getPointerAddress()));
     }
 
     @Override

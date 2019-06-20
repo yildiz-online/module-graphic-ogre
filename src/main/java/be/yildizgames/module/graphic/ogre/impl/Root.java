@@ -65,7 +65,7 @@ public final class Root {
         if (this.initialized) {
             throw new IllegalStateException("You cannot load plug ins once root is initialized.");
         }
-        LOGGER.log(System.Logger.Level.INFO,"Loading ogre plugin: {}", plugin);
+        LOGGER.log(System.Logger.Level.INFO,"Loading ogre plugin: %s", plugin);
         this.jni.loadPlugin(plugin);
     }
 

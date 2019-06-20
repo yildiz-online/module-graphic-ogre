@@ -61,8 +61,8 @@ final class OgreText extends AbstractTextElement {
      */
     OgreText(final BaseCoordinate coordinates, final Font font, final Container container) {
         super(coordinates, font);
-        this.pointer = NativePointer.create(this.jni.constructor(OgreGuiContainer.class.cast(container).getPointer().getPointerAddress(), coordinates.width, coordinates.height, coordinates.left, coordinates.top,
-                OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size, this.getName()));
+        this.pointer = NativePointer.create(this.jni.constructor(((OgreGuiContainer) container).getPointer().getPointerAddress(), coordinates.width, coordinates.height, coordinates.left, coordinates.top,
+                ((OgreFont) font).getPointer().getPointerAddress(), font.size, this.getName()));
         this.setColor(font.color);
         this.hide();
         this.show();
@@ -103,7 +103,7 @@ final class OgreText extends AbstractTextElement {
 
     @Override
     protected void setFontImpl(final Font font) {
-        this.jni.setFont(this.pointer.getPointerAddress(), OgreFont.class.cast(font).getPointer().getPointerAddress(), font.size);
+        this.jni.setFont(this.pointer.getPointerAddress(), ((OgreFont) font).getPointer().getPointerAddress(), font.size);
     }
 
     @Override

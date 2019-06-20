@@ -74,7 +74,7 @@ public final class OgreBillboardSet implements BillboardSet, Native {
 
     @Override
     public void removeBillboard(final Billboard b) {
-        this.jni.remove(this.pointer.getPointerAddress(), OgreBillboard.class.cast(b).getPointer().getPointerAddress());
+        this.jni.remove(this.pointer.getPointerAddress(), ((OgreBillboard) b).getPointer().getPointerAddress());
     }
 
     @Override

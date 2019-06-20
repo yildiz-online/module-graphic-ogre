@@ -51,7 +51,7 @@ import be.yildizgames.module.graphic.misc.Line;
 import be.yildizgames.module.graphic.misc.MovableText;
 import be.yildizgames.module.graphic.misc.Ocean;
 import be.yildizgames.module.graphic.misc.Sky;
-import be.yildizgames.module.graphic.misc.Skybox;
+import be.yildizgames.module.graphic.misc.SkyBox;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.particle.ParticleSystem;
 import be.yildizgames.module.graphic.query.GroundQuery;
@@ -302,7 +302,7 @@ final class OgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final void setSkybox(final Skybox sky) {
+    public final void setSkybox(final SkyBox sky) {
         LOGGER.log(System.Logger.Level.DEBUG, "Set skybox.");
         this.sceneManager.setSkybox(sky);
     }

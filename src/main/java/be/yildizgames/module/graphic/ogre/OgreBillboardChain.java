@@ -73,7 +73,7 @@ public final class OgreBillboardChain implements BillboardChain, Native {
 
     @Override
     public void setMaterial(final Material material) {
-        this.jni.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setMaterial(this.pointer.getPointerAddress(), ((OgreMaterial) material).getPointer().getPointerAddress());
     }
 
     @Override

@@ -98,7 +98,7 @@ public final class OgreParticleSystem extends ParticleSystem implements Native {
 
     @Override
     protected void setMaterialImpl(final Material material) {
-        this.jni.setMaterial(this.pointer.getPointerAddress(), OgreMaterial.class.cast(material).getPointer().getPointerAddress());
+        this.jni.setMaterial(this.pointer.getPointerAddress(), ((OgreMaterial) material).getPointer().getPointerAddress());
     }
 
     @Override

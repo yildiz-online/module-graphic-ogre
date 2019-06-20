@@ -164,7 +164,7 @@ public abstract class OgreNodeBase implements OgreNode {
     public final void detachFromParent() {
         this.parent.removeChild(this);
         this.nodeNative.detachFromParent(this.pointer.getPointerAddress(),
-                Native.class.cast(this.parent.getInternal()).getPointer().getPointerAddress());
+                ((Native) this.parent.getInternal()).getPointer().getPointerAddress());
     }
 
     @Override
