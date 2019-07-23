@@ -257,15 +257,15 @@ public:
         node->translate(x, y, z, Ogre::Node::TS_WORLD);
     }
 
-	inline Ogre::Vector3 getPosition() const {
-	    LOG_FUNCTION
-		return this->node->getPosition();
-	}
+    inline Ogre::Vector3 getPosition() const {
+        LOG_FUNCTION
+        return this->node->getPosition();
+    }
 
-	inline Ogre::Vector3 getDirection() const {
-	    LOG_FUNCTION
-		return this->node->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
-	}
+    inline Ogre::Vector3 getDirection() const {
+        LOG_FUNCTION
+        return this->node->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
+    }
 
     inline Ogre::Vector3 getWorldDirection() const {
         LOG_FUNCTION
@@ -315,25 +315,22 @@ private:
 
 	yz::NativeMovable* movable;
 
-	/**
-	 * List containing object manually created(not using scene manager), they must be detached and manually deleted.
-	 */
-	std::vector<Ogre::MovableObject*> manualList;
+    /**
+    * List containing object manually created(not using scene manager), they must be detached and manually deleted.
+    */
+    std::vector<Ogre::MovableObject*> manualList;
 
-	void destroyAllAttachedMovableObjects(Ogre::SceneNode* i_pSceneNode) {
-
-		// Destroy all the attached objects
-		/*Ogre::SceneNode::ObjectIterator itObject =
-				i_pSceneNode->getAttachedObjectIterator();*/
-		Ogre::ObjectMap objects = i_pSceneNode->getAttachedObjects();
-		for (int i = 0; i < objects.size(); i++) {
-			i_pSceneNode->getCreator()->destroyMovableObject(objects.at(i));
+    void destroyAllAttachedMovableObjects(Ogre::SceneNode* i_pSceneNode) {
+        // Destroy all the attached objects
+        Ogre::SceneNode::ObjectIterator itObject = i_pSceneNode->getAttachedObjectIterator();
+		//std::vector<Ogre::Movable*> objects = i_pSceneNode->getAttachedObjects();
+		//for (int i = 0; i < objects.size(); i++) {
+		//	i_pSceneNode->getCreator()->destroyMovableObject(objects.at(i));
+		//}
+		while (itObject.hasMoreElements()) {
+		    Ogre::MovableObject* pObject = static_cast<Ogre::MovableObject*>(itObject.getNext());
+		    i_pSceneNode->getCreator()->destroyMovableObject(pObject);
 		}
-		/*while (itObject.hasMoreElements()) {
-			Ogre::MovableObject* pObject =
-					static_cast<Ogre::MovableObject*>(itObject.getNext());
-			i_pSceneNode->getCreator()->destroyMovableObject(pObject);
-		}*/
 		// Recurse to child SceneNodes
 		//Ogre::ChildNodeMap children = i_pSceneNode->getChildren();
 		/*for (int i = 0; i < children.size(); i++) {
