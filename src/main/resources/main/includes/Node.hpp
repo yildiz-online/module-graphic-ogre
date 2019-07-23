@@ -322,27 +322,22 @@ private:
 
     void destroyAllAttachedMovableObjects(Ogre::SceneNode* i_pSceneNode) {
         // Destroy all the attached objects
-        //Ogre::SceneNode::ObjectIterator itObject = i_pSceneNode->getAttachedObjectIterator();
         Ogre::SceneNode::ObjectMap objects = i_pSceneNode->getAttachedObjects();
         for (int i = 0; i < objects.size(); i++) {
             i_pSceneNode->getCreator()->destroyMovableObject(objects.at(i));
         }
-		/*while (itObject.hasMoreElements()) {
-		    Ogre::MovableObject* pObject = static_cast<Ogre::MovableObject*>(itObject.getNext());
-		    i_pSceneNode->getCreator()->destroyMovableObject(pObject);
-		}*/
-		// Recurse to child SceneNodes
-		//Ogre::ChildNodeMap children = i_pSceneNode->getChildren();
-		/*for (int i = 0; i < children.size(); i++) {
-		    destroyAllAttachedMovableObjects(pChildNode)
-		}*/
-		Ogre::SceneNode::ChildNodeIterator itChild =
+        // Recurse to child SceneNodes
+        Ogre::Node::ChildNodeMap children = i_pSceneNode->getChildren();
+        for (int i = 0; i < children.size(); i++) {
+            destroyAllAttachedMovableObjects(static_cast<Ogre::SceneNode*>(children.at(1));
+	}
+		/*Ogre::SceneNode::ChildNodeIterator itChild =
 				i_pSceneNode->getChildIterator();
 		while (itChild.hasMoreElements()) {
 			Ogre::SceneNode* pChildNode =
 					static_cast<Ogre::SceneNode*>(itChild.getNext());
 			destroyAllAttachedMovableObjects(pChildNode);
-		}
+		}*/
 	}
 };
 }
