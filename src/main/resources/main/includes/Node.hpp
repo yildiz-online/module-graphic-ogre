@@ -329,7 +329,7 @@ private:
         // Recurse to child SceneNodes
         Ogre::Node::ChildNodeMap children = i_pSceneNode->getChildren();
         for (int i = 0; i < children.size(); i++) {
-            destroyAllAttachedMovableObjects(static_cast<Ogre::SceneNode*>(children.at(1));
+            destroyAllAttachedMovableObjects(static_cast<Ogre::SceneNode*>(children.at(i));
 	}
 		/*Ogre::SceneNode::ChildNodeIterator itChild =
 				i_pSceneNode->getChildIterator();
