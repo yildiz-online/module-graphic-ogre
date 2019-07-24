@@ -98,10 +98,10 @@ public:
     inline void setDebugMode() {
         LOG_FUNCTION
         this->debug = true;
-        Ogre::SceneNode::ChildNodeIterator it = this->sceneManager->getRootSceneNode()->getChildIterator();
-        while (it.hasMoreElements()) {
-            dynamic_cast<Ogre::SceneNode*>(it.getNext())->showBoundingBox(true);
-        }
+        Ogre::Node::ChildNodeMap children = i_pSceneNode->getChildren();
+        for (int i = 0; i < children.size(); i++) {
+            static_cast<Ogre::SceneNode*>(children.at(i))->showBoundingBox(true);
+	    }
     }
 
     yz::Camera* createCamera(const std::string& name);
