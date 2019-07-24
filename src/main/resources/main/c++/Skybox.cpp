@@ -34,7 +34,7 @@ yz::Skybox::Skybox(const std::string& name, const std::string& path) {
     p->setLightingEnabled(false);
     p->setDepthWriteEnabled(false);
     Ogre::TextureUnitState* tus = p->createTextureUnitState();
-    tus->setCubicTextureName(path);
+    tus->setTextureName(path);
 }
 
 yz::Skybox::~Skybox() {
