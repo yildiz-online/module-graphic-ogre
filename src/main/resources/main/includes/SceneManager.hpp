@@ -98,7 +98,7 @@ public:
     inline void setDebugMode() {
         LOG_FUNCTION
         this->debug = true;
-        Ogre::Node::ChildNodeMap children = i_pSceneNode->getChildren();
+        Ogre::Node::ChildNodeMap children = this->sceneManager->getRootSceneNode()->getChildren();
         for (int i = 0; i < children.size(); i++) {
             static_cast<Ogre::SceneNode*>(children.at(i))->showBoundingBox(true);
 	    }
