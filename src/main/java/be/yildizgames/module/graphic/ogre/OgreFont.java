@@ -30,6 +30,8 @@ import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.Font;
 import jni.JniFont;
 
+import java.util.Objects;
+
 /**
  * Ogre implementation for a font.
  *
@@ -78,4 +80,23 @@ final class OgreFont extends Font implements Native {
         return this.pointer;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        OgreFont ogreFont = (OgreFont) o;
+        return pointer.equals(ogreFont.pointer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), pointer);
+    }
 }
