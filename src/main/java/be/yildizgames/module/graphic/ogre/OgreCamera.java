@@ -68,7 +68,9 @@ public final class OgreCamera extends Camera implements Native {
      * Full constructor.
      *
      * @param pointer Pointer address to the associated native object.
+     * @param master Master node.
      * @param name    Camera name.
+     * @param targetNode Target node.
      * @param node    The node will be used to auto track a specific position.
      * @param resX    Resolution width.
      * @param resY    Resolution height.
