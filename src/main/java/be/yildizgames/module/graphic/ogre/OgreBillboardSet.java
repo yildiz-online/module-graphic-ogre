@@ -42,11 +42,6 @@ public final class OgreBillboardSet extends OgreMovableObject implements Billboa
      */
     private final NativePointer pointer;
 
-    /**
-     * Associated node.
-     */
-    private final OgreNode node;
-
     private final JniBillboardSet jni = new JniBillboardSet();
 
     private boolean visible;
@@ -61,7 +56,6 @@ public final class OgreBillboardSet extends OgreMovableObject implements Billboa
         super(node);
         this.pointer = pointer;
         this.visible = true;
-        this.node = node;
         this.jni.attachToNode(this.pointer.getPointerAddress(), node.getPointer().getPointerAddress());
     }
 
@@ -83,11 +77,6 @@ public final class OgreBillboardSet extends OgreMovableObject implements Billboa
     @Override
     public NativePointer getPointer() {
         return pointer;
-    }
-
-    @Override
-    public final void delete() {
-        this.node.delete();
     }
 
     /**

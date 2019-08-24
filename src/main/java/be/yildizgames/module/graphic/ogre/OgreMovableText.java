@@ -90,15 +90,6 @@ public final class OgreMovableText extends OgreMovableObject implements MovableT
         return this.pointer;
     }
 
-    @Override
-    public final void delete() {
-        this.node.delete();
-    }
-
-    //public final Node getNode() {
-    //    return node;
-    //}
-
     /**
      * Set the object visible.
      */

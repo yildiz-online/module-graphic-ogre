@@ -74,4 +74,8 @@ class OgreMovableObject {
         this.node.attachToOptional(other);
     }
 
+    public final void delete() {
+        this.node.delete();
+    }
+
 }
