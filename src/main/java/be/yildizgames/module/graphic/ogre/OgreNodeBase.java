@@ -70,7 +70,7 @@ public abstract class OgreNodeBase implements OgreNode {
      * @param pointerAddress Address to the native object.
      * @param parent Parent object.
      */
-    protected OgreNodeBase(final NativePointer pointerAddress, final Movable parent) {
+    OgreNodeBase(final NativePointer pointerAddress, final Movable parent) {
         super();
         this.id = null;
         this.pointer = pointerAddress;
@@ -210,8 +210,6 @@ public abstract class OgreNodeBase implements OgreNode {
 
 
     public abstract void rotate(float x, float y, float z, float w);
-
-    public abstract Point3D rotate(float yaw, float pitch);
 
     public abstract Point3D translate(float moveX, float moveY, float moveZ);
 
