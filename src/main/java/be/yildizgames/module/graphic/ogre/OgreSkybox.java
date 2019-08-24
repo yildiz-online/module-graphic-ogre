@@ -56,5 +56,6 @@ final class OgreSkybox extends SkyBox {
 
     @Override
     protected void loadImpl() {
+        //Nothing to do
     }
 }

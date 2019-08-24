@@ -99,6 +99,7 @@ final class OgreText extends AbstractTextElement {
 
     @Override
     protected void setSizeImpl(final int width, final int height) {
+        //FIXME implements
     }
 
     @Override
