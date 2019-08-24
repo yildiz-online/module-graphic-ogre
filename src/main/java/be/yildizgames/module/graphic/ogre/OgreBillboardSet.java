@@ -24,8 +24,6 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.common.gameobject.Movable;
-import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.graphic.billboard.Billboard;
@@ -37,7 +35,7 @@ import jni.JniBillboardSet;
  *
  * @author Grégory Van den Borre
  */
-public final class OgreBillboardSet implements BillboardSet, Native {
+public final class OgreBillboardSet extends OgreMovableObject implements BillboardSet, Native {
 
     /**
      * Pointer address to the native code object.
@@ -60,7 +58,7 @@ public final class OgreBillboardSet implements BillboardSet, Native {
      * @param node    Associated node.
      */
     public OgreBillboardSet(final NativePointer pointer, final OgreNode node) {
-        super();
+        super(node);
         this.pointer = pointer;
         this.visible = true;
         this.node = node;
@@ -88,88 +86,9 @@ public final class OgreBillboardSet implements BillboardSet, Native {
     }
 
     @Override
-    public void detachFromParent() {
-        this.node.detachFromParent();
-    }
-
-    @Override
-    public void setPosition(float posX, float posY, float posZ) {
-        this.node.setPosition(posX, posY, posZ);
-    }
-
-    @Override
-    public void setDirection(float dirX, float dirY, float dirZ) {
-        this.node.setDirection(dirX, dirY, dirZ);
-    }
-
-    @Override
-    public void addOptionalChild(Movable child) {
-        this.node.addOptionalChild(child);
-    }
-
-    @Override
-    public void addChild(Movable child) {
-        this.node.addChild(child);
-    }
-
-    @Override
-    public void removeChild(Movable child) {
-        this.node.removeChild(child);
-    }
-
-    @Override
-    public Movable getInternal() {
-        return this.node;
-    }
-
-    @Override
-    public final void attachTo(final Movable other) {
-        this.node.attachTo(other);
-    }
-
-    @Override
-    public final void attachToOptional(final Movable other) {
-        this.node.attachToOptional(other);
-    }
-
-    @Override
-    public final Point3D getPosition() {
-        return this.node.getPosition();
-    }
-
-    @Override
-    public final void setPosition(final Point3D position) {
-        this.node.setPosition(position);
-    }
-
-    @Override
-    public final Point3D getAbsolutePosition() {
-        return this.node.getAbsolutePosition();
-    }
-
-    @Override
-    public final Point3D getDirection() {
-        return this.node.getDirection();
-    }
-
-    @Override
-    public final void setDirection(final Point3D direction) {
-        this.node.setDirection(direction);
-    }
-
-    @Override
-    public final Point3D getAbsoluteDirection() {
-        return this.node.getAbsoluteDirection();
-    }
-
-    @Override
     public final void delete() {
         this.node.delete();
     }
-
-    //public final Node getNode() {
-    //    return node;
-    //}
 
     /**
      * Set the object visible.

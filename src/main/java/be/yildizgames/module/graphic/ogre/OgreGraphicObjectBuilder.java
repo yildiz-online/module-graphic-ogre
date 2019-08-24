@@ -73,7 +73,7 @@ class OgreGraphicObjectBuilder extends GraphicObjectBuilder {
         } else if(plane != null) {
             entity = this.sceneManager.createEntity(plane, node);
         } else {
-            throw new RuntimeException("Missing shape");
+            throw new IllegalStateException("Missing shape");
         }
         entity.setMaterial(material);
         return new OgreObject(this.id, entity);

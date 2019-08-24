@@ -24,7 +24,6 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
@@ -38,7 +37,7 @@ import jni.JniMovableText;
  *
  * @author Grégory Van den Borre
  */
-public final class OgreMovableText implements MovableText, Native {
+public final class OgreMovableText extends OgreMovableObject implements MovableText, Native {
 
     /**
      * Pointer for the native object.
@@ -62,7 +61,7 @@ public final class OgreMovableText implements MovableText, Native {
      * @param font Font to use.
      */
     public OgreMovableText(final OgreNodeBase node, final String name, final String text, final Font font) {
-        super();
+        super(node);
         this.visible = true;
         this.node = node;
         long address = this.jni.constructor(this.node.getPointer().getPointerAddress(), name, text, ((OgreFont) font).getPointer().getPointerAddress(), font.size);
@@ -84,81 +83,6 @@ public final class OgreMovableText implements MovableText, Native {
         // Note The enum values must be in same order as in native code.
         // FIXME do not use ordinal
         this.jni.setTextAlignement(this.pointer.getPointerAddress(), h.ordinal(), v.ordinal());
-    }
-
-    @Override
-    public void setPosition(float posX, float posY, float posZ) {
-        this.node.setPosition(posX, posY, posZ);
-    }
-
-    @Override
-    public void setDirection(float dirX, float dirY, float dirZ) {
-        this.node.setDirection(dirX, dirY, dirZ);
-    }
-
-    @Override
-    public void detachFromParent() {
-        this.node.detachFromParent();
-    }
-
-    @Override
-    public void addOptionalChild(Movable child) {
-        this.node.addOptionalChild(child);
-    }
-
-    @Override
-    public void addChild(Movable child) {
-        this.node.addChild(child);
-    }
-
-    @Override
-    public void removeChild(Movable child) {
-        this.node.removeChild(child);
-    }
-
-    @Override
-    public Movable getInternal() {
-        return this.node;
-    }
-
-    @Override
-    public final void attachTo(final Movable other) {
-        this.node.attachTo(other);
-    }
-
-    @Override
-    public final void attachToOptional(final Movable other) {
-        this.node.attachToOptional(other);
-    }
-
-    @Override
-    public final Point3D getPosition() {
-        return this.node.getPosition();
-    }
-
-    @Override
-    public final void setPosition(final Point3D position) {
-        this.node.setPosition(position);
-    }
-
-    @Override
-    public final Point3D getAbsolutePosition() {
-        return this.node.getAbsolutePosition();
-    }
-
-    @Override
-    public final Point3D getDirection() {
-        return this.node.getDirection();
-    }
-
-    @Override
-    public final void setDirection(final Point3D direction) {
-        this.node.setDirection(direction);
-    }
-
-    @Override
-    public final Point3D getAbsoluteDirection() {
-        return this.node.getAbsoluteDirection();
     }
 
     @Override
