@@ -25,15 +25,9 @@
 package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.geometry.Point3D;
-import be.yildizgames.common.model.EntityId;
-import be.yildizgames.common.shape.Box;
-import be.yildizgames.common.shape.Plane;
-import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.common.util.Registerer;
 import be.yildizgames.module.color.Color;
 import be.yildizgames.module.graphic.Font;
-import be.yildizgames.module.graphic.GraphicMesh;
-import be.yildizgames.module.graphic.GraphicObject;
 import be.yildizgames.module.graphic.GraphicObjectBuilder;
 import be.yildizgames.module.graphic.GraphicWorld;
 import be.yildizgames.module.graphic.RayProvider;
@@ -90,56 +84,6 @@ final class OgreWorld implements GraphicWorld {
         this.sceneManager = graphic;
     }
 
-    @Override
-    public final OgreObject createStaticDoodad(final Box box, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNodeBase node = this.sceneManager.createStaticNode(position, direction);
-        final OgreEntity entity = this.sceneManager.createEntity(box, node);
-        entity.setMaterial(material);
-
-        return new OgreObject(EntityId.WORLD, entity);
-    }
-
-
-    @Override
-    public final OgreObject createStaticDoodad(final Plane plane, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNodeBase node = this.sceneManager.createStaticNode(position, direction);
-        final OgreEntity entity = this.sceneManager.createEntity(plane, node);
-        entity.setMaterial(material);
-
-        return new OgreObject(EntityId.WORLD, entity);
-    }
-
-    @Override
-    public final OgreObject createStaticDoodad(final Sphere sphere, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNodeBase node = this.sceneManager.createStaticNode(position, direction);
-        final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
-        entity.setMaterial(material);
-
-        return new OgreObject(EntityId.WORLD, entity);
-    }
-
-    @Override
-    public final OgreObject createStaticDoodad(final Sphere sphere, final Material material, final Point3D position) {
-        return this.createStaticDoodad(sphere, material, position, Point3D.BASE_DIRECTION);
-    }
-
-    @Override
-    public final OgreObject createStaticDoodad(final GraphicMesh mesh, final Point3D position, final Point3D direction) {
-        final OgreNodeBase node = this.sceneManager.createStaticNode(position, direction);
-        final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
-        entity.setMaterial(mesh.getMaterial());
-
-        return new OgreObject(EntityId.WORLD, entity);
-    }
-
-    @Override
-    public OgreObject createStaticObject(final EntityId id, final GraphicMesh mesh, final Point3D position, final Point3D direction) {
-        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, direction);
-        final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
-        entity.setMaterial(mesh.getMaterial());
-
-        return new OgreObject(id, entity);
-    }
 
     @Override
     public String getName() {
@@ -147,114 +91,9 @@ final class OgreWorld implements GraphicWorld {
     }
 
     @Override
-    public final OgreObject createMovableDoodad(final Box box, final Material material) {
-        final OgreNodeBase node = this.sceneManager.createMovableNode();
-        final OgreEntity entity = this.sceneManager.createEntity(box, node);
-        entity.setMaterial(material);
-        return new OgreObject(EntityId.WORLD, entity);
-    }
-
-    @Override
-    public final OgreObject createMovableDoodad(final Plane plane, final Material material) {
-        final OgreNodeBase node = this.sceneManager.createMovableNode();
-        final OgreEntity entity = this.sceneManager.createEntity(plane, node);
-        entity.setMaterial(material);
-        return new OgreObject(EntityId.WORLD, entity);
-    }
-
-    @Override
-    public final OgreObject createMovableDoodad(final Sphere sphere, final Material material) {
-        final OgreNodeBase node = this.sceneManager.createMovableNode();
-        final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
-        entity.setMaterial(material);
-        return new OgreObject(EntityId.WORLD, entity);
-    }
-
-    @Override
-    public final OgreObject createMovableDoodad(final GraphicMesh mesh) {
-        final OgreNodeBase node = this.sceneManager.createMovableNode();
-        final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
-        entity.setMaterial(mesh.getMaterial());
-        return new OgreObject(EntityId.WORLD, entity);
-    }
-
-
-
-    @Override
-    public final OgreObject createMovableObject(final EntityId id, final GraphicMesh mesh, final Point3D position) {
-        final OgreNodeBase node = this.sceneManager.createMovableNode(id);
-        final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
-        entity.setMaterial(mesh.getMaterial());
-        node.setPosition(position);
-        return new OgreObject(id, entity);
-    }
-
-    @Override
     public GraphicObjectBuilder createObject() {
         return new OgreGraphicObjectBuilder(this.sceneManager);
     }
-
-    @Override
-    public final OgreObject createStaticObject(final EntityId id, final GraphicMesh mesh, final Point3D position) {
-        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, Point3D.BASE_DIRECTION);
-        final OgreEntity entity = this.sceneManager.createEntity(mesh, node);
-        entity.setMaterial(mesh.getMaterial());
-        return new OgreObject(id, entity);
-    }
-
-    @Override
-    public OgreObject createStaticObject(final EntityId id, final Box box, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, direction);
-        final OgreEntity entity = this.sceneManager.createEntity(box, node);
-        entity.setMaterial(material);
-        return new OgreObject(id, entity);
-    }
-
-    @Override
-    public OgreObject createStaticObject(final EntityId id, final Sphere sphere, final Material material, final Point3D position, final Point3D direction) {
-        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, direction);
-        final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
-        entity.setMaterial(material);
-
-        return new OgreObject(id, entity);
-    }
-
-    @Override
-    public GraphicObject createStaticObject(EntityId id, Plane plane, Material material, Point3D position, Point3D direction) {
-        final OgreNodeBase node = this.sceneManager.createStaticNode(id, position, direction);
-        final OgreEntity entity = this.sceneManager.createEntity(plane, node);
-        entity.setMaterial(material);
-
-        return new OgreObject(id, entity);
-    }
-
-    @Override
-    public OgreObject createMovableObject(final EntityId id, final Box box, final Material material, final Point3D position) {
-        final OgreNodeBase node = this.sceneManager.createMovableNode(id);
-        final OgreEntity entity = this.sceneManager.createEntity(box, node);
-        entity.setMaterial(material);
-        node.setPosition(position);
-        return new OgreObject(id, entity);
-    }
-
-    @Override
-    public GraphicObject createMovableObject(EntityId id, Plane plane, Material material, Point3D position) {
-        final OgreNodeBase node = this.sceneManager.createMovableNode(id);
-        final OgreEntity entity = this.sceneManager.createEntity(plane, node);
-        entity.setMaterial(material);
-        node.setPosition(position);
-        return new OgreObject(id, entity);
-    }
-
-    @Override
-    public OgreObject createMovableObject(final EntityId id, final Sphere sphere, final Material material, final Point3D position) {
-        final OgreNodeBase node = this.sceneManager.createMovableNode(id);
-        final OgreEntity entity = this.sceneManager.createEntity(sphere, node);
-        entity.setMaterial(material);
-        node.setPosition(position);
-        return new OgreObject(id, entity);
-    }
-
 
     @Override
     public final LensFlare createLensFlare(final LensFlare.LensFlareMaterial mat, Point3D pos) {
