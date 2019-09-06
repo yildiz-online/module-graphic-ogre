@@ -24,28 +24,28 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.common.exception.technical.NativeException;
 import be.yildizgames.common.file.ResourcePath;
 import be.yildizgames.common.libloader.NativeResourceLoader;
 import be.yildizgames.common.os.SystemUtil;
 import be.yildizgames.common.util.Checker;
 import be.yildizgames.module.color.Color;
+import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.BaseGraphicEngine;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.ShadowType;
 import be.yildizgames.module.graphic.gui.GuiFactory;
 import be.yildizgames.module.graphic.material.Material;
 import be.yildizgames.module.graphic.misc.SelectionRectangle;
-import be.yildizgames.module.graphic.ogre.impl.DummyRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.ogre.impl.Root;
 import be.yildizgames.module.window.BaseWindowEngine;
 import be.yildizgames.module.window.ScreenSize;
-import be.yildizgames.module.window.dummy.DummyWindowEngine;
+import be.yildizgames.module.window.input.KeyboardListener;
+import be.yildizgames.module.window.widget.WindowShell;
+import be.yildizgames.module.window.widget.WindowShellOptions;
 
 import java.io.File;
-import java.util.Objects;
 
 /**
  * Implementation of the graphic engine based on Ogre.
@@ -73,6 +73,8 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     private final NativeResourceLoader nativeResourceLoader;
 
     private final BaseWindowEngine windowEngine;
+
+    private final WindowShell shell;
     /**
      * Only one can be created at a time.
      */
@@ -90,8 +92,25 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     public OgreGraphicEngine(final BaseWindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
         super();
         LOGGER.log(System.Logger.Level.INFO, "Initializing Ogre graphic engine...");
-        Objects.requireNonNull(windowEngine);
-        Objects.requireNonNull(nativeResourceLoader);
+        this.shell = windowEngine.getWindowShellFactory().buildShell(WindowShellOptions.FULLSCREEN);
+
+        WindowShell uiShell = windowEngine.getWindowShellFactory().buildShell(WindowShellOptions.TRANSPARENT, WindowShellOptions.FULLSCREEN);
+
+        /*shell.addFocusListener(new FocusListener() {
+            @Override
+            public void onFocusChange(boolean focused) {
+                if(focused) {
+                    uiShell.requestFocus();
+                }
+            }
+        });*/
+        this.shell.addKeyListener(new KeyboardListener() {
+            @Override
+            public boolean keyPressed(char key) {
+                uiShell.requestFocus();
+                return false;
+            }
+        });
         this.nativeResourceLoader = nativeResourceLoader;
 
         this.nativeResourceLoader.loadBaseLibrary();
@@ -102,39 +121,15 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
         if (SystemUtil.isLinux()) {
             this.renderWindow = this.root.createWindow(windowEngine.getScreenSize());
         } else {
-            this.renderWindow = this.root.createWindow(windowEngine.getScreenSize(), windowEngine.getHandle());
+            this.renderWindow = this.root.createWindow(windowEngine.getScreenSize(), this.shell.getHandle());
         }
         this.materialManager = new OgreMaterialManager();
         this.windowEngine = windowEngine;
         this.guiBuilder = new OgreGuiFactory(this.windowEngine.getScreenSize());
+        this.guiBuilder.container().withSize(400,400).withBackground(Material.blue()).build().show();
+         uiShell.createButton().setCoordinates(new Coordinates(500,500,500,500));
+        this.shell.toFront();
         LOGGER.log(System.Logger.Level.INFO, "Initializing Ogre graphic engine complete.");
-    }
-
-    private OgreGraphicEngine(NativeResourceLoader nativeResourceLoader) {
-        super();
-        LOGGER.log(System.Logger.Level.INFO, "Initializing Headless Ogre graphic engine...");
-        Objects.requireNonNull(nativeResourceLoader);
-        this.nativeResourceLoader = nativeResourceLoader;
-
-        this.nativeResourceLoader.loadBaseLibrary();
-        this.nativeResourceLoader.loadLibrary("libyildizphysfs", "OgreMain", "OgreOverlay", "libyildizogre");
-        this.root = new Root();
-        this.loadPlugins();
-        this.loadRenderer();
-        this.renderWindow = new DummyRenderWindow();
-        this.materialManager = new OgreMaterialManager();
-        this.windowEngine = new DummyWindowEngine();
-        this.guiBuilder = new OgreGuiFactory(this.windowEngine.getScreenSize());
-        LOGGER.log(System.Logger.Level.INFO, "Initializing Headless Ogre graphic engine complete.");
-    }
-
-    /**
-     * Build a headless engine, to be used to test on headless system like CI server.
-     * @param loader Loader for the native libraries.
-     * @return A headless graphic engine for testing.
-     */
-    public static OgreGraphicEngine headless(NativeResourceLoader loader) {
-        return new OgreGraphicEngine(loader);
     }
 
     public OgreMaterialManager getMaterialManager() {
@@ -149,7 +144,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     private void loadRenderer() {
         try {
             this.root.setRenderer(this.nativeResourceLoader.getLibPath("RenderSystem_GL"));
-        } catch (NativeException e) {
+        } catch (IllegalStateException e) {
             LOGGER.log(System.Logger.Level.ERROR,"Error setting renderer", e);
         }
     }
