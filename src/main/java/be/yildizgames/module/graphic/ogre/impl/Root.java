@@ -75,6 +75,7 @@ public final class Root {
      * @param renderer Renderer name to load.
      */
     public void setRenderer(final String renderer) {
+        LOGGER.log(System.Logger.Level.INFO,"Loading renderer {0}.", renderer);
         this.jni.loadRenderer(renderer);
         this.initialized = true;
     }
@@ -106,6 +107,7 @@ public final class Root {
      * @return The built render window.
      */
     public RenderWindow createWindow(final ScreenSize res, final WindowHandle handle) {
+        LOGGER.log(System.Logger.Level.INFO,"Creating render window for windows system...");
         this.jni.createRenderWindow(res.width, res.height, handle.value);
         return new RenderWindow();
     }
@@ -117,6 +119,7 @@ public final class Root {
      * @return The built render window.
      */
     public RenderWindow createWindow(final ScreenSize res) {
+        LOGGER.log(System.Logger.Level.INFO,"Creating render window for non-windows system...");
         this.jni.createRenderWindowGlContext(res.width, res.height);
         return new RenderWindow();
     }
