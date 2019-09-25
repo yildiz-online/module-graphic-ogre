@@ -62,7 +62,7 @@ final class OgreBillboard extends Billboard implements Native {
 
     @Override
     public void setColor(final Color color) {
-        this.jni.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.jni.setColor(this.pointer.getPointerAddress(), color.normalizedRedValue, color.normalizedGreenValue, color.normalizedBlueValue, color.normalizedAlphaValue);
     }
 
     @Override

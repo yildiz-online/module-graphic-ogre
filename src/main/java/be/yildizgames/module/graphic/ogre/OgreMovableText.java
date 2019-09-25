@@ -70,7 +70,7 @@ public final class OgreMovableText extends OgreMovableObject implements MovableT
 
     @Override
     public void setTextColor(final Color color) {
-        this.jni.setTextColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.jni.setTextColor(this.pointer.getPointerAddress(), color.normalizedRedValue, color.normalizedGreenValue, color.normalizedBlueValue, color.normalizedAlphaValue);
     }
 
     @Override

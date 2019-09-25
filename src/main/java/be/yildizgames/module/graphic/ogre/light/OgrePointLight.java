@@ -70,7 +70,7 @@ public final class OgrePointLight extends PointLight implements Native {
 
     @Override
     public void setColor(final Color color) {
-        this.jni.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
+        this.jni.setColor(this.pointer.getPointerAddress(), color.normalizedRedValue, color.normalizedGreenValue, color.normalizedBlueValue);
     }
 
     @Override

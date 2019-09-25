@@ -71,7 +71,7 @@ final class OgreText extends AbstractTextElement {
     @Override
     public void setColor(final Color color) {
         if (!color.equals(this.color)) {
-            this.jni.setColor(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+            this.jni.setColor(this.pointer.getPointerAddress(), color.normalizedRedValue, color.normalizedGreenValue, color.normalizedBlueValue, color.normalizedAlphaValue);
             this.color = color;
         }
     }

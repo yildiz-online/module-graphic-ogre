@@ -91,12 +91,12 @@ final class OgreParticleEmitter extends ParticleEmitter {
 
     @Override
     protected void setStartColorImpl(final Color start) {
-        this.jni.setStartColor(this.pointer.getPointerAddress(), start.normalizedRed, start.normalizedGreen, start.normalizedBlue, start.normalizedAlpha);
+        this.jni.setStartColor(this.pointer.getPointerAddress(), start.normalizedRedValue, start.normalizedGreenValue, start.normalizedBlueValue, start.normalizedAlphaValue);
     }
 
     @Override
     protected void setEndColorImpl(final Color end) {
-        this.jni.setEndColor(this.pointer.getPointerAddress(), end.normalizedRed, end.normalizedGreen, end.normalizedBlue, end.normalizedAlpha);
+        this.jni.setEndColor(this.pointer.getPointerAddress(), end.normalizedRedValue, end.normalizedGreenValue, end.normalizedBlueValue, end.normalizedAlphaValue);
     }
 
     @Override

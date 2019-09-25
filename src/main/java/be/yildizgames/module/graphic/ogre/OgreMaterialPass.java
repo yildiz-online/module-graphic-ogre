@@ -103,12 +103,12 @@ final class OgreMaterialPass extends MaterialPass {
 
     @Override
     protected void setDiffuseImpl(final Color color) {
-        this.jni.setDiffuse(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.jni.setDiffuse(this.pointer.getPointerAddress(), color.normalizedRedValue, color.normalizedGreenValue, color.normalizedBlueValue, color.normalizedAlphaValue);
     }
 
     @Override
     protected void setAmbientImpl(final Color color) {
-        this.jni.setAmbient(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
+        this.jni.setAmbient(this.pointer.getPointerAddress(), color.normalizedRedValue, color.normalizedGreenValue, color.normalizedBlueValue);
     }
 
     @Override
@@ -155,7 +155,7 @@ final class OgreMaterialPass extends MaterialPass {
     @Override
     public OgreMaterialPass setFragmentShaderParameter(final ShaderParamColor shaderParam) {
         Color c = shaderParam.color;
-        this.jni.setFragmentProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.name, c.normalizedRed, c.normalizedGreen, c.normalizedBlue, c.normalizedAlpha);
+        this.jni.setFragmentProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.name, c.normalizedRedValue, c.normalizedGreenValue, c.normalizedBlueValue, c.normalizedAlphaValue);
         return this;
     }
 
@@ -201,7 +201,7 @@ final class OgreMaterialPass extends MaterialPass {
     @Override
     public OgreMaterialPass setVertexShaderParameter(final ShaderParamColor shaderParam) {
         Color c = shaderParam.color;
-        this.jni.setVertexProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.name, c.normalizedRed, c.normalizedGreen, c.normalizedBlue, c.normalizedAlpha);
+        this.jni.setVertexProgramParameterColor(this.pointer.getPointerAddress(), shaderParam.name, c.normalizedRedValue, c.normalizedGreenValue, c.normalizedBlueValue, c.normalizedAlphaValue);
         return this;
     }
 
@@ -235,7 +235,7 @@ final class OgreMaterialPass extends MaterialPass {
 
     @Override
     public OgreMaterialPass setEmissive(final Color color) {
-        this.jni.setEmissive(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
+        this.jni.setEmissive(this.pointer.getPointerAddress(), color.normalizedRedValue, color.normalizedGreenValue, color.normalizedBlueValue);
         return this;
     }
 

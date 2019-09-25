@@ -78,7 +78,7 @@ final class OgreTextureUnit extends TextureUnit implements Native {
 
     @Override
     public void setColorOperationEx(final LayerBlendOperationEx source1, final LayerBlendSource manual, final LayerBlendSource current, final Color color) {
-        this.jni.setColorOperationExManual(this.pointer.getPointerAddress(), source1.ordinal(), manual.ordinal(), current.ordinal(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue);
+        this.jni.setColorOperationExManual(this.pointer.getPointerAddress(), source1.ordinal(), manual.ordinal(), current.ordinal(), color.normalizedRedValue, color.normalizedGreenValue, color.normalizedBlueValue);
     }
 
     @Override

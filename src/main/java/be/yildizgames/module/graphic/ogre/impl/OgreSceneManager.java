@@ -152,7 +152,7 @@ public final class OgreSceneManager implements SceneManager, Native {
      * @param color World ambient light color.
      */
     public final void setAmbientLight(final Color color) {
-        this.jni.setAmbientLight(this.pointer.getPointerAddress(), color.normalizedRed, color.normalizedGreen, color.normalizedBlue, color.normalizedAlpha);
+        this.jni.setAmbientLight(this.pointer.getPointerAddress(), color.normalizedRedValue, color.normalizedGreenValue, color.normalizedBlueValue, color.normalizedAlphaValue);
     }
 
     /**
