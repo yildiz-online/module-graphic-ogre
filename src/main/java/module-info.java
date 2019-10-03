@@ -34,6 +34,7 @@ open module be.yildizgames.module.graphic.ogre {
     requires be.yildizgames.common.util;
     requires be.yildizgames.common.os;
     requires be.yildizgames.common.model;
+    requires be.yildizgames.common.shape;
 
     provides be.yildizgames.module.graphic.GraphicEngineProvider
             with be.yildizgames.module.graphic.ogre.OgreGraphicEngineProvider;
