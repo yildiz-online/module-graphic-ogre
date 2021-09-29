@@ -24,7 +24,7 @@
 
 package be.yildizgames.module.graphic.ogre;
 
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.impl.StandardGuiFactory;
@@ -60,7 +60,7 @@ final class OgreGuiFactory extends StandardGuiFactory {
      */
     @Override
     public OgreGuiContainer buildContainerElement(final String name,
-                                                 final BaseCoordinate coordinates, final Material background) {
+                                                  final Coordinates coordinates, final Material background) {
         return new OgreGuiContainer(name, background, coordinates,
                 this.screenSize.width, this.screenSize.height, false);
     }
@@ -78,7 +78,7 @@ final class OgreGuiFactory extends StandardGuiFactory {
      */
     @Override
     public OgreGuiContainer buildContainerElement(final String name,
-                                                 final BaseCoordinate coordinates, final Material background,
+                                                 final Coordinates coordinates, final Material background,
                                                  final Container parent, final boolean widget) {
         return new OgreGuiContainer(name, background, coordinates, parent,
                 this.screenSize.width, this.screenSize.height, widget);
@@ -95,7 +95,7 @@ final class OgreGuiFactory extends StandardGuiFactory {
      */
     @Override
     protected OgreIcon buildIconElement(final String name,
-                                                   final BaseCoordinate coordinates, final Material background,
+                                                   final Coordinates coordinates, final Material background,
                                                    final Container container) {
         return new OgreIcon(name, coordinates, background, container);
     }
@@ -110,7 +110,7 @@ final class OgreGuiFactory extends StandardGuiFactory {
      */
     @Override
     protected OgreText buildTextElement(
-            final BaseCoordinate coordinates, final Font font,
+            final Coordinates coordinates, final Font font,
             final Container container) {
         return new OgreText(coordinates, font, container);
     }

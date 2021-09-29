@@ -26,7 +26,7 @@ package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractTextElement;
@@ -59,9 +59,9 @@ final class OgreText extends AbstractTextElement {
      * @param font        Text font.
      * @param container   Container holding the text.
      */
-    OgreText(final BaseCoordinate coordinates, final Font font, final Container container) {
+    OgreText(final Coordinates coordinates, final Font font, final Container container) {
         super(coordinates, font);
-        this.pointer = NativePointer.create(this.jni.constructor(((OgreGuiContainer) container).getPointer().getPointerAddress(), coordinates.width, coordinates.height, coordinates.left, coordinates.top,
+        this.pointer = NativePointer.create(this.jni.constructor(((OgreGuiContainer) container).getPointer().getPointerAddress(), coordinates.getWidth(), coordinates.getHeight(), coordinates.getLeft(), coordinates.getTop(),
                 ((OgreFont) font).getPointer().getPointerAddress(), font.size, this.getName()));
         this.setColor(font.color);
         this.hide();

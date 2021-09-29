@@ -26,7 +26,7 @@ package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.Zorder;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.internal.Element;
@@ -67,12 +67,12 @@ final class OgreGuiContainer extends SimpleContainer implements Native {
      * @param screenWidth  Screen width in pixels.
      * @param screenHeight Screen height in pixels.
      */
-    OgreGuiContainer(final String name, final Material material, final BaseCoordinate coordinate, final int screenWidth, final int screenHeight, final boolean widget) {
+    OgreGuiContainer(final String name, final Material material, final Coordinates coordinate, final int screenWidth, final int screenHeight, final boolean widget) {
         super(name, coordinate, material, widget);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
-        this.pointer = NativePointer.create(this.jni.constructor(((OgreMaterial) material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height));
-        this.setPosition(coordinate.left, coordinate.top);
+        this.pointer = NativePointer.create(this.jni.constructor(((OgreMaterial) material).getPointer().getPointerAddress(), name, coordinate.getWidth(), coordinate.getHeight()));
+        this.setPosition(coordinate.getLeft(), coordinate.getTop());
     }
 
     /**
@@ -85,13 +85,13 @@ final class OgreGuiContainer extends SimpleContainer implements Native {
      * @param screenWidth  Screen width in pixels.
      * @param screenHeight Screen height in pixels.
      */
-    OgreGuiContainer(final String name, final Material material, final BaseCoordinate coordinate, final Container parent, final int screenWidth, final int screenHeight, final boolean widget) {
+    OgreGuiContainer(final String name, final Material material, final Coordinates coordinate, final Container parent, final int screenWidth, final int screenHeight, final boolean widget) {
         super(name, coordinate, material, (OgreGuiContainer) parent, widget);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
-        this.pointer = NativePointer.create(this.jni.constructorParent(((OgreMaterial) material).getPointer().getPointerAddress(), name, coordinate.width, coordinate.height,
+        this.pointer = NativePointer.create(this.jni.constructorParent(((OgreMaterial) material).getPointer().getPointerAddress(), name, coordinate.getWidth(), coordinate.getHeight(),
                 ((OgreGuiContainer) parent).getPointer().getPointerAddress()));
-        this.setPosition(coordinate.left, coordinate.top);
+        this.setPosition(coordinate.getLeft(), coordinate.getTop());
         this.show();
         if (!widget) {
             this.setZ(parent.getZ().add(1));

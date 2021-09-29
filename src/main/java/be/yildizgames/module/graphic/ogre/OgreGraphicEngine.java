@@ -29,7 +29,6 @@ import be.yildizgames.common.libloader.NativeResourceLoader;
 import be.yildizgames.common.os.SystemUtil;
 import be.yildizgames.common.util.Checker;
 import be.yildizgames.module.color.Color;
-import be.yildizgames.module.coordinate.Coordinates;
 import be.yildizgames.module.graphic.BaseGraphicEngine;
 import be.yildizgames.module.graphic.Font;
 import be.yildizgames.module.graphic.ShadowType;
@@ -40,9 +39,10 @@ import be.yildizgames.module.graphic.ogre.impl.OgreRenderWindow;
 import be.yildizgames.module.graphic.ogre.impl.OgreSceneManager;
 import be.yildizgames.module.graphic.ogre.impl.Root;
 import be.yildizgames.module.window.BaseWindowEngine;
+import be.yildizgames.module.window.RegisteredView;
 import be.yildizgames.module.window.ScreenSize;
-import be.yildizgames.module.window.input.KeyboardListener;
 import be.yildizgames.module.window.widget.WindowShell;
+import be.yildizgames.module.window.widget.WindowShellFactory;
 import be.yildizgames.module.window.widget.WindowShellOptions;
 
 import java.io.File;
@@ -72,9 +72,9 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
 
     private final NativeResourceLoader nativeResourceLoader;
 
-    private final BaseWindowEngine windowEngine;
-
     private final WindowShell shell;
+
+    private final BaseWindowEngine windowEngine;
     /**
      * Only one can be created at a time.
      */
@@ -82,19 +82,20 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     private SelectionRectangle selection;
 
     /**
-     * Build a windows engine.
+     * Build a graphic engine.
      *
-     * @param windowEngine BaseWindowEngine wrapping this graphic context.
+     * @param engine Window engine.
      * @throws AssertionError If any parameter is null.
      */
     //@Ensures this.size == windowEngine.size
     //@Ensures this.root != null
-    public OgreGraphicEngine(final BaseWindowEngine windowEngine, NativeResourceLoader nativeResourceLoader) {
+    public OgreGraphicEngine(final BaseWindowEngine engine, NativeResourceLoader nativeResourceLoader) {
         super();
         LOGGER.log(System.Logger.Level.INFO, "Initializing Ogre graphic engine...");
-        this.shell = windowEngine.getWindowShellFactory().buildShell(WindowShellOptions.FULLSCREEN);
-
-        WindowShell uiShell = windowEngine.getWindowShellFactory().buildShell(WindowShellOptions.TRANSPARENT, WindowShellOptions.FULLSCREEN);
+        this.windowEngine = engine;
+        var view = new OgreView(WindowShellOptions.FULLSCREEN);
+        engine.registerView(view);
+        this.shell = view.shell;
 
         /*shell.addFocusListener(new FocusListener() {
             @Override
@@ -104,13 +105,13 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
                 }
             }
         });*/
-        this.shell.addKeyListener(new KeyboardListener() {
+        /*this.shell.addKeyListener(new KeyboardListener() {
             @Override
             public boolean keyPressed(char key) {
                 uiShell.requestFocus();
                 return false;
             }
-        });
+        });*/
         this.nativeResourceLoader = nativeResourceLoader;
 
         this.nativeResourceLoader.loadBaseLibrary();
@@ -119,15 +120,13 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
         this.loadPlugins();
         this.loadRenderer();
         if (SystemUtil.isLinux()) {
-            this.renderWindow = this.root.createWindow(windowEngine.getScreenSize());
+            this.renderWindow = this.root.createWindow(shell.getSize());
         } else {
-            this.renderWindow = this.root.createWindow(windowEngine.getScreenSize(), this.shell.getHandle());
+            this.renderWindow = this.root.createWindow(shell.getSize(), shell.getHandle());
         }
         this.materialManager = new OgreMaterialManager();
-        this.windowEngine = windowEngine;
-        this.guiBuilder = new OgreGuiFactory(this.windowEngine.getScreenSize());
+        this.guiBuilder = new OgreGuiFactory(shell.getSize());
         this.guiBuilder.container().withSize(400,400).withBackground(Material.blue()).build().show();
-         uiShell.createButton().setCoordinates(new Coordinates(500,500,500,500));
         this.shell.toFront();
         LOGGER.log(System.Logger.Level.INFO, "Initializing Ogre graphic engine complete.");
     }
@@ -160,7 +159,7 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     @Override
     public OgreSceneManager createGraphicWorld(final String name, final ShadowType shadowType) {
         LOGGER.log(System.Logger.Level.DEBUG,"Creating Ogre SceneManager...");
-        OgreSceneManager sm = new OgreSceneManager(name, this.root.createScene(name), this.renderWindow, this.windowEngine.getScreenSize().width, this.windowEngine.getScreenSize().height);
+        OgreSceneManager sm = new OgreSceneManager(name, this.root.createScene(name), this.renderWindow, this.shell.getSize().width, this.shell.getSize().height);
         LOGGER.log(System.Logger.Level.DEBUG,"Creating Ogre SceneManager complete.");
         //sm.setShadowType(shadowType);
         return sm;
@@ -228,17 +227,33 @@ public final class OgreGraphicEngine extends BaseGraphicEngine {
     }
 
     @Override
-    public final ScreenSize getScreenSize() {
-        return this.windowEngine.getScreenSize();
+    public BaseWindowEngine getWindowEngine() {
+        return this.windowEngine;
     }
 
     @Override
-    public final BaseWindowEngine getWindowEngine() {
-        return this.windowEngine;
+    public final ScreenSize getScreenSize() {
+        return this.shell.getMonitorSize();
     }
 
     @Override
     public final GuiFactory getGuiFactory() {
         return guiBuilder;
+    }
+
+    private class OgreView implements RegisteredView {
+
+        private final WindowShellOptions[] options;
+
+        private WindowShell shell;
+
+        private OgreView(WindowShellOptions... options) {
+            this.options = options;
+        }
+
+        @Override
+        public void build(WindowShellFactory windowShellFactory) {
+            this.shell = windowShellFactory.buildShell(this.options);
+        }
     }
 }

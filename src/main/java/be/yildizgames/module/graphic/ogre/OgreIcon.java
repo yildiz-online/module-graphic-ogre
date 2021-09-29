@@ -26,7 +26,7 @@ package be.yildizgames.module.graphic.ogre;
 
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.module.coordinate.BaseCoordinate;
+import be.yildizgames.module.coordinates.Coordinates;
 import be.yildizgames.module.graphic.gui.container.Container;
 import be.yildizgames.module.graphic.gui.element.AbstractIconElement;
 import be.yildizgames.module.graphic.gui.internal.Element;
@@ -55,10 +55,10 @@ final class OgreIcon extends AbstractIconElement implements Native {
      * @param material    Material to assign.
      * @param container   Container containing this object.
      */
-    OgreIcon(final String name, final BaseCoordinate coordinates, final Material material, final Container container) {
+    OgreIcon(final String name, final Coordinates coordinates, final Material material, final Container container) {
         super(name, coordinates, material);
-        this.pointer = NativePointer.create(this.jni.constructor(((OgreGuiContainer) container).getPointer().getPointerAddress(), name, ((OgreMaterial) material).getPointer().getPointerAddress(), coordinates.width,
-                coordinates.height, coordinates.left, coordinates.top));
+        this.pointer = NativePointer.create(this.jni.constructor(((OgreGuiContainer) container).getPointer().getPointerAddress(), name, ((OgreMaterial) material).getPointer().getPointerAddress(), coordinates.getWidth(),
+                coordinates.getHeight(), coordinates.getLeft(), coordinates.getTop()));
     }
 
     @Override
