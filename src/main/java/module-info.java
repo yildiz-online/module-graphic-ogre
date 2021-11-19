@@ -22,7 +22,7 @@
  *
  */
 
-open module be.yildizgames.module.graphic.ogre {
+module be.yildizgames.module.graphic.ogre {
 
     requires be.yildizgames.module.graphic;
     requires be.yildizgames.common.geometry;
